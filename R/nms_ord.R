@@ -1,0 +1,103 @@
+#' Publication-Quality Non-metric Multi-dimensional Scaling (NMS) Ordinations
+#'
+#' @param mod Object returned by `vegan::metaMDS()`
+#' @param groupcol Column in the data that includes the groups
+#' @param title Character string to use as title for plot
+#' @param colors Vector of colors (as hexadecimal codes) of length >= group levels (currently *not* colorblind safe because of need for 10 built-in unique colors)
+#' @param lines Vector of line types (as integers) of length >= group levels
+#' @param leg_pos Legend position, either numeric vector of x/y coordinates or shorthand accepted by `graphics::legend()`
+#' @param leg_cont Concatenated vector of desired legend entries. Defaults to unique entries in "groupcol" argument (this argument provided in case syntax of legend contents should differ from data contents)
+#'
+#' @export
+#'
+#' @examples
+#' # Let's use some of the data from the vegan package to demonstrate the function
+#' utils::data("varespec", package = 'vegan')
+#' resp <- varespec
+#'
+#' # Make some columns of known number of groups
+#' factor_2lvl <- c(rep.int("Trt1", (nrow(resp)/2)),
+#'                  rep.int("Trt2", (nrow(resp)/2)))
+#' factor_4lvl <- c(rep.int("Trt1", (nrow(resp)/4)),
+#'                  rep.int("Trt2", (nrow(resp)/4)),
+#'                  rep.int("Trt3", (nrow(resp)/4)),
+#'                  rep.int("Trt4", (nrow(resp)/4)))
+#' factor_6lvl = c(rep.int("Trt1", (nrow(resp)/6)),
+#'                 rep.int("Trt2", (nrow(resp)/6)),
+#'                 rep.int("Trt3", (nrow(resp)/6)),
+#'                 rep.int("Trt4", (nrow(resp)/6)),
+#'                 rep.int("Trt5", (nrow(resp)/6)),
+#'                 rep.int("Trt6", (nrow(resp)/6)))
+#' factor_over <- (1:nrow(resp))
+#'
+#' # And combine them into a single data object
+#' data <- cbind(factor_over, factor_2lvl, factor_4lvl, factor_6lvl, resp)
+#'
+#' # Actually perform multidimensional scaling
+#' mds <- vegan::metaMDS(data[-c(1:4)], autotransform = FALSE, expand = FALSE, k = 2, try = 100)
+#'
+#' # With the scaled object and original dataframe we can use this function
+#' helpeR::nms_ord(mod = mds, groupcol = data$factor_4lvl,
+#'                 title = '4-Level NMS', leg_pos = 'topright',
+#'                 leg_cont = c('1', '2', '3', '4'))
+#'
+#' # And too many groups results in an informative error
+#' helpeR::nms_ord(mod = mds, groupcol = data$factor_over)
+#'
+nms_ord <- function(mod, groupcol, title = NA,
+                    colors = c('#c51b7d', '#7fbc41', '#d73027', '#4575b4',
+                               '#e08214', '#8073ac', '#f1b6da', '#b8e186',
+                               '#8c96c6', '#41b6c4'),
+                    lines = rep(1, 10),
+                    leg_pos = 'bottomleft', leg_cont = unique(groupcol)) {
+  # Warning message when attempting to plot more than 10 groups
+  if (length(unique(groupcol)) > 10) {
+    print('Plotting >10 groups is not supported. Run `unique()` on your factor column if you believe there are fewer than 10 groups')
+  } else {
+
+    # Before actually creating the plot we need to make sure colors/shapes/lines are correctly formatted
+
+    # Create vector of shapes
+    shapes <- c(21, 22, 23, 24, 25, 21, 22, 23, 24, 25)
+
+    # Identify the names of the groups in the data
+    groups <- as.vector(unique(groupcol))
+
+    # Assign names to the vectors of colors/shapes/lines
+    names(colors) <- groups
+    names(shapes) <- groups
+    names(lines) <- groups
+
+    # Crop all three vectors to the length of groups in the data
+    colors_actual <- colors[!is.na(names(colors))]
+    shapes_actual <- shapes[!is.na(names(shapes))]
+    lines_actual <- lines[!is.na(names(lines))]
+
+    # Create blank plot
+    plot(mod, display = 'sites', choice = c(1, 2), type = 'none',
+         xlab = "NMS Axis 1", ylab = "NMS Axis 2", main = title)
+
+    # Create a counter set to 1 (we'll need it in a moment)
+    k <- 1
+
+    # For each group, add points of a unique color and (up to 5 groups) unique shape (only 5 hollow shapes are available so they're recycled 2x each)
+    for(level in unique(groupcol)){
+      graphics::points(mod$points[groupcol == level, 1], mod$points[groupcol == level, 2],
+             pch = shapes_actual[k], bg = colors_actual[k])
+
+      # After each group's points are created, advance the counter by 1 to move the earlier part of the loop to a new color/shape
+      k <- k + 1 }
+
+    # With all of the points plotted, add ellipses of matched colors
+    # This also allows for variation in line type if desired
+    vegan::ordiellipse(mod, groupcol, col = colors_actual,
+                       display = 'sites', kind = 'sd', lwd = 2,
+                       lty = lines_actual, label = F)
+
+    # Finally, add a legend
+    graphics::legend(leg_pos, legend = leg_cont, bty = "n",
+           # The "title" of the legend will now be the stress of the NMS
+           title = paste0("Stress = ", round(mod$stress, digits = 3)),
+           pch = shapes_actual, cex = 1.15, pt.bg = colors_actual)
+  }
+}

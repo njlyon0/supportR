@@ -13,4 +13,6 @@ LazyData: true
 RoxygenNote: 7.1.2
 Imports: 
     ape,
+    graphics,
+    utils,
     vegan
