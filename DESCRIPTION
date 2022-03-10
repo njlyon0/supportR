@@ -2,10 +2,11 @@ Package: helpeR
 Type: Package
 Title: Set of Small Helper Functions for R Wrangling and Plotting
 Version: 0.1.0
-Author: Nick J Lyon
-Maintainer: njlyon@alumni.iastate.edu
+Authors@R: c(person(given = 'Nicholas J', family = 'Lyon', role = c('aut', "cre"), comment = 'https://orcid.org/0000-0003-3905-1078', email = "njlyon@alumni.iastate.edu"))
+Author: Nicholas Lyon [aut, cre]
+Maintainer: Nicholas Lyon <njlyon@alumni.iastate.edu>
 Description: This package is a one-stop shop for a suite of helper functions that I have had need of over time.
     The only theme for these functions is that they tend towards simple, short, and narrowly-defined for tasks that often recur but are not large enough in scope to warrant a "real" package.
-License: MIT License (see LICENSE.txt)
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
