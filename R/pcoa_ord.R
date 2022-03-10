@@ -43,10 +43,10 @@
 #' pnts <- ape::pcoa(dist)
 #'
 #' # Test the function for 4 groups
-#' helpeR::pcoa_ord(pnts, data$factor_4lvl)
+#' helpR::pcoa_ord(pnts, data$factor_4lvl)
 #'
 #' # Look what happens if you go over the supported number of groups:
-#' helpeR::pcoa_ord(pnts, data$factor_over)
+#' helpR::pcoa_ord(pnts, data$factor_over)
 #'
 pcoa_ord <- function(mod, groupcol, title = NA,
                     colors = c('#c51b7d', '#7fbc41', '#d73027', '#4575b4',

@@ -14,7 +14,7 @@
 #' sites <- data.frame('site' = loc, 'visit' = time)
 #'
 #' # Now we can use our function to identify bad dates
-#' date_chk(data = sites, col = 'visit')
+#' helpR::date_chk(data = sites, col = 'visit')
 date_chk <- function(data, col) {
   notNA <- subset(data, !is.na(data[, col]))
   bad <- subset(notNA, is.na(as.Date(notNA[, col])))

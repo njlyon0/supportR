@@ -14,7 +14,7 @@
 #' fish <- data.frame('species' = spp, 'count' = ct)
 #'
 #' # Use `num_chk()` to return only the entries that would be lost
-#' num_chk(data = fish, col = "count")
+#' helpR::num_chk(data = fish, col = "count")
 num_chk <- function(data, col) {
   notNA <- subset(data, !is.na(data[, col]))
   bad <- subset(notNA, is.na(suppressWarnings(as.numeric(notNA[, col]))))

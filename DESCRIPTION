@@ -1,4 +1,4 @@
-Package: helpeR
+Package: helpR
 Type: Package
 Title: Set of Small Helper Functions for R Wrangling and Plotting
 Version: 0.1.0

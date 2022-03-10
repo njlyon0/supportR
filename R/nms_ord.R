@@ -39,12 +39,12 @@
 #' mds <- vegan::metaMDS(data[-c(1:4)], autotransform = FALSE, expand = FALSE, k = 2, try = 100)
 #'
 #' # With the scaled object and original dataframe we can use this function
-#' helpeR::nms_ord(mod = mds, groupcol = data$factor_4lvl,
+#' helpR::nms_ord(mod = mds, groupcol = data$factor_4lvl,
 #'                 title = '4-Level NMS', leg_pos = 'topright',
 #'                 leg_cont = c('1', '2', '3', '4'))
 #'
 #' # And too many groups results in an informative error
-#' helpeR::nms_ord(mod = mds, groupcol = data$factor_over)
+#' helpR::nms_ord(mod = mds, groupcol = data$factor_over)
 #'
 nms_ord <- function(mod, groupcol, title = NA,
                     colors = c('#c51b7d', '#7fbc41', '#d73027', '#4575b4',

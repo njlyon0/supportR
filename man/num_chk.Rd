@@ -24,5 +24,5 @@ ct <- c(1, '14x', '_23', 12)
 fish <- data.frame('species' = spp, 'count' = ct)
 
 # Use `num_chk()` to return only the entries that would be lost
-num_chk(data = fish, col = "count")
+helpR::num_chk(data = fish, col = "count")
 }

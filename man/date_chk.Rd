@@ -24,5 +24,5 @@ time <- c('2021-01-01', '2021-01-0w', '1990', '2020-10-xx')
 sites <- data.frame('site' = loc, 'visit' = time)
 
 # Now we can use our function to identify bad dates
-date_chk(data = sites, col = 'visit')
+helpR::date_chk(data = sites, col = 'visit')
 }
