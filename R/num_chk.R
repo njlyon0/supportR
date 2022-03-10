@@ -2,7 +2,7 @@
 #' @description Any elements in the column that would be changed to NA if `as.numeric()` is used on the column are returned. This is useful for quickly identifying only the "problem" entries of an ostensibly numeric column that is read in as a character.
 #'
 #' @param data A data frame
-#' @param col A column name from the provided data frame as a character vector of one element
+#' @param col A column name from the provided data frame as a character vector
 #'
 #' @return A character vector
 #' @export

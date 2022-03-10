@@ -9,7 +9,7 @@ num_chk(data, col)
 \arguments{
 \item{data}{A data frame}
 
-\item{col}{A column name from the provided data frame as a character vector of one element}
+\item{col}{A column name from the provided data frame as a character vector}
 }
 \value{
 A character vector
