@@ -31,10 +31,10 @@ nms_ord(
 \item{leg_cont}{Concatenated vector of desired legend entries. Defaults to unique entries in "groupcol" argument (this argument provided in case syntax of legend contents should differ from data contents)}
 }
 \description{
-Publication-Quality Non-metric Multi-dimensional Scaling (NMS) Ordinations
+Produces Non-Metric Multi-dimensional Scaling (NMS) ordinations for up to 10 groups. Assigns a unique color for each group and draws an ellipse around the standard deviation of the points. Automatically adds stress (see `vegan::metaMDS()` for explanation of "stress") as legend title. Because there are only five hollow shapes (see `?graphics::pch()`) all shapes are re-used a maximum of 2 times when more than 5 groups are supplied.
 }
 \examples{
-# Let's use some of the data from the vegan package to demonstrate the function
+# Use data from the vegan package
 utils::data("varespec", package = 'vegan')
 resp <- varespec
 
