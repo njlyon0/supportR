@@ -6,7 +6,7 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of helpeR is to to handle some wrangling and plotting edge
+The goal of `helpR` is to to handle some wrangling and plotting edge
 cases that I found myself repeatedly running into that I couldn’t find
 pre-built R packages to handle. Hopefully they can help you as well!
 
