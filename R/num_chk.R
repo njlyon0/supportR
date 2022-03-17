@@ -18,5 +18,9 @@
 num_chk <- function(data, col) {
   notNA <- subset(data, !is.na(data[, col]))
   bad <- subset(notNA, is.na(suppressWarnings(as.numeric(notNA[, col]))))
-  unique(bad[, col])
+  if(nrow(bad) != 0){
+    unique(bad[, col])
+  } else {
+    print('No bad numbers.')
+  }
 }
