@@ -1,5 +1,5 @@
 #' @title Check Multiple Columns for Non-Dates.
-#' @description Any elements in the columns that would be changed to NA if `as.Date()` is used are returned. This is useful for quickly identifying only the "problem" entries of ostensibly numeric columns that are read in as characters. This function is an extension of the `date_chk()` function in this package that deals with only a single column.
+#' @description Any elements in the columns that would be changed to NA if `as.Date()` is used are returned. This is useful for quickly identifying only the "problem" entries of ostensibly date columns that are read in as characters. This function is an extension of the `date_chk()` function in this package that deals with only a single column.
 #'
 #' @param data A data frame
 #' @param col_vec A vector of column names from the provided data frame as a character vector

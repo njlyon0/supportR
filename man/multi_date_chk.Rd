@@ -15,7 +15,7 @@ multi_date_chk(data, col_vec)
 A character vector
 }
 \description{
-Any elements in the columns that would be changed to NA if `as.Date()` is used are returned. This is useful for quickly identifying only the "problem" entries of ostensibly numeric columns that are read in as characters. This function is an extension of the `date_chk()` function in this package that deals with only a single column.
+Any elements in the columns that would be changed to NA if `as.Date()` is used are returned. This is useful for quickly identifying only the "problem" entries of ostensibly date columns that are read in as characters. This function is an extension of the `date_chk()` function in this package that deals with only a single column.
 }
 \examples{
 # Make a dataframe to test the function
