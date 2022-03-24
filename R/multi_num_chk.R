@@ -17,7 +17,6 @@
 #'
 #' # Use `multi_num_chk()` to return only the entries that would be lost
 #' helpR::multi_num_chk(data = fish, col_vec = c("count", "num_col2", "third_count"))
-#' helpR::num_chk(data = fish, col = "count")
 multi_num_chk <- function(data, col_vec){
   ## data = A data frame
   ## col_vec = vector of column names to check
@@ -37,12 +36,12 @@ multi_num_chk <- function(data, col_vec){
     # If that vector is length 0 (i.e., no bad entries)...
     if(length(bad_vec) == 0){
       # ...print a message saying so
-      print(paste0("For '", col_opt, "', ", length(bad_vec), " errors identified."))
+      print(paste0("For '", col_opt, "', ", length(bad_vec), " non-numbers identified."))
 
       # If there are any bad entries...
     } else {
       # ... print the name of the column and all of the bad entries in it
-      print(paste0("For '", col_opt, "', ", length(bad_vec), " errors identified: '",
+      print(paste0("For '", col_opt, "', ", length(bad_vec), " non-numbers identified: '",
                    paste0(bad_vec, collapse = "' | '"), "'"))
     }
   }

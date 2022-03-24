@@ -27,5 +27,4 @@ fish <- data.frame('species' = spp, 'count' = ct, 'num_col2' = ct2, 'third_count
 
 # Use `multi_num_chk()` to return only the entries that would be lost
 helpR::multi_num_chk(data = fish, col_vec = c("count", "num_col2", "third_count"))
-helpR::num_chk(data = fish, col = "count")
 }
