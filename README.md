@@ -22,16 +22,19 @@ devtools::install_github("NJLyon-Projects/helpR")
 
 ## helpR Packages
 
-There are currently four functions in `helpR`:
+There are currently six functions in `helpR`:
 
 1.  `num_chk`
-2.  `date_chk`
-3.  `nms_ord`
-4.  `pcoa_ord`
+2.  `multi_num_chk
+3.  `date_chk`
+4.  `multi_num_chk`
+5.  `nms_ord`
+6.  `pcoa_ord`
 
-The two `..._chk` functions check a column in a dataframe to see what
+The `..._chk` functions check column(s) in a dataframe to see what
 values would be coerced into NA if `as.numeric()` or `as.Date()` were
-called (see the prefix of these functions for which is which).
+called (see `num` and `date` versions of the functions for each). Also, the `multi...` variants are built to accept and check a vector of column names rather than a single column so feel free to use those if you want to check multiple columns quickly.
+Note that the `date` functions may throw an 'ambiguous date format' error but this is a problem with `as.Date` not with my functions.
 
 Similarly, the two `..._ord` functions create publication quality NMS or
 PCoA ordinations in R’s base `graphics::plot()` function. These
