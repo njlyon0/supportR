@@ -12,7 +12,7 @@ pre-built R packages to handle. Hopefully they can help you as well!
 
 ## Installation
 
-You can install the development version of helpeR from
+You can install the development version of `helpR` from
 [GitHub](https://github.com/) with:
 
 ``` r
