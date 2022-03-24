@@ -1,4 +1,4 @@
-#' @title Check Multiple Column for Non-Numbers.
+#' @title Check Multiple Columns for Non-Numbers.
 #' @description Any elements in the columns that would be changed to NA if `as.numeric()` is used are returned. This is useful for quickly identifying only the "problem" entries of ostensibly numeric columns that are read in as characters. This function is an extension of the `num_chk()` function in this package that deals with only a single column.
 #'
 #' @param data A data frame

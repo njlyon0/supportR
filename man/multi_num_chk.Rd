@@ -2,7 +2,7 @@
 % Please edit documentation in R/multi_num_chk.R
 \name{multi_num_chk}
 \alias{multi_num_chk}
-\title{Check Multiple Column for Non-Numbers.}
+\title{Check Multiple Columns for Non-Numbers.}
 \usage{
 multi_num_chk(data, col_vec)
 }
