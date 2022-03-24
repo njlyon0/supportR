@@ -21,7 +21,7 @@ multi_num_chk <- function(data, col_vec){
   ## data = A data frame
   ## col_vec = vector of column names to check
 
-  # For each colum the column vector...
+  # For each column the column vector...
   for(col_opt in col_vec) {
 
     # Remove NA entries
