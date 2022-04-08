@@ -12,7 +12,7 @@ pre-built R packages to handle. Hopefully they can help you as well!
 
 ## Installation
 
-You can install the development version of helpeR from
+You can install the development version of `helpR` from
 [GitHub](https://github.com/) with:
 
 ``` r
@@ -25,28 +25,17 @@ devtools::install_github("NJLyon-Projects/helpR")
 There are currently six functions in `helpR`:
 
 1.  `num_chk`
-2.  `multi_num_chk
+2.  `multi_num_chk`
 3.  `date_chk`
 4.  `multi_num_chk`
 5.  `nms_ord`
 6.  `pcoa_ord`
 
-The `..._chk` functions check column(s) in a dataframe to see what
-values would be coerced into NA if `as.numeric()` or `as.Date()` were
-called (see `num` and `date` versions of the functions for each). Also, the `multi...` variants are built to accept and check a vector of column names rather than a single column so feel free to use those if you want to check multiple columns quickly.
+The `..._chk` functions check column(s) in a dataframe to see what values would be coerced into NA if `as.numeric()` or `as.Date()` were called (see `num` and `date` versions of the functions for each). Also, the `multi...` variants are built to accept and check a vector of column names rather than a single column so feel free to use those if you want to check multiple columns quickly.
 Note that the `date` functions may throw an 'ambiguous date format' error but this is a problem with `as.Date` not with my functions.
 
-Similarly, the two `..._ord` functions create publication quality NMS or
-PCoA ordinations in R’s base `graphics::plot()` function. These
-functions have several aesthetic parameters that can be user-modified
-including plot title, group colors, and ellipse line types.
+Similarly, the two `..._ord` functions create publication quality NMS or PCoA ordinations in R’s base `graphics::plot()` function. These functions have several aesthetic parameters that can be user-modified including plot title, group colors, and ellipse line types.
 
-More functions are likely to be developed and housed within this package
-but I find myself using these four perennially for quick wrangling
-checks and exploratory graphing respectively so it seemed worthwhile to
-pivot these into a true package.
+More functions are likely to be developed and housed within this package but I find myself using these four perennially for quick wrangling checks and exploratory graphing respectively so it seemed worthwhile to pivot these into a true package.
 
-The iterative process of creating and improving these functions can be
-found in [this GitHub
-repository](https://github.com/NJLyon-Projects/lyon_custom-fxns) rather
-than here.
+The iterative process of creating and improving these functions can be found in [this GitHub repository](https://github.com/NJLyon-Projects/lyon_custom-fxns) rather than here.
