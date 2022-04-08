@@ -23,8 +23,11 @@ multi_date_chk <- function(data, col_vec){
   # For each column the column vector...
   for(col_opt in col_vec) {
 
+    # Make sure data object is a dataframe
+    df <- as.data.frame(data)
+
     # Remove NA entries
-    notNA <- subset(data, !is.na(data[, col_opt]))
+    notNA <- subset(df, !is.na(df[, col_opt]))
 
     # Identify rows that would be lost if `as.Date()` is used
     bad_df <- subset(notNA, is.na(as.Date(notNA[, col_opt])))

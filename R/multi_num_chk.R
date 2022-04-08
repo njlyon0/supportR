@@ -18,14 +18,14 @@
 #' # Use `multi_num_chk()` to return only the entries that would be lost
 #' helpR::multi_num_chk(data = fish, col_vec = c("count", "num_col2", "third_count"))
 multi_num_chk <- function(data, col_vec){
-  ## data = A data frame
-  ## col_vec = vector of column names to check
+  # Make sure the data object is a dataframe
+  df <- as.data.frame(data)
 
   # For each column the column vector...
   for(col_opt in col_vec) {
 
     # Remove NA entries
-    notNA <- subset(data, !is.na(data[, col_opt]))
+    notNA <- subset(df, !is.na(df[, col_opt]))
 
     # Identify rows that would be lost if `as.numeric()` is used
     bad_df <- subset(notNA, is.na(suppressWarnings(as.numeric(notNA[, col_opt]))))
