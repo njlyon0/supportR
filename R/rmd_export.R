@@ -46,6 +46,7 @@ rmd_export <- function(in_path = getwd(), in_name, out_path = getwd(), out_name,
     if(stringr::str_detect(out_name, pattern = out_type) != "TRUE"){
       out_name <- paste(out_name, out_type, sep = ".") }
     # 4 - Upload knit file to desired location
-    googledrive::drive_upload(media = file.path(out_path, out_name), path = id) }
+    googledrive::drive_upload(media = file.path(out_path, out_name),
+                              path = id, overwrite = TRUE) }
 }
 
