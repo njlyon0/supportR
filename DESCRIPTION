@@ -12,9 +12,10 @@ Encoding: UTF-8
 RoxygenNote: 7.1.2
 Imports: 
     ape,
-    graphics,
-    utils,
-    vegan,
     googledrive,
+    graphics,
+    rmarkdown,
     stringr,
-    rmarkdown
+    utils,
+    vegan
+    
