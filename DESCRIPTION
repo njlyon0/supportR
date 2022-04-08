@@ -14,4 +14,7 @@ Imports:
     ape,
     graphics,
     utils,
-    vegan
+    vegan,
+    googledrive,
+    stringr,
+    rmarkdown
