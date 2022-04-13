@@ -30,11 +30,14 @@ These are the functions currently in `helpR`:
 
 #### Wrangle Dates
 - `date_chk()` = identify values in a given column that would be coerced to NA if `as.Date()` is used.
-- `multi_date_chk` = apply `date_chk()` to each column in a vector of column names. Note that the `date_...()` functions may throw an 'ambiguous date format' error but this is a problem with `as.Date()` not with my functions.
+- `multi_date_chk` = apply `date_chk()` to each column in a vector of column names.
+- Note that these functions may throw an 'ambiguous date format' error but this is a problem with `as.Date()` not with my functions.
 
 #### Make Ordinations
-- `nms_ord()` = Non-metric Multi-dimensional Scaling ordination of up to 10 groups.
-- `pcoa_ord()` = Principal Coordinates Analysis ordination of up to 10 groups. These functions have several aesthetic parameters that can be user-modified including plot title, group colors, and ellipse line types.
+- `nms_ord()` = Publication quality Non-metric Multi-dimensional Scaling ordination.
+- `pcoa_ord()` = Publication quality Principal Coordinates Analysis ordination.
+- These functions have several aesthetic parameters that can be user-modified including plot title, group colors, point shapes, and ellipse line types.
+- Note that these functions have 10 built-in colors/lines/shapes so if you want to plot more than 10 groups you need to modify the respective aesthetic parameter to include enough values or the function will refuse to make the ordination (though it will print an informative warning message).
 
 #### Export RMarkdowns
 - `rmd_export()` = knit an RMarkdown file (either as a .html or .pdf) and export it to a specified Google Drive folder.
