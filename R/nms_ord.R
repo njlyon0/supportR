@@ -47,9 +47,9 @@
 #' helpR::nms_ord(mod = mds, groupcol = data$factor_over)
 #'
 nms_ord <- function(mod, groupcol, title = NA,
-                    colors = c('#c51b7d', '#7fbc41', '#d73027', '#4575b4',
-                               '#e08214', '#8073ac', '#f1b6da', '#b8e186',
-                               '#8c96c6', '#41b6c4'),
+                    colors = c('#41b6c4', '#c51b7d', '#7fbc41', '#d73027',
+                               '#4575b4', '#e08214', '#8073ac', '#f1b6da',
+                               '#b8e186', '#8c96c6'),
                     lines = rep(1, 10),
                     leg_pos = 'bottomleft', leg_cont = unique(groupcol)) {
   # Warning message when attempting to plot more than 10 groups
@@ -62,8 +62,11 @@ nms_ord <- function(mod, groupcol, title = NA,
     # Create vector of shapes
     shapes <- c(21, 22, 23, 24, 25, 21, 22, 23, 24, 25)
 
+    # Make the provided group column into a factor
+    group_col_fct <- as.factor(groupcol)
+
     # Identify the names of the groups in the data
-    groups <- as.vector(unique(groupcol))
+    groups <- as.vector(levels(group_col_fct))
 
     # Assign names to the vectors of colors/shapes/lines
     names(colors) <- groups
@@ -76,28 +79,24 @@ nms_ord <- function(mod, groupcol, title = NA,
     lines_actual <- lines[!is.na(names(lines))]
 
     # Create blank plot
-    plot(mod, display = 'sites', choice = c(1, 2), type = 'none',
-         xlab = "NMS Axis 1", ylab = "NMS Axis 2", main = title)
-
-    # Create a counter set to 1 (we'll need it in a moment)
-    k <- 1
+    plot(x = mod, display = 'sites', choice = c(1, 2), type = 'none',
+         xlab = "NMS Axis 1", ylab = "NMS Axis 2", main = title,
+         col = 'white', pch = 1)
 
     # For each group, add points of a unique color and (up to 5 groups) unique shape (only 5 hollow shapes are available so they're recycled 2x each)
-    for(level in unique(groupcol)){
-      graphics::points(mod$points[groupcol == level, 1], mod$points[groupcol == level, 2],
-             pch = shapes_actual[k], bg = colors_actual[k])
-
-      # After each group's points are created, advance the counter by 1 to move the earlier part of the loop to a new color/shape
-      k <- k + 1 }
+    for(level in levels(group_col_fct)){
+      graphics::points(x = mod$points[group_col_fct == level, 1],
+                       y = mod$points[group_col_fct == level, 2],
+             pch = shapes_actual[level], bg = colors_actual[level]) }
 
     # With all of the points plotted, add ellipses of matched colors
     # This also allows for variation in line type if desired
-    vegan::ordiellipse(mod, groupcol, col = colors_actual,
+    vegan::ordiellipse(ord = mod, groups = groupcol, col = colors_actual,
                        display = 'sites', kind = 'sd', lwd = 2,
                        lty = lines_actual, label = F)
 
     # Finally, add a legend
-    graphics::legend(leg_pos, legend = leg_cont, bty = "n",
+    graphics::legend(x = leg_pos, legend = leg_cont, bty = "n",
            # The "title" of the legend will now be the stress of the NMS
            title = paste0("Stress = ", round(mod$stress, digits = 3)),
            pch = shapes_actual, cex = 1.15, pt.bg = colors_actual)

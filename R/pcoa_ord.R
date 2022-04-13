@@ -49,9 +49,9 @@
 #' helpR::pcoa_ord(pnts, data$factor_over)
 #'
 pcoa_ord <- function(mod, groupcol, title = NA,
-                    colors = c('#c51b7d', '#7fbc41', '#d73027', '#4575b4',
-                               '#e08214', '#8073ac', '#f1b6da', '#b8e186',
-                               '#8c96c6', '#41b6c4'),
+                    colors = c('#41b6c4', '#c51b7d', '#7fbc41', '#d73027',
+                               '#4575b4', '#e08214', '#8073ac', '#f1b6da',
+                               '#b8e186', '#8c96c6'),
                     lines = rep(1, 10),
                     leg_pos = 'bottomleft', leg_cont = unique(groupcol)) {
   # Limiting (for now) to only 10 groups
@@ -64,8 +64,11 @@ pcoa_ord <- function(mod, groupcol, title = NA,
     # Create vector of shapes
     shapes <- c(21, 22, 23, 24, 25, 21, 22, 23, 24, 25)
 
+    # Make the provided group column into a factor
+    group_col_fct <- as.factor(groupcol)
+
     # Identify the names of the groups in the data
-    groups <- as.vector(unique(groupcol))
+    groups <- as.vector(levels(group_col_fct))
 
     # Assign names to the vectors of colors/shapes/lines
     names(colors) <- groups
@@ -80,31 +83,27 @@ pcoa_ord <- function(mod, groupcol, title = NA,
     # Continue on to the actual plot creation
 
     # Create blank plot
-    graphics::plot(mod$vectors,
+    graphics::plot(x = mod$vectors,
          # display = 'sites', choice = c(1, 2), type = 'none',
          main = title,
          xlab = paste0("PC1 (", round(mod$values$Relative_eig[1] * 100, digits = 2), "%)"),
-         ylab = paste0("PC2 (", round(mod$values$Relative_eig[2] * 100, digits = 2), "%)"))
-
-    # Create a counter set to 1 (we'll need it in a moment)
-    k <- 1
+         ylab = paste0("PC2 (", round(mod$values$Relative_eig[2] * 100, digits = 2), "%)"), col = 'white', pch = 1)
 
     # For each group, add points of a unique color and (up to 5 groups) unique shape (only 5 hollow shapes are available so they're recycled 2x each)
-    for(level in unique(groupcol)){
-      graphics::points(mod$vectors[groupcol == level, 1], mod$vectors[groupcol == level, 2],
-             pch = shapes_actual[k], bg = colors_actual[k])
-
-      # After each group's points are created, advance the counter by 1 to move the earlier part of the loop to a new color/shape
-      k <- k + 1 }
+    for(level in levels(group_col_fct)){
+      graphics::points(x = mod$vectors[group_col_fct == level, 1],
+                       y = mod$vectors[group_col_fct == level, 2],
+             pch = shapes_actual[level], bg = colors_actual[level]) }
 
     # With all of the points plotted, add ellipses of matched colors
     # This also allows for variation in line type if desired
-    vegan::ordiellipse(mod$vectors, groupcol, col = colors_actual,
-                       display = 'sites', kind = 'sd', lwd = 2,
+    vegan::ordiellipse(ord = mod$vectors, groups = groupcol,
+                       col = colors_actual, display = 'sites',
+                       kind = 'sd', lwd = 2,
                        lty = lines_actual, label = F)
 
     # Finally, add a legend
-    graphics::legend(leg_pos, legend = leg_cont, bty = "n", title = NULL,
+    graphics::legend(x = leg_pos, legend = leg_cont, bty = "n", title = NULL,
            pch = shapes_actual, cex = 1.15, pt.bg = colors_actual)
   }
 }
