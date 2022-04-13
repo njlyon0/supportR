@@ -8,8 +8,8 @@ nms_ord(
   mod,
   groupcol,
   title = NA,
-  colors = c("#c51b7d", "#7fbc41", "#d73027", "#4575b4", "#e08214", "#8073ac",
-    "#f1b6da", "#b8e186", "#8c96c6", "#41b6c4"),
+  colors = c("#41b6c4", "#c51b7d", "#7fbc41", "#d73027", "#4575b4", "#e08214",
+    "#8073ac", "#f1b6da", "#b8e186", "#8c96c6"),
   lines = rep(1, 10),
   leg_pos = "bottomleft",
   leg_cont = unique(groupcol)
