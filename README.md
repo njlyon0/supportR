@@ -25,21 +25,19 @@ devtools::install_github("NJLyon-Projects/helpR")
 These are the functions currently in `helpR`:
 
 #### Wrangle Numbers
-- `num_chk()` = identify values in a given column that would be coerced to NA if `as.numeric()` is used
-- `multi_num_chk()` = apply `num_chk()` to each column in a vector of column names
+- `num_chk()` = identify values in a given column that would be coerced to NA if `as.numeric()` is used.
+- `multi_num_chk()` = apply `num_chk()` to each column in a vector of column names.
 
 #### Wrangle Dates
-- `date_chk()` = identify values in a given column that would be coerced to NA if `as.Date()` is used
-- `multi_date_chk` = apply `date_chk()` to each column in a vector of column names
-Note that the `date_...()` functions may throw an 'ambiguous date format' error but this is a problem with `as.Date()` not with my functions.
+- `date_chk()` = identify values in a given column that would be coerced to NA if `as.Date()` is used.
+- `multi_date_chk` = apply `date_chk()` to each column in a vector of column names. Note that the `date_...()` functions may throw an 'ambiguous date format' error but this is a problem with `as.Date()` not with my functions.
 
 #### Make Ordinations
-- `nms_ord()` = Non-metric Multi-dimensional Scaling ordination of up to 10 groups
-- `pcoa_ord()` = Principal Coordinates Analysis ordination of up to 10 groups
-These functions have several aesthetic parameters that can be user-modified including plot title, group colors, and ellipse line types.
+- `nms_ord()` = Non-metric Multi-dimensional Scaling ordination of up to 10 groups.
+- `pcoa_ord()` = Principal Coordinates Analysis ordination of up to 10 groups. These functions have several aesthetic parameters that can be user-modified including plot title, group colors, and ellipse line types.
 
 #### Export RMarkdowns
-- `rmd_export()` = knit an RMarkdown file (either as a .html or .pdf) and export it to a specified Google Drive folder
+- `rmd_export()` = knit an RMarkdown file (either as a .html or .pdf) and export it to a specified Google Drive folder.
 
 ## Looking Ahead
 
