@@ -4,7 +4,8 @@
 #' @param mod Object returned by `ape::pcoa()`
 #' @param groupcol Column in the data that includes the groups
 #' @param title Character string to use as title for plot
-#' @param colors Vector of colors (as hexadecimal codes) of length >= group levels (currently *not* colorblind safe because of need for 10 built-in unique colors)
+#' @param colors Vector of colors (as hexadecimal codes) of length >= group levels (default *not* colorblind safe because of need for 10 built-in unique colors)
+#' @param shapes Vector of shapes (as values accepted by `pch`) of length >= group levels
 #' @param lines Vector of line types (as integers) of length >= group levels
 #' @param leg_pos Legend position, either numeric vector of x/y coordinates or shorthand accepted by `graphics::legend()`
 #' @param leg_cont Concatenated vector of desired legend entries. Defaults to unique entries in "groupcol" argument (this argument provided in case syntax of legend contents should differ from data contents)
@@ -49,20 +50,23 @@
 #' helpR::pcoa_ord(pnts, data$factor_over)
 #'
 pcoa_ord <- function(mod, groupcol, title = NA,
-                    colors = c('#41b6c4', '#c51b7d', '#7fbc41', '#d73027',
-                               '#4575b4', '#e08214', '#8073ac', '#f1b6da',
-                               '#b8e186', '#8c96c6'),
-                    lines = rep(1, 10),
-                    leg_pos = 'bottomleft', leg_cont = unique(groupcol)) {
-  # Limiting (for now) to only 10 groups
-  if (length(unique(groupcol)) > 10) {
-        print('Plotting >10 groups is not supported. Run `unique` on your factor column if you believe there are fewer than 10 groups')
+                     colors = c('#41b6c4', '#c51b7d', '#7fbc41', '#d73027',
+                                '#4575b4', '#e08214', '#8073ac', '#f1b6da',
+                                '#b8e186', '#8c96c6'),
+                     shapes = rep(x = 21:25, times = 2),
+                     lines = rep(x = 1, times = 10),
+                     leg_pos = 'bottomleft', leg_cont = unique(groupcol)) {
+  # Warning message when attempting to plot too many groups
+  if (length(unique(groupcol)) > min(length(colors),
+                                     length(shapes),
+                                     length(lines))) {
+    print(paste('Insufficient aesthetic values provided.',
+                '10 colors/shapes/lines are built into the function but you have supplied', length(unique(groupcol)), 'groups.',
+                'Please modify `colors`, `lines`, or `shapes` as needed to provide one value per category in your group column.',
+                'Run `unique()` on your group column if you believe there are fewer than 10 groups'))
   } else {
 
-    # Before actually creating the plot we need to make sure our colors/shapes/lines are correctly formatted
-
-    # Create vector of shapes
-    shapes <- c(21, 22, 23, 24, 25, 21, 22, 23, 24, 25)
+    # Before actually creating the plot we need to make sure colors/shapes/lines are correctly formatted
 
     # Make the provided group column into a factor
     group_col_fct <- as.factor(groupcol)

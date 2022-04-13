@@ -10,7 +10,8 @@ pcoa_ord(
   title = NA,
   colors = c("#41b6c4", "#c51b7d", "#7fbc41", "#d73027", "#4575b4", "#e08214",
     "#8073ac", "#f1b6da", "#b8e186", "#8c96c6"),
-  lines = rep(1, 10),
+  shapes = rep(x = 21:25, times = 2),
+  lines = rep(x = 1, times = 10),
   leg_pos = "bottomleft",
   leg_cont = unique(groupcol)
 )
@@ -22,7 +23,9 @@ pcoa_ord(
 
 \item{title}{Character string to use as title for plot}
 
-\item{colors}{Vector of colors (as hexadecimal codes) of length >= group levels (currently *not* colorblind safe because of need for 10 built-in unique colors)}
+\item{colors}{Vector of colors (as hexadecimal codes) of length >= group levels (default *not* colorblind safe because of need for 10 built-in unique colors)}
+
+\item{shapes}{Vector of shapes (as values accepted by `pch`) of length >= group levels}
 
 \item{lines}{Vector of line types (as integers) of length >= group levels}
 
