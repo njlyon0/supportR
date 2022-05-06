@@ -16,10 +16,10 @@
 #' # Now we can use our function to identify bad dates
 #' helpR::date_chk(data = sites, col = 'visit')
 date_chk <- function(data, col) {
-  df <- as.data.frame(data)
-  notNA <- subset(df, !is.na(df[, col]))
-  bad <- subset(notNA, is.na(as.Date(notNA[, col])))
-  if(nrow(bad) != 0){
-    unique(bad[, col])
-  } else { print('No bad dates.') }
+  df <- base::as.data.frame(data)
+  notNA <- base::subset(df, !base::is.na(df[, col]))
+  bad <- base::subset(notNA, base::is.na(base::as.Date(notNA[, col])))
+  if(base::nrow(bad) != 0){
+    base::unique(bad[, col])
+  } else { base::message('No bad dates.') }
 }

@@ -27,8 +27,8 @@
 rmd_export <- function(in_path = getwd(), in_name, out_path = getwd(), out_name, out_type = 'html', drive_link) {
 
   # 0 - Reject inappropriate out_type specification
-  if(!out_type %in% c("html", "pdf") | length(nchar(out_type)) == 0){
-    print("Inappropriate `out_type` specification. Please supply either 'html' or 'pdf'")
+  if(!out_type %in% c("html", "pdf") | base::length(base::nchar(out_type)) == 0){
+    message("Inappropriate `out_type` specification. Please supply either 'html' or 'pdf'")
   } else {
 
     # 1 - Render Rmarkdown Locally

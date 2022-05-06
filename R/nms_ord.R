@@ -55,35 +55,35 @@ nms_ord <- function(mod, groupcol, title = NA,
                     lines = rep(x = 1, times = 10),
                     leg_pos = 'bottomleft', leg_cont = unique(groupcol)) {
   # Warning message when attempting to plot too many groups
-  if (length(unique(groupcol)) > min(length(colors),
-                                     length(shapes),
-                                     length(lines))) {
-    print(paste('Insufficient aesthetic values provided.',
-                '10 colors/shapes/lines are built into the function but you have supplied', length(unique(groupcol)), 'groups.',
+  if (base::length(base::unique(groupcol)) > base::min(base::length(colors),
+                                                       base::length(shapes),
+                                                       base::length(lines))) {
+    message('Insufficient aesthetic values provided.',
+                '10 colors/shapes/lines are built into the function but you have supplied', base::length(base::unique(groupcol)), 'groups.',
                 'Please modify `colors`, `lines`, or `shapes` as needed to provide one value per category in your group column.',
-                'Run `unique()` on your group column if you believe there are fewer than 10 groups'))
+                'Run `unique()` on your group column if you believe there are fewer than 10 groups')
   } else {
 
     # Before actually creating the plot we need to make sure colors/shapes/lines are correctly formatted
 
     # Make the provided group column into a factor
-    group_col_fct <- as.factor(groupcol)
+    group_col_fct <- base::as.factor(groupcol)
 
     # Identify the names of the groups in the data
-    groups <- as.vector(levels(group_col_fct))
+    groups <- base::as.vector(base::levels(group_col_fct))
 
     # Assign names to the vectors of colors/shapes/lines
-    names(colors) <- groups
-    names(shapes) <- groups
-    names(lines) <- groups
+    base::names(colors) <- groups
+    base::names(shapes) <- groups
+    base::names(lines) <- groups
 
     # Crop all three vectors to the length of groups in the data
-    colors_actual <- colors[!is.na(names(colors))]
-    shapes_actual <- shapes[!is.na(names(shapes))]
-    lines_actual <- lines[!is.na(names(lines))]
+    colors_actual <- colors[!base::is.na(base::names(colors))]
+    shapes_actual <- shapes[!base::is.na(base::names(shapes))]
+    lines_actual <- lines[!base::is.na(base::names(lines))]
 
     # Create blank plot
-    plot(x = mod, display = 'sites', choice = c(1, 2), type = 'none',
+    graphics::plot(x = mod, display = 'sites', choice = c(1, 2), type = 'none',
          xlab = "NMS Axis 1", ylab = "NMS Axis 2", main = title,
          col = 'white', pch = 1)
 

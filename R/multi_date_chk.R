@@ -24,26 +24,26 @@ multi_date_chk <- function(data, col_vec){
   for(col_opt in col_vec) {
 
     # Make sure data object is a dataframe
-    df <- as.data.frame(data)
+    df <- base::as.data.frame(data)
 
     # Remove NA entries
-    notNA <- subset(df, !is.na(df[, col_opt]))
+    notNA <- base::subset(df, !base::is.na(df[, col_opt]))
 
     # Identify rows that would be lost if `as.Date()` is used
-    bad_df <- subset(notNA, is.na(as.Date(notNA[, col_opt])))
+    bad_df <- base::subset(notNA, is.na(base::as.Date(notNA[, col_opt])))
 
     # Get a vector of just the unique 'bad' entries
-    bad_vec <- unique(bad_df[, col_opt])
+    bad_vec <- base::unique(bad_df[, col_opt])
 
     # If that vector is length 0 (i.e., no bad entries)...
-    if(length(bad_vec) == 0){
+    if(base::length(bad_vec) == 0){
       # ...print a message saying so
-      print(paste0("For '", col_opt, "', ", length(bad_vec), " non-dates identified."))
+      message("For '", col_opt, "', ", length(bad_vec), " non-dates identified.")
 
       # If there are any bad entries...
     } else {
       # ... print the name of the column and all of the bad entries in it
-      print(paste0("For '", col_opt, "', ", length(bad_vec), " non-dates identified: '", paste0(bad_vec, collapse = "' | '"), "'"))
+      message("For '", col_opt, "', ", length(bad_vec), " non-dates identified: '", paste0(bad_vec, collapse = "' | '"), "'")
     }
   }
 }

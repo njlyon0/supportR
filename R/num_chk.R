@@ -16,10 +16,13 @@
 #' # Use `num_chk()` to return only the entries that would be lost
 #' helpR::num_chk(data = fish, col = "count")
 num_chk <- function(data, col) {
-  df <- as.data.frame(data)
-  notNA <- subset(df, !is.na(df[, col]))
-  bad <- subset(notNA, is.na(suppressWarnings(as.numeric(notNA[, col]))))
+  df <- base::as.data.frame(data)
+  notNA <- base::subset(df, !base::is.na(df[, col]))
+  bad <- base::subset(notNA,
+                      base::is.na(
+                        base::suppressWarnings(
+                          base::as.numeric(notNA[, col]))))
   if(nrow(bad) != 0){
-    unique(bad[, col])
-  } else { print('No bad numbers.') }
+    base::unique(bad[, col])
+  } else { message('No bad numbers.') }
 }
