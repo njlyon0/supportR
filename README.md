@@ -17,7 +17,7 @@ You can install the development version of `helpR` from
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("NJLyon-Projects/helpR")
+devtools::install_github("njlyon0/helpR")
 ```
 
 ## helpR Packages
