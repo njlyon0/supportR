@@ -40,7 +40,7 @@ Produces Principal Coordinates Analysis (PCoA) ordinations for up to 10 groups. 
 
 
 # Use data from the vegan package
-utils::data("varespec", package = 'vegan')
+data("varespec", package = 'vegan')
 resp <- varespec
 
 # Make some columns of known number of groups
