@@ -4,6 +4,8 @@
 # helpR
 
 <!-- badges: start -->
+
+[![R-CMD-check](https://github.com/njlyon0/helpR/workflows/R-CMD-check/badge.svg)](https://github.com/njlyon0/helpR/actions)
 <!-- badges: end -->
 
 The goal of `helpR` is to to handle some wrangling and plotting edge
@@ -12,38 +14,38 @@ pre-built R packages to handle. Hopefully they can help you as well!
 
 ## Installation
 
-You can install the development version of `helpR` from
+You can install the development version of helpeR from
 [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("njlyon0/helpR")
+devtools::install_github("NJLyon-Projects/helpR")
 ```
 
 ## helpR Packages
 
-These are the functions currently in `helpR`:
+There are currently four functions in `helpR`:
 
-#### Wrangle Numbers
-- `num_chk()` = identify values in a given column that would be coerced to NA if `as.numeric()` is used.
-- `multi_num_chk()` = apply `num_chk()` to each column in a vector of column names.
+1.  `num_chk`
+2.  `date_chk`
+3.  `nms_ord`
+4.  `pcoa_ord`
 
-#### Wrangle Dates
-- `date_chk()` = identify values in a given column that would be coerced to NA if `as.Date()` is used.
-- `multi_date_chk` = apply `date_chk()` to each column in a vector of column names.
-- Note that these functions may throw an 'ambiguous date format' error but this is a problem with `as.Date()` not with my functions.
+The two `..._chk` functions check a column in a dataframe to see what
+values would be coerced into NA if `as.numeric()` or `as.Date()` were
+called (see the prefix of these functions for which is which).
 
-#### Make Ordinations
-- `nms_ord()` = Publication quality Non-metric Multi-dimensional Scaling ordination.
-- `pcoa_ord()` = Publication quality Principal Coordinates Analysis ordination.
-- These functions have several aesthetic parameters that can be user-modified including plot title, group colors, point shapes, and ellipse line types.
-- Note that these functions have 10 built-in colors/lines/shapes so if you want to plot more than 10 groups you need to modify the respective aesthetic parameter to include enough values or the function will refuse to make the ordination (though it will print an informative warning message).
+Similarly, the two `..._ord` functions create publication quality NMS or
+PCoA ordinations in R’s base `graphics::plot()` function. These
+functions have several aesthetic parameters that can be user-modified
+including plot title, group colors, and ellipse line types.
 
-#### Export RMarkdowns
-- `rmd_export()` = knit an RMarkdown file (either as a .html or .pdf) and export it to a specified Google Drive folder.
+More functions are likely to be developed and housed within this package
+but I find myself using these four perennially for quick wrangling
+checks and exploratory graphing respectively so it seemed worthwhile to
+pivot these into a true package.
 
-## Looking Ahead
-
-More functions are likely to be developed and housed within this package but I find myself using these four perennially for quick wrangling checks and exploratory graphing respectively so it seemed worthwhile to pivot these into a true package.
-
-The iterative process of creating and improving most of these functions can be found in [this GitHub repository](https://github.com/NJLyon-Projects/lyon_custom-fxns) rather than here.
+The iterative process of creating and improving these functions can be
+found in [this GitHub
+repository](https://github.com/NJLyon-Projects/lyon_custom-fxns) rather
+than here.
