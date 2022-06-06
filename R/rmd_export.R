@@ -13,7 +13,7 @@
 #'
 #' @examples
 #' # Authorize R to interact with GoogleDrive
-#' googledrive::drive_auth()
+#' # googledrive::drive_auth()
 #' ## NOTE: See above warning about possible misstep at this stage
 #'
 #' # Use `rmd_export()` to knit and export an .Rmd file
