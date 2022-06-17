@@ -41,13 +41,13 @@
 #' dist <- vegan::vegdist(resp, method = 'kulczynski')
 #'
 #' # Perform a PCoA on the distance matrix to get points for an ordination
-#' pnts <- ape::pcoa(dist)
+#' #pnts <- ape::pcoa(dist)
 #'
 #' # Test the function for 4 groups
-#' helpR::pcoa_ord(pnts, data$factor_4lvl)
+#' #helpR::pcoa_ord(pnts, data$factor_4lvl)
 #'
 #' # Look what happens if you go over the supported number of groups:
-#' helpR::pcoa_ord(pnts, data$factor_over)
+#' #helpR::pcoa_ord(pnts, data$factor_over)
 #'
 pcoa_ord <- function(mod, groupcol, title = NA,
                      colors = c('#41b6c4', '#c51b7d', '#7fbc41', '#d73027',
