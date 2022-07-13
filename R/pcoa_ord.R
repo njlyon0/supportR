@@ -42,23 +42,36 @@
 #' #pnts <- ape::pcoa(dist)
 #'
 #' # Test the function for 4 groups
-#' #helpR::pcoa_ord(pnts, data$factor_4lvl)
+#' #helpR::pcoa_ord(mod = pnts, groupcol = data$factor_4lvl)
 #'
 #' # Look what happens if you go over the supported number of groups:
-#' #helpR::pcoa_ord(pnts, data$factor_over)
+#' #helpR::pcoa_ord(mod = pnts, groupcol = data$factor_over)
 #'
-pcoa_ord <- function(mod, groupcol, title = NA,
+pcoa_ord <- function(mod = NULL, groupcol = NULL, title = NA,
                      colors = c('#41b6c4', '#c51b7d', '#7fbc41', '#d73027',
                                 '#4575b4', '#e08214', '#8073ac', '#f1b6da',
                                 '#b8e186', '#8c96c6'),
                      shapes = rep(x = 21:25, times = 2),
                      lines = rep(x = 1, times = 10),
                      leg_pos = 'bottomleft', leg_cont = unique(groupcol)) {
+
+  # Error out if model or groupcolumn are not specified
+  if(base::is.null(mod) | base::is.null(groupcol))
+    stop("Model and groupcolumn must be specified")
+
+  # Error out if the model is the wrong class
+  if(base::class(mod) != "pcoa")
+    stop("Model must be returned by `ape::pcoa`")
+
+  # Error out for inappropriate shapes / lines
+  if(!is.numeric(shapes) | base::max(shapes) > 25 | base::min(shapes < 0))
+    stop("`shapes` must be numeric value as defined in `?pch`")
+
   # Warning message when attempting to plot too many groups
   if (base::length(base::unique(groupcol)) > base::min(base::length(colors),
                                                        base::length(shapes),
                                                        base::length(lines))) {
-    message('Insufficient aesthetic values provided.', '10 colors/shapes/lines are built into the function but you have supplied', length(unique(groupcol)), 'groups.', 'Please modify `colors`, `lines`, or `shapes` as needed to provide one value per category in your group column.', 'Run `unique()` on your group column if you believe there are enough groups.')
+    message('Insufficient aesthetic values provided. 10 colors/shapes/lines are built into the function but you have supplied ', length(unique(groupcol)), ' groups. Please modify `colors`, `lines`, or `shapes` as needed to provide one value per category in your group column.')
   } else {
 
     # Before actually creating the plot we need to make sure colors/shapes/lines are correctly formatted

@@ -5,8 +5,8 @@
 \title{Publication-Quality Principal Coordinates Analysis (PCoA) Ordinations}
 \usage{
 pcoa_ord(
-  mod,
-  groupcol,
+  mod = NULL,
+  groupcol = NULL,
   title = NA,
   colors = c("#41b6c4", "#c51b7d", "#7fbc41", "#d73027", "#4575b4", "#e08214",
     "#8073ac", "#f1b6da", "#b8e186", "#8c96c6"),
@@ -66,9 +66,9 @@ dist <- vegan::vegdist(resp, method = 'kulczynski')
 #pnts <- ape::pcoa(dist)
 
 # Test the function for 4 groups
-#helpR::pcoa_ord(pnts, data$factor_4lvl)
+#helpR::pcoa_ord(mod = pnts, groupcol = data$factor_4lvl)
 
 # Look what happens if you go over the supported number of groups:
-#helpR::pcoa_ord(pnts, data$factor_over)
+#helpR::pcoa_ord(mod = pnts, groupcol = data$factor_over)
 
 }
