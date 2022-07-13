@@ -5,26 +5,23 @@
 \title{Knit an R Markdown File and Export to Google Drive}
 \usage{
 rmd_export(
-  in_path = getwd(),
-  in_name,
+  rmd = NULL,
   out_path = getwd(),
-  out_name,
+  out_name = NULL,
   out_type = "html",
   drive_link
 )
 }
 \arguments{
-\item{in_path}{path to the .Rmd file (defaults to `getwd()`)}
+\item{rmd}{(character) name and path to .Rmd file to knit}
 
-\item{in_name}{name of .Rmd file (with or without ".Rmd" at end)}
+\item{out_path}{(character) path to the knit file's destination (defaults to `getwd()`)}
 
-\item{out_path}{path to the knit file's destination (defaults to `getwd()`)}
+\item{out_name}{(character) desired name for knit file (with or without file suffix)}
 
-\item{out_name}{desired name for knit file (with or without file suffix)}
+\item{out_type}{(character) either "html" or "pdf" depending on what YAML entry you have in the `output: ` field of your .Rmd}
 
-\item{out_type}{either "html" or "pdf" depending on what YAML entry you have in the `output: ` field of your .Rmd}
-
-\item{drive_link}{full URL of drive folder to upload the knit document}
+\item{drive_link}{(character) full URL of drive folder to upload the knit document}
 }
 \description{
 This function allows you to knit a specified R Markdown file locally and export it to the Google Drive folder for which you provided a link. NOTE that if you have not used `googledrive::drive_auth()` this will prompt you to authorize a Google account in a new browser tab. If you do not check the box in that screen before continuing you will not be able to use this function until you clear your browser cache and re-authenticate. I recommend invoking `drive_auth()` beforehand to reduce the chances of this error
@@ -35,8 +32,8 @@ This function allows you to knit a specified R Markdown file locally and export 
 ## NOTE: See above warning about possible misstep at this stage
 
 # Use `rmd_export()` to knit and export an .Rmd file
-# rmd_export(in_name = "my_markdown.Rmd",
-# in_path = file.path("Folder in my WD with the .Rmd named in `in_name`"),
+# rmd_export(rmd = "my_markdown.Rmd",
+# in_path = file.path("Folder in my WD with the .Rmd named in `rmd`"),
 # out_path = file.path("Folder in my WD to save the knit file to"),
 # out_name = "desired name for output",
 # out_type = "html",
