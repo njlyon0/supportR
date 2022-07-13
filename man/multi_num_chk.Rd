@@ -4,15 +4,15 @@
 \alias{multi_num_chk}
 \title{Check Multiple Columns for Non-Numbers.}
 \usage{
-multi_num_chk(data, col_vec)
+multi_num_chk(data = NULL, col_vec = NULL)
 }
 \arguments{
-\item{data}{A data frame}
+\item{data}{(dataframe) object containing at least one column of supposed numbers}
 
-\item{col_vec}{A vector of column names from the provided data frame as a character vector}
+\item{col_vec}{(character or numeric) vector of names or column numbers of the columns containing putative numbers in the data object}
 }
 \value{
-A character vector
+list of same length as `col_vec` with malformed numbers from each column in their respective element
 }
 \description{
 Any elements in the columns that would be changed to NA if `as.numeric()` is used are returned. This is useful for quickly identifying only the "problem" entries of ostensibly numeric columns that are read in as characters. This function is an extension of the `num_chk()` function in this package that deals with only a single column.

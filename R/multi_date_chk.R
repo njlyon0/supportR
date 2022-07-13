@@ -1,10 +1,10 @@
 #' @title Check Multiple Columns for Non-Dates.
 #' @description Any elements in the columns that would be changed to NA if `as.Date()` is used are returned. This is useful for quickly identifying only the "problem" entries of ostensibly date columns that are read in as characters. This function is an extension of the `date_chk()` function in this package that deals with only a single column.
 #'
-#' @param data A data frame
-#' @param col_vec A vector of column names from the provided data frame as a character vector
+#' @param data (dataframe) object containing at least one column of supposed dates
+#' @param col_vec (character or numeric) vector of names or column numbers of the columns containing putative dates in the data object
 #'
-#' @return A character vector
+#' @return list of same length as `col_vec` with malformed dates from each column in their respective element
 #' @export
 #'
 #' @examples
@@ -19,12 +19,19 @@
 #'
 #' # Use `multi_date_chk()` to return only the entries that would be lost
 #' helpR::multi_date_chk(data = sites, col_vec = c("first_visit", "second", "third"))
-multi_date_chk <- function(data, col_vec){
+multi_date_chk <- function(data = NULL, col_vec = NULL){
+  # Error out if anything is missing
+  if(base::is.null(data) | base::is.null(col))
+    stop("Data object name and column name must be provided")
+
+  # Make an empty list to store the malformed dates in
+  bad_list <- base::list()
+
+  # Make sure data object is a dataframe
+  df <- base::as.data.frame(data)
+
   # For each column the column vector...
   for(col_opt in col_vec) {
-
-    # Make sure data object is a dataframe
-    df <- base::as.data.frame(data)
 
     # Remove NA entries
     notNA <- base::subset(df, !base::is.na(df[, col_opt]))
@@ -38,12 +45,16 @@ multi_date_chk <- function(data, col_vec){
     # If that vector is length 0 (i.e., no bad entries)...
     if(base::length(bad_vec) == 0){
       # ...print a message saying so
-      message("For '", col_opt, "', ", length(bad_vec), " non-dates identified.")
+      message("For '", col_opt, "', no non-dates identified.")
 
       # If there are any bad entries...
     } else {
       # ... print the name of the column and all of the bad entries in it
       message("For '", col_opt, "', ", length(bad_vec), " non-dates identified: '", paste0(bad_vec, collapse = "' | '"), "'")
-    }
-  }
+
+      # And add the values to a list
+      bad_list[[col_opt]] <- bad_vec } }
+
+  # Return the list
+  return(bad_list)
 }

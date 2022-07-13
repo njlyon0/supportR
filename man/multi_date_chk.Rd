@@ -4,15 +4,15 @@
 \alias{multi_date_chk}
 \title{Check Multiple Columns for Non-Dates.}
 \usage{
-multi_date_chk(data, col_vec)
+multi_date_chk(data = NULL, col_vec = NULL)
 }
 \arguments{
-\item{data}{A data frame}
+\item{data}{(dataframe) object containing at least one column of supposed dates}
 
-\item{col_vec}{A vector of column names from the provided data frame as a character vector}
+\item{col_vec}{(character or numeric) vector of names or column numbers of the columns containing putative dates in the data object}
 }
 \value{
-A character vector
+list of same length as `col_vec` with malformed dates from each column in their respective element
 }
 \description{
 Any elements in the columns that would be changed to NA if `as.Date()` is used are returned. This is useful for quickly identifying only the "problem" entries of ostensibly date columns that are read in as characters. This function is an extension of the `date_chk()` function in this package that deals with only a single column.
