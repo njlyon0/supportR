@@ -5,8 +5,8 @@
 \title{Publication-Quality Non-metric Multi-dimensional Scaling (NMS) Ordinations}
 \usage{
 nms_ord(
-  mod,
-  groupcol,
+  mod = NULL,
+  groupcol = NULL,
   title = NA,
   colors = c("#41b6c4", "#c51b7d", "#7fbc41", "#d73027", "#4575b4", "#e08214",
     "#8073ac", "#f1b6da", "#b8e186", "#8c96c6"),

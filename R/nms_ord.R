@@ -46,13 +46,27 @@
 #' # And too many groups results in an informative error
 #' helpR::nms_ord(mod = mds, groupcol = data$factor_over)
 #'
-nms_ord <- function(mod, groupcol, title = NA,
-                    colors = c('#41b6c4', '#c51b7d', '#7fbc41', '#d73027',
-                               '#4575b4', '#e08214', '#8073ac', '#f1b6da',
-                               '#b8e186', '#8c96c6'),
+nms_ord <- function(mod = NULL, groupcol = NULL, title = NA,
+                    colors = c('#41b6c4', '#c51b7d', '#7fbc41',
+                               '#d73027', '#4575b4', '#e08214',
+                               '#8073ac', '#f1b6da', '#b8e186',
+                               '#8c96c6'),
                     shapes = rep(x = 21:25, times = 2),
                     lines = rep(x = 1, times = 10),
                     leg_pos = 'bottomleft', leg_cont = unique(groupcol)) {
+
+  # Error out if model or groupcolumn are not specified
+  if(base::is.null(mod) | base::is.null(groupcol))
+    stop("Model and groupcolumn must be specified")
+
+  # Error out if the model is the wrong class
+  if(base::unique(base::class(mod) %in% c("metaMDS", "monoMDS")) != TRUE)
+    stop("Model must be returned by `vegan::metaMDS`")
+
+  # Error out for inappropriate shapes / lines
+  if(!is.numeric(shapes) | base::max(shapes) > 25 | base::min(shapes < 0))
+    stop("`shapes` must be numeric value as defined in `?pch`")
+
   # Warning message when attempting to plot too many groups
   if (base::length(base::unique(groupcol)) > base::min(base::length(colors),
                                                        base::length(shapes),
