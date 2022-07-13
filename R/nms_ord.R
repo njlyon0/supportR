@@ -1,15 +1,14 @@
 #' @title Publication-Quality Non-metric Multi-dimensional Scaling (NMS) Ordinations
-#'
 #' @description Produces Non-Metric Multi-dimensional Scaling (NMS) ordinations for up to 10 groups. Assigns a unique color for each group and draws an ellipse around the standard deviation of the points. Automatically adds stress (see `vegan::metaMDS()` for explanation of "stress") as legend title. Because there are only five hollow shapes (see `?graphics::pch()`) all shapes are re-used a maximum of 2 times when more than 5 groups are supplied.
 #'
 #' @param mod Object returned by `vegan::metaMDS()`
-#' @param groupcol Column in the data that includes the groups
-#' @param title Character string to use as title for plot
-#' @param colors Vector of colors (as hexadecimal codes) of length >= group levels (default *not* colorblind safe because of need for 10 built-in unique colors)
-#' @param shapes Vector of shapes (as values accepted by `pch`) of length >= group levels
-#' @param lines Vector of line types (as integers) of length >= group levels
-#' @param leg_pos Legend position, either numeric vector of x/y coordinates or shorthand accepted by `graphics::legend()`
-#' @param leg_cont Concatenated vector of desired legend entries. Defaults to unique entries in "groupcol" argument (this argument provided in case syntax of legend contents should differ from data contents)
+#' @param groupcol (dataframe) column specification in the data that includes the groups (accepts either bracket or $ notation)
+#' @param title (character) string to use as title for plot
+#' @param colors (character) vector of colors (as hexadecimal codes) of length >= group levels (default *not* colorblind safe because of need for 10 built-in unique colors)
+#' @param shapes (numeric) vector of shapes (as values accepted by `pch`) of length >= group levels
+#' @param lines (numeric) vector of line types (as integers) of length >= group levels
+#' @param leg_pos (character or numeric) legend position, either numeric vector of x/y coordinates or shorthand accepted by `graphics::legend()`
+#' @param leg_cont (character) vector of desired legend entries. Defaults to `unique` entries in `groupcol` argument (this argument provided in case syntax of legend contents should differ from data contents)
 #'
 #' @export
 #'

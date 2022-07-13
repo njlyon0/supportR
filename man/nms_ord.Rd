@@ -19,19 +19,19 @@ nms_ord(
 \arguments{
 \item{mod}{Object returned by `vegan::metaMDS()`}
 
-\item{groupcol}{Column in the data that includes the groups}
+\item{groupcol}{(dataframe) column specification in the data that includes the groups (accepts either bracket or $ notation)}
 
-\item{title}{Character string to use as title for plot}
+\item{title}{(character) string to use as title for plot}
 
-\item{colors}{Vector of colors (as hexadecimal codes) of length >= group levels (default *not* colorblind safe because of need for 10 built-in unique colors)}
+\item{colors}{(character) vector of colors (as hexadecimal codes) of length >= group levels (default *not* colorblind safe because of need for 10 built-in unique colors)}
 
-\item{shapes}{Vector of shapes (as values accepted by `pch`) of length >= group levels}
+\item{shapes}{(numeric) vector of shapes (as values accepted by `pch`) of length >= group levels}
 
-\item{lines}{Vector of line types (as integers) of length >= group levels}
+\item{lines}{(numeric) vector of line types (as integers) of length >= group levels}
 
-\item{leg_pos}{Legend position, either numeric vector of x/y coordinates or shorthand accepted by `graphics::legend()`}
+\item{leg_pos}{(character or numeric) legend position, either numeric vector of x/y coordinates or shorthand accepted by `graphics::legend()`}
 
-\item{leg_cont}{Concatenated vector of desired legend entries. Defaults to unique entries in "groupcol" argument (this argument provided in case syntax of legend contents should differ from data contents)}
+\item{leg_cont}{(character) vector of desired legend entries. Defaults to `unique` entries in `groupcol` argument (this argument provided in case syntax of legend contents should differ from data contents)}
 }
 \description{
 Produces Non-Metric Multi-dimensional Scaling (NMS) ordinations for up to 10 groups. Assigns a unique color for each group and draws an ellipse around the standard deviation of the points. Automatically adds stress (see `vegan::metaMDS()` for explanation of "stress") as legend title. Because there are only five hollow shapes (see `?graphics::pch()`) all shapes are re-used a maximum of 2 times when more than 5 groups are supplied.
