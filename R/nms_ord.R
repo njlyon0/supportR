@@ -71,10 +71,7 @@ nms_ord <- function(mod = NULL, groupcol = NULL, title = NA,
   if (base::length(base::unique(groupcol)) > base::min(base::length(colors),
                                                        base::length(shapes),
                                                        base::length(lines))) {
-    message('Insufficient aesthetic values provided.',
-                '10 colors/shapes/lines are built into the function but you have supplied', base::length(base::unique(groupcol)), 'groups.',
-                'Please modify `colors`, `lines`, or `shapes` as needed to provide one value per category in your group column.',
-                'Run `unique()` on your group column if you believe there are fewer than 10 groups')
+    message('Insufficient aesthetic values provided. 10 colors/shapes/lines are built into the function but you have supplied ', base::length(base::unique(groupcol)), ' groups. Please modify `colors`, `lines`, or `shapes` as needed to provide one value per category in your group column.')
   } else {
 
     # Before actually creating the plot we need to make sure colors/shapes/lines are correctly formatted
