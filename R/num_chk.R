@@ -1,10 +1,10 @@
 #' @title Check a Column for Non-Numbers.
 #' @description Any elements in the column that would be changed to NA if `as.numeric()` is used on the column are returned. This is useful for quickly identifying only the "problem" entries of an ostensibly numeric column that is read in as a character.
 #'
-#' @param data A data frame
-#' @param col A column name from the provided data frame as a character vector
+#' @param data (dataframe) object containing at least one column of supposed dates
+#' @param col (character or numeric) name or column number of the column containing putative dates in the data object
 #'
-#' @return A character vector
+#' @return (character) vector of malformed dates
 #' @export
 #'
 #' @examples
@@ -15,14 +15,26 @@
 #'
 #' # Use `num_chk()` to return only the entries that would be lost
 #' helpR::num_chk(data = fish, col = "count")
-num_chk <- function(data, col) {
+num_chk <- function(data = NULL, col = NULL) {
+
+  # Error out if anything is missing
+  if(base::is.null(data) | base::is.null(col))
+    stop("Data object name and column name must be provided")
+
+  # Make data a dataframe
   df <- base::as.data.frame(data)
+
+  # Remove NAs
   notNA <- base::subset(df, !base::is.na(df[, col]))
+
+  # Identify "numbers" that are malformed
   bad <- base::subset(notNA,
                       base::is.na(
                         base::suppressWarnings(
                           base::as.numeric(notNA[, col]))))
+  # Return a vector of bad numbers
   if(nrow(bad) != 0){
     base::unique(bad[, col])
+    # Or a message saying all is well
   } else { message('No bad numbers.') }
 }

@@ -4,15 +4,15 @@
 \alias{date_chk}
 \title{Check a Column for Non-Dates.}
 \usage{
-date_chk(data, col)
+date_chk(data = NULL, col = NULL)
 }
 \arguments{
-\item{data}{A data frame}
+\item{data}{(dataframe) object containing at least one column of supposed dates}
 
-\item{col}{A column name from the provided data frame as a character vector}
+\item{col}{(character or numeric) name or column number of the column containing putative dates in the data object}
 }
 \value{
-A character vector
+(character) vector of malformed dates
 }
 \description{
 Any elements in the column that would be changed to NA if `as.Date()` is used on the column are returned. This is useful for quickly identifying only the "problem" entries of an ostensibly date column that is read in as a character.
