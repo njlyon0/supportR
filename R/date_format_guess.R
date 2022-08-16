@@ -84,7 +84,7 @@ test2
 # Function variant ----
 date_format_guess <- function(data = NULL, date_col = NULL,
                               groups = TRUE, group_col = NULL,
-                              quiet = FALSE){
+                              return = "dataframe", quiet = FALSE){
 
   # Error out if `data` isn't defined
   if(is.null(data)) stop("`data` must be defined")
@@ -117,6 +117,12 @@ date_format_guess <- function(data = NULL, date_col = NULL,
   if(class(quiet) != "logical"){
     message("`quiet` must be a logical. Re-setting to `FALSE`")
     quiet <- FALSE }
+
+  # Error out if `return is unspecified`...
+  if(is.null(return)) stop("`return` must be defined")
+  # ...Or isn't either "dataframe" or "vector"
+  if(!return %in% c("dataframe", "vector"))
+    stop("`return` must be one of either 'dataframe' or 'vector'")
 
   # Do some initial standardization & extraction
   guess_v1 <- data %>%
@@ -217,14 +223,20 @@ date_format_guess <- function(data = NULL, date_col = NULL,
                       x = year_partial) ~ paste0("year/", guess_partial) ) ) }
 
   # Do final post-processing
-  guess_v4 <- guess_v3 %>%
+  guess_actual <- guess_v3 %>%
     # Remove intermediary columns
     dplyr::select(names(data), format_guess) %>%
     # Make it a dataframe
     as.data.frame()
 
-  # Return that object
-  return(guess_v4)
+  # If `return = "dataframe"`, return that object
+  if(return == "dataframe"){
+    if(quiet != TRUE){ message("Returning dataframe of data format guesses") }
+    return(guess_actual) }
+  # If `return = "vector"`, return *that* object
+  if(return == "vector"){
+    if(quiet != TRUE){ message("Returning vector of data format guesses") }
+    return(guess_actual$format_guess) }
 }
 
 # Testing function
@@ -232,6 +244,10 @@ date_format_guess(data = test, date_col = "bad_dates", group_col = "survey")
 
 # What about without groups
 date_format_guess(data = test, date_col = "bad_dates", groups = FALSE)
+
+# What about with groups but return as a vector
+date_format_guess(data = test, date_col = "bad_dates",
+                  group_col = "survey", return = "vector")
 
 # Try to get the error/warning messages
 # Error out if `data` isn't defined
@@ -243,6 +259,12 @@ date_format_guess(data = test, groups = TRUE, group_col = "survey")
 date_format_guess(data = test, date_col = "wrong_column", group_col = "survey")
 # ...Or isn't a character
 date_format_guess(data = test, date_col = 4, group_col = "survey")
+
+# Error out when `return` is not allowable entry
+date_format_guess(data = test, date_col = "bad_dates",
+                  group_col = "survey", return = "blah blah blah")
+date_format_guess(data = test, date_col = "bad_dates",
+                  group_col = "survey", return = 2)
 
 # Warn when `groups` isn't a logical and re-set it to `FALSE`
 date_format_guess(data = test, date_col = "bad_dates",
