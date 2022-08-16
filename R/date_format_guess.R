@@ -248,43 +248,4 @@ date_format_guess(data = test, date_col = "bad_dates", group_col = "survey")
 # What about without groups
 date_format_guess(data = test, date_col = "bad_dates", groups = FALSE)
 
-# What about with groups but return as a vector
-date_format_guess(data = test, date_col = "bad_dates",
-                  group_col = "survey", return = "vector")
-
-# Try to get the error/warning messages
-# Error out if `data` isn't defined
-date_format_guess(date_col = "bad_dates", groups = TRUE, group_col = "survey")
-
-# Error out if `date_col` is undefined...
-date_format_guess(data = test, groups = TRUE, group_col = "survey")
-# ...Or isn't a column in `data`
-date_format_guess(data = test, date_col = "wrong_column", group_col = "survey")
-# ...Or isn't a character
-date_format_guess(data = test, date_col = 4, group_col = "survey")
-
-# Error out when `return` is not allowable entry
-date_format_guess(data = test, date_col = "bad_dates",
-                  group_col = "survey", return = "blah blah blah")
-date_format_guess(data = test, date_col = "bad_dates",
-                  group_col = "survey", return = 2)
-
-# Warn when `groups` isn't a logical and re-set it to `FALSE`
-date_format_guess(data = test, date_col = "bad_dates",
-                  groups = "true", group_col = "survey")
-
-# Error out if `groups = TRUE` but `group_col` is undefined...
-date_format_guess(data = test, date_col = "bad_dates", groups = TRUE)
-# ...Or isn't in the dataframe
-date_format_guess(data = test, date_col = "bad_dates", group_col = "wrong_column")
-# ...Or isn't a character
-date_format_guess(data = test, date_col = "bad_dates", group_col = 13)
-# ...Or multiple groups are provided
-date_format_guess(data = test, date_col = "bad_dates",
-                  group_col = c("wrong_1", "wrong_2"))
-
-# Warn when `quiet` isn't a logical and re-set it to `FALSE`
-date_format_guess(data = test, date_col = "bad_dates",
-                  groups = FALSE, quiet = 'false')
-
 # End ---
