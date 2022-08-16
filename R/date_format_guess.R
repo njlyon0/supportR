@@ -16,11 +16,16 @@
 #'
 #' @examples
 #' # Create dataframe of example ambiguous dates & grouping variable
-#' observer <- c('person A', 'person B', 'person B', 'person B',
-#' 'person C', 'person D', 'person E', 'person F', 'person G')
-#' weird_dates <- c('2022.13.08', '2021/2/02', '2021/2/03', '2021/2/04',
-#' '1899/1/15', '10-31-1901', '26/11/1901', '08.11.2004', '6/10/02')
-#' my_df <- data.frame('data_enterer' = observer, 'bad_dates' = weird_dates)
+#' my_df <- data.frame('data_enterer' = c('person A', 'person B',
+#'                                        'person B', 'person B',
+#'                                        'person C', 'person D',
+#'                                        'person E', 'person F',
+#'                                        'person G'),
+#'                     'bad_dates' = c('2022.13.08', '2021/2/02',
+#'                                     '2021/2/03', '2021/2/04',
+#'                                     '1899/1/15', '10-31-1901',
+#'                                     '26/11/1901', '08.11.2004',
+#'                                     '6/10/02'))
 #'
 #' # Now we can invoke the function!
 #' date_format_guess(data = my_df, date_col = "bad_dates",
