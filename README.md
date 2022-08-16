@@ -12,9 +12,10 @@
 
 `helpR` is an R package where the only unifying theme of the functions
 is honestly just that I wrote them. That said, there are some useful
-functions for **data wrangling** and **plotting** in particular among
-others. I’ll add functions to this package as I write more orphan
-scripts that others might find useful so stay tuned!
+functions for **data wrangling** and **plotting** in particular though
+functions for other purposes are also included. I’ll add functions to
+this package as I write more orphan scripts that I hope others might
+find useful so stay tuned!
 
 ## Installation
 
@@ -28,32 +29,37 @@ devtools::install_github("njlyon0/helpR")
 
 ## Current `helpR` Functions
 
--   **`num_chk()`**: Checks a column that *should* contain only
+-   **`num_chk`**: Checks a column that *should* contain only
     **numeric** values for any entries that would be coerced to NA if
-    `as.numeric()` is run
+    `as.numeric` is run
 
-    -   An extension of this function is **`multi_num_chk()`** that
+    -   An extension of this function is **`multi_num_chk`** that
         accepts a vector of columns to check at the same time
 
--   **`date_chk()`**: Checks a column that *should* contain only
-    **date** values for any entries that would be coerced to NA if
-    `as.Date()` is run
+-   **`date_chk`**: Checks a column that *should* contain only **date**
+    values for any entries that would be coerced to NA if `as.Date` is
+    run
 
-    -   An extension of this function is **`multi_date_chk()`** that
+    -   An extension of this function is **`multi_date_chk`** that
         accepts a vector of columns to check at the same time
 
--   **`nms_ord()`**: Creates a Non-Metric Multi-Dimensional Scaling
-    (NMS) ordination with base R. Requires the disimilarity matrix
-    returned by `vegan::metaMDS()`
+-   **`date_format_guess`**: Checks a column containing multiple
+    ambiguous date formats and identifies “best guesses” as to which
+    format (e.g., ‘dd/mm/yyyy’ versus ‘yyyy/dd/mm’, etc.) each date is
+    likely to be
 
--   **`pcoa_ord()`**: Creates a Principal Coordinates Analysis (PCoA)
+-   **`nms_ord`**: Creates a Non-Metric Multi-Dimensional Scaling (NMS)
+    ordination with base R. Requires the disimilarity matrix returned by
+    `vegan::metaMDS`
+
+-   **`pcoa_ord`**: Creates a Principal Coordinates Analysis (PCoA)
     ordination with base R. Requires the distance matrix returned by
-    `ape::pcoa()`
+    `ape::pcoa`
 
--   **`rmd_export()`**: Allows knitting of a specified R Markdown file
+-   **`rmd_export`**: Allows knitting of a specified R Markdown file
     locally and simultaneously to a specified Google Drive folder.
     *NOTE:* you must authorize R to work with Google Drive by using
-    `googldrive::drive_auth()` for this function to work
+    `googldrive::drive_auth` for this function to work
 
 ## Looking Ahead
 
