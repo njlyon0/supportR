@@ -106,6 +106,9 @@ date_format_guess <- function(data = NULL, date_col = NULL,
     stop("`group_col` must be defined if `groups == TRUE`")
   # Error out if `groups = TRUE` and `group_col` *is* defined BUT...
   if(groups == TRUE & !is.null(group_col)){
+    # ...Includes more than one column...
+    if(length(group_col) > 1)
+      stop("`group_col` only supports a single grouping column. Consider collapsing several columns to achieve this if necessary")
     # ...Isn't a character...
     if(class(group_col) != "character")
       stop("`group_col` must be a character")
@@ -276,6 +279,9 @@ date_format_guess(data = test, date_col = "bad_dates", groups = TRUE)
 date_format_guess(data = test, date_col = "bad_dates", group_col = "wrong_column")
 # ...Or isn't a character
 date_format_guess(data = test, date_col = "bad_dates", group_col = 13)
+# ...Or multiple groups are provided
+date_format_guess(data = test, date_col = "bad_dates",
+                  group_col = c("wrong_1", "wrong_2"))
 
 # Warn when `quiet` isn't a logical and re-set it to `FALSE`
 date_format_guess(data = test, date_col = "bad_dates",
