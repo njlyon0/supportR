@@ -16,20 +16,25 @@
 #'
 #' @examples
 #' # Create dataframe of example ambiguous dates & grouping variable
-#' observer <- c('person A', 'person B', person B', 'person B',
+#' observer <- c('person A', 'person B', 'person B', 'person B',
 #' 'person C', 'person D', person E', 'person F', 'person G')
 #' weird_dates <- c('2022.13.08', '2021/2/02', '2021/2/03', '2021/2/04',
 #' '1899/1/15', '10-31-1901', '26/11/1901', '08.11.2004', '6/10/02')
 #' my_df <- data.frame('data_enterer' = observer, 'bad_dates' = weird_dates)
 #'
 #' # Now we can invoke the function!
-#' date_format_guess(data = my_df, date_col = "bad_dates", group_col = "data_enterer", return = "dataframe")
+#' date_format_guess(data = my_df, date_col = "bad_dates",
+#' group_col = "data_enterer", return = "dataframe")
 #'
 #' # If preferred, do it without groups and return a vector
-#' date_format_guess(data = my_df, date_col = "bad_dates", groups = FALSE, return = "vector")
+#' date_format_guess(data = my_df, date_col = "bad_dates",
+#' groups = FALSE, return = "vector")
 date_format_guess <- function(data = NULL, date_col = NULL,
                               groups = TRUE, group_col = NULL,
                               return = "dataframe", quiet = FALSE){
+  # Squelch 'visible bindings' note
+  new_dates <- simp_dates <- simp_dates2 <- NULL
+  num_L <- num_R <- year <- format_guess <- NULL
 
   # Error out if `data` isn't defined
   if(is.null(data)) stop("`data` must be defined")
