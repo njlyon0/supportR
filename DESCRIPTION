@@ -16,8 +16,11 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 RoxygenNote: 7.2.0
 Imports: 
+    dplyr,
     googledrive,
     graphics,
+    magrittr,
     rmarkdown,
     stringr,
+    tidyr,
     vegan
