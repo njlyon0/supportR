@@ -32,3 +32,19 @@ date_format_guess(
 \description{
 In a column containing multiple date formats (e.g., MM/DD/YYYY, "YYYY/MM/DD, etc.) identifies probable format of each date. Provision of a grouping column improves inference. Any "unguessable" formats are flagged as "FORMAT UNCERTAIN" for human double-checking. This is useful for quickly sorting the bulk of ambiguous dates into clear categories for later conditional wrangling.
 }
+\examples{
+# Create dataframe of example ambiguous dates & grouping variable
+observer <- c('person A', 'person B', 'person B', 'person B',
+'person C', 'person D', 'person E', 'person F', 'person G')
+weird_dates <- c('2022.13.08', '2021/2/02', '2021/2/03', '2021/2/04',
+'1899/1/15', '10-31-1901', '26/11/1901', '08.11.2004', '6/10/02')
+my_df <- data.frame('data_enterer' = observer, 'bad_dates' = weird_dates)
+
+# Now we can invoke the function!
+date_format_guess(data = my_df, date_col = "bad_dates",
+group_col = "data_enterer", return = "dataframe")
+
+# If preferred, do it without groups and return a vector
+date_format_guess(data = my_df, date_col = "bad_dates",
+groups = FALSE, return = "vector")
+}
