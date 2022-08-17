@@ -44,9 +44,8 @@ devtools::install_github("njlyon0/helpR")
         accepts a vector of columns to check at the same time
 
 -   **`date_format_guess`**: Checks a column containing multiple
-    ambiguous date formats and identifies “best guesses” as to which
-    format (e.g., ‘dd/mm/yyyy’ versus ‘yyyy/dd/mm’, etc.) each date is
-    likely to be
+    ambiguous date formats and identifies its best guess for the format
+    each date is in (e.g., ‘dd/mm/yyyy’ versus ‘yyyy/dd/mm’, etc.)
 
 -   **`nms_ord`**: Creates a Non-Metric Multi-Dimensional Scaling (NMS)
     ordination with base R. Requires the disimilarity matrix returned by
