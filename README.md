@@ -29,6 +29,10 @@ devtools::install_github("njlyon0/helpR")
 
 ## Current `helpR` Functions
 
+-   **`array_melt`**: “Flattens” an array of dimensions X, Y, and Z into
+    a dataframe containing columns `x`, `y`, `z`, and `value` where
+    `value` is whatever was stored in the array at those coordinates
+
 -   **`num_chk`**: Checks a column that *should* contain only
     **numeric** values for any entries that would be coerced to NA if
     `as.numeric` is run
