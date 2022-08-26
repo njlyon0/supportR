@@ -20,6 +20,7 @@ Imports:
     googledrive,
     graphics,
     magrittr,
+    purrr,
     rmarkdown,
     stringr,
     tidyr,
