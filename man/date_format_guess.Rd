@@ -2,7 +2,7 @@
 % Please edit documentation in R/date_format_guess.R
 \name{date_format_guess}
 \alias{date_format_guess}
-\title{Identify Probable Format for Ambiguous Date Formats.}
+\title{Identify Probable Format for Ambiguous Date Formats}
 \usage{
 date_format_guess(
   data = NULL,
@@ -52,4 +52,5 @@ group_col = "data_enterer", return = "dataframe")
 # If preferred, do it without groups and return a vector
 date_format_guess(data = my_df, date_col = "bad_dates",
 groups = FALSE, return = "vector")
+
 }
