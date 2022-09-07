@@ -19,6 +19,8 @@
 #' names(bees)
 #'
 read_edi <- function(pasta_id = NULL, data_type = "csv"){
+  # Squelch visible bindings note
+  data_name <- data_name_mod <- identifier <- NULL
 
   # Error out if URL isn't provided
   if(is.null(pasta_id) | !is.character(pasta_id))
@@ -35,11 +37,11 @@ read_edi <- function(pasta_id = NULL, data_type = "csv"){
   temp_dest <- tempfile()
 
   # Attempt the download
-  download.file(url = pasta_id, destfile = temp_dest,
+  utils::download.file(url = pasta_id, destfile = temp_dest,
                 method = "auto", quiet = TRUE)
 
   # Read that in
-  pasta_sub_ids <- read.csv(file = temp_dest)
+  pasta_sub_ids <- utils::read.csv(file = temp_dest)
 
   # Rip needed parts
   first_obj <- data.frame("data_name" = names(pasta_sub_ids))
@@ -92,17 +94,17 @@ read_edi <- function(pasta_id = NULL, data_type = "csv"){
     new_temp <- tempfile()
 
     # Attempt the download
-    try(download.file(url = id, destfile = new_temp,
-                      method = "curl", quiet = TRUE))
+    try(utils::download.file(url = id, destfile = new_temp,
+                             method = "curl", quiet = TRUE))
 
     # If that doesn't work, try reading in a different way
     if (is.na(file.size(new_temp)))
-      try(download.file(url = id, destfile = new_temp,
-                        method = "auto", quiet = TRUE))
+      try(utils::download.file(url = id, destfile = new_temp,
+                               method = "auto", quiet = TRUE))
 
     # Read in data objects
     if(object_ids$data_type[object_ids$identifier == id] == "data"){
-      data <- read.csv(file = new_temp) }
+      data <- utils::read.csv(file = new_temp) }
 
     # If XML, parse the XML instead
     if(object_ids$data_type[object_ids$identifier == id] == "xml"){
@@ -113,4 +115,3 @@ read_edi <- function(pasta_id = NULL, data_type = "csv"){
 
   # Return the now filled list
   return(edi_list) }
-
