@@ -24,4 +24,5 @@ Imports:
     rmarkdown,
     stringr,
     tidyr,
-    vegan
+    vegan,
+    XML
