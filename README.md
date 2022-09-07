@@ -29,10 +29,6 @@ devtools::install_github("njlyon0/helpR")
 
 ## Current `helpR` Functions
 
--   **`array_melt`**: “Flattens” an array of dimensions X, Y, and Z into
-    a dataframe containing columns `x`, `y`, `z`, and `value` where
-    `value` is whatever was stored in the array at those coordinates
-
 -   **`num_chk`**: Checks a column that *should* contain only
     **numeric** values for any entries that would be coerced to NA if
     `as.numeric` is run
@@ -59,10 +55,18 @@ devtools::install_github("njlyon0/helpR")
     ordination with base R. Requires the distance matrix returned by
     `ape::pcoa`
 
+-   **`read_edi`**: Reads in data tables and metadata of a data package
+    hosted by the Environmental Data Initiative (EDI) based on the PASTA
+    identifier
+
 -   **`rmd_export`**: Allows knitting of a specified R Markdown file
     locally and simultaneously to a specified Google Drive folder.
     *NOTE:* you must authorize R to work with Google Drive by using
     `googldrive::drive_auth` for this function to work
+
+-   **`array_melt`**: “Flattens” an array of dimensions X, Y, and Z into
+    a dataframe containing columns `x`, `y`, `z`, and `value` where
+    `value` is whatever was stored in the array at those coordinates
 
 ## Looking Ahead
 
