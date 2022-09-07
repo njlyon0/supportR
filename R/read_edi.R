@@ -1,4 +1,4 @@
-#' @title Read Data from Environmental Data Initiative by PASTA Identifier
+#' @title Read Data Package from Environmental Data Initiative by PASTA Identifier
 #'
 #' @description Reads in the data files and metadata (as an XML) stored on the Environmental Data Initiative's (EDI) data portal based on their PASTA identifier. Returns a list of the dataframes and this singular metadata file.
 #'
@@ -21,19 +21,22 @@
 read_edi <- function(pasta_id = NULL, data_type = "csv"){
 
   # Error out if URL isn't provided
-  if(is.null(pasta_id)) stop("EDI URL must be provided")
+  if(is.null(pasta_id) | !is.character(pasta_id))
+    stop("EDI URL must be provided as a character")
+
+  # Error for malformed PASTA identifiers
+  if(!stringr::str_detect(string = pasta_id, pattern = "package/eml"))
+    stop("Malformed PASTA identifier. Should be: 'https://pasta.lternet.edu/package/eml/edi/####/#' without trailing code for specific data product within data package")
 
   # Error out if data isn't a CSV
   if(data_type != "csv") stop("Data must be CSV format")
-
-  # Warning/errors for malformatted pasta_ids?
 
   # Make tempfile to read in
   temp_dest <- tempfile()
 
   # Attempt the download
-  try(download.file(url = pasta_id, destfile = temp_dest,
-                    method = "auto", quiet = TRUE))
+  download.file(url = pasta_id, destfile = temp_dest,
+                method = "auto", quiet = TRUE)
 
   # Read that in
   pasta_sub_ids <- read.csv(file = temp_dest)
@@ -63,16 +66,18 @@ read_edi <- function(pasta_id = NULL, data_type = "csv"){
       no = data_name)) %>%
     # Replace with the correct template
     dplyr::mutate(identifier = ifelse(
-      test = stringr::str_detect(string = data_name_mod, pattern = "https://"),
+      test = stringr::str_detect(string = data_name_mod,
+                                 pattern = "https://"),
       yes = data_name_mod,
       no = paste0(url_prefix, data_name_mod))) %>%
     # Retain only fixed identifiers
     dplyr::select(identifier) %>%
     # Identify the XML files included with the data
     dplyr::mutate(data_type = dplyr::case_when(
-      stringr::str_detect(string = identifier, pattern = url_prefix) ~
-        "data",
-      stringr::str_detect(string = identifier, pattern = "metadata") ~ "xml",
+      stringr::str_detect(string = identifier,
+                          pattern = url_prefix) ~ "data",
+      stringr::str_detect(string = identifier,
+                          pattern = "metadata") ~ "xml",
       TRUE ~ 'xxx')) %>%
     # Drop unidentified file types
     dplyr::filter(data_type != "xxx")
@@ -104,9 +109,8 @@ read_edi <- function(pasta_id = NULL, data_type = "csv"){
       data <- XML::xmlParse(file = new_temp) }
 
     # Whatever they are, add 'em to the list
-    edi_list[[id]] <- data
-
-  }
+    edi_list[[id]] <- data }
 
   # Return the now filled list
   return(edi_list) }
+
