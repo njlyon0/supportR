@@ -59,8 +59,3 @@ summary_table <- function(data = NULL, groups = NULL, response = NULL,
 
   # Return the tidy data
   return(tidy) }
-
-# Test it
-summary_table(data = penguins, groups = c("sex", "island"), response = "body_mass_g")
-
-
