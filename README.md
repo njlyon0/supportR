@@ -29,6 +29,10 @@ devtools::install_github("njlyon0/helpR")
 
 ## Current `helpR` Functions
 
+-   **`summary_table`**: Calculates summary values (mean, standard
+    deviation, sample size, and standard error) of a given response
+    variable within supplied groups
+
 -   **`num_chk`**: Checks a column that *should* contain only
     **numeric** values for any entries that would be coerced to NA if
     `as.numeric` is run
