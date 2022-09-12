@@ -47,6 +47,16 @@ devtools::install_github("njlyon0/helpR")
     ambiguous date formats and identifies its best guess for the format
     each date is in (e.g., ‘dd/mm/yyyy’ versus ‘yyyy/dd/mm’, etc.)
 
+-   **`diff_chk`**: Compares two vectors and identifies what elements
+    are found in the first but not the second (i.e., *lost* components)
+    and what elements are found in the second but not the first (i.e.,
+    *gained* components)
+
+    -   This use-case is more oblique but I find it useful when I’m
+        checking which columns are in the data before versus after a
+        significant wrangling step to make sure no columns are
+        lost/gained unexpectedly
+
 -   **`nms_ord`**: Creates a Non-Metric Multi-Dimensional Scaling (NMS)
     ordination with base R. Requires the disimilarity matrix returned by
     `vegan::metaMDS`
