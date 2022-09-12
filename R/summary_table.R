@@ -14,6 +14,8 @@
 #'
 summary_table <- function(data = NULL, groups = NULL, response = NULL,
                           round_digits = 2){
+  # Handle no visible bindings note
+  std_dev <- sample_size <- NULL
 
   # Error out if anything isn't provided
   if(is.null(data) | is.null(groups) | is.null(response))
@@ -46,14 +48,13 @@ summary_table <- function(data = NULL, groups = NULL, response = NULL,
     dplyr::group_by(dplyr::across(dplyr::all_of(groups))) %>%
     # Perform summarization
     dplyr::summarize(
-      mean = base::round(base::mean(!!ensym(response), na.rm = TRUE),
+      mean = base::round(base::mean(!!rlang::ensym(response), na.rm = TRUE),
                          digits = round_digits),
-      std_dev = base::round(stats::sd(!!ensym(response), na.rm = TRUE),
+      std_dev = base::round(stats::sd(!!rlang::ensym(response), na.rm = TRUE),
                             digits = round_digits),
       sample_size = dplyr::n(),
       std_error = base::round((std_dev / base::sqrt(sample_size)),
-                              digits = round_digits),
-    ) %>%
+                              digits = round_digits)) %>%
     # Make it a dataframe
     as.data.frame()
 
