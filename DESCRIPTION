@@ -21,6 +21,7 @@ Imports:
     graphics,
     magrittr,
     purrr,
+    rlang,
     rmarkdown,
     stringr,
     tidyr,
