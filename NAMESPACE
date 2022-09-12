@@ -3,6 +3,7 @@
 export(array_melt)
 export(date_chk)
 export(date_format_guess)
+export(diff_chk)
 export(multi_date_chk)
 export(multi_num_chk)
 export(nms_ord)
