@@ -35,8 +35,7 @@ summary_table <- function(data = NULL, groups = NULL, response = NULL,
   # Warn if rounding digits is not a number
   if(!is.numeric(round_digits)){
     message("Rounding digits must be a number. Defaulting to 2")
-    round_digits <- 2
-  }
+    round_digits <- 2 }
 
   # Silence `dplr::summarize`
   options(dplyr.summarise.inform = FALSE)
