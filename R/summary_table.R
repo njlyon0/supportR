@@ -5,6 +5,7 @@
 #' @param data (dataframe or dataframe-like) object with column names that match the values passed to the `groups` and `response` arguments
 #' @param groups (character) vector of column names to group by
 #' @param response (character) name of the column name to calculate summary statistics for (the column must be numeric)
+#' @param drop_na (logical) whether to drop NAs in grouping variables. Defaults to FALSE
 #' @param round_digits (numeric) number of digits to which mean, standard deviation, and standard error should be rounded
 #'
 #' @return (dataframe) summary table containing the mean, standard deviation, sample size, and standard error of the supplied response variable)
@@ -13,7 +14,7 @@
 #' @export
 #'
 summary_table <- function(data = NULL, groups = NULL, response = NULL,
-                          round_digits = 2){
+                          drop_na = FALSE, round_digits = 2){
   # Handle no visible bindings note
   std_dev <- sample_size <- NULL
 
@@ -34,9 +35,14 @@ summary_table <- function(data = NULL, groups = NULL, response = NULL,
   if(!is.numeric(data[[response]]))
     stop("Response variable must be numeric")
 
+  # Warn if drop na isn't a logical
+  if(class(drop_na) != "logical"){
+    message("`drop_na` must be a logical. Defaulting to FALSE")
+    drop_na <- FALSE }
+
   # Warn if rounding digits is not a number
   if(!is.numeric(round_digits)){
-    message("Rounding digits must be a number. Defaulting to 2")
+    message("`round_digits` must be an integer. Defaulting to 2")
     round_digits <- 2 }
 
   # Silence `dplr::summarize`
@@ -58,5 +64,15 @@ summary_table <- function(data = NULL, groups = NULL, response = NULL,
     # Make it a dataframe
     as.data.frame()
 
-  # Return the tidy data
-  return(tidy) }
+  # If `drop_na` is FALSE, return this tidy data
+  if(drop_na == FALSE){ return(tidy)
+
+    # Otherwise...
+    } else {
+
+    # Remove NAs in the grouping variable(s)
+    tidy_full <- tidy %>%
+      tidyr::drop_na(tidyr::all_of(groups))
+
+    # And return that object instead
+    return(tidy_full) } }

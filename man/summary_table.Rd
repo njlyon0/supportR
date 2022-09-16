@@ -4,7 +4,13 @@
 \alias{summary_table}
 \title{Generate Summary Table for Supplied Response and Grouping Variables}
 \usage{
-summary_table(data = NULL, groups = NULL, response = NULL, round_digits = 2)
+summary_table(
+  data = NULL,
+  groups = NULL,
+  response = NULL,
+  drop_na = FALSE,
+  round_digits = 2
+)
 }
 \arguments{
 \item{data}{(dataframe or dataframe-like) object with column names that match the values passed to the `groups` and `response` arguments}
@@ -12,6 +18,8 @@ summary_table(data = NULL, groups = NULL, response = NULL, round_digits = 2)
 \item{groups}{(character) vector of column names to group by}
 
 \item{response}{(character) name of the column name to calculate summary statistics for (the column must be numeric)}
+
+\item{drop_na}{(logical) whether to drop NAs in grouping variables. Defaults to FALSE}
 
 \item{round_digits}{(numeric) number of digits to which mean, standard deviation, and standard error should be rounded}
 }
