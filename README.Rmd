@@ -51,6 +51,8 @@ devtools::install_github("njlyon0/helpR")
 
 - **`read_edi`**: Reads in data tables and metadata of a data package hosted by the Environmental Data Initiative (EDI) based on the PASTA identifier
 
+    - **`read_edi_meta`** also exists and retrieves only the metadata file for a given PASTA identifier
+
 - **`rmd_export`**: Allows knitting of a specified R Markdown file locally and simultaneously to a specified Google Drive folder. *NOTE:* you must authorize R to work with Google Drive by using `googldrive::drive_auth` for this function to work
 
 - **`array_melt`**: "Flattens" an array of dimensions X, Y, and Z into a dataframe containing columns `x`, `y`, `z`, and `value` where `value` is whatever was stored in the array at those coordinates

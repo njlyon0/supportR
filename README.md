@@ -73,6 +73,9 @@ devtools::install_github("njlyon0/helpR")
     hosted by the Environmental Data Initiative (EDI) based on the PASTA
     identifier
 
+    -   **`read_edi_meta`** also exists and retrieves only the metadata
+        file for a given PASTA identifier
+
 -   **`rmd_export`**: Allows knitting of a specified R Markdown file
     locally and simultaneously to a specified Google Drive folder.
     *NOTE:* you must authorize R to work with Google Drive by using
