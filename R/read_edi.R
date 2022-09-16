@@ -1,6 +1,6 @@
-#' @title Read Data Package from Environmental Data Initiative by PASTA Identifier
+#' @title Read Entire Data Package from Environmental Data Initiative (EDI) by PASTA Identifier
 #'
-#' @description Reads in the data files and metadata (as an XML) stored on the Environmental Data Initiative's (EDI) data portal based on their PASTA identifier. Returns a list of the dataframes and this singular metadata file.
+#' @description Reads in the data files and metadata (as an XML) stored on the Environmental Data Initiative's (EDI) data portal based on their PASTA identifier. Returns a list of the dataframes and this singular metadata file. To read in the metadata only, see `helpR::read_edi_meta`.
 #'
 #' @param pasta_id (character) PASTA identifier. Can be found in the EDI page for a given data product just above the "Code Generation" buttons for various coding languages.
 #' @param data_type (character) file extension of the data tables (i.e., non-metadata parts of data package). Currently only supports CSV format.
@@ -98,9 +98,9 @@ read_edi <- function(pasta_id = NULL, data_type = "csv"){
                              method = "curl", quiet = TRUE))
 
     # If that doesn't work, try reading in a different way
-    if (is.na(file.size(new_temp)))
+    if (is.na(file.size(new_temp))){
       try(utils::download.file(url = id, destfile = new_temp,
-                               method = "auto", quiet = TRUE))
+                               method = "auto", quiet = TRUE)) }
 
     # Read in data objects
     if(object_ids$data_type[object_ids$identifier == id] == "data"){

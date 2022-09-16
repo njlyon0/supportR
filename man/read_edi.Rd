@@ -2,7 +2,7 @@
 % Please edit documentation in R/read_edi.R
 \name{read_edi}
 \alias{read_edi}
-\title{Read Data Package from Environmental Data Initiative by PASTA Identifier}
+\title{Read Entire Data Package from Environmental Data Initiative (EDI) by PASTA Identifier}
 \usage{
 read_edi(pasta_id = NULL, data_type = "csv")
 }
@@ -15,7 +15,7 @@ read_edi(pasta_id = NULL, data_type = "csv")
 (list) containing one element per table in data product and the final element is the XML metadata. List names are the PASTA identifiers for each specific object (note that these differ slightly from the PASTA identifier this function requires)
 }
 \description{
-Reads in the data files and metadata (as an XML) stored on the Environmental Data Initiative's (EDI) data portal based on their PASTA identifier. Returns a list of the dataframes and this singular metadata file.
+Reads in the data files and metadata (as an XML) stored on the Environmental Data Initiative's (EDI) data portal based on their PASTA identifier. Returns a list of the dataframes and this singular metadata file. To read in the metadata only, see `helpR::read_edi_meta`.
 }
 \examples{
 # Read in a data product (on bees)
