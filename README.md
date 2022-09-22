@@ -51,6 +51,10 @@ devtools::install_github("njlyon0/helpR")
     ambiguous date formats and identifies its best guess for the format
     each date is in (e.g., ‘dd/mm/yyyy’ versus ‘yyyy/dd/mm’, etc.)
 
+-   **`theme_lyon`**: Applies a set of modifications to the non-data
+    aspects of a `ggplot2` plot to ensure a consistent “feel” of a set
+    of plots
+
 -   **`diff_chk`**: Compares two vectors and identifies what elements
     are found in the first but not the second (i.e., *lost* components)
     and what elements are found in the second but not the first (i.e.,
