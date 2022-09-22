@@ -17,6 +17,7 @@ Encoding: UTF-8
 RoxygenNote: 7.2.0
 Imports: 
     dplyr,
+    ggplot2,
     googledrive,
     graphics,
     magrittr,
