@@ -3,7 +3,7 @@
 
 <img src = "inst/images/helpR_hex.png" align = "right" width = "15%"/>
 
-# `helpR`
+# `helpR` - Random Helper Functions for Coding in R
 
 <!-- badges: start -->
 
