@@ -7,8 +7,7 @@
 #'
 #' @export
 #'
-#'
-lyon_theme <- function(title_size = 16, text_size = 13){
+theme_lyon <- function(title_size = 16, text_size = 13){
 
   # Error out if font sizes aren't numeric
   if(!is.numeric(title_size) | !is.numeric(text_size))
