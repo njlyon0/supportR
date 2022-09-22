@@ -12,7 +12,7 @@
 
 `helpR` is an R package where the only unifying theme of the functions
 is honestly just that I wrote them. That said, there are some useful
-functions for **data wrangling** and **plotting** in particular though
+functions for **data wrangling** and **plotting** in particular, though
 functions for other purposes are also included. I’ll add functions to
 this package as I write more orphan scripts that I hope others might
 find useful so stay tuned!
@@ -27,11 +27,13 @@ You can install the development version of helpeR from
 devtools::install_github("njlyon0/helpR")
 ```
 
-## Current `helpR` Functions
+## Summarizing
 
 -   **`summary_table`**: Calculates summary values (mean, standard
     deviation, sample size, and standard error) of a given response
     variable within supplied groups
+
+## Quality Assurance & Quality Control (QA/QC)
 
 -   **`num_chk`**: Checks a column that *should* contain only
     **numeric** values for any entries that would be coerced to NA if
@@ -51,10 +53,6 @@ devtools::install_github("njlyon0/helpR")
     ambiguous date formats and identifies its best guess for the format
     each date is in (e.g., ‘dd/mm/yyyy’ versus ‘yyyy/dd/mm’, etc.)
 
--   **`theme_lyon`**: Applies a set of modifications to the non-data
-    aspects of a `ggplot2` plot to ensure a consistent “feel” of a set
-    of plots
-
 -   **`diff_chk`**: Compares two vectors and identifies what elements
     are found in the first but not the second (i.e., *lost* components)
     and what elements are found in the second but not the first (i.e.,
@@ -65,6 +63,12 @@ devtools::install_github("njlyon0/helpR")
         significant wrangling step to make sure no columns are
         lost/gained unexpectedly
 
+## Visualization & Graphics
+
+-   **`theme_lyon`**: Applies a set of modifications to the non-data
+    aspects of a `ggplot2` plot to ensure a consistent “feel” of a set
+    of plots
+
 -   **`nms_ord`**: Creates a Non-Metric Multi-Dimensional Scaling (NMS)
     ordination with base R. Requires the disimilarity matrix returned by
     `vegan::metaMDS`
@@ -72,6 +76,14 @@ devtools::install_github("njlyon0/helpR")
 -   **`pcoa_ord`**: Creates a Principal Coordinates Analysis (PCoA)
     ordination with base R. Requires the distance matrix returned by
     `ape::pcoa`
+
+## Reshaping Data
+
+-   **`array_melt`**: “Flattens” an array of dimensions X, Y, and Z into
+    a dataframe containing columns `x`, `y`, `z`, and `value` where
+    `value` is whatever was stored in the array at those coordinates
+
+## Miscellaneous Other Functions
 
 -   **`read_edi`**: Reads in data tables and metadata of a data package
     hosted by the Environmental Data Initiative (EDI) based on the PASTA
@@ -84,10 +96,6 @@ devtools::install_github("njlyon0/helpR")
     locally and simultaneously to a specified Google Drive folder.
     *NOTE:* you must authorize R to work with Google Drive by using
     `googldrive::drive_auth` for this function to work
-
--   **`array_melt`**: “Flattens” an array of dimensions X, Y, and Z into
-    a dataframe containing columns `x`, `y`, `z`, and `value` where
-    `value` is whatever was stored in the array at those coordinates
 
 ## Looking Ahead
 
