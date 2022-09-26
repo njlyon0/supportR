@@ -12,11 +12,13 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' # Read in a data product (on bees)
 #' bees <- read_edi(pasta_id = "https://pasta.lternet.edu/package/eml/edi/1210/1", data_type = "csv")
 #'
 #' # Check the names
 #' names(bees)
+#'}
 #'
 read_edi <- function(pasta_id = NULL, data_type = "csv"){
   # Squelch visible bindings note

@@ -18,10 +18,12 @@ read_edi(pasta_id = NULL, data_type = "csv")
 Reads in the data files and metadata (as an XML) stored on the Environmental Data Initiative's (EDI) data portal based on their PASTA identifier. Returns a list of the dataframes and this singular metadata file. To read in the metadata only, see `helpR::read_edi_meta`.
 }
 \examples{
+\dontrun{
 # Read in a data product (on bees)
 bees <- read_edi(pasta_id = "https://pasta.lternet.edu/package/eml/edi/1210/1", data_type = "csv")
 
 # Check the names
 names(bees)
+}
 
 }
