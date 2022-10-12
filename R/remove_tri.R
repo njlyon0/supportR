@@ -123,6 +123,39 @@ remove_tri_mat <- function(matrix = NULL, tri_keep = "lower", drop_diag = TRUE){
 remove_tri_df(data = test2)
 
 
+testB <- as.data.frame(test2)
+rownames(testB) <- testB$focal_sp
+test_actual <- testB[-1]
+
+cut_tri <- function(data = NULL, drop_tri = "upper", drop_diag = FALSE){
+
+  # Error out for missing data
+  if(is.null(data)) stop("`data` must be provided")
+
+  # Error out if triangle argument isn't supported
+  if(!drop_tri %in% c("upper", "lower"))
+    stop("`drop_tri` must be one of 'upper' or 'lower'")
+
+  # Coerce `drop_diag` to logical if it isn't
+  if(class(drop_diag) != "logical"){
+    drop_diag <- FALSE
+    message("`drop_diag` must be logical. Defaulting to FALSE") }
+
+  # Duplicate data
+  crop_data <- data
+
+  # Cut triangle
+  if(drop_tri == "upper"){
+    crop_data[upper.tri(x = crop_data, diag = drop_diag)] <- NA
+  }
+  if(drop_tri == "lower"){
+    crop_data[lower.tri(x = crop_data, diag = drop_diag)] <- NA
+  }
+
+  # Return it
+  return(crop_data) }
+
+cut_tri(data = test_actual)
 
 # End ----
 
