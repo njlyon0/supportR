@@ -57,6 +57,8 @@ devtools::install_github("njlyon0/helpR")
 
 ## Reshaping Data
 
+- **`crop_tri`**: Removes the specified "triangle" (either upper or lower) of a symmetric data object by replacing with NAs. Also allows user to specify whether to keep or also drop the diagonal
+
 - **`array_melt`**: "Flattens" an array of dimensions X, Y, and Z into a dataframe containing columns `x`, `y`, `z`, and `value` where `value` is whatever was stored in the array at those coordinates
 
 ## Miscellaneous Other Functions
