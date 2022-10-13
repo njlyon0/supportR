@@ -1,4 +1,8 @@
+# Call library
 library(tidyverse)
+
+# Clear environment
+rm(list = ls())
 
 # Read in data
 test <- read.csv("test_df.csv")
@@ -22,9 +26,10 @@ glimpse(test2)
 testB <- as.data.frame(test2)
 rownames(testB) <- testB$focal_sp
 test_actual <- testB[-1]
+test_actual
 
 # Invoke function
-cut_tri <- function(data = NULL, drop_tri = "upper", drop_diag = FALSE){
+crop_tri <- function(data = NULL, drop_tri = "upper", drop_diag = FALSE){
 
   # Error out for missing data
   if(is.null(data)) stop("`data` must be provided")
@@ -52,7 +57,8 @@ cut_tri <- function(data = NULL, drop_tri = "upper", drop_diag = FALSE){
   # Return it
   return(crop_data) }
 
-cut_tri(data = test_actual)
+crop_tri(data = test_actual)
+crop_tri(data = test_actual, drop_tri = "lower", drop_diag = F)
 
 # End ----
 
