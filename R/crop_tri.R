@@ -1,38 +1,23 @@
-# Call library
-library(tidyverse)
-
-# Clear environment
-rm(list = ls())
-
-# Read in data
-test <- read.csv("test_df.csv")
-
-# Check it
-glimpse(test)
-
-# Pivot wider
-test2 <- test %>%
-  filter(site == "Andrews") %>%
-  select(-site) %>%
-  mutate(other_sp = gsub(" ", "_", other_sp),
-         focal_sp = gsub(" ", "_", focal_sp)) %>%
-  pivot_wider(names_from = other_sp,
-              values_from = relatedness_dist)
-
-# Check again
-glimpse(test2)
-
-# Do more prep work
-testB <- as.data.frame(test2)
-rownames(testB) <- testB$focal_sp
-test_actual <- testB[-1]
-test_actual
-
-# Invoke function
+#' @title Crop a Triangle from Data Object
+#'
+#' @description Accepts a symmetric data object and replaces the chosen triangle with NAs. Also allows user to choose whether to keep or drop the diagonal of the data object
+#'
+#' @param data (dataframe, dataframe-like, or matrix) symmetric data object to remove one of the triangles from
+#' @param drop_tri (character) which triangle to replace with NAs, either "upper" or "lower"
+#' @param drop_diag (logical) whether to drop the diagonal of the data object (defaults to FALSE)
+#'
+#' @return (dataframe or dataframe-like) data object with desired triangle removed and either with or without the diagonal
+#'
+#' @export
+#'
 crop_tri <- function(data = NULL, drop_tri = "upper", drop_diag = FALSE){
 
   # Error out for missing data
   if(is.null(data)) stop("`data` must be provided")
+
+  # Error out if data aren't symmetric
+  if(nrow(data) != ncol(data))
+    stop("`data` must be have same number of rows as columns (i.e., must be symmetric")
 
   # Error out if triangle argument isn't supported
   if(!drop_tri %in% c("upper", "lower"))
@@ -56,9 +41,3 @@ crop_tri <- function(data = NULL, drop_tri = "upper", drop_diag = FALSE){
 
   # Return it
   return(crop_data) }
-
-crop_tri(data = test_actual)
-crop_tri(data = test_actual, drop_tri = "lower", drop_diag = F)
-
-# End ----
-
