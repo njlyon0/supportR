@@ -8,6 +8,12 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/njlyon0/helpR/workflows/R-CMD-check/badge.svg)](https://github.com/njlyon0/helpR/actions)
+![GitHub last
+commit](https://img.shields.io/github/last-commit/njlyon0/helpR)
+![GitHub issues](https://img.shields.io/github/issues-raw/njlyon0/helpR)
+![GitHub pull
+requests](https://img.shields.io/github/issues-pr/njlyon0/helpR)
+
 <!-- badges: end -->
 
 `helpR` is an R package where the only unifying theme of the functions
@@ -19,7 +25,7 @@ find useful so stay tuned!
 
 ## Installation
 
-You can install the development version of helpeR from
+You can install the development version of helpR from
 [GitHub](https://github.com/) with:
 
 ``` r
@@ -29,77 +35,75 @@ devtools::install_github("njlyon0/helpR")
 
 ## Summarizing
 
--   **`summary_table`**: Calculates summary values (mean, standard
-    deviation, sample size, and standard error) of a given response
-    variable within supplied groups
+- **`summary_table`**: Calculates summary values (mean, standard
+  deviation, sample size, and standard error) of a given response
+  variable within supplied groups
 
 ## Quality Assurance & Quality Control (QA/QC)
 
--   **`num_chk`**: Checks a column that *should* contain only
-    **numeric** values for any entries that would be coerced to NA if
-    `as.numeric` is run
+- **`num_chk`**: Checks a column that *should* contain only **numeric**
+  values for any entries that would be coerced to NA if `as.numeric` is
+  run
 
-    -   An extension of this function is **`multi_num_chk`** that
-        accepts a vector of columns to check at the same time
+  - An extension of this function is **`multi_num_chk`** that accepts a
+    vector of columns to check at the same time
 
--   **`date_chk`**: Checks a column that *should* contain only **date**
-    values for any entries that would be coerced to NA if `as.Date` is
-    run
+- **`date_chk`**: Checks a column that *should* contain only **date**
+  values for any entries that would be coerced to NA if `as.Date` is run
 
-    -   An extension of this function is **`multi_date_chk`** that
-        accepts a vector of columns to check at the same time
+  - An extension of this function is **`multi_date_chk`** that accepts a
+    vector of columns to check at the same time
 
--   **`date_format_guess`**: Checks a column containing multiple
-    ambiguous date formats and identifies its best guess for the format
-    each date is in (e.g., ‘dd/mm/yyyy’ versus ‘yyyy/dd/mm’, etc.)
+- **`date_format_guess`**: Checks a column containing multiple ambiguous
+  date formats and identifies its best guess for the format each date is
+  in (e.g., ‘dd/mm/yyyy’ versus ‘yyyy/dd/mm’, etc.)
 
--   **`diff_chk`**: Compares two vectors and identifies what elements
-    are found in the first but not the second (i.e., *lost* components)
-    and what elements are found in the second but not the first (i.e.,
-    *gained* components)
+- **`diff_chk`**: Compares two vectors and identifies what elements are
+  found in the first but not the second (i.e., *lost* components) and
+  what elements are found in the second but not the first (i.e.,
+  *gained* components)
 
-    -   This use-case is more oblique but I find it useful when I’m
-        checking which columns are in the data before versus after a
-        significant wrangling step to make sure no columns are
-        lost/gained unexpectedly
+  - This use-case is more oblique but I find it useful when I’m checking
+    which columns are in the data before versus after a significant
+    wrangling step to make sure no columns are lost/gained unexpectedly
 
 ## Visualization & Graphics
 
--   **`theme_lyon`**: Applies a set of modifications to the non-data
-    aspects of a `ggplot2` plot to ensure a consistent “feel” of a set
-    of plots
+- **`theme_lyon`**: Applies a set of modifications to the non-data
+  aspects of a `ggplot2` plot to ensure a consistent “feel” of a set of
+  plots
 
--   **`nms_ord`**: Creates a Non-Metric Multi-Dimensional Scaling (NMS)
-    ordination with base R. Requires the disimilarity matrix returned by
-    `vegan::metaMDS`
+- **`nms_ord`**: Creates a Non-Metric Multi-Dimensional Scaling (NMS)
+  ordination with base R. Requires the disimilarity matrix returned by
+  `vegan::metaMDS`
 
--   **`pcoa_ord`**: Creates a Principal Coordinates Analysis (PCoA)
-    ordination with base R. Requires the distance matrix returned by
-    `ape::pcoa`
+- **`pcoa_ord`**: Creates a Principal Coordinates Analysis (PCoA)
+  ordination with base R. Requires the distance matrix returned by
+  `ape::pcoa`
 
 ## Reshaping Data
 
--   **`crop_tri`**: Removes the specified “triangle” (either upper or
-    lower) of a symmetric data object by replacing with NAs. Also allows
-    user to specify whether to keep or also drop the diagonal
+- **`crop_tri`**: Removes the specified “triangle” (either upper or
+  lower) of a symmetric data object by replacing with NAs. Also allows
+  user to specify whether to keep or also drop the diagonal
 
--   **`array_melt`**: “Flattens” an array of dimensions X, Y, and Z into
-    a dataframe containing columns `x`, `y`, `z`, and `value` where
-    `value` is whatever was stored in the array at those coordinates
+- **`array_melt`**: “Flattens” an array of dimensions X, Y, and Z into a
+  dataframe containing columns `x`, `y`, `z`, and `value` where `value`
+  is whatever was stored in the array at those coordinates
 
 ## Miscellaneous Other Functions
 
--   **`read_edi`**: Reads in data tables and metadata of a data package
-    hosted by the Environmental Data Initiative (EDI) based on the PASTA
-    identifier
+- **`read_edi`**: Reads in data tables and metadata of a data package
+  hosted by the Environmental Data Initiative (EDI) based on the PASTA
+  identifier
 
-    -   **`read_edi_meta`** also exists and retrieves only the metadata
-        file for a given PASTA identifier
+  - **`read_edi_meta`** also exists and retrieves only the metadata file
+    for a given PASTA identifier
 
--   **`rmd_export`**: Allows knitting of a specified R Markdown file
-    locally and simultaneously to a specified Google Drive folder.
-    *NOTE:* you must authorize R to work with Google Drive by using
-    `googldrive::drive_auth` for this function to work
+- **`rmd_export`**: Allows knitting of a specified R Markdown file
+  locally and simultaneously to a specified Google Drive folder. *NOTE:*
+  you must authorize R to work with Google Drive by using
+  `googldrive::drive_auth` for this function to work
 
 ## Looking Ahead
 

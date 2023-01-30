@@ -14,13 +14,17 @@ knitr::opts_chunk$set(collapse = TRUE, comment = "#>", fig.path = "man/figures/R
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/njlyon0/helpR/workflows/R-CMD-check/badge.svg)](https://github.com/njlyon0/helpR/actions)
+![GitHub last commit](https://img.shields.io/github/last-commit/njlyon0/helpR)
+![GitHub issues](https://img.shields.io/github/issues-raw/njlyon0/helpR)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/njlyon0/helpR)
+
 <!-- badges: end -->
 
 `helpR` is an R package where the only unifying theme of the functions is honestly just that I wrote them. That said, there are some useful functions for **data wrangling** and **plotting** in particular, though functions for other purposes are also included. I'll add functions to this package as I write more orphan scripts that I hope others might find useful so stay tuned!
 
 ## Installation
 
-You can install the development version of helpeR from [GitHub](https://github.com/) with:
+You can install the development version of helpR from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
