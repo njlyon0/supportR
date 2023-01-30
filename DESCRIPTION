@@ -14,7 +14,7 @@ Description: This package is a one-stop shop for a suite of helper functions tha
     The only theme for these functions is that they tend towards simple, short, and narrowly-defined for tasks that often recur but are not large enough in scope to warrant a "real" package.
 License: MIT + file LICENSE
 Encoding: UTF-8
-RoxygenNote: 7.2.1
+RoxygenNote: 7.2.3
 Imports: 
     dplyr,
     ggplot2,
