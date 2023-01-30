@@ -15,7 +15,7 @@ num_check(data = NULL, col = NULL)
 (character) vector of malformed dates
 }
 \description{
-Any elements in the column that would be changed to NA if `as.numeric` is used on the column are returned. This is useful for quickly identifying only the "problem" entries of an ostensibly numeric column that is read in as a character.
+Any elements in the column that would be changed to NA if \code{as.numeric} is used on the column are returned. This is useful for quickly identifying only the "problem" entries of an ostensibly numeric column that is read in as a character.
 }
 \examples{
 # Create dataframe with a numeric column where some entries would be coerced into NA

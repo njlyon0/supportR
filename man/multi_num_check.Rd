@@ -12,10 +12,10 @@ multi_num_check(data = NULL, col_vec = NULL)
 \item{col_vec}{(character or numeric) vector of names or column numbers of the columns containing putative numbers in the data object}
 }
 \value{
-list of same length as `col_vec` with malformed numbers from each column in their respective element
+list of same length as \code{col_vec} with malformed numbers from each column in their respective element
 }
 \description{
-Any elements in the columns that would be changed to NA if `as.numeric` is used are returned. This is useful for quickly identifying only the "problem" entries of ostensibly numeric columns that are read in as characters. This function is an extension of the `helpR::num_check` function in this package that deals with only a single column.
+Any elements in the columns that would be changed to NA if \code{as.numeric} is used are returned. This is useful for quickly identifying only the "problem" entries of ostensibly numeric columns that are read in as characters. This function is an extension of the \code{helpR::num_check} function in this package that deals with only a single column.
 }
 \examples{
 # Create dataframe with a numeric column where some entries would be coerced into NA

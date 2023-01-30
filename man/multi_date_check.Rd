@@ -12,10 +12,10 @@ multi_date_check(data = NULL, col_vec = NULL)
 \item{col_vec}{(character or numeric) vector of names or column numbers of the columns containing putative dates in the data object}
 }
 \value{
-list of same length as `col_vec` with malformed dates from each column in their respective element
+list of same length as \code{col_vec} with malformed dates from each column in their respective element
 }
 \description{
-Any elements in the columns that would be changed to NA if `as.Date` is used are returned. This is useful for quickly identifying only the "problem" entries of ostensibly date columns that are read in as characters. This function is an extension of the `helpR::date_check` function in this package that deals with only a single column.
+Any elements in the columns that would be changed to NA if \code{as.Date} is used are returned. This is useful for quickly identifying only the "problem" entries of ostensibly date columns that are read in as characters. This function is an extension of the \code{helpR::date_check} function in this package that deals with only a single column.
 }
 \examples{
 # Make a dataframe to test the function

@@ -13,7 +13,7 @@ array_melt(array = NULL)
 (dataframe) object containing the "flattened" array in dataframe format
 }
 \description{
-Melts an array of dimensions x, y, and z into a dataframe containing columns `x`, `y`, `z`, and `value` where `value` is whatever was stored in the array at those coordinates.
+Melts an array of dimensions x, y, and z into a dataframe containing columns \code{x}, \code{y}, \code{z}, and \code{value} where \code{value} is whatever was stored in the array at those coordinates.
 }
 \examples{
 # First we need to create an array to melt

@@ -2,7 +2,7 @@
 % Please edit documentation in R/theme_lyon.R
 \name{theme_lyon}
 \alias{theme_lyon}
-\title{Complete `ggplot2` Theme for Non-Data Aesthetics}
+\title{Complete \code{ggplot2} Theme for Non-Data Aesthetics}
 \usage{
 theme_lyon(title_size = 16, text_size = 13)
 }
@@ -12,5 +12,5 @@ theme_lyon(title_size = 16, text_size = 13)
 \item{text_size}{(numeric) size of font in tick labels}
 }
 \description{
-Custom alternative to the `ggtheme` options built into `ggplot2`. Removes gray boxes and grid lines from plot background. Increases font size of tick marks and axis labels. Removes gray box from legend background and legend key. Removes legend title.
+Custom alternative to the \code{ggtheme} options built into \code{ggplot2}. Removes gray boxes and grid lines from plot background. Increases font size of tick marks and axis labels. Removes gray box from legend background and legend key. Removes legend title.
 }

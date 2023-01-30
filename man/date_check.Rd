@@ -15,7 +15,7 @@ date_check(data = NULL, col = NULL)
 (character) vector of malformed dates
 }
 \description{
-Any elements in the column that would be changed to NA if `as.Date` is used on the column are returned. This is useful for quickly identifying only the "problem" entries of an ostensibly date column that is read in as a character.
+Any elements in the column that would be changed to NA if \code{as.Date} is used on the column are returned. This is useful for quickly identifying only the "problem" entries of an ostensibly date column that is read in as a character.
 }
 \examples{
 # Let's create some data that will be useful in demoing this function

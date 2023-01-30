@@ -13,7 +13,7 @@ summary_table(
 )
 }
 \arguments{
-\item{data}{(dataframe or dataframe-like) object with column names that match the values passed to the `groups` and `response` arguments}
+\item{data}{(dataframe or dataframe-like) object with column names that match the values passed to the \code{groups} and \code{response} arguments}
 
 \item{groups}{(character) vector of column names to group by}
 
@@ -27,5 +27,5 @@ summary_table(
 (dataframe) summary table containing the mean, standard deviation, sample size, and standard error of the supplied response variable)
 }
 \description{
-Calculates mean, standard deviation, sample size, and standard error of a given response variable within user-defined grouping variables. This is meant as a convenience instead of doing `dplyr::group_by` followed by `dplyr::summarize` iteratively themselves.
+Calculates mean, standard deviation, sample size, and standard error of a given response variable within user-defined grouping variables. This is meant as a convenience instead of doing \code{dplyr::group_by} followed by \code{dplyr::summarize} iteratively themselves.
 }
