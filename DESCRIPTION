@@ -21,6 +21,7 @@ Imports:
     ggplot2,
     googledrive,
     graphics,
+    lifecycle,
     magrittr,
     methods,
     purrr,
