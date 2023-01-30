@@ -5,3 +5,5 @@ README.Rmd
 dev/
 LICENSE.md
 ^cran\-comments\.md$
+docs/
+pkgdown
