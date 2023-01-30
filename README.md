@@ -41,26 +41,26 @@ devtools::install_github("njlyon0/helpR")
 
 ## Quality Assurance & Quality Control (QA/QC)
 
-- **`num_chk`**: Checks a column that *should* contain only **numeric**
-  values for any entries that would be coerced to NA if `as.numeric` is
-  run
+- **`num_check`**: Checks a column that *should* contain only
+  **numeric** values for any entries that would be coerced to NA if
+  `as.numeric` is run
 
-  - An extension of this function is **`multi_num_chk`** that accepts a
-    vector of columns to check at the same time
+  - An extension of this function is **`multi_num_check`** that accepts
+    a vector of columns to check at the same time
 
-- **`date_chk`**: Checks a column that *should* contain only **date**
+- **`date_check`**: Checks a column that *should* contain only **date**
   values for any entries that would be coerced to NA if `as.Date` is run
 
-  - An extension of this function is **`multi_date_chk`** that accepts a
-    vector of columns to check at the same time
+  - An extension of this function is **`multi_date_check`** that accepts
+    a vector of columns to check at the same time
 
 - **`date_format_guess`**: Checks a column containing multiple ambiguous
   date formats and identifies its best guess for the format each date is
   in (e.g., ‘dd/mm/yyyy’ versus ‘yyyy/dd/mm’, etc.)
 
-- **`diff_chk`**: Compares two vectors and identifies what elements are
-  found in the first but not the second (i.e., *lost* components) and
-  what elements are found in the second but not the first (i.e.,
+- **`diff_check`**: Compares two vectors and identifies what elements
+  are found in the first but not the second (i.e., *lost* components)
+  and what elements are found in the second but not the first (i.e.,
   *gained* components)
 
   - This use-case is more oblique but I find it useful when I’m checking
