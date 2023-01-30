@@ -48,14 +48,17 @@ date_format_guess <- function(data = NULL, date_col = NULL,
   # Error out if `date_col` is undefined...
   if(is.null(date_col)) stop("`date_col` must be defined")
   # ...Or isn't a character...
-  if(class(date_col) != "character") stop("`date_col` must be a character")
+  if(is.character(date_col) != TRUE)
+    stop("`date_col` must be a character")
   # ...Or isn't a column in `data`...
-  if(!date_col %in% names(data)) stop("`date_col` must be a column name in `data`")
+  if(!date_col %in% names(data))
+    stop("`date_col` must be a column name in `data`")
   # ...Or the column isn't a character/factor column
-  if(date_col %in% names(data) & !class(data[[date_col]]) %in% c("character", "factor")) stop("`date_col` must refer to a character (or factor) column")
+  if(date_col %in% names(data) & is.character(data[[date_col]]) != TRUE)
+    stop("`date_col` must refer to a character column in the `data` object")
 
   # Warn when `groups` isn't a logical and re-set it to `FALSE`
-  if(class(groups) != "logical"){
+  if(methods::is(groups, "logical") != TRUE){
     message("`groups` must be a logical. Re-setting to `FALSE`")
     groups <- FALSE }
 
@@ -68,19 +71,18 @@ date_format_guess <- function(data = NULL, date_col = NULL,
     if(length(group_col) > 1)
       stop("`group_col` only supports a single grouping column. Consider collapsing several columns to achieve this if necessary")
     # ...Isn't a character...
-    if(class(group_col) != "character")
+    if(is.character(group_col) != TRUE)
       stop("`group_col` must be a character")
     #...Or isn't in the dataframe...
     if(!group_col %in% names(data))
       stop("`group_col` must be a column name in `data`")
     # ...Or the column isn't a character/factor column
-    if(group_col %in% names(data) &
-       !class(data[[group_col]]) %in% c("character", "factor"))
-      stop("`group_col` must refer to a character (or factor) column") }
+    if(group_col %in% names(data) & is.character(data[[group_col]]) != TRUE)
+      stop("`group_col` must refer to a character column") }
 
   # Warn when `quiet` isn't a logical and re-set it to `FALSE`
-  if(class(quiet) != "logical"){
-    message("`quiet` must be a logical. Re-setting to `FALSE`")
+  if(is.logical(quiet) != TRUE){
+    message("`quiet` must be a logical. Defaulting to `FALSE`")
     quiet <- FALSE }
 
   # Error out if `return is unspecified`...

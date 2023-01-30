@@ -24,7 +24,7 @@ crop_tri <- function(data = NULL, drop_tri = "upper", drop_diag = FALSE){
     stop("`drop_tri` must be one of 'upper' or 'lower'")
 
   # Coerce `drop_diag` to logical if it isn't
-  if(class(drop_diag) != "logical"){
+  if(methods::is(object = drop_diag, class2 = "logical") != TRUE){
     drop_diag <- FALSE
     message("`drop_diag` must be logical. Defaulting to FALSE") }
 

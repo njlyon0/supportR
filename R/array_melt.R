@@ -34,7 +34,7 @@ array_melt <- function(array = NULL){
   . <- z <- y_raw <- y <- NULL
 
   # Error out if `array` is null or isn't an array
-  if(is.null(array) | class(array) != "array")
+  if(is.null(array) | methods::is(object = array, class2 = "array") != TRUE)
     stop("`array` must be provided and must be an array")
 
   df <- array %>%

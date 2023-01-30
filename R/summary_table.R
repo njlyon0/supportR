@@ -36,7 +36,7 @@ summary_table <- function(data = NULL, groups = NULL, response = NULL,
     stop("Response variable must be numeric")
 
   # Warn if drop na isn't a logical
-  if(class(drop_na) != "logical"){
+  if(is.logical(drop_na) != TRUE){
     message("`drop_na` must be a logical. Defaulting to FALSE")
     drop_na <- FALSE }
 
