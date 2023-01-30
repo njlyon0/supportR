@@ -19,7 +19,7 @@ knitr::opts_chunk$set(collapse = TRUE, comment = "#>", fig.path = "man/figures/R
 ![GitHub pull requests](https://img.shields.io/github/issues-pr/njlyon0/helpR)
 <!-- badges: end -->
 
-`helpR` is an R package where the only unifying theme of the functions is honestly just that I wrote them. That said, there are some useful functions for **data wrangling** and **plotting** in particular, though functions for other purposes are also included. I'll add functions to this package as I write more orphan scripts that I hope others might find useful so stay tuned!
+`helpR` is an R package where the only unifying theme of the functions is honestly just that I wrote them. That said, there are some useful functions for **data wrangling** and **plotting** in particular, though functions for *other purposes* are also included. I'll add functions to this package as I write more orphan scripts that I hope others might find useful so stay tuned!
 
 ## Installation
 
@@ -30,11 +30,11 @@ You can install the development version of helpR from [GitHub](https://github.co
 devtools::install_github("njlyon0/helpR")
 ```
 
-## Summarizing
+### Summarizing
 
 - **`summary_table`**: Calculates summary values (mean, standard deviation, sample size, and standard error) of a given response variable within supplied groups
 
-## Quality Assurance & Quality Control (QA/QC)
+### Quality Assurance & Quality Control (QA/QC)
 
 - **`num_check`**: Checks a column that *should* contain only **numeric** values for any entries that would be coerced to NA if `as.numeric` is run
 
@@ -50,7 +50,7 @@ devtools::install_github("njlyon0/helpR")
 
     - This use-case is more oblique but I find it useful when I'm checking which columns are in the data before versus after a significant wrangling step to make sure no columns are lost/gained unexpectedly
 
-## Visualization & Graphics
+### Visualization & Graphics
 
 - **`theme_lyon`**: Applies a set of modifications to the non-data aspects of a `ggplot2` plot to ensure a consistent "feel" of a set of plots
 
@@ -58,13 +58,13 @@ devtools::install_github("njlyon0/helpR")
 
 - **`pcoa_ord`**: Creates a Principal Coordinates Analysis (PCoA) ordination with base R. Requires the distance matrix returned by `ape::pcoa`
 
-## Reshaping Data
+### Reshaping Data
 
 - **`crop_tri`**: Removes the specified "triangle" (either upper or lower) of a symmetric data object by replacing with NAs. Also allows user to specify whether to keep or also drop the diagonal
 
 - **`array_melt`**: "Flattens" an array of dimensions X, Y, and Z into a dataframe containing columns `x`, `y`, `z`, and `value` where `value` is whatever was stored in the array at those coordinates
 
-## Miscellaneous Other Functions
+### Miscellaneous Other Functions
 
 - **`rmd_export`**: Allows knitting of a specified R Markdown file locally and simultaneously to a specified Google Drive folder. *NOTE:* you must authorize R to work with Google Drive by using `googldrive::drive_auth` for this function to work
 

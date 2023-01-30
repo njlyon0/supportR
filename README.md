@@ -7,20 +7,18 @@
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/njlyon0/helpR/workflows/R-CMD-check/badge.svg)](https://github.com/njlyon0/helpR/actions)
+[![R-CMD-check](https://github.com/njlyon0/helpR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/njlyon0/helpR/actions/workflows/R-CMD-check.yaml)
 ![GitHub last
 commit](https://img.shields.io/github/last-commit/njlyon0/helpR)
 ![GitHub issues](https://img.shields.io/github/issues-raw/njlyon0/helpR)
 ![GitHub pull
 requests](https://img.shields.io/github/issues-pr/njlyon0/helpR)
-
-[![R-CMD-check](https://github.com/njlyon0/helpR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/njlyon0/helpR/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 `helpR` is an R package where the only unifying theme of the functions
 is honestly just that I wrote them. That said, there are some useful
 functions for **data wrangling** and **plotting** in particular, though
-functions for other purposes are also included. I’ll add functions to
+functions for *other purposes* are also included. I’ll add functions to
 this package as I write more orphan scripts that I hope others might
 find useful so stay tuned!
 
@@ -34,13 +32,13 @@ You can install the development version of helpR from
 devtools::install_github("njlyon0/helpR")
 ```
 
-## Summarizing
+### Summarizing
 
 - **`summary_table`**: Calculates summary values (mean, standard
   deviation, sample size, and standard error) of a given response
   variable within supplied groups
 
-## Quality Assurance & Quality Control (QA/QC)
+### Quality Assurance & Quality Control (QA/QC)
 
 - **`num_check`**: Checks a column that *should* contain only
   **numeric** values for any entries that would be coerced to NA if
@@ -68,7 +66,7 @@ devtools::install_github("njlyon0/helpR")
     which columns are in the data before versus after a significant
     wrangling step to make sure no columns are lost/gained unexpectedly
 
-## Visualization & Graphics
+### Visualization & Graphics
 
 - **`theme_lyon`**: Applies a set of modifications to the non-data
   aspects of a `ggplot2` plot to ensure a consistent “feel” of a set of
@@ -82,7 +80,7 @@ devtools::install_github("njlyon0/helpR")
   ordination with base R. Requires the distance matrix returned by
   `ape::pcoa`
 
-## Reshaping Data
+### Reshaping Data
 
 - **`crop_tri`**: Removes the specified “triangle” (either upper or
   lower) of a symmetric data object by replacing with NAs. Also allows
@@ -92,7 +90,7 @@ devtools::install_github("njlyon0/helpR")
   dataframe containing columns `x`, `y`, `z`, and `value` where `value`
   is whatever was stored in the array at those coordinates
 
-## Miscellaneous Other Functions
+### Miscellaneous Other Functions
 
 - **`rmd_export`**: Allows knitting of a specified R Markdown file
   locally and simultaneously to a specified Google Drive folder. *NOTE:*
