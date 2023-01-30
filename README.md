@@ -14,6 +14,7 @@ commit](https://img.shields.io/github/last-commit/njlyon0/helpR)
 ![GitHub pull
 requests](https://img.shields.io/github/issues-pr/njlyon0/helpR)
 
+[![R-CMD-check](https://github.com/njlyon0/helpR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/njlyon0/helpR/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 `helpR` is an R package where the only unifying theme of the functions
