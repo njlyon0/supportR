@@ -6,7 +6,7 @@
 \alias{helpR-package}
 \title{helpR: Miscellaneous Helper Functions for Coding in R}
 \description{
-This package is a one-stop shop for a suite of helper functions that I have had need of over time. The only theme for these functions is that they tend towards simple, short, and narrowly-defined for tasks that often recur but are not large enough in scope to warrant a "real" package.
+Suite of helper functions for data wrangling and visualization. The only theme for these functions is that they tend towards simple, short, and narrowly-defined. These functions are built for tasks that often recur but are not large enough in scope to warrant an ecosystem of inter-dependent functions.
 }
 \author{
 \strong{Maintainer}: Nicholas J Lyon \email{njlyon@alumni.iastate.edu} (\href{https://orcid.org/0000-0003-3905-1078}{ORCID})
