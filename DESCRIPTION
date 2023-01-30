@@ -21,6 +21,7 @@ Imports:
     googledrive,
     graphics,
     magrittr,
+    methods,
     purrr,
     rlang,
     rmarkdown,
