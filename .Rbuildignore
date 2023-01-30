@@ -3,5 +3,6 @@
 README.Rmd
 ^\.github$
 test_data/
+dev/
 LICENSE.md
 ^cran\-comments\.md$
