@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-<img src = "inst/images/helpR_hex.png" align = "right" width = "15%"/>
+<img src = "man/figures/helpR_hex.png" align = "right" width = "15%"/>
 
 # `helpR` - Miscellaneous Helper Functions for Coding in R
 
