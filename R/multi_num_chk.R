@@ -1,5 +1,5 @@
 #' @title Check Multiple Columns for Non-Numbers.
-#' @description Any elements in the columns that would be changed to NA if `as.numeric()` is used are returned. This is useful for quickly identifying only the "problem" entries of ostensibly numeric columns that are read in as characters. This function is an extension of the `num_chk()` function in this package that deals with only a single column.
+#' @description Any elements in the columns that would be changed to NA if `as.numeric` is used are returned. This is useful for quickly identifying only the "problem" entries of ostensibly numeric columns that are read in as characters. This function is an extension of the `helpR::num_chk` function in this package that deals with only a single column.
 #'
 #' @param data (dataframe) object containing at least one column of supposed numbers
 #' @param col_vec (character or numeric) vector of names or column numbers of the columns containing putative numbers in the data object

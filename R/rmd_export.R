@@ -1,11 +1,11 @@
 #' @title Knit an R Markdown File and Export to Google Drive
 #'
-#' @description This function allows you to knit a specified R Markdown file locally and export it to the Google Drive folder for which you provided a link. NOTE that if you have not used `googledrive::drive_auth()` this will prompt you to authorize a Google account in a new browser tab. If you do not check the box in that screen before continuing you will not be able to use this function until you clear your browser cache and re-authenticate. I recommend invoking `drive_auth()` beforehand to reduce the chances of this error
+#' @description This function allows you to knit a specified R Markdown file locally and export it to the Google Drive folder for which you provided a link. NOTE that if you have not used `googledrive::drive_auth` this will prompt you to authorize a Google account in a new browser tab. If you do not check the box in that screen before continuing you will not be able to use this function until you clear your browser cache and re-authenticate. I recommend invoking `drive_auth` beforehand to reduce the chances of this error
 #'
-#' @param rmd (character) name and path to .Rmd file to knit
-#' @param out_path (character) path to the knit file's destination (defaults to `getwd()`)
+#' @param rmd (character) name and path to R markdown file to knit
+#' @param out_path (character) path to the knit file's destination (defaults to path returned by `getwd`)
 #' @param out_name (character) desired name for knit file (with or without file suffix)
-#' @param out_type (character) either "html" or "pdf" depending on what YAML entry you have in the `output: ` field of your .Rmd
+#' @param out_type (character) either "html" or "pdf" depending on what YML entry you have in the `output: ` field of your R Markdown file
 #' @param drive_link (character) full URL of drive folder to upload the knit document
 #'
 #' @export

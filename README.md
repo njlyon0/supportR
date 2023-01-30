@@ -74,7 +74,7 @@ devtools::install_github("njlyon0/helpR")
   plots
 
 - **`nms_ord`**: Creates a Non-Metric Multi-Dimensional Scaling (NMS)
-  ordination with base R. Requires the disimilarity matrix returned by
+  ordination with base R. Requires the dissimilarity matrix returned by
   `vegan::metaMDS`
 
 - **`pcoa_ord`**: Creates a Principal Coordinates Analysis (PCoA)
@@ -93,13 +93,6 @@ devtools::install_github("njlyon0/helpR")
 
 ## Miscellaneous Other Functions
 
-- **`read_edi`**: Reads in data tables and metadata of a data package
-  hosted by the Environmental Data Initiative (EDI) based on the PASTA
-  identifier
-
-  - **`read_edi_meta`** also exists and retrieves only the metadata file
-    for a given PASTA identifier
-
 - **`rmd_export`**: Allows knitting of a specified R Markdown file
   locally and simultaneously to a specified Google Drive folder. *NOTE:*
   you must authorize R to work with Google Drive by using
@@ -108,10 +101,6 @@ devtools::install_github("njlyon0/helpR")
 ## Looking Ahead
 
 More functions are likely to be developed and housed within this package
-but I find myself using these perennially for quick wrangling checks and
-exploratory graphing respectively so it seemed worthwhile to pivot these
-into a true package.
-
-Feel free to post ideas for future functions as [an
+so stay tuned! Feel free to post ideas for new functions as [an
 issue](https://github.com/njlyon0/helpR/issues) on this repository and
 I’ll do my best to build them!
