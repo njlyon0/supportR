@@ -1,7 +1,7 @@
 Package: helpR
 Type: Package
 Title: Miscellaneous Helper Functions for Coding in R
-Version: 0.1.0
+Version: 1.0.0
 Authors@R: c(
     person(given = 'Nicholas J',
            family = 'Lyon',
