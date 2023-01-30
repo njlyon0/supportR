@@ -1,5 +1,5 @@
-#' @title Check a Column for Non-Dates.
-#' @description Any elements in the column that would be changed to NA if `as.Date()` is used on the column are returned. This is useful for quickly identifying only the "problem" entries of an ostensibly date column that is read in as a character.
+#' @title Check a Column for Non-Dates
+#' @description Any elements in the column that would be changed to NA if `as.Date` is used on the column are returned. This is useful for quickly identifying only the "problem" entries of an ostensibly date column that is read in as a character.
 #'
 #' @param data (dataframe) object containing at least one column of supposed dates
 #' @param col (character or numeric) name or column number of the column containing putative dates in the data object
@@ -14,8 +14,8 @@
 #' sites <- data.frame('site' = loc, 'visit' = time)
 #'
 #' # Now we can use our function to identify bad dates
-#' helpR::date_chk(data = sites, col = 'visit')
-date_chk <- function(data = NULL, col = NULL) {
+#' helpR::date_check(data = sites, col = 'visit')
+date_check <- function(data = NULL, col = NULL) {
 
   # Error out if anything is missing
   if(base::is.null(data) | base::is.null(col))

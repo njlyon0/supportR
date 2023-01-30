@@ -15,14 +15,14 @@
 #' vec2 <- c("y", "z", "a")
 #'
 #' # Compare them!
-#' helpR::diff_chk(old = vec1, new = vec2)
+#' helpR::diff_check(old = vec1, new = vec2)
 #'
 #' # Return the difference for later use
-#' diff_out <- helpR::diff_chk(old = vec1, new = vec2, return = TRUE)
+#' diff_out <- helpR::diff_check(old = vec1, new = vec2, return = TRUE)
 #' diff_out
 #'
-diff_chk <- function(old = NULL, new = NULL,
-                     sort = TRUE, return = FALSE){
+diff_check <- function(old = NULL, new = NULL,
+                       sort = TRUE, return = FALSE){
 
   # Error out if either is null
   if(is.null(old) | is.null(new))
@@ -56,8 +56,8 @@ diff_chk <- function(old = NULL, new = NULL,
   # Message what (if anything) was lost
   if(length(lost) == 0){
     message("All elements of of old object found in new") } else {
-    message("Following element(s) found in old object but not new: ")
-    print(lost) }
+      message("Following element(s) found in old object but not new: ")
+      print(lost) }
 
   # Do the same for what was gained
   if(length(gained) == 0){
@@ -75,4 +75,4 @@ diff_chk <- function(old = NULL, new = NULL,
     # Return it
     return(diff_list) }
 
-  }
+}

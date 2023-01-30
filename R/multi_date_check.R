@@ -1,5 +1,5 @@
-#' @title Check Multiple Columns for Non-Dates.
-#' @description Any elements in the columns that would be changed to NA if `as.Date` is used are returned. This is useful for quickly identifying only the "problem" entries of ostensibly date columns that are read in as characters. This function is an extension of the `helpR::date_chk` function in this package that deals with only a single column.
+#' @title Check Multiple Columns for Non-Dates
+#' @description Any elements in the columns that would be changed to NA if `as.Date` is used are returned. This is useful for quickly identifying only the "problem" entries of ostensibly date columns that are read in as characters. This function is an extension of the `helpR::date_check` function in this package that deals with only a single column.
 #'
 #' @param data (dataframe) object containing at least one column of supposed dates
 #' @param col_vec (character or numeric) vector of names or column numbers of the columns containing putative dates in the data object
@@ -17,9 +17,9 @@
 #' # Assemble our vectors into a dataframe
 #' sites <- data.frame('site' = loc, 'first_visit' = time, "second" = time2, "third" = time3)
 #'
-#' # Use `multi_date_chk()` to return only the entries that would be lost
-#' helpR::multi_date_chk(data = sites, col_vec = c("first_visit", "second", "third"))
-multi_date_chk <- function(data = NULL, col_vec = NULL){
+#' # Use `multi_date_check()` to return only the entries that would be lost
+#' helpR::multi_date_check(data = sites, col_vec = c("first_visit", "second", "third"))
+multi_date_check <- function(data = NULL, col_vec = NULL){
   # Error out if anything is missing
   if(base::is.null(data) | base::is.null(col))
     stop("Data object name and column name must be provided")

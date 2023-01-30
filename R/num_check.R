@@ -1,5 +1,5 @@
-#' @title Check a Column for Non-Numbers.
-#' @description Any elements in the column that would be changed to NA if `as.numeric()` is used on the column are returned. This is useful for quickly identifying only the "problem" entries of an ostensibly numeric column that is read in as a character.
+#' @title Check a Column for Non-Numbers
+#' @description Any elements in the column that would be changed to NA if `as.numeric` is used on the column are returned. This is useful for quickly identifying only the "problem" entries of an ostensibly numeric column that is read in as a character.
 #'
 #' @param data (dataframe) object containing at least one column of supposed dates
 #' @param col (character or numeric) name or column number of the column containing putative dates in the data object
@@ -13,9 +13,9 @@
 #' ct <- c(1, '14x', '_23', 12)
 #' fish <- data.frame('species' = spp, 'count' = ct)
 #'
-#' # Use `num_chk()` to return only the entries that would be lost
-#' helpR::num_chk(data = fish, col = "count")
-num_chk <- function(data = NULL, col = NULL) {
+#' # Use `num_check()` to return only the entries that would be lost
+#' helpR::num_check(data = fish, col = "count")
+num_check <- function(data = NULL, col = NULL) {
 
   # Error out if anything is missing
   if(base::is.null(data) | base::is.null(col))

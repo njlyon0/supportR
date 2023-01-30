@@ -1,5 +1,5 @@
-#' @title Check Multiple Columns for Non-Numbers.
-#' @description Any elements in the columns that would be changed to NA if `as.numeric` is used are returned. This is useful for quickly identifying only the "problem" entries of ostensibly numeric columns that are read in as characters. This function is an extension of the `helpR::num_chk` function in this package that deals with only a single column.
+#' @title Check Multiple Columns for Non-Numbers
+#' @description Any elements in the columns that would be changed to NA if `as.numeric` is used are returned. This is useful for quickly identifying only the "problem" entries of ostensibly numeric columns that are read in as characters. This function is an extension of the `helpR::num_check` function in this package that deals with only a single column.
 #'
 #' @param data (dataframe) object containing at least one column of supposed numbers
 #' @param col_vec (character or numeric) vector of names or column numbers of the columns containing putative numbers in the data object
@@ -15,9 +15,9 @@
 #' ct3 <- c(NA, 'Y', 'typo', '2')
 #' fish <- data.frame('species' = spp, 'count' = ct, 'num_col2' = ct2, 'third_count' = ct3)
 #'
-#' # Use `multi_num_chk()` to return only the entries that would be lost
-#' helpR::multi_num_chk(data = fish, col_vec = c("count", "num_col2", "third_count"))
-multi_num_chk <- function(data = NULL, col_vec = NULL){
+#' # Use `multi_num_check()` to return only the entries that would be lost
+#' helpR::multi_num_check(data = fish, col_vec = c("count", "num_col2", "third_count"))
+multi_num_check <- function(data = NULL, col_vec = NULL){
   # Error out if anything is missing
   if(base::is.null(data) | base::is.null(col))
     stop("Data object name and column name must be provided")
@@ -59,4 +59,3 @@ multi_num_chk <- function(data = NULL, col_vec = NULL){
   # Return the list
   return(bad_list)
 }
-

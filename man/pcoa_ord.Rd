@@ -17,7 +17,7 @@ pcoa_ord(
 )
 }
 \arguments{
-\item{mod}{Object returned by `ape::pcoa()`}
+\item{mod}{Object returned by `ape::pcoa`}
 
 \item{groupcol}{(dataframe) column specification in the data that includes the groups (accepts either bracket or $ notation)}
 
@@ -29,12 +29,12 @@ pcoa_ord(
 
 \item{lines}{(numeric) vector of line types (as integers) of length >= group levels}
 
-\item{leg_pos}{(character or numeric) legend position, either numeric vector of x/y coordinates or shorthand accepted by `graphics::legend()`}
+\item{leg_pos}{(character or numeric) legend position, either numeric vector of x/y coordinates or shorthand accepted by `graphics::legend`}
 
 \item{leg_cont}{(character) vector of desired legend entries. Defaults to `unique` entries in `groupcol` argument (this argument provided in case syntax of legend contents should differ from data contents)}
 }
 \description{
-Produces Principal Coordinates Analysis (PCoA) ordinations for up to 10 groups. Assigns a unique color for each group and draws an ellipse around the standard deviation of the points. Automatically adds percent of variation explained by first two principal component axes parenthetically to axis labels. Because there are only five hollow shapes (see `?graphics::pch()`) all shapes are re-used a maximum of 2 times when more than 5 groups are supplied.
+Produces Principal Coordinates Analysis (PCoA) ordinations for up to 10 groups. Assigns a unique color for each group and draws an ellipse around the standard deviation of the points. Automatically adds percent of variation explained by first two principal component axes parenthetically to axis labels. Because there are only five hollow shapes (see `?graphics::pch`) all shapes are re-used a maximum of 2 times when more than 5 groups are supplied.
 }
 \examples{
 # Use data from the vegan package
