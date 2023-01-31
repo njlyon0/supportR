@@ -1,7 +1,6 @@
 ---
 title: "supportR Vignette"
-author: "Vignette Author"
-date: "`r Sys.Date()`"
+author: "Nicholas J Lyon"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{supportR Vignette}
@@ -14,8 +13,7 @@ knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
 ```
 
 ```{r pre-setup, echo = FALSE, message = FALSE}
-# devtools::install_github("njlyon/supportR")
-# devtools::install_github("lter/lterpalettefinder")
+devtools::install_github("njlyon0/supportR")
 ```
 
 ## Overview
@@ -25,28 +23,194 @@ The `supportR` package is an amalgam of distinct functions I've written to accom
 This vignette describes the main functions of `supportR` using the examples included in each function.
 
 ```{r setup}
-# library(supportR)
+library(supportR)
 ```
 
 ### Summarizing Data
 
+In order to demonstrate the summarization function(s), we'll use some some example data from Dr. [Allison Horst](https://allisonhorst.com/)'s [`palmerpenguins` R package](https://github.com/allisonhorst/palmerpenguins).
 
+```{r ex-data-pngn}
+# Load library
+library(palmerpenguins)
+
+# Glimpse the penguins dataset
+dplyr::glimpse(penguins)
+```
+
+With that data loaded, we can use the `summary_table` function to quickly do group-wise summarization and retrieve generally useful summary statistics.
+
+```{r summary_table}
+# Summarize the data
+summary_table(data = penguins, groups = c("species", "island"),
+              response = "bill_length_mm", drop_na = T)
+```
+
+The `groups` argument supports a vector of all of the column names to group by while `response` must be a single numeric column. The `drop_na` argument allows group combinations that result in an NA to be automatically dropped (i.e., if a penguin didn't have an island listed that would be dropped). The mean, standard deviation (SD), sample size, and standard error (SE) are all returned to facilitate easy figure creation. There is also a `round_digits` argument that lets you specify how many digits you'd like to retain for the mean, SD, and SE.
 
 ### Quality Control
 
+I do write a lot of `tidyverse`-style lengthy pipes (`%>%`) that create and remove potentially many columns without creating intermediary objects. This does have the potential for accidentally dropping desired columns without noticing (especially when using `dplyr::select` to *implicitly* exclude columns). I've created the `diff_check` function to--in part--quickly confirm that this isn't happening.
 
+Generally speaking, `diff_check` just compares two vectors and reports back what is in the first but not the second (i.e., what is "lost") and what is in the second but not the first (i.e., what is "gained").
+
+```{r diff_check}
+# Make two vectors
+vec1 <- c("x", "a", "b")
+vec2 <- c("y", "z", "a")
+
+# Compare them!
+diff_check(old = vec1, new = vec2)
+```
+
+`diff_check` also includes optional logical arguments `sort` and `return` that will respectively either sort the difference in both vectors and return a two-element if set to `TRUE`. As I said above, I most often feed `diff_check` the vector of column names returned by `names` before and after a pipe to ensure that I know which columns were lost/gained by a set of operations.
+
+This package also includes the function `num_check` that identifies all values of a column that would be coerced to `NA` if `as.numeric` was run on the column.
+
+```{r num_check}
+# Make a dataframe with non-numbers in a number column
+fish <- data.frame('species' = c('salmon', 'bass', 'halibut', 'eel'),
+                   'count' = c(1, '14x', '_23', 12))
+
+# Use `num_check` to identify non-numbers
+num_check(data = fish, col = "count")
+```
+
+Once these non-numbers are identified you can handle that in whatever way you feel is most appropriate. `num_check` is intended only to flag these for your attention, *not* to attempt a fix using a method you may or may not support.
+
+`date_check` on the other hand does that same thing but it is checking a column for entries that would be coerced to `NA` by `as.Date` instead. Note that if a date is sufficiently badly formatted `as.Date` will throw an error instead of coercing to `NA` to `date_check` will do the same thing.
+
+```{r date_check}
+# Make a dataframe including malformed dates
+sites <- data.frame('site' = c("LTR", "GIL", "PYN", "RIN"),
+                    'visit' = c('2021-01-01', '2021-01-0w', '1990', '2020-10-xx'))
+
+# Now we can use our function to identify bad dates
+date_check(data = sites, col = 'visit')
+```
+
+Both `num_check` and `date_check` have an expanded version (`multi_num_check` and `multi_date_check` respectively) that uses a `col_vec` argument instead of `col`. `col_vec` accepts a vector of column names and checks all of those columns for non-numbers or bad dates.
+
+Finally (for now), is the descriptively-named `date_format_guess` function. This function checks a column of dates (stored as characters!) and tries to guess the format of the date (i.e., month/day/year, day/month/year, etc.).
+
+It can make a more informed guess if there is a grouping column because it can use the frequency of the numbers to guess whether a given number is the day or the month. This is based on the assumption that sampling occurs more often within months than across so if the "left" number is repeated more than the "right" it is likely the month while the less frequent number (i.e., more unqiue values in that position) is likely days.
+
+If you are uncomfortable with that assumption (totally fine!) you can set `groups` to `FALSE` and it will do the more commonplace assessments (i.e., if a number is >12 it is day, etc.).
+
+```{r date_format_guess}
+# Make a dataframe with dates in various formats and a grouping column
+my_df <- data.frame('data_enterer' = c('person A', 'person B',
+                                       'person B', 'person B',
+                                       'person C', 'person D',
+                                       'person E', 'person F',
+                                       'person G'),
+                    'bad_dates' = c('2022.13.08', '2021/2/02',
+                                    '2021/2/03', '2021/2/04',
+                                    '1899/1/15', '10-31-1901',
+                                    '26/11/1901', '08.11.2004',
+                                    '6/10/02'))
+
+# Now we can invoke the function!
+date_format_guess(data = my_df, date_col = "bad_dates",
+                  group_col = "data_enterer", return = "dataframe")
+
+# If preferred, do it without groups and return a vector
+date_format_guess(data = my_df, date_col = "bad_dates",
+                  groups = FALSE, return = "vector")
+```
+
+Note that dates that cannot be guessed by my function will return "FORMAT UNCERTAIN" so that you can handle them using your knowledge of the system (or by returning to your raw data if need be).
 
 ### Data Visualization
 
+I've created a set of custom `ggplot2` `theme` elements to guarantee that all of my figures share similar aesthetics. Feel free to use `theme_lyon` if you have similar preferences!
 
+```{r theme_lyon, out.width = "50%"}
+# Load ggplot2
+library(ggplot2)
+
+# Create a plot
+ggplot(penguins, aes(x = species, y = body_mass_g, fill = species)) +
+  geom_boxplot(outlier.shape = 24) +
+  theme_lyon()
+```
+
+`theme_lyon` does the following changes to a `ggplot2` plot:
+
+- Removes legend title and background
+- Removes gray box behind colors in legend elements
+- Removes major/minor gridlines
+- Makes axes' lines black
+- Increases the font size of the axes titles and tick labels
+
+I've also created `nms_ord` and `pcoa_ord` for Non-Metric Multi-Dimensional Scaling (NMS) & Principale Coordinates Analysis (PCoA) Ordinations respectively.
+
+```{r nms_ord, message = F, warning = F, results = 'hide', out.width="50%"}
+# Load data from the `vegan` package
+utils::data("varespec", package = 'vegan')
+resp <- varespec
+
+# Make a columns to split the data into 4 groups
+factor_4lvl <- c(rep.int("Trt_1", (nrow(resp)/4)),
+                 rep.int("Trt_2", (nrow(resp)/4)),
+                 rep.int("Trt_3", (nrow(resp)/4)),
+                 rep.int("Trt_4", (nrow(resp)/4)))
+
+# And combine them into a single data object
+data <- cbind(factor_4lvl, resp)
+
+# Actually perform multidimensional scaling
+mds <- vegan::metaMDS(data[-c(1:2)], autotransform = FALSE, 
+                      expand = FALSE, k = 2, try = 10)
+
+# With the scaled object and original dataframe we can use this function
+nms_ord(mod = mds, groupcol = data$factor_4lvl,
+        title = '4-Level NMS', leg_pos = 'topright',
+        leg_cont = c('1', '2', '3', '4'))
+```
+
+`pcoa_ord` has the same syntax as `nms_ord` but it expects an object created by `ape::pcoa` rather than `vegan::metaMDS`.
 
 ### Reshaping Data
 
+`array_melt` allows users to 'melt' an array of dimensions X, Y, and Z into a dataframe containing columns "x", "y", "z", and "value" where "value" is whatever was stored at those coordinates in the array.
 
+```{r array_melt}
+# Make data to fill the array
+vec1 <- c(5, 9, 3)
+vec2 <- c(10:15)
+
+# Create dimension names (x = col, y = row, z = which matrix)
+x_vals <- c("Col_1","Col_2","Col_3")
+y_vals <- c("Row_1","Row_2","Row_3")
+z_vals <- c("Mat_1","Mat_2")
+
+# Make an array from these components
+g <- array(data = c(vec1, vec2), dim = c(3, 3, 2),
+           dimnames = list(x_vals, y_vals, z_vals))
+
+# "Melt" the array into a dataframe
+array_melt(array = g)
+```
+
+`crop_tri` also exists under this category and provides a hopefully straightforward way of dropping one "triangle" of a dataframe / matrix. It also includes a `drop_diag` argument that accepts a logical for whether to drop the diagonal of the data object. See `?crop_tri`. for complete syntax explanation
 
 ### Miscellaneous Other Functions
 
+Finally, I've written `rmd_export` which knits and exports a given R Markdown file locally and to a user-designated Google Drive folder. Note that you **_MUST_** authenticate your R session with the `googledrive` package so that it has permission to access the Drive folder you supply. I recommend running `googledrive::drive_auth()` and doing the authentication "dance" before using `rmd_export` to ensure that this doesn't cause issues for you.
 
+```{r rmd_export, eval = F}
+# Authorize R to interact with GoogleDrive
+googledrive::drive_auth()
+
+# Use `rmd_export()` to knit and export an .Rmd file
+rmd_export(rmd = "my_markdown.Rmd",
+           in_path = file.path("Folder in my WD with the .Rmd named in `rmd`"),
+           out_path = file.path("Folder in my WD to save the knit file to"),
+           out_name = "desired name for output",
+           out_type = "html",
+           drive_link = "<Full Google Drive link>")
+```
 
 ## Looking Ahead
 

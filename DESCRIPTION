@@ -33,6 +33,8 @@ Imports:
     tidyr,
     vegan
 Suggests: 
-    knitr
+    devtools,
+    knitr,
+    palmerpenguins
 Roxygen: list(markdown = TRUE)
 VignetteBuilder: knitr
