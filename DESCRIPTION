@@ -1,6 +1,6 @@
-Package: helpR
+Package: supportR
 Type: Package
-Title: Miscellaneous Helper Functions for Coding in R
+Title: Support Functions for Wrangling and Visualization
 Version: 1.0.0
 Authors@R: c(
     person(given = 'Nicholas J',
