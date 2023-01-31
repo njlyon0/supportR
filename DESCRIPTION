@@ -16,11 +16,13 @@ License: MIT + file LICENSE
 Language: en-US
 Encoding: UTF-8
 RoxygenNote: 7.2.3
+VignetteBuilder: knitr
 Imports: 
     dplyr,
     ggplot2,
     googledrive,
     graphics,
+    knitr,
     lifecycle,
     magrittr,
     methods,
