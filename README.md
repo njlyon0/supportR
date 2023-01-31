@@ -38,7 +38,7 @@ devtools::install_github("njlyon0/helpR")
   deviation, sample size, and standard error) of a given response
   variable within supplied groups
 
-### Quality Assurance & Quality Control (QA/QC)
+### Quality Control (QC)
 
 - **`num_check`**: Checks a column that *should* contain only
   **numeric** values for any entries that would be coerced to NA if
