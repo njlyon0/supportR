@@ -33,7 +33,6 @@ Imports:
     tidyr,
     vegan
 Suggests: 
-    devtools,
     knitr,
     palmerpenguins
 Roxygen: list(markdown = TRUE)
