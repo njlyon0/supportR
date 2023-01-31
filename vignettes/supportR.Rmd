@@ -1,0 +1,51 @@
+---
+title: "supportR Vignette"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{supportR Vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+```
+
+```{r pre-setup, echo = FALSE, message = FALSE}
+# devtools::install_github("njlyon/supportR")
+# devtools::install_github("lter/lterpalettefinder")
+```
+
+## Overview
+
+The `supportR` package is an amalgam of distinct functions I've written to accomplish small data wrangling, quality control, or visualization tasks. These functions tend to be short and narrowly-defined. An additional consequence of the motivation for creating them is that they tend to not be inter-related or united by a common theme. If this vignette feels somewhat scattered because of that, I hope it doesn't negatively affect how informative this is!
+
+This vignette describes the main functions of `supportR` using the examples included in each function.
+
+```{r setup}
+# library(supportR)
+```
+
+### Summarizing Data
+
+
+
+### Quality Control
+
+
+
+### Data Visualization
+
+
+
+### Reshaping Data
+
+
+
+### Miscellaneous Other Functions
+
+
+
+## Looking Ahead
+
+If you have ideas for other functions that `lterpalettefinder` could contain, post them as [a GitHub Issue](https://github.com/lter/lterpalettefinder/issues) and we'll review them as soon as possible!
