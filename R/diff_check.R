@@ -1,4 +1,4 @@
-#' @title Compare Difference Between two Vectors
+#' @title Compare Difference Between Two Vectors
 #'
 #' @description Reflexively compares two vectors and identifies (1) elements that are found in the first but not the second (i.e., "lost" components) and (2) elements that are found in the second but not the first (i.e., "gained" components). This is particularly helpful when manipulating a dataframe and comparing what columns are lost or gained between wrangling steps. Alternately it can compare the contents of two columns to see how two dataframes differ.
 #'
@@ -15,10 +15,10 @@
 #' vec2 <- c("y", "z", "a")
 #'
 #' # Compare them!
-#' helpR::diff_check(old = vec1, new = vec2)
+#' diff_check(old = vec1, new = vec2)
 #'
 #' # Return the difference for later use
-#' diff_out <- helpR::diff_check(old = vec1, new = vec2, return = TRUE)
+#' diff_out <- diff_check(old = vec1, new = vec2, return = TRUE)
 #' diff_out
 #'
 diff_check <- function(old = NULL, new = NULL,

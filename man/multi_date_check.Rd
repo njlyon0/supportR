@@ -15,7 +15,7 @@ multi_date_check(data = NULL, col_vec = NULL)
 list of same length as \code{col_vec} with malformed dates from each column in their respective element
 }
 \description{
-Any elements in the columns that would be changed to NA if \code{as.Date} is used are returned. This is useful for quickly identifying only the "problem" entries of ostensibly date columns that are read in as characters. This function is an extension of the \code{helpR::date_check} function in this package that deals with only a single column.
+Any elements in the columns that would be changed to NA if \code{as.Date} is used are returned. This is useful for quickly identifying only the "problem" entries of ostensibly date columns that are read in as characters. This function is an extension of the \code{date_check} function in this package that deals with only a single column.
 }
 \examples{
 # Make a dataframe to test the function
@@ -28,5 +28,5 @@ time3 <- c('2022-10-31', 'tomorrow', '1993', NA)
 sites <- data.frame('site' = loc, 'first_visit' = time, "second" = time2, "third" = time3)
 
 # Use `multi_date_check()` to return only the entries that would be lost
-helpR::multi_date_check(data = sites, col_vec = c("first_visit", "second", "third"))
+multi_date_check(data = sites, col_vec = c("first_visit", "second", "third"))
 }

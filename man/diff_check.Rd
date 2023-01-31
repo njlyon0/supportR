@@ -2,7 +2,7 @@
 % Please edit documentation in R/diff_check.R
 \name{diff_check}
 \alias{diff_check}
-\title{Compare Difference Between two Vectors}
+\title{Compare Difference Between Two Vectors}
 \usage{
 diff_check(old = NULL, new = NULL, sort = TRUE, return = FALSE)
 }
@@ -24,10 +24,10 @@ vec1 <- c("x", "a", "b")
 vec2 <- c("y", "z", "a")
 
 # Compare them!
-helpR::diff_check(old = vec1, new = vec2)
+diff_check(old = vec1, new = vec2)
 
 # Return the difference for later use
-diff_out <- helpR::diff_check(old = vec1, new = vec2, return = TRUE)
+diff_out <- diff_check(old = vec1, new = vec2, return = TRUE)
 diff_out
 
 }

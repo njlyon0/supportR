@@ -60,14 +60,14 @@ factor_over <- (1:nrow(resp))
 data <- cbind(factor_over, factor_2lvl, factor_4lvl, factor_6lvl, resp)
 
 # Actually perform multidimensional scaling
-mds <- vegan::metaMDS(data[-c(1:4)], autotransform = FALSE, expand = FALSE, k = 2, try = 100)
+mds <- vegan::metaMDS(data[-c(1:4)], autotransform = FALSE, expand = FALSE, k = 2, try = 10)
 
 # With the scaled object and original dataframe we can use this function
-helpR::nms_ord(mod = mds, groupcol = data$factor_4lvl,
+nms_ord(mod = mds, groupcol = data$factor_4lvl,
                 title = '4-Level NMS', leg_pos = 'topright',
                 leg_cont = c('1', '2', '3', '4'))
 
 # And too many groups results in an informative error
-helpR::nms_ord(mod = mds, groupcol = data$factor_over)
+# nms_ord(mod = mds, groupcol = data$factor_over)
 
 }

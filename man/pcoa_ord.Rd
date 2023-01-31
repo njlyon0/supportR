@@ -66,9 +66,9 @@ dist <- vegan::vegdist(resp, method = 'kulczynski')
 #pnts <- ape::pcoa(dist)
 
 # Test the function for 4 groups
-#helpR::pcoa_ord(mod = pnts, groupcol = data$factor_4lvl)
+#pcoa_ord(mod = pnts, groupcol = data$factor_4lvl)
 
 # Look what happens if you go over the supported number of groups:
-#helpR::pcoa_ord(mod = pnts, groupcol = data$factor_over)
+#pcoa_ord(mod = pnts, groupcol = data$factor_over)
 
 }

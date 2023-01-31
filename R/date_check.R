@@ -14,7 +14,7 @@
 #' sites <- data.frame('site' = loc, 'visit' = time)
 #'
 #' # Now we can use our function to identify bad dates
-#' helpR::date_check(data = sites, col = 'visit')
+#' date_check(data = sites, col = 'visit')
 date_check <- function(data = NULL, col = NULL) {
 
   # Error out if anything is missing

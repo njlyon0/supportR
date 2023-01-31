@@ -3,7 +3,7 @@
 
 <img src = "man/figures/helpR_hex.png" align = "right" width = "15%"/>
 
-# `helpR` - Miscellaneous Helper Functions for Coding in R
+# `supportR` - Support Functions for Wrangling and Visualization
 
 <!-- badges: start -->
 
@@ -15,16 +15,16 @@ commit](https://img.shields.io/github/last-commit/njlyon0/helpR)
 requests](https://img.shields.io/github/issues-pr/njlyon0/helpR)
 <!-- badges: end -->
 
-`helpR` is an R package where the only unifying theme of the functions
-is honestly just that I wrote them. That said, there are some useful
-functions for **data wrangling** and **plotting** in particular, though
-functions for *other purposes* are also included. I’ll add functions to
-this package as I write more orphan scripts that I hope others might
-find useful so stay tuned!
+`supportR` is an R package where the only unifying theme of the
+functions is honestly just that I wrote them. That said, there are some
+useful functions for **data wrangling** and **plotting** in particular,
+though functions for *other purposes* are also included. I’ll add
+functions to this package as I write more orphan scripts that I hope
+others might find useful so stay tuned!
 
 ## Installation
 
-You can install the development version of helpR from
+You can install the development version from
 [GitHub](https://github.com/) with:
 
 ``` r

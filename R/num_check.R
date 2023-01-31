@@ -14,7 +14,7 @@
 #' fish <- data.frame('species' = spp, 'count' = ct)
 #'
 #' # Use `num_check()` to return only the entries that would be lost
-#' helpR::num_check(data = fish, col = "count")
+#' num_check(data = fish, col = "count")
 num_check <- function(data = NULL, col = NULL) {
 
   # Error out if anything is missing

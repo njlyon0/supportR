@@ -15,7 +15,7 @@ multi_num_check(data = NULL, col_vec = NULL)
 list of same length as \code{col_vec} with malformed numbers from each column in their respective element
 }
 \description{
-Any elements in the columns that would be changed to NA if \code{as.numeric} is used are returned. This is useful for quickly identifying only the "problem" entries of ostensibly numeric columns that are read in as characters. This function is an extension of the \code{helpR::num_check} function in this package that deals with only a single column.
+Any elements in the columns that would be changed to NA if \code{as.numeric} is used are returned. This is useful for quickly identifying only the "problem" entries of ostensibly numeric columns that are read in as characters. This function is an extension of the \code{num_check} function in this package that deals with only a single column.
 }
 \examples{
 # Create dataframe with a numeric column where some entries would be coerced into NA
@@ -26,5 +26,5 @@ ct3 <- c(NA, 'Y', 'typo', '2')
 fish <- data.frame('species' = spp, 'count' = ct, 'num_col2' = ct2, 'third_count' = ct3)
 
 # Use `multi_num_check()` to return only the entries that would be lost
-helpR::multi_num_check(data = fish, col_vec = c("count", "num_col2", "third_count"))
+multi_num_check(data = fish, col_vec = c("count", "num_col2", "third_count"))
 }
