@@ -4,7 +4,7 @@ output: github_document
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-<img src = "man/figures/helpR_hex.png" align = "right" width = "15%"/>
+<img src = "man/figures/supportR_hex.png" align = "right" width = "15%"/>
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(collapse = TRUE, comment = "#>", fig.path = "man/figures/README-")
@@ -13,10 +13,10 @@ knitr::opts_chunk$set(collapse = TRUE, comment = "#>", fig.path = "man/figures/R
 # `supportR` - Support Functions for Wrangling and Visualization
 
 <!-- badges: start -->
-[![R-CMD-check](https://github.com/njlyon0/helpR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/njlyon0/helpR/actions/workflows/R-CMD-check.yaml)
-![GitHub last commit](https://img.shields.io/github/last-commit/njlyon0/helpR)
-![GitHub issues](https://img.shields.io/github/issues-raw/njlyon0/helpR)
-![GitHub pull requests](https://img.shields.io/github/issues-pr/njlyon0/helpR)
+[![R-CMD-check](https://github.com/njlyon0/supportR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/njlyon0/supportR/actions/workflows/R-CMD-check.yaml)
+![GitHub last commit](https://img.shields.io/github/last-commit/njlyon0/supportR)
+![GitHub issues](https://img.shields.io/github/issues-raw/njlyon0/supportR)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/njlyon0/supportR)
 <!-- badges: end -->
 
 `supportR` is an R package where the only unifying theme of the functions is honestly just that I wrote them. That said, there are some useful functions for **data wrangling** and **plotting** in particular, though functions for *other purposes* are also included. I'll add functions to this package as I write more orphan scripts that I hope others might find useful so stay tuned!
@@ -27,7 +27,7 @@ You can install the development version from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("njlyon0/helpR")
+devtools::install_github("njlyon0/supportR")
 ```
 
 ### Summarizing
@@ -70,4 +70,4 @@ devtools::install_github("njlyon0/helpR")
 
 ## Looking Ahead
 
-More functions are likely to be developed and housed within this package so stay tuned! Feel free to post ideas for new functions as [an issue](https://github.com/njlyon0/helpR/issues) on this repository and I'll do my best to build them!
+More functions are likely to be developed and housed within this package so stay tuned! Feel free to post ideas for new functions as [an issue](https://github.com/njlyon0/supportR/issues) on this repository and I'll do my best to build them!

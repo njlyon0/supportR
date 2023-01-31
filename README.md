@@ -1,18 +1,19 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-<img src = "man/figures/helpR_hex.png" align = "right" width = "15%"/>
+<img src = "man/figures/supportR_hex.png" align = "right" width = "15%"/>
 
 # `supportR` - Support Functions for Wrangling and Visualization
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/njlyon0/helpR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/njlyon0/helpR/actions/workflows/R-CMD-check.yaml)
+[![R-CMD-check](https://github.com/njlyon0/supportR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/njlyon0/supportR/actions/workflows/R-CMD-check.yaml)
 ![GitHub last
-commit](https://img.shields.io/github/last-commit/njlyon0/helpR)
-![GitHub issues](https://img.shields.io/github/issues-raw/njlyon0/helpR)
+commit](https://img.shields.io/github/last-commit/njlyon0/supportR)
+![GitHub
+issues](https://img.shields.io/github/issues-raw/njlyon0/supportR)
 ![GitHub pull
-requests](https://img.shields.io/github/issues-pr/njlyon0/helpR)
+requests](https://img.shields.io/github/issues-pr/njlyon0/supportR)
 <!-- badges: end -->
 
 `supportR` is an R package where the only unifying theme of the
@@ -29,7 +30,7 @@ You can install the development version from
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("njlyon0/helpR")
+devtools::install_github("njlyon0/supportR")
 ```
 
 ### Summarizing
@@ -101,5 +102,5 @@ devtools::install_github("njlyon0/helpR")
 
 More functions are likely to be developed and housed within this package
 so stay tuned! Feel free to post ideas for new functions as [an
-issue](https://github.com/njlyon0/helpR/issues) on this repository and
-I’ll do my best to build them!
+issue](https://github.com/njlyon0/supportR/issues) on this repository
+and I’ll do my best to build them!
