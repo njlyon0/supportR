@@ -1,5 +1,7 @@
 ---
 title: "supportR Vignette"
+author: "Vignette Author"
+date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{supportR Vignette}
@@ -7,7 +9,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r, include = FALSE}
+```{r knitr-mechanics, include = F}
 knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
 ```
 
@@ -48,4 +50,4 @@ This vignette describes the main functions of `supportR` using the examples incl
 
 ## Looking Ahead
 
-If you have ideas for other functions that `lterpalettefinder` could contain, post them as [a GitHub Issue](https://github.com/lter/lterpalettefinder/issues) and we'll review them as soon as possible!
+If you have ideas for other functions that `lterpalettefinder` could contain, post them as [a GitHub Issue](https://github.com/njlyon0/supportR/issues) and we'll review them as soon as possible!
