@@ -97,10 +97,17 @@
 <dd><p>(character) vector of desired legend entries. Defaults to <code>unique</code> entries in <code>groupcol</code> argument (this argument provided in case syntax of legend contents should differ from data contents)</p></dd>
 
 </dl></div>
+    <div id="value">
+    <h2>Value</h2>
+    
+
+<p>(base R plot) base R plot with ellipses for each group</p>
+    </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Use data from the vegan package</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="co"># Use data from the vegan package</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"varespec"</span>, package <span class="op">=</span> <span class="st">'vegan'</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">resp</span> <span class="op">&lt;-</span> <span class="va">varespec</span></span></span>
 <span class="r-in"><span></span></span>
@@ -126,14 +133,14 @@
 <span class="r-in"><span><span class="va">dist</span> <span class="op">&lt;-</span> <span class="fu">vegan</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/vegan/man/vegdist.html" class="external-link">vegdist</a></span><span class="op">(</span><span class="va">resp</span>, method <span class="op">=</span> <span class="st">'kulczynski'</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Perform a PCoA on the distance matrix to get points for an ordination</span></span></span>
-<span class="r-in"><span><span class="co">#pnts &lt;- ape::pcoa(dist)</span></span></span>
+<span class="r-in"><span><span class="va">pnts</span> <span class="op">&lt;-</span> <span class="fu">ape</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ape/man/pcoa.html" class="external-link">pcoa</a></span><span class="op">(</span><span class="va">dist</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Test the function for 4 groups</span></span></span>
-<span class="r-in"><span><span class="co">#pcoa_ord(mod = pnts, groupcol = data$factor_4lvl)</span></span></span>
+<span class="r-in"><span><span class="fu">pcoa_ord</span><span class="op">(</span>mod <span class="op">=</span> <span class="va">pnts</span>, groupcol <span class="op">=</span> <span class="va">data</span><span class="op">$</span><span class="va">factor_4lvl</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Look what happens if you go over the supported number of groups:</span></span></span>
-<span class="r-in"><span><span class="co">#pcoa_ord(mod = pnts, groupcol = data$factor_over)</span></span></span>
-<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">pcoa_ord</span><span class="op">(</span>mod <span class="op">=</span> <span class="va">pnts</span>, groupcol <span class="op">=</span> <span class="va">data</span><span class="op">$</span><span class="va">factor_over</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </div>

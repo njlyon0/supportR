@@ -81,22 +81,26 @@
 <dd><p>(character) full URL of drive folder to upload the knit document</p></dd>
 
 </dl></div>
+    <div id="value">
+    <h2>Value</h2>
+    
+
+<p>No return value, called to knit R Markdown file</p>
+    </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Authorize R to interact with GoogleDrive</span></span></span>
-<span class="r-in"><span><span class="co"># googledrive::drive_auth()</span></span></span>
-<span class="r-in"><span><span class="co">## NOTE: See above warning about possible misstep at this stage</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="co"># Authorize R to interact with GoogleDrive</span></span></span>
+<span class="r-in"><span><span class="fu">googledrive</span><span class="fu">::</span><span class="fu"><a href="https://googledrive.tidyverse.org/reference/drive_auth.html" class="external-link">drive_auth</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co">## NOTE: See warning about possible misstep at this stage</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Use `rmd_export()` to knit and export an .Rmd file</span></span></span>
-<span class="r-in"><span><span class="co"># rmd_export(rmd = "my_markdown.Rmd",</span></span></span>
-<span class="r-in"><span><span class="co"># in_path = file.path("Folder in my WD with the .Rmd named in `rmd`"),</span></span></span>
-<span class="r-in"><span><span class="co"># out_path = file.path("Folder in my WD to save the knit file to"),</span></span></span>
-<span class="r-in"><span><span class="co"># out_name = "desired name for output",</span></span></span>
-<span class="r-in"><span><span class="co"># out_type = "html",</span></span></span>
-<span class="r-in"><span><span class="co"># drive_link = "https://...Google Drive link...")</span></span></span>
+<span class="r-in"><span><span class="fu">rmd_export</span><span class="op">(</span>rmd <span class="op">=</span> <span class="st">"my_markdown.Rmd"</span>,  in_path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">getwd</a></span><span class="op">(</span><span class="op">)</span>, out_path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">getwd</a></span><span class="op">(</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>           out_name <span class="op">=</span> <span class="st">"my_markdown"</span>, out_type <span class="op">=</span> <span class="st">"html"</span>,</span></span>
+<span class="r-in"><span>           drive_link <span class="op">=</span> <span class="st">"&lt;Google Drive folder URL&gt;"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"></span>
 </code></pre></div>
     </div>
   </div>
