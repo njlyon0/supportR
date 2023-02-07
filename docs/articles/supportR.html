@@ -91,7 +91,7 @@ using the examples included in each function.</p>
 <div class="section level3">
 <h3 id="summarizing-data">Summarizing Data<a class="anchor" aria-label="anchor" href="#summarizing-data"></a>
 </h3>
-<p>In order to demonstrate the summarization function(s), we’ll use some
+<p>In order to demonstrate the summarizing function(s), we’ll use some
 some example data from Dr. <a href="https://allisonhorst.com/" class="external-link">Allison
 Horst</a>’s <a href="https://github.com/allisonhorst/palmerpenguins" class="external-link"><code>palmerpenguins</code>
 R package</a>.</p>
@@ -112,7 +112,7 @@ R package</a>.</p>
 <span><span class="co">#&gt; $ sex               <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> male, female, female, NA, female, male, female, male…</span></span>
 <span><span class="co">#&gt; $ year              <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007…</span></span></code></pre></div>
 <p>With that data loaded, we can use the <code>summary_table</code>
-function to quickly do group-wise summarization and retrieve generally
+function to quickly get group-wise summaries and retrieve generally
 useful summary statistics.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Summarize the data</span></span>
@@ -210,7 +210,7 @@ because it can use the frequency of the numbers to guess whether a given
 number is the day or the month. This is based on the assumption that
 sampling occurs more often within months than across so if the “left”
 number is repeated more than the “right” it is likely the month while
-the less frequent number (i.e., more unqiue values in that position) is
+the less frequent number (i.e., more unique values in that position) is
 likely days.</p>
 <p>If you are uncomfortable with that assumption (totally fine!) you can
 set <code>groups</code> to <code>FALSE</code> and it will do the more
@@ -283,7 +283,7 @@ preferences!</p>
 <li>Increases the font size of the axes titles and tick labels</li>
 </ul>
 <p>I’ve also created <code>nms_ord</code> and <code>pcoa_ord</code> for
-Non-Metric Multi-Dimensional Scaling (NMS) &amp; Principale Coordinates
+Non-Metric Multi-Dimensional Scaling (NMS) &amp; Principal Coordinates
 Analysis (PCoA) Ordinations respectively.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Load data from the `vegan` package</span></span>

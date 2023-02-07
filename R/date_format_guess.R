@@ -1,6 +1,6 @@
 #' @title Identify Probable Format for Ambiguous Date Formats
 #'
-#' @description In a column containing multiple date formats (e.g., MM/DD/YYYY, "YYYY/MM/DD, etc.) identifies probable format of each date. Provision of a grouping column improves inference. Any "unguessable" formats are flagged as "FORMAT UNCERTAIN" for human double-checking. This is useful for quickly sorting the bulk of ambiguous dates into clear categories for later conditional wrangling.
+#' @description In a column containing multiple date formats (e.g., MM/DD/YYYY, "YYYY/MM/DD, etc.) identifies probable format of each date. Provision of a grouping column improves inference. Any formats that cannot be determined are flagged as "FORMAT UNCERTAIN" for human double-checking. This is useful for quickly sorting the bulk of ambiguous dates into clear categories for later conditional wrangling.
 #'
 #' @param data (dataframe) object containing at least one column of ambiguous dates
 #' @param date_col (character) name of column containing ambiguous dates

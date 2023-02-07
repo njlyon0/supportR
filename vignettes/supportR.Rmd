@@ -28,7 +28,7 @@ library(supportR)
 
 ### Summarizing Data
 
-In order to demonstrate the summarization function(s), we'll use some some example data from Dr. [Allison Horst](https://allisonhorst.com/)'s [`palmerpenguins` R package](https://github.com/allisonhorst/palmerpenguins).
+In order to demonstrate the summarizing function(s), we'll use some some example data from Dr. [Allison Horst](https://allisonhorst.com/)'s [`palmerpenguins` R package](https://github.com/allisonhorst/palmerpenguins).
 
 ```{r ex-data-pngn}
 # Load library
@@ -38,7 +38,7 @@ library(palmerpenguins)
 dplyr::glimpse(penguins)
 ```
 
-With that data loaded, we can use the `summary_table` function to quickly do group-wise summarization and retrieve generally useful summary statistics.
+With that data loaded, we can use the `summary_table` function to quickly get group-wise summaries and retrieve generally useful summary statistics.
 
 ```{r summary_table}
 # Summarize the data
@@ -93,7 +93,7 @@ Both `num_check` and `date_check` have an expanded version (`multi_num_check` an
 
 Finally (for now), is the descriptively-named `date_format_guess` function. This function checks a column of dates (stored as characters!) and tries to guess the format of the date (i.e., month/day/year, day/month/year, etc.).
 
-It can make a more informed guess if there is a grouping column because it can use the frequency of the numbers to guess whether a given number is the day or the month. This is based on the assumption that sampling occurs more often within months than across so if the "left" number is repeated more than the "right" it is likely the month while the less frequent number (i.e., more unqiue values in that position) is likely days.
+It can make a more informed guess if there is a grouping column because it can use the frequency of the numbers to guess whether a given number is the day or the month. This is based on the assumption that sampling occurs more often within months than across so if the "left" number is repeated more than the "right" it is likely the month while the less frequent number (i.e., more unique values in that position) is likely days.
 
 If you are uncomfortable with that assumption (totally fine!) you can set `groups` to `FALSE` and it will do the more commonplace assessments (i.e., if a number is >12 it is day, etc.).
 
@@ -143,7 +143,7 @@ ggplot(penguins, aes(x = species, y = body_mass_g, fill = species)) +
 - Makes axes' lines black
 - Increases the font size of the axes titles and tick labels
 
-I've also created `nms_ord` and `pcoa_ord` for Non-Metric Multi-Dimensional Scaling (NMS) & Principale Coordinates Analysis (PCoA) Ordinations respectively.
+I've also created `nms_ord` and `pcoa_ord` for Non-Metric Multi-Dimensional Scaling (NMS) & Principal Coordinates Analysis (PCoA) Ordinations respectively.
 
 ```{r nms_ord, message = F, warning = F, results = 'hide', out.width="50%"}
 # Load data from the `vegan` package
