@@ -10,8 +10,8 @@ Authors@R: c(
            email = "njlyon@alumni.iastate.edu"))
 Maintainer: Nicholas J Lyon <njlyon@alumni.iastate.edu>
 Description: Suite of helper functions for data wrangling and visualization.
-    The only theme for these functions is that they tend towards simple, short, and narrowly-defined.
-    These functions are built for tasks that often recur but are not large enough in scope to warrant an ecosystem of inter-dependent functions.
+    The only theme for these functions is that they tend towards simple, short, and narrowly-scoped.
+    These functions are built for tasks that often recur but are not large enough in scope to warrant an ecosystem of interdependent functions.
 License: MIT + file LICENSE
 Language: en-US
 Encoding: UTF-8
