@@ -33,10 +33,14 @@ pcoa_ord(
 
 \item{leg_cont}{(character) vector of desired legend entries. Defaults to \code{unique} entries in \code{groupcol} argument (this argument provided in case syntax of legend contents should differ from data contents)}
 }
+\value{
+(base R plot) base R plot with ellipses for each group
+}
 \description{
 Produces Principal Coordinates Analysis (PCoA) ordinations for up to 10 groups. Assigns a unique color for each group and draws an ellipse around the standard deviation of the points. Automatically adds percent of variation explained by first two principal component axes parenthetically to axis labels. Because there are only five hollow shapes (see \code{?graphics::pch}) all shapes are re-used a maximum of 2 times when more than 5 groups are supplied.
 }
 \examples{
+\dontrun{
 # Use data from the vegan package
 data("varespec", package = 'vegan')
 resp <- varespec
@@ -63,12 +67,12 @@ data <- cbind(factor_over, factor_2lvl, factor_4lvl, factor_6lvl, resp)
 dist <- vegan::vegdist(resp, method = 'kulczynski')
 
 # Perform a PCoA on the distance matrix to get points for an ordination
-#pnts <- ape::pcoa(dist)
+pnts <- ape::pcoa(dist)
 
 # Test the function for 4 groups
-#pcoa_ord(mod = pnts, groupcol = data$factor_4lvl)
+pcoa_ord(mod = pnts, groupcol = data$factor_4lvl)
 
 # Look what happens if you go over the supported number of groups:
-#pcoa_ord(mod = pnts, groupcol = data$factor_over)
-
+pcoa_ord(mod = pnts, groupcol = data$factor_over)
+}
 }

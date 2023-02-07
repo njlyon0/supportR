@@ -11,6 +11,9 @@ theme_lyon(title_size = 16, text_size = 13)
 
 \item{text_size}{(numeric) size of font in tick labels}
 }
+\value{
+(ggplot theme) list of ggplot2 theme elements
+}
 \description{
 Custom alternative to the \code{ggtheme} options built into \code{ggplot2}. Removes gray boxes and grid lines from plot background. Increases font size of tick marks and axis labels. Removes gray box from legend background and legend key. Removes legend title.
 }

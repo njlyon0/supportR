@@ -33,10 +33,14 @@ nms_ord(
 
 \item{leg_cont}{(character) vector of desired legend entries. Defaults to \code{unique} entries in \code{groupcol} argument (this argument provided in case syntax of legend contents should differ from data contents)}
 }
+\value{
+(base R plot) base R plot with ellipses for each group
+}
 \description{
 Produces Non-Metric Multi-dimensional Scaling (NMS) ordinations for up to 10 groups. Assigns a unique color for each group and draws an ellipse around the standard deviation of the points. Automatically adds stress (see \code{vegan::metaMDS} for explanation of "stress") as legend title. Because there are only five hollow shapes (see \code{?graphics::pch()}) all shapes are re-used a maximum of 2 times when more than 5 groups are supplied.
 }
 \examples{
+\dontrun{
 # Use data from the vegan package
 utils::data("varespec", package = 'vegan')
 resp <- varespec
@@ -60,7 +64,7 @@ factor_over <- (1:nrow(resp))
 data <- cbind(factor_over, factor_2lvl, factor_4lvl, factor_6lvl, resp)
 
 # Actually perform multidimensional scaling
-mds <- vegan::metaMDS(data[-c(1:4)], autotransform = FALSE, expand = FALSE, k = 2, try = 10)
+mds <- vegan::metaMDS(data[-c(1:4)], autotransform = FALSE, expand = FALSE, k = 2, try = 50)
 
 # With the scaled object and original dataframe we can use this function
 nms_ord(mod = mds, groupcol = data$factor_4lvl,
@@ -68,6 +72,6 @@ nms_ord(mod = mds, groupcol = data$factor_4lvl,
                 leg_cont = c('1', '2', '3', '4'))
 
 # And too many groups results in an informative error
-# nms_ord(mod = mds, groupcol = data$factor_over)
-
+nms_ord(mod = mds, groupcol = data$factor_over)
+}
 }

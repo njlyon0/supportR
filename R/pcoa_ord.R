@@ -10,9 +10,12 @@
 #' @param leg_pos (character or numeric) legend position, either numeric vector of x/y coordinates or shorthand accepted by `graphics::legend`
 #' @param leg_cont (character) vector of desired legend entries. Defaults to `unique` entries in `groupcol` argument (this argument provided in case syntax of legend contents should differ from data contents)
 #'
+#' @return (base R plot) base R plot with ellipses for each group
+#'
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' # Use data from the vegan package
 #' data("varespec", package = 'vegan')
 #' resp <- varespec
@@ -39,14 +42,14 @@
 #' dist <- vegan::vegdist(resp, method = 'kulczynski')
 #'
 #' # Perform a PCoA on the distance matrix to get points for an ordination
-#' #pnts <- ape::pcoa(dist)
+#' pnts <- ape::pcoa(dist)
 #'
 #' # Test the function for 4 groups
-#' #pcoa_ord(mod = pnts, groupcol = data$factor_4lvl)
+#' pcoa_ord(mod = pnts, groupcol = data$factor_4lvl)
 #'
 #' # Look what happens if you go over the supported number of groups:
-#' #pcoa_ord(mod = pnts, groupcol = data$factor_over)
-#'
+#' pcoa_ord(mod = pnts, groupcol = data$factor_over)
+#' }
 pcoa_ord <- function(mod = NULL, groupcol = NULL, title = NA,
                      colors = c('#41b6c4', '#c51b7d', '#7fbc41', '#d73027',
                                 '#4575b4', '#e08214', '#8073ac', '#f1b6da',

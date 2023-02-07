@@ -7,6 +7,8 @@
 #' @param sort (logical) whether to sort the difference between the two vectors
 #' @param return (logical) whether to return the two vectors as a 2-element list
 #'
+#' @return No return value (unless `return = T`), called for side effects. If `return = T`, returns a two-element list
+#'
 #' @export
 #'
 #' @examples
@@ -15,7 +17,7 @@
 #' vec2 <- c("y", "z", "a")
 #'
 #' # Compare them!
-#' diff_check(old = vec1, new = vec2)
+#' diff_check(old = vec1, new = vec2, return = FALSE)
 #'
 #' # Return the difference for later use
 #' diff_out <- diff_check(old = vec1, new = vec2, return = TRUE)

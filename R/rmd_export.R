@@ -7,21 +7,22 @@
 #' @param out_name (character) desired name for knit file (with or without file suffix)
 #' @param out_type (character) either "html" or "pdf" depending on what YML entry you have in the `output: ` field of your R Markdown file
 #' @param drive_link (character) full URL of drive folder to upload the knit document
+#' 
+#' @return No return value, called to knit R Markdown file
 #'
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' # Authorize R to interact with GoogleDrive
-#' # googledrive::drive_auth()
-#' ## NOTE: See above warning about possible misstep at this stage
+#' googledrive::drive_auth()
+#' ## NOTE: See warning about possible misstep at this stage
 #'
 #' # Use `rmd_export()` to knit and export an .Rmd file
-#' # rmd_export(rmd = "my_markdown.Rmd",
-#' # in_path = file.path("Folder in my WD with the .Rmd named in `rmd`"),
-#' # out_path = file.path("Folder in my WD to save the knit file to"),
-#' # out_name = "desired name for output",
-#' # out_type = "html",
-#' # drive_link = "https://...Google Drive link...")
+#' rmd_export(rmd = "my_markdown.Rmd",  in_path = getwd(), out_path = getwd(),
+#'            out_name = "my_markdown", out_type = "html",
+#'            drive_link = "<Google Drive folder URL>")
+#' }
 #'
 rmd_export <- function(rmd = NULL, out_path = getwd(), out_name = NULL, out_type = 'html', drive_link) {
 

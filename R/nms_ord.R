@@ -10,9 +10,12 @@
 #' @param leg_pos (character or numeric) legend position, either numeric vector of x/y coordinates or shorthand accepted by `graphics::legend`
 #' @param leg_cont (character) vector of desired legend entries. Defaults to `unique` entries in `groupcol` argument (this argument provided in case syntax of legend contents should differ from data contents)
 #'
+#' @return (base R plot) base R plot with ellipses for each group
+#'
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' # Use data from the vegan package
 #' utils::data("varespec", package = 'vegan')
 #' resp <- varespec
@@ -36,7 +39,7 @@
 #' data <- cbind(factor_over, factor_2lvl, factor_4lvl, factor_6lvl, resp)
 #'
 #' # Actually perform multidimensional scaling
-#' mds <- vegan::metaMDS(data[-c(1:4)], autotransform = FALSE, expand = FALSE, k = 2, try = 10)
+#' mds <- vegan::metaMDS(data[-c(1:4)], autotransform = FALSE, expand = FALSE, k = 2, try = 50)
 #'
 #' # With the scaled object and original dataframe we can use this function
 #' nms_ord(mod = mds, groupcol = data$factor_4lvl,
@@ -44,8 +47,8 @@
 #'                 leg_cont = c('1', '2', '3', '4'))
 #'
 #' # And too many groups results in an informative error
-#' # nms_ord(mod = mds, groupcol = data$factor_over)
-#'
+#' nms_ord(mod = mds, groupcol = data$factor_over)
+#' }
 nms_ord <- function(mod = NULL, groupcol = NULL, title = NA,
                     colors = c('#41b6c4', '#c51b7d', '#7fbc41',
                                '#d73027', '#4575b4', '#e08214',

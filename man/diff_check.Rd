@@ -15,6 +15,9 @@ diff_check(old = NULL, new = NULL, sort = TRUE, return = FALSE)
 
 \item{return}{(logical) whether to return the two vectors as a 2-element list}
 }
+\value{
+No return value (unless \code{return = T}), called for side effects. If \code{return = T}, returns a two-element list
+}
 \description{
 Reflexively compares two vectors and identifies (1) elements that are found in the first but not the second (i.e., "lost" components) and (2) elements that are found in the second but not the first (i.e., "gained" components). This is particularly helpful when manipulating a dataframe and comparing what columns are lost or gained between wrangling steps. Alternately it can compare the contents of two columns to see how two dataframes differ.
 }
@@ -24,7 +27,7 @@ vec1 <- c("x", "a", "b")
 vec2 <- c("y", "z", "a")
 
 # Compare them!
-diff_check(old = vec1, new = vec2)
+diff_check(old = vec1, new = vec2, return = FALSE)
 
 # Return the difference for later use
 diff_out <- diff_check(old = vec1, new = vec2, return = TRUE)

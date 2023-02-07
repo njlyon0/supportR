@@ -5,6 +5,8 @@
 #' @param title_size (numeric) size of font in axis titles
 #' @param text_size (numeric) size of font in tick labels
 #'
+#' @return (ggplot theme) list of ggplot2 theme elements
+#'
 #' @export
 #'
 theme_lyon <- function(title_size = 16, text_size = 13){

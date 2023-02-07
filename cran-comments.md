@@ -13,3 +13,8 @@ As noted in [R-hub issue #503](https://github.com/r-hub/rhub/issues/503), this c
 
 ## Downstream dependencies
 There are currently no downstream dependencies for this package.
+
+## Modifications from Last Submission Comments
+
+- Added definitions of what is returned by the functions that were missing that information on first submission (`diff_check`, `nms_ord`, `pcoa_ord`, `rmd_export`, and `theme_lyon`)
+- Wrapped long examples and interactive examples in `dontrun` (`nms_ord`, `pcoa_ord`, `rmd_export`)
