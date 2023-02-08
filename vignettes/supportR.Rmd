@@ -160,7 +160,7 @@ factor_4lvl <- c(rep.int("Trt_1", (nrow(resp)/4)),
 data <- cbind(factor_4lvl, resp)
 
 # Actually perform multidimensional scaling
-mds <- vegan::metaMDS(data[-c(1:2)], autotransform = FALSE, 
+mds <- vegan::metaMDS(data[-1], autotransform = FALSE, 
                       expand = FALSE, k = 2, try = 10)
 
 # With the scaled object and original dataframe we can use this function
