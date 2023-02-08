@@ -17,4 +17,6 @@ There are currently no downstream dependencies for this package.
 ## Modifications from Last Submission Comments
 
 - Added definitions of what is returned by the functions that were missing that information on first submission (`diff_check`, `nms_ord`, `pcoa_ord`, `rmd_export`, and `theme_lyon`)
-- Wrapped long examples and interactive examples in `dontrun` (`nms_ord`, `pcoa_ord`, `rmd_export`)
+- Wrapped long examples (>5 sec) in `donttest` (`nms_ord`, `pcoa_ord`)
+- Added `ape` package to "Suggests" as it is not a direct dependency but is related to one of the functions (`pcoa_ord`)
+- Wrapped interactive example in `dontrun` (`rmd_export` requires Google Drive authentication and an R Markdown file to act on so cannot run as an example non-interactively)
