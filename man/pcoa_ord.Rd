@@ -40,28 +40,19 @@ pcoa_ord(
 Produces Principal Coordinates Analysis (PCoA) ordinations for up to 10 groups. Assigns a unique color for each group and draws an ellipse around the standard deviation of the points. Automatically adds percent of variation explained by first two principal component axes parenthetically to axis labels. Because there are only five hollow shapes (see \code{?graphics::pch}) all shapes are re-used a maximum of 2 times when more than 5 groups are supplied.
 }
 \examples{
-\dontrun{
+\donttest{
 # Use data from the vegan package
 data("varespec", package = 'vegan')
 resp <- varespec
 
 # Make some columns of known number of groups
-factor_2lvl <- c(rep.int("Trt1", (nrow(resp)/2)),
-                 rep.int("Trt2", (nrow(resp)/2)))
 factor_4lvl <- c(rep.int("Trt1", (nrow(resp)/4)),
                  rep.int("Trt2", (nrow(resp)/4)),
                  rep.int("Trt3", (nrow(resp)/4)),
                  rep.int("Trt4", (nrow(resp)/4)))
-factor_6lvl = c(rep.int("Trt1", (nrow(resp)/6)),
-                rep.int("Trt2", (nrow(resp)/6)),
-                rep.int("Trt3", (nrow(resp)/6)),
-                rep.int("Trt4", (nrow(resp)/6)),
-                rep.int("Trt5", (nrow(resp)/6)),
-                rep.int("Trt6", (nrow(resp)/6)))
-factor_over <- (1:nrow(resp))
 
 # And combine them into a single data object
-data <- cbind(factor_over, factor_2lvl, factor_4lvl, factor_6lvl, resp)
+data <- cbind(factor_4lvl, resp)
 
 # Get a distance matrix from the data
 dist <- vegan::vegdist(resp, method = 'kulczynski')
@@ -71,8 +62,5 @@ pnts <- ape::pcoa(dist)
 
 # Test the function for 4 groups
 pcoa_ord(mod = pnts, groupcol = data$factor_4lvl)
-
-# Look what happens if you go over the supported number of groups:
-pcoa_ord(mod = pnts, groupcol = data$factor_over)
 }
 }

@@ -15,39 +15,27 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # Use data from the vegan package
 #' utils::data("varespec", package = 'vegan')
 #' resp <- varespec
 #'
 #' # Make some columns of known number of groups
-#' factor_2lvl <- c(rep.int("Trt1", (nrow(resp)/2)),
-#'                  rep.int("Trt2", (nrow(resp)/2)))
 #' factor_4lvl <- c(rep.int("Trt1", (nrow(resp)/4)),
 #'                  rep.int("Trt2", (nrow(resp)/4)),
 #'                  rep.int("Trt3", (nrow(resp)/4)),
 #'                  rep.int("Trt4", (nrow(resp)/4)))
-#' factor_6lvl = c(rep.int("Trt1", (nrow(resp)/6)),
-#'                 rep.int("Trt2", (nrow(resp)/6)),
-#'                 rep.int("Trt3", (nrow(resp)/6)),
-#'                 rep.int("Trt4", (nrow(resp)/6)),
-#'                 rep.int("Trt5", (nrow(resp)/6)),
-#'                 rep.int("Trt6", (nrow(resp)/6)))
-#' factor_over <- (1:nrow(resp))
 #'
 #' # And combine them into a single data object
-#' data <- cbind(factor_over, factor_2lvl, factor_4lvl, factor_6lvl, resp)
+#' data <- cbind(factor_4lvl, resp)
 #'
 #' # Actually perform multidimensional scaling
-#' mds <- vegan::metaMDS(data[-c(1:4)], autotransform = FALSE, expand = FALSE, k = 2, try = 50)
+#' mds <- vegan::metaMDS(data[-1], autotransform = FALSE, expand = FALSE, k = 2, try = 50)
 #'
 #' # With the scaled object and original dataframe we can use this function
 #' nms_ord(mod = mds, groupcol = data$factor_4lvl,
 #'                 title = '4-Level NMS', leg_pos = 'topright',
 #'                 leg_cont = c('1', '2', '3', '4'))
-#'
-#' # And too many groups results in an informative error
-#' nms_ord(mod = mds, groupcol = data$factor_over)
 #' }
 nms_ord <- function(mod = NULL, groupcol = NULL, title = NA,
                     colors = c('#41b6c4', '#c51b7d', '#7fbc41',
