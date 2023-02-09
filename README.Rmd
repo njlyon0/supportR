@@ -66,7 +66,7 @@ devtools::install_github("njlyon0/supportR")
 
 ### Miscellaneous Other Functions
 
-- **`rmd_export`**: Allows knitting of a specified R Markdown file locally and simultaneously to a specified Google Drive folder. *NOTE:* you must authorize R to work with Google Drive by using `googldrive::drive_auth` for this function to work
+- **`rmd_export`**: Allows knitting of a specified R Markdown file locally and simultaneously to a specified Google Drive folder. **NOTE:** you must authorize R to work with Google Drive by using `googldrive::drive_auth` for this function to work
 
 ## Looking Ahead
 
