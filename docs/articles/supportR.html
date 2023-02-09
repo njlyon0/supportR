@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">supportR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.0.900</span>
       </span>
     </div>
 
@@ -300,7 +300,7 @@ Analysis (PCoA) Ordinations respectively.</p>
 <span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">factor_4lvl</span>, <span class="va">resp</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Actually perform multidimensional scaling</span></span>
-<span><span class="va">mds</span> <span class="op">&lt;-</span> <span class="fu">vegan</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/vegan/man/metaMDS.html" class="external-link">metaMDS</a></span><span class="op">(</span><span class="va">data</span><span class="op">[</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span><span class="op">]</span>, autotransform <span class="op">=</span> <span class="cn">FALSE</span>, </span>
+<span><span class="va">mds</span> <span class="op">&lt;-</span> <span class="fu">vegan</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/vegan/man/metaMDS.html" class="external-link">metaMDS</a></span><span class="op">(</span><span class="va">data</span><span class="op">[</span><span class="op">-</span><span class="fl">1</span><span class="op">]</span>, autotransform <span class="op">=</span> <span class="cn">FALSE</span>, </span>
 <span>                      expand <span class="op">=</span> <span class="cn">FALSE</span>, k <span class="op">=</span> <span class="fl">2</span>, try <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># With the scaled object and original dataframe we can use this function</span></span>
