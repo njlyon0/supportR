@@ -43,3 +43,6 @@ vignettes/*.pdf
 
 # Add R project file
 *.Rproj
+
+# CRAN Submission
+CRAN-SUBMISSION
