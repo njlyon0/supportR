@@ -29,6 +29,7 @@ Imports:
     purrr,
     rlang,
     rmarkdown,
+    scales,
     stringr,
     tidyr,
     vegan
