@@ -8,6 +8,7 @@
 #' @param shapes (numeric) vector of shapes (as values accepted by `pch`) of length >= group levels
 #' @param lines (numeric) vector of line types (as integers) of length >= group levels
 #' @param pt_size (numeric) value for point size (controlled by character expansion i.e., `cex`)
+#' @param pt_alpha (numeric) value for transparency of points (ranges from 0 to 1)
 #' @param leg_pos (character or numeric) legend position, either numeric vector of x/y coordinates or shorthand accepted by `graphics::legend`
 #' @param leg_cont (character) vector of desired legend entries. Defaults to `unique` entries in `groupcol` argument (this argument provided in case syntax of legend contents should differ from data contents)
 #'
@@ -59,7 +60,7 @@ nms_ord <- function(mod = NULL, groupcol = NULL, title = NA,
   # Error out for inappropriate shapes / lines
   if(!is.numeric(shapes) | base::max(shapes) > 25 | base::min(shapes < 0))
     stop("`shapes` must be numeric value as defined in `?pch`")
-
+  
   # Warning message when attempting to plot too many groups
   if (base::length(base::unique(groupcol)) > base::min(base::length(colors),
                                                        base::length(shapes),
@@ -81,6 +82,7 @@ nms_ord <- function(mod = NULL, groupcol = NULL, title = NA,
     base::names(lines) <- groups
 
     # Crop all three vectors to the length of groups in the data
+    ## Also adjust color opacity
     colors_actual <- colors[!base::is.na(base::names(colors))]
     shapes_actual <- shapes[!base::is.na(base::names(shapes))]
     lines_actual <- lines[!base::is.na(base::names(lines))]
@@ -94,7 +96,8 @@ nms_ord <- function(mod = NULL, groupcol = NULL, title = NA,
     for(level in levels(group_col_fct)){
       graphics::points(x = mod$points[group_col_fct == level, 1],
                        y = mod$points[group_col_fct == level, 2],
-             pch = shapes_actual[level], bg = colors_actual[level],
+             pch = shapes_actual[level], 
+             bg = scales::alpha(colour = colors_actual[level], alpha = pt_alpha),
              cex = pt_size) }
 
     # With all of the points plotted, add ellipses of matched colors
