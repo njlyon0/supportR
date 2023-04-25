@@ -12,6 +12,8 @@ pcoa_ord(
     "#f1b6da", "#b8e186", "#8c96c6"),
   shapes = rep(x = 21:25, times = 2),
   lines = rep(x = 1, times = 10),
+  pt_size = 1.5,
+  pt_alpha = 1,
   leg_pos = "bottomleft",
   leg_cont = unique(groupcol)
 )
@@ -28,6 +30,10 @@ pcoa_ord(
 \item{shapes}{(numeric) vector of shapes (as values accepted by \code{pch}) of length >= group levels}
 
 \item{lines}{(numeric) vector of line types (as integers) of length >= group levels}
+
+\item{pt_size}{(numeric) value for point size (controlled by character expansion i.e., \code{cex})}
+
+\item{pt_alpha}{(numeric) value for transparency of points (ranges from 0 to 1)}
 
 \item{leg_pos}{(character or numeric) legend position, either numeric vector of x/y coordinates or shorthand accepted by \code{graphics::legend}}
 

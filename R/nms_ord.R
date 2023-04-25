@@ -37,7 +37,7 @@
 #' # With the scaled object and original dataframe we can use this function
 #' nms_ord(mod = mds, groupcol = data$factor_4lvl,
 #'                 title = '4-Level NMS', leg_pos = 'topright',
-#'                 leg_cont = c('1', '2', '3', '4'))
+#'                 leg_cont = as.character(1:4))
 #' }
 nms_ord <- function(mod = NULL, groupcol = NULL, title = NA,
                     colors = c('#41b6c4', '#c51b7d', '#7fbc41',
@@ -46,7 +46,7 @@ nms_ord <- function(mod = NULL, groupcol = NULL, title = NA,
                                '#8c96c6'),
                     shapes = rep(x = 21:25, times = 2),
                     lines = rep(x = 1, times = 10),
-                    pt_size = 2, pt_alpha = 1,
+                    pt_size = 1.5, pt_alpha = 1,
                     leg_pos = 'bottomleft', leg_cont = unique(groupcol)) {
 
   # Error out if model or groupcolumn are not specified
@@ -60,6 +60,16 @@ nms_ord <- function(mod = NULL, groupcol = NULL, title = NA,
   # Error out for inappropriate shapes / lines
   if(!is.numeric(shapes) | base::max(shapes) > 25 | base::min(shapes < 0))
     stop("`shapes` must be numeric value as defined in `?pch`")
+  
+  # Warn and coerce to default for inappropriate point size
+  if(!is.numeric(pt_size)) {
+    message("`pt_size` must be numeric. Coercing to 1.5")
+    pt_size <- 1.5 }
+  
+  # Do the same for transparency
+  if(!is.numeric(pt_alpha)) {
+    message("`pt_alpha` must be numeric. Coercing to 1")
+    pt_alpha <- 1 }
   
   # Warning message when attempting to plot too many groups
   if (base::length(base::unique(groupcol)) > base::min(base::length(colors),
@@ -110,6 +120,6 @@ nms_ord <- function(mod = NULL, groupcol = NULL, title = NA,
     graphics::legend(x = leg_pos, legend = leg_cont, bty = "n",
            # The "title" of the legend will now be the stress of the NMS
            title = paste0("Stress = ", round(mod$stress, digits = 3)),
-           pch = shapes_actual, cex = 1.15, pt.bg = colors_actual)
+           pt.cex = pt_size, pch = shapes_actual, cex = 1.15, pt.bg = colors_actual)
   }
 }
