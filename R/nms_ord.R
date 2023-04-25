@@ -7,6 +7,7 @@
 #' @param colors (character) vector of colors (as hexadecimal codes) of length >= group levels (default *not* colorblind safe because of need for 10 built-in unique colors)
 #' @param shapes (numeric) vector of shapes (as values accepted by `pch`) of length >= group levels
 #' @param lines (numeric) vector of line types (as integers) of length >= group levels
+#' @param pt_size (numeric) value for point size (controlled by character expansion i.e., `cex`)
 #' @param leg_pos (character or numeric) legend position, either numeric vector of x/y coordinates or shorthand accepted by `graphics::legend`
 #' @param leg_cont (character) vector of desired legend entries. Defaults to `unique` entries in `groupcol` argument (this argument provided in case syntax of legend contents should differ from data contents)
 #'
@@ -44,6 +45,7 @@ nms_ord <- function(mod = NULL, groupcol = NULL, title = NA,
                                '#8c96c6'),
                     shapes = rep(x = 21:25, times = 2),
                     lines = rep(x = 1, times = 10),
+                    pt_size = 2, pt_alpha = 1,
                     leg_pos = 'bottomleft', leg_cont = unique(groupcol)) {
 
   # Error out if model or groupcolumn are not specified
@@ -92,7 +94,8 @@ nms_ord <- function(mod = NULL, groupcol = NULL, title = NA,
     for(level in levels(group_col_fct)){
       graphics::points(x = mod$points[group_col_fct == level, 1],
                        y = mod$points[group_col_fct == level, 2],
-             pch = shapes_actual[level], bg = colors_actual[level]) }
+             pch = shapes_actual[level], bg = colors_actual[level],
+             cex = pt_size) }
 
     # With all of the points plotted, add ellipses of matched colors
     # This also allows for variation in line type if desired
