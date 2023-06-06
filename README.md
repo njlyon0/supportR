@@ -8,8 +8,7 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/njlyon0/supportR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/njlyon0/supportR/actions/workflows/R-CMD-check.yaml)
-![GitHub last
-commit](https://img.shields.io/github/last-commit/njlyon0/supportR)
+[![](https://cranlogs.r-pkg.org/badges/supportR)](htttps://cran.r-project.org/package=supportR)
 ![GitHub
 issues](https://img.shields.io/github/issues-raw/njlyon0/supportR)
 ![GitHub pull
