@@ -57,13 +57,13 @@ diff_check <- function(old = NULL, new = NULL,
 
   # Message what (if anything) was lost
   if(length(lost) == 0){
-    message("All elements of of old object found in new") } else {
+    message("All elements of old object found in new") } else {
       message("Following element(s) found in old object but not new: ")
       print(lost) }
 
   # Do the same for what was gained
   if(length(gained) == 0){
-    message("All elements of of new object found in old") } else {
+    message("All elements of new object found in old") } else {
       message("Following element(s) found in new object but not old: ")
       print(gained) }
 
