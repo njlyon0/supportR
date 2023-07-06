@@ -5,6 +5,8 @@ library(gh); library(stringr)
 # Clear environment
 rm(list = ls())
 
+# Single Folder GitHub `ls` ----
+
 # Identify all files in a single folder
 github_ls_single <- function(repo, folder = NULL){
   
@@ -52,6 +54,11 @@ github_ls_single <- function(repo, folder = NULL){
 # Invoke the function
 github_ls_single(repo = "https://github.com/Traneptora/grimoire")
 github_ls_single(repo = "https://github.com/Traneptora/grimoire", folder = "_posts")
+
+# Recursive file ls ----
+
+# Clear environment again
+rm(list = ls())
 
 
 
