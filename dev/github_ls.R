@@ -58,7 +58,70 @@ github_ls_single(repo = "https://github.com/Traneptora/grimoire", folder = "_pos
 # Recursive file ls ----
 
 # Clear environment again
-rm(list = ls())
+rm(list = setdiff(ls(), c("github_ls_single")))
+
+# Identify top-level contents of repo
+contents <- github_ls_single(repo = "https://github.com/Traneptora/grimoire",
+                             folder = NULL) %>%
+  # And add some housekeeping columns we need later
+  dplyr::mutate(listed = ifelse(type == "dir",
+                                yes = FALSE, no = NA),
+                path = ".")
+
+# Check that out
+contents
+
+# While any folders are not identified
+while(FALSE %in% contents$listed){
+  
+  # Loop across contents
+  for(w in 1:nrow(contents)){
+    
+    # Only operate on unlisted directories (otherwise skip)
+    if(contents[w, ]$type == "dir" & contents[w, ]$listed == FALSE){
+      
+      # Message start of processing
+      message("Listing contents of directory '", contents[w, ]$name, "'")
+      
+      # Identify contents of that folder
+      sub_contents <- github_ls_single(repo = "https://github.com/Traneptora/grimoire",
+                                   folder = contents[w, ]$name) %>%
+        # And add some housekeeping columns we need later
+        dplyr::mutate(listed = ifelse(type == "dir",
+                                      yes = FALSE, no = NA),
+                      path = paste0(contents[w, ]$path, "/", contents[w, ]$name))
+      
+      # Attach it to the main contents object
+      contents %<>%
+        # Bind rows on the new information
+        dplyr::bind_rows(y = sub_contents) %>%
+        # Flip this folder's "listed" column entry to TRUE
+        dplyr::mutate(listed = ifelse(test = (name == contents[w, ]$name),
+                                      yes = TRUE,
+                                      no = listed))
+      
+      
+    } # Close conditional
+    
+    
+    
+    # # Skip non-directories
+    # if(contents[w, ]$type != "dir"){
+    #   message("Skipping non-directory '", contents[w, ]$name, "'")
+    # }
+    #
+    # # Skip previously listed directories
+    # if(contents[w, ]$type == "dir" & contents[w, ]$listed == TRUE){
+    #   message("Skipping previously listed directory '", contents[w, ]$name)
+    # }
+    
+    # Otherwise...
+    
+    
+  } # Close `for` loop
+  
+} # Close `while` loop
+
 
 
 
