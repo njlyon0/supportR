@@ -83,9 +83,15 @@ while(FALSE %in% contents$listed){
       # Message start of processing
       message("Listing contents of directory '", contents[w, ]$name, "'")
       
+      # Identify the full path to that folder
+      sub_path <- paste0(contents[w, ]$path, "/", contents[w, ]$name)
+      
+      # Drop the leading "./" held to be human readable
+      path_actual <- gsub(pattern = "\\./", replacement = "", x = sub_path)
+      
       # Identify contents of that folder
       sub_contents <- github_ls_single(repo = "https://github.com/Traneptora/grimoire",
-                                   folder = contents[w, ]$name) %>%
+                                   folder = path_actual) %>%
         # And add some housekeeping columns we need later
         dplyr::mutate(listed = ifelse(type == "dir",
                                       yes = FALSE, no = NA),
@@ -122,7 +128,10 @@ while(FALSE %in% contents$listed){
   
 } # Close `while` loop
 
+# Check out product of that
+dplyr::glimpse(contents)
 
-
+# Everything listed?
+sort(unique(contents$listed))
 
 
