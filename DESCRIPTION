@@ -21,6 +21,7 @@ Depends:
 Imports: 
     dplyr,
     ggplot2,
+    gh,
     googledrive,
     graphics,
     lifecycle,
