@@ -1,13 +1,18 @@
-
-# Load needed libraries
-library(gh); library(stringr)
-
-# Clear environment
-rm(list = ls())
-
-# Single Folder GitHub `ls` ----
-
-# Identify all files in a single folder
+#' @title List Objects in a Single Folder of a GitHub Repository
+#' 
+#' @description Accepts a GitHub repository URL and identifies all files in the specified folder. If no folder is specified, lists top-level repository contents. This function only works on repositories (public or private) to which you have access.
+#' 
+#' @param repo (character) full URL for a github repository (including "github.com")
+#' @param folder (NULL/character) either `NULL` or the name of the folder to list. If `NULL`, the top-level contents of the repository will be listed
+#' 
+#' @return (dataframe) two-column dataframe including (1) the names of the contents and (2) the type of each content item (e.g., file/directory/etc.)
+#' 
+#' @examples
+#' \dontrun{
+#' # List contents of the top-level of the `supportR` package repository
+#' github_ls_single(repo = "https://github.com/njlyon0/supportR")
+#' }
+#' 
 github_ls_single <- function(repo = NULL, folder = NULL){
   
   # Error out for missing repo URL
@@ -55,16 +60,29 @@ github_ls_single <- function(repo = NULL, folder = NULL){
   # Return that dataframe
   return(repo_df) }
 
-# Invoke the function
-github_ls_single(repo = "https://github.com/Traneptora/grimoire")
-github_ls_single(repo = "https://github.com/Traneptora/grimoire", folder = "_posts")
 
-# Recursive file ls ----
 
-# Clear environment again
-rm(list = setdiff(ls(), c("github_ls_single")))
-
-# Define function
+#' @title List Objects in a GitHub Repository
+#' 
+#' @description Accepts a GitHub repository URL and identifies all files in the specified folder. If no folder is specified, lists top-level repository contents. Recursive listing of sub-folders is supported by an additional argument. This function only works on repositories (public or private) to which you have access.
+#' 
+#' @param repo (character) full URL for a github repository (including "github.com")
+#' @param folder (NULL/character) either `NULL` or the name of the folder to list. If `NULL`, the top-level contents of the repository will be listed
+#' @param recursive (logical) whether to recursively list contents (i.e., list contents of sub-folders identified within previously identified sub-folders)
+#' @param quiet (logical) whether to print an informative message as the contents of each folder is being listed
+#' 
+#' @return (dataframe) three-column dataframe including (1) the names of the contents, (2) the type of each content item (e.g., file/directory/etc.), and (3) the full path from the starting folder to each item
+#'
+#' @importFrom magrittr %>%
+#' @importFrom magrittr %<>%
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' # List complete contents of the `supportR` package repository
+#' github_ls(repo = "https://github.com/njlyon0/supportR", recursive = TRUE, quiet = FALSE)
+#' }
+#' 
 github_ls <- function(repo = NULL, folder = NULL, recursive = TRUE, quiet = FALSE){
   
   # Message top-level listing (if `quiet` is not TRUE)
@@ -137,9 +155,3 @@ github_ls <- function(repo = NULL, folder = NULL, recursive = TRUE, quiet = FALS
   
   # Return that
   return(out_actual) }
-
-# Invoke the function
-github_ls(repo = "https://github.com/Traneptora/grimoire", recursive = T, quiet = F)
-
-github_ls(repo = "https://github.com/Traneptora/grimoire", folder = "_posts", 
-          recursive = T, quiet = F)
