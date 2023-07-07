@@ -41,13 +41,27 @@ str(penguins)
 
 With that data loaded, we can use the `summary_table` function to quickly get group-wise summaries and retrieve generally useful summary statistics.
 
+The `groups` argument supports a vector of all of the column names to group by while `response` must be a single numeric column. The `drop_na` argument allows group combinations that result in an NA to be automatically dropped (i.e., if a penguin didn't have an island listed that would be dropped). The mean, standard deviation (SD), sample size, and standard error (SE) are all returned to facilitate easy figure creation. There is also a `round_digits` argument that lets you specify how many digits you'd like to retain for the mean, SD, and SE.
+
 ```{r summary_table}
 # Summarize the data
 supportR::summary_table(data = penguins, groups = c("species", "island"),
                         response = "bill_length_mm", drop_na = T)
 ```
 
-The `groups` argument supports a vector of all of the column names to group by while `response` must be a single numeric column. The `drop_na` argument allows group combinations that result in an NA to be automatically dropped (i.e., if a penguin didn't have an island listed that would be dropped). The mean, standard deviation (SD), sample size, and standard error (SE) are all returned to facilitate easy figure creation. There is also a `round_digits` argument that lets you specify how many digits you'd like to retain for the mean, SD, and SE.
+`crop_tri` allows dropping one "triangle" of a symmetric dataframe / matrix. It also includes a `drop_diag` argument that accepts a logical for whether to drop the diagonal of the data object. This is primarily useful (I find) in allowing piping through this function as opposed to using the base R notation for removing a triangle of a symmetric data object.
+
+
+```{r crop_tri}
+# Define a simple matrix wtih symmetric dimensions
+mat <- matrix(data = c(1:2, 2:1), nrow = 2, ncol = 2)
+
+# Crop off it's lower triangle
+supportR::crop_tri(data = mat, drop_tri = "lower", drop_diag = FALSE)
+
+# Drop the diagonal as well
+supportR::crop_tri(data = mat, drop_tri = "lower", drop_diag = TRUE)
+```
 
 `array_melt` allows users to 'melt' an array of dimensions X, Y, and Z into a dataframe containing columns "x", "y", "z", and "value" where "value" is whatever was stored at those coordinates in the array.
 
@@ -66,10 +80,11 @@ g <- array(data = c(vec1, vec2), dim = c(3, 3, 2),
            dimnames = list(x_vals, y_vals, z_vals))
 
 # "Melt" the array into a dataframe
-supportR::array_melt(array = g)
-```
+melted <- supportR::array_melt(array = g)
 
-`crop_tri` also exists under this category and allows dropping one "triangle" of a symmetric dataframe / matrix. It also includes a `drop_diag` argument that accepts a logical for whether to drop the diagonal of the data object. See `?crop_tri` for complete syntax explanation.This is primarily useful (I think) in allowing piping through this function as opposed to using the base R notation for removing a triangle of a symmetric data object.
+# Look at that top of that
+head(melted)
+```
 
 ### Quality Control
 
