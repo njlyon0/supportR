@@ -84,6 +84,8 @@ github_ls_single <- function(repo = NULL, folder = NULL){
 #' }
 #' 
 github_ls <- function(repo = NULL, folder = NULL, recursive = TRUE, quiet = FALSE){
+  # Squelch visible bindings note
+  type <- name <- listed <- NULL
   
   # Message top-level listing (if `quiet` is not TRUE)
   if(quiet != TRUE){ 
