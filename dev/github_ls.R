@@ -18,7 +18,7 @@ github_ls_single <- function(repo, folder = NULL){
     stop("`repo` must be the URL for a GitHub repository (including 'github.com')")
   
   # Drop unwanted parts of that
-  repo_id <- setdiff(x = url_bits, y = c("https:", "", "github.com"))
+  repo_id <- setdiff(x = url_bits, y = c("https:", "", "www.", "github.com"))
   
   # Assemble an API query with this information
   query_raw <- paste("/repos", repo_id[1], repo_id[2], "contents", sep = "/")
@@ -87,15 +87,17 @@ while(FALSE %in% contents$listed){
       sub_path <- paste0(contents[w, ]$path, "/", contents[w, ]$name)
       
       # Drop the leading "./" held to be human readable
-      path_actual <- gsub(pattern = "\\./", replacement = "", x = sub_path)
-      
+      path_actual <- ifelse(stringr::str_sub(string = sub_path, start = 1, end = 2) == "./",
+                            yes = gsub(pattern = "\\./", replacement = "", x = sub_path),
+                            no = sub_path)
+        
       # Identify contents of that folder
       sub_contents <- github_ls_single(repo = "https://github.com/Traneptora/grimoire",
                                    folder = path_actual) %>%
         # And add some housekeeping columns we need later
         dplyr::mutate(listed = ifelse(type == "dir",
                                       yes = FALSE, no = NA),
-                      path = paste0(contents[w, ]$path, "/", contents[w, ]$name))
+                      path = sub_path)
       
       # Attach it to the main contents object
       contents %<>%
@@ -106,24 +108,8 @@ while(FALSE %in% contents$listed){
                                       yes = TRUE,
                                       no = listed))
       
-      
     } # Close conditional
-    
-    
-    
-    # # Skip non-directories
-    # if(contents[w, ]$type != "dir"){
-    #   message("Skipping non-directory '", contents[w, ]$name, "'")
-    # }
-    #
-    # # Skip previously listed directories
-    # if(contents[w, ]$type == "dir" & contents[w, ]$listed == TRUE){
-    #   message("Skipping previously listed directory '", contents[w, ]$name)
-    # }
-    
-    # Otherwise...
-    
-    
+
   } # Close `for` loop
   
 } # Close `while` loop
@@ -133,5 +119,11 @@ dplyr::glimpse(contents)
 
 # Everything listed?
 sort(unique(contents$listed))
+
+# Wrangle that output slightly
+out_actual <- dplyr::select(contents, -listed)
+
+# Return that
+# return(out_actual)
 
 
