@@ -96,7 +96,9 @@ github_ls <- function(repo = NULL, folder = NULL, recursive = TRUE, quiet = FALS
     # And add some housekeeping columns we'll need later
     dplyr::mutate(listed = ifelse(type == "dir",
                                   yes = FALSE, no = NA),
-                  path = ".")
+                  path = ifelse(test = is.null(folder),
+                                yes = ".",
+                                no = folder))
   
   # If recursive listing is desired...
   if(recursive == TRUE){
@@ -118,7 +120,10 @@ github_ls <- function(repo = NULL, folder = NULL, recursive = TRUE, quiet = FALS
           # Identify the full path to that folder
           sub_path <- paste0(contents[w, ]$path, "/", contents[w, ]$name)
           
-          # Drop the leading "./" held to be human readable
+          # Identify what is before the first "/"
+          path_items <- stringr::str_split_1(string = sub_path, pattern = "/")
+          
+          # Drop the leading "./" (for top-level items) to be more human readable
           path_actual <- ifelse(stringr::str_sub(string = sub_path, 
                                                  start = 1, end = 2) == "./",
                                 yes = gsub(pattern = "\\./", replacement = "", 
@@ -126,8 +131,7 @@ github_ls <- function(repo = NULL, folder = NULL, recursive = TRUE, quiet = FALS
                                 no = sub_path)
           
           # Identify contents of that folder
-          sub_contents <- github_ls_single(repo = "https://github.com/Traneptora/grimoire",
-                                           folder = path_actual) %>%
+          sub_contents <- github_ls_single(repo = repo, folder = path_actual) %>%
             # And add some housekeeping columns we need later
             dplyr::mutate(listed = ifelse(type == "dir",
                                           yes = FALSE, no = NA),
