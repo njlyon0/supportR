@@ -30,11 +30,17 @@ You can install the development version from [GitHub](https://github.com/) with:
 devtools::install_github("njlyon0/supportR")
 ```
 
-### Summarizing
+### Data Wrangling
 
 - **`summary_table`**: Calculates summary values (mean, standard deviation, sample size, and standard error) of a given response variable within supplied groups
 
+- **`crop_tri`**: Removes the specified "triangle" (either upper or lower) of a symmetric data object by replacing with NAs. Also allows user to specify whether to keep or also drop the diagonal
+
+- **`array_melt`**: "Flattens" an array of dimensions X, Y, and Z into a dataframe containing columns `x`, `y`, `z`, and `value` where `value` is whatever was stored in the array at those coordinates
+
 ### Quality Control (QC)
+
+- **`diff_check`**: Compares two vectors and identifies what elements are found in the first but not the second (i.e., *lost* components) and what elements are found in the second but not the first (i.e., *gained* components). Extremely useful prior to `join`ing two dataframes to compare index column contents or to ensure no columns are unexpectedly lost during complex wrangling operations
 
 - **`num_check`**: Checks a column that *should* contain only **numeric** values for any entries that would be coerced to NA if `as.numeric` is run
 
@@ -46,10 +52,6 @@ devtools::install_github("njlyon0/supportR")
     
 - **`date_format_guess`**: Checks a column containing multiple ambiguous date formats and identifies its best guess for the format each date is in (e.g., 'dd/mm/yyyy' versus 'yyyy/dd/mm', etc.)
 
-- **`diff_check`**: Compares two vectors and identifies what elements are found in the first but not the second (i.e., *lost* components) and what elements are found in the second but not the first (i.e., *gained* components)
-
-    - This use-case is more oblique but I find it useful when I'm checking which columns are in the data before versus after a significant wrangling step to make sure no columns are lost/gained unexpectedly
-
 ### Visualization & Graphics
 
 - **`theme_lyon`**: Applies a set of modifications to the non-data aspects of a `ggplot2` plot to ensure a consistent "feel" of a set of plots
@@ -58,13 +60,7 @@ devtools::install_github("njlyon0/supportR")
 
 - **`pcoa_ord`**: Creates a Principal Coordinates Analysis (PCoA) ordination with base R. Requires the distance matrix returned by `ape::pcoa`
 
-### Reshaping Data
-
-- **`crop_tri`**: Removes the specified "triangle" (either upper or lower) of a symmetric data object by replacing with NAs. Also allows user to specify whether to keep or also drop the diagonal
-
-- **`array_melt`**: "Flattens" an array of dimensions X, Y, and Z into a dataframe containing columns `x`, `y`, `z`, and `value` where `value` is whatever was stored in the array at those coordinates
-
-### Miscellaneous Other Functions
+### Operations Outside of R
 
 - **`github_ls`**: Lists contents of GitHub repository from its URL and returns a simple dataframe containing the name, type, and file path of identified objects. Supports recursive listing (i.e., listing of contents of subfolders identified in first list of contents)
 
