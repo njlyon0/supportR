@@ -9,7 +9,14 @@
 #' @return (dataframe or dataframe-like) data object with desired triangle removed and either with or without the diagonal
 #'
 #' @export
-#'
+#' 
+#' @examples
+#' # Define a simple matrix wtih symmetric dimensions
+#' mat <- matrix(data = c(1:2, 2:1), nrow = 2, ncol = 2)
+#' 
+#' # Crop off it's lower triangle
+#' supportR::crop_tri(data = mat, drop_tri = "lower", drop_diag = FALSE)
+#' 
 crop_tri <- function(data = NULL, drop_tri = "upper", drop_diag = FALSE){
 
   # Error out for missing data

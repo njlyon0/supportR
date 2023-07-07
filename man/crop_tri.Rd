@@ -19,3 +19,11 @@ crop_tri(data = NULL, drop_tri = "upper", drop_diag = FALSE)
 \description{
 Accepts a symmetric data object and replaces the chosen triangle with NAs. Also allows user to choose whether to keep or drop the diagonal of the data object
 }
+\examples{
+# Define a simple matrix wtih symmetric dimensions
+mat <- matrix(data = c(1:2, 2:1), nrow = 2, ncol = 2)
+
+# Crop off it's lower triangle
+supportR::crop_tri(data = mat, drop_tri = "lower", drop_diag = FALSE)
+
+}

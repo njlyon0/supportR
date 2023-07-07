@@ -165,21 +165,18 @@ I've created a set of custom `ggplot2` `theme` elements to guarantee that all of
 - Makes axes' lines black
 - Increases the font size of the axes titles and tick labels
 
-```{r theme_lyon, fig.width = 7}
-# Load ggplot2 and cowplot (for multi-panel graphs)
-library(ggplot2); library(cowplot)
+```{r theme_lyon, message = F, warning = F, fig.width = 5}
+# Load ggplot2
+library(ggplot2)
 
 # Create a plot and allow default ggplot themeing to be added
-default_gg <- ggplot(penguins, aes(x = species, y = body_mass_g, fill = species)) +
+ggplot(penguins, aes(x = species, y = body_mass_g, fill = species)) +
   geom_boxplot(outlier.shape = 24)
 
 # Compare with the same plot with my theme
-lyon <- ggplot(penguins, aes(x = species, y = body_mass_g, fill = species)) +
+ggplot(penguins, aes(x = species, y = body_mass_g, fill = species)) +
   geom_boxplot(outlier.shape = 24) +
   supportR::theme_lyon()
-
-# Put both plots side-by-side
-cowplot::plot_grid(default_gg, lyon, nrow = 1, ncol = 2)
 ```
 
 I've also created `nms_ord` and `pcoa_ord` for Non-Metric Multi-Dimensional Scaling (NMS) & Principal Coordinates Analysis (PCoA) Ordinations respectively.
