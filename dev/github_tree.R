@@ -20,9 +20,6 @@ repo_conts <- github_ls(repo = "github.com/njlyon0/supportR", folder = NULL) %>%
   dplyr::mutate(depth = max(stringr::str_count(string = path, pattern = "/"))) %>%
   dplyr::ungroup()
 
-# Check the structure of that
-dplyr::glimpse(repo_conts)
-
 # Create a vector of folders to exclude from the ToC
 exclude_vec <- c("man", "docs", ".github")
 
@@ -56,10 +53,6 @@ for(j in 1:length(exclude_vec)){
   
 }
 
-# Check that out
-dplyr::glimpse(conts_v2)
-## view(conts_v2)
-
 # Identify all contents we unambiguously want to retain
 conts_keep <- dplyr::filter(conts_v2, exclude == F)
 
@@ -83,10 +76,6 @@ conts_v3 <- dplyr::bind_rows(conts_keep, conts_drop_dirs, conts_drop_items) %>%
   # Pare down to only path column
   dplyr::select(path)
 
-# Re-check structure
-dplyr::glimpse(conts_v3)
-## view(conts_v3)
-
 # Identify maximum depth of folders
 max_depth <- base::max(stringr::str_count(string = conts_v3$path, pattern = "/")) + 1
   
@@ -98,10 +87,6 @@ path_df <- tidyr::separate_wider_delim(data = conts_v3, cols = path,
   dplyr::mutate(pathString = conts_v3$path) %>%
   # Oder by path
   dplyr::arrange(pathString)
-
-# Check structure
-dplyr::glimpse(path_df)
-## view(path_df)
 
 # Strip out folder paths
 repo_tree <- data.tree::as.Node(path_df)
