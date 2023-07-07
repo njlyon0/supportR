@@ -6,7 +6,7 @@ devtools::load_all()
 ?github_ls
 
 # Load some bonus libraries
-librarian::shelf(tidyverse, stringr, data.tree)
+librarian::shelf(tidyverse, stringr, data.tree, magrittr)
 
 # Clear environment
 rm(list = ls())
@@ -18,7 +18,7 @@ repo_conts <- github_ls(repo = "github.com/njlyon0/supportR", folder = NULL)
 dplyr::glimpse(repo_conts)
 
 # Create a vector of folders to exclude from the ToC
-exclude_vec <- c("man", "docs")
+exclude_vec <- c("man", "docs", ".github")
 
 # Process it into just the file paths
 repo_paths <- repo_conts %>%
@@ -38,8 +38,67 @@ path_df <- as.data.frame(repo_paths) %>%
   # Also re-gain the full path string
   dplyr::mutate(pathString = repo_paths)
 
+# Check structure of that
+dplyr::glimpse(path_df)
+
+# Add an empty exclude column and assign to a new object
+path_v2 <- dplyr::mutate(path_df, exclude = FALSE)
+  
+# Identify all rows where excluded files are part of the path
+for(j in 1:length(exclude_vec)){
+  
+  # Check whether that file is in a folder marked for exclusion
+  path_v2 %<>%
+    dplyr::mutate(exclude = ifelse(
+        test = stringr::str_detect(string = pathString, pattern = exclude_vec[j]) == T,
+        yes = TRUE, no = exclude))
+  
+}
+
+# Check structure
+dplyr::glimpse(path_v2)
+## view(path_v2)
+
+# Wrangle that object
+path_v3 <- path_v2 %>%
+  # Drop top-level folder 'name' (is placeholder ".")
+  dplyr::select(-V1) %>%
+  # Pivot to long format
+  tidyr::pivot_longer(cols = dplyr::starts_with("V"))
 
 
+# Check structure
+dplyr::glimpse(path_v3)
+## view(path_v3)
+
+
+
+# 
+# # Wrangle that to exclude folders marked for exclusion
+# path_df_actual <- path_df %>%
+#   # Drop top-level folder 'name' (is placeholder ".")
+#   dplyr::select(-V1) %>%
+#   # Pivot to long format
+#   tidyr::pivot_longer(cols = dplyr::starts_with("V")) %>%
+#   # Drop NAs
+#   dplyr::filter(!is.na(value)) %>%
+#   # Count entries at each level of the hierarchy
+#   dplyr::group_by(name, value) %>%
+#   dplyr::mutate(item_count = sum(!is.na(value), na.rm = T)) %>%
+#   dplyr::ungroup() %>%
+#   # Drop non-unique rows
+#   dplyr::distinct()
+# 
+# 
+#   # For folders in the exclude vector, swap out the item count for the actual values
+#   # dplyr::mutate(value_actual = ifelse(test = value %in% exclude_vec,
+#   #                                     yes = item_count,
+#   #                                     no = value))
+# 
+# 
+# # Check structure
+# dplyr::glimpse(path_df_actual)
+# ## view(path_df_actual)
 
 
 # Strip out folder paths
