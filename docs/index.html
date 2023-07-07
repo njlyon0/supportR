@@ -80,17 +80,19 @@
 <code class="sourceCode R"><span><span class="co"># install.packages("devtools")</span></span>
 <span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"njlyon0/supportR"</span><span class="op">)</span></span></code></pre></div>
 <div class="section level3">
-<h3 id="summarizing">Summarizing<a class="anchor" aria-label="anchor" href="#summarizing"></a>
+<h3 id="data-wrangling">Data Wrangling<a class="anchor" aria-label="anchor" href="#data-wrangling"></a>
 </h3>
 <ul>
-<li>
-<strong><code>summary_table</code></strong>: Calculates summary values (mean, standard deviation, sample size, and standard error) of a given response variable within supplied groups</li>
+<li><p><strong><code>summary_table</code></strong>: Calculates summary values (mean, standard deviation, sample size, and standard error) of a given response variable within supplied groups</p></li>
+<li><p><strong><code>crop_tri</code></strong>: Removes the specified “triangle” (either upper or lower) of a symmetric data object by replacing with NAs. Also allows user to specify whether to keep or also drop the diagonal</p></li>
+<li><p><strong><code>array_melt</code></strong>: “Flattens” an array of dimensions X, Y, and Z into a dataframe containing columns <code>x</code>, <code>y</code>, <code>z</code>, and <code>value</code> where <code>value</code> is whatever was stored in the array at those coordinates</p></li>
 </ul>
 </div>
 <div class="section level3">
 <h3 id="quality-control-qc">Quality Control (QC)<a class="anchor" aria-label="anchor" href="#quality-control-qc"></a>
 </h3>
 <ul>
+<li><p><strong><code>diff_check</code></strong>: Compares two vectors and identifies what elements are found in the first but not the second (i.e., <em>lost</em> components) and what elements are found in the second but not the first (i.e., <em>gained</em> components). Extremely useful prior to <code>join</code>ing two dataframes to compare index column contents or to ensure no columns are unexpectedly lost during complex wrangling operations</p></li>
 <li>
 <p><strong><code>num_check</code></strong>: Checks a column that <em>should</em> contain only <strong>numeric</strong> values for any entries that would be coerced to NA if <code>as.numeric</code> is run</p>
 <ul>
@@ -104,12 +106,6 @@
 </ul>
 </li>
 <li><p><strong><code>date_format_guess</code></strong>: Checks a column containing multiple ambiguous date formats and identifies its best guess for the format each date is in (e.g., ‘dd/mm/yyyy’ versus ‘yyyy/dd/mm’, etc.)</p></li>
-<li>
-<p><strong><code>diff_check</code></strong>: Compares two vectors and identifies what elements are found in the first but not the second (i.e., <em>lost</em> components) and what elements are found in the second but not the first (i.e., <em>gained</em> components)</p>
-<ul>
-<li>This use-case is more oblique but I find it useful when I’m checking which columns are in the data before versus after a significant wrangling step to make sure no columns are lost/gained unexpectedly</li>
-</ul>
-</li>
 </ul>
 </div>
 <div class="section level3">
@@ -122,19 +118,11 @@
 </ul>
 </div>
 <div class="section level3">
-<h3 id="reshaping-data">Reshaping Data<a class="anchor" aria-label="anchor" href="#reshaping-data"></a>
+<h3 id="operations-outside-of-r">Operations Outside of R<a class="anchor" aria-label="anchor" href="#operations-outside-of-r"></a>
 </h3>
 <ul>
-<li><p><strong><code>crop_tri</code></strong>: Removes the specified “triangle” (either upper or lower) of a symmetric data object by replacing with NAs. Also allows user to specify whether to keep or also drop the diagonal</p></li>
-<li><p><strong><code>array_melt</code></strong>: “Flattens” an array of dimensions X, Y, and Z into a dataframe containing columns <code>x</code>, <code>y</code>, <code>z</code>, and <code>value</code> where <code>value</code> is whatever was stored in the array at those coordinates</p></li>
-</ul>
-</div>
-<div class="section level3">
-<h3 id="miscellaneous-other-functions">Miscellaneous Other Functions<a class="anchor" aria-label="anchor" href="#miscellaneous-other-functions"></a>
-</h3>
-<ul>
-<li>
-<strong><code>rmd_export</code></strong>: Allows knitting of a specified R Markdown file locally and simultaneously to a specified Google Drive folder. <strong>NOTE:</strong> you must authorize R to work with Google Drive by using <code>googldrive::drive_auth</code> for this function to work</li>
+<li><p><strong><code>github_ls</code></strong>: Lists contents of GitHub repository from its URL and returns a simple dataframe containing the name, type, and file path of identified objects. Supports recursive listing (i.e., listing of contents of subfolders identified in first list of contents)</p></li>
+<li><p><strong><code>rmd_export</code></strong>: Allows knitting of a specified R Markdown file locally and simultaneously to a specified Google Drive folder. <strong>NOTE:</strong> you must authorize R to work with Google Drive by using <code>googldrive::drive_auth()</code> for this function to work</p></li>
 </ul>
 </div>
 </div>
