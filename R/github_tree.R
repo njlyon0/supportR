@@ -18,6 +18,9 @@
 #' }
 #' 
 github_tree <- function(repo = NULL, exclude = c("docs"), quiet = FALSE){
+  # Squelch visible bindings NOTE
+  depth <- exclude_logi <- exclude_num <- exclude_parent <- NULL
+  path <- pathString <- shallowest <- type <- name <- NULL
   
   # Run that on a repository
   repo_conts <- github_ls(repo = repo, folder = NULL, quiet = quiet) %>%
