@@ -8,7 +8,11 @@ rm(list = ls())
 # Single Folder GitHub `ls` ----
 
 # Identify all files in a single folder
-github_ls_single <- function(repo, folder = NULL){
+github_ls_single <- function(repo = NULL, folder = NULL){
+  
+  # Error out for missing repo URL
+  if(is.null(repo) == TRUE)
+    stop("`repo` must be the URL for a GitHub repository (including 'github.com')")
   
   # Break URL into its component parts
   url_bits <- stringr::str_split_1(string = repo, pattern = "/")
@@ -60,70 +64,82 @@ github_ls_single(repo = "https://github.com/Traneptora/grimoire", folder = "_pos
 # Clear environment again
 rm(list = setdiff(ls(), c("github_ls_single")))
 
-# Identify top-level contents of repo
-contents <- github_ls_single(repo = "https://github.com/Traneptora/grimoire",
-                             folder = NULL) %>%
-  # And add some housekeeping columns we need later
-  dplyr::mutate(listed = ifelse(type == "dir",
-                                yes = FALSE, no = NA),
-                path = ".")
-
-# Check that out
-contents
-
-# While any folders are not identified
-while(FALSE %in% contents$listed){
+# Define function
+github_ls <- function(repo = NULL, folder = NULL, recursive = TRUE, quiet = FALSE){
   
-  # Loop across contents
-  for(w in 1:nrow(contents)){
+  # Message top-level listing (if `quiet` is not TRUE)
+  if(quiet != TRUE){ 
+    message(ifelse(test = is.null(folder) == TRUE,
+             yes = paste0("Listing top-level contents of ", repo),
+             no = paste0("Listing contents of '", folder, "' in ", repo))) }
+  
+  # Identify contents of top-level / specified folder
+  contents <- github_ls_single(repo = repo, folder = folder) %>%
+    # And add some housekeeping columns we'll need later
+    dplyr::mutate(listed = ifelse(type == "dir",
+                                  yes = FALSE, no = NA),
+                  path = ".")
+  
+  # If recursive listing is desired...
+  if(recursive == TRUE){
     
-    # Only operate on unlisted directories (otherwise skip)
-    if(contents[w, ]$type == "dir" & contents[w, ]$listed == FALSE){
+    # While any folders are not identified
+    while(FALSE %in% contents$listed){
       
-      # Message start of processing
-      message("Listing contents of directory '", contents[w, ]$name, "'")
-      
-      # Identify the full path to that folder
-      sub_path <- paste0(contents[w, ]$path, "/", contents[w, ]$name)
-      
-      # Drop the leading "./" held to be human readable
-      path_actual <- ifelse(stringr::str_sub(string = sub_path, start = 1, end = 2) == "./",
-                            yes = gsub(pattern = "\\./", replacement = "", x = sub_path),
-                            no = sub_path)
+      # Loop across contents
+      for(w in 1:nrow(contents)){
         
-      # Identify contents of that folder
-      sub_contents <- github_ls_single(repo = "https://github.com/Traneptora/grimoire",
-                                   folder = path_actual) %>%
-        # And add some housekeeping columns we need later
-        dplyr::mutate(listed = ifelse(type == "dir",
-                                      yes = FALSE, no = NA),
-                      path = sub_path)
+        # Only operate on unlisted directories (otherwise skip)
+        if(contents[w, ]$type == "dir" & contents[w, ]$listed == FALSE){
+          
+          # Message start of processing (if `quiet` is not TRUE)
+          if(quiet != TRUE){ 
+            message("Listing contents of directory '", contents[w, ]$name, "'") 
+          }
+          
+          # Identify the full path to that folder
+          sub_path <- paste0(contents[w, ]$path, "/", contents[w, ]$name)
+          
+          # Drop the leading "./" held to be human readable
+          path_actual <- ifelse(stringr::str_sub(string = sub_path, 
+                                                 start = 1, end = 2) == "./",
+                                yes = gsub(pattern = "\\./", replacement = "", 
+                                           x = sub_path),
+                                no = sub_path)
+          
+          # Identify contents of that folder
+          sub_contents <- github_ls_single(repo = "https://github.com/Traneptora/grimoire",
+                                           folder = path_actual) %>%
+            # And add some housekeeping columns we need later
+            dplyr::mutate(listed = ifelse(type == "dir",
+                                          yes = FALSE, no = NA),
+                          path = sub_path)
+          
+          # Attach it to the main contents object
+          contents %<>%
+            # Bind rows on the new information
+            dplyr::bind_rows(y = sub_contents) %>%
+            # Flip this folder's "listed" column entry to TRUE
+            dplyr::mutate(listed = ifelse(test = (name == contents[w, ]$name),
+                                          yes = TRUE,
+                                          no = listed))
+          
+        } # Close sublisting conditional
+        
+      } # Close `for` loop
       
-      # Attach it to the main contents object
-      contents %<>%
-        # Bind rows on the new information
-        dplyr::bind_rows(y = sub_contents) %>%
-        # Flip this folder's "listed" column entry to TRUE
-        dplyr::mutate(listed = ifelse(test = (name == contents[w, ]$name),
-                                      yes = TRUE,
-                                      no = listed))
-      
-    } # Close conditional
-
-  } # Close `for` loop
+    } # Close `while` loop
+    
+  } # Close recursive conditional
   
-} # Close `while` loop
+  # Wrangle that output slightly
+  out_actual <- dplyr::select(contents, -listed)
+  
+  # Return that
+  return(out_actual) }
 
-# Check out product of that
-dplyr::glimpse(contents)
+# Invoke the function
+github_ls(repo = "https://github.com/Traneptora/grimoire", recursive = T, quiet = F)
 
-# Everything listed?
-sort(unique(contents$listed))
-
-# Wrangle that output slightly
-out_actual <- dplyr::select(contents, -listed)
-
-# Return that
-# return(out_actual)
-
-
+github_ls(repo = "https://github.com/Traneptora/grimoire", folder = "_posts", 
+          recursive = T, quiet = F)
