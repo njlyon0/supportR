@@ -19,6 +19,7 @@ RoxygenNote: 7.2.3
 Depends:
     R (>= 3.5)
 Imports: 
+    data.tree,
     dplyr,
     ggplot2,
     gh,
