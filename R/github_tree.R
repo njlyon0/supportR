@@ -1,17 +1,22 @@
-
-# Load local package contents
-devtools::load_all()
-
-# Make sure `github_ls` is part of that
-?github_ls
-
-# Load some bonus libraries
-librarian::shelf(tidyverse, stringr, data.tree, magrittr)
-
-# Clear environment
-rm(list = ls())
-
-# Function version
+#' @title Create File Tree of a GitHub Repository
+#' 
+#' @description Recursively identifies all files in a GitHub repository and creates a file tree using the `data.tree` package to create a simple, human-readable visualization of the folder hierarchy. Folders can be specified for exclusion in which case the number of elements within them is listed but not the names of those objects. This function only works on repositories (public or private) to which you have access. 
+#' 
+#' @param repo (character) full URL for a github repository (including "github.com")
+#' @param exclude (character) vector of folder names to exclude from the file tree (defaults to "docs" folder)
+#' @param quiet (logical) whether to print an informative message as the contents of each folder is being listed and as the tree is prepared from that information
+#' 
+#' @return (node / R6) `data.tree` package object class
+#' 
+#' @importFrom magrittr %>%
+#' @export
+#' 
+#' @examples
+#' \dontrun{
+#' # Create a file tree for the `supportR` package GitHub repository
+#' github_tree(repo = "github.com/njlyon0/supportR", exclude = c("man", "docs", ".github"))
+#' }
+#' 
 github_tree <- function(repo = NULL, exclude = c("docs"), quiet = FALSE){
   
   # Run that on a repository
@@ -93,10 +98,6 @@ github_tree <- function(repo = NULL, exclude = c("docs"), quiet = FALSE){
   
   # Strip out folder paths
   repo_tree <- data.tree::as.Node(path_df)
- 
+  
   # Return this
   return(repo_tree) }
-
-# Test use of function
-github_tree(repo = "github.com/njlyon0/supportR", quiet = T,
-            exclude = c("man", "docs", ".github"))
