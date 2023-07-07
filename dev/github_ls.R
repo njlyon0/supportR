@@ -120,9 +120,6 @@ github_ls <- function(repo = NULL, folder = NULL, recursive = TRUE, quiet = FALS
           # Identify the full path to that folder
           sub_path <- paste0(contents[w, ]$path, "/", contents[w, ]$name)
           
-          # Identify what is before the first "/"
-          path_items <- stringr::str_split_1(string = sub_path, pattern = "/")
-          
           # Drop the leading "./" (for top-level items) to be more human readable
           path_actual <- ifelse(stringr::str_sub(string = sub_path, 
                                                  start = 1, end = 2) == "./",
