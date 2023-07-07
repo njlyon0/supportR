@@ -92,10 +92,15 @@ devtools::install_github("njlyon0/supportR")
 
 ### Miscellaneous Other Functions
 
+- **`github_ls`**: Lists contents of GitHub repository from its URL and
+  returns a simple dataframe containing the name, type, and file path of
+  identified objects. Supports recursive listing (i.e., listing of
+  contents of subfolders identified in first list of contents)
+
 - **`rmd_export`**: Allows knitting of a specified R Markdown file
   locally and simultaneously to a specified Google Drive folder.
   **NOTE:** you must authorize R to work with Google Drive by using
-  `googldrive::drive_auth` for this function to work
+  `googldrive::drive_auth()` for this function to work
 
 ## Looking Ahead
 
