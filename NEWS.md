@@ -1,6 +1,10 @@
-# supportR Version 1.0.0.900
+# supportR Version 1.1.0.900
 
 Development version of `supportR`. Changes from preceding version will be listed here as they are made.
+
+# supportR Version 1.1.0
+
+Changes from preceding version are listed below
 
 - New function: `github_ls`. Lists contents of specified GitHub repository either recursively or only top-level/specified folder
 - New function: `github_tree`. Creates a file tree diagram for a specified GitHub repository
