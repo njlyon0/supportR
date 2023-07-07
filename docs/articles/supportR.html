@@ -262,7 +262,7 @@ than across them so the number that occurs in more rows within the
 grouping values is most likely month.</p>
 <p>Recognizing that assumption may be uncomfortable for some users, the
 <code>groups</code> argument can be set to <code>FALSE</code> and it
-will do the clearer judgement calls (i.e., if a number is &gt;12 it is
+will do the clearer judgment calls (i.e., if a number is &gt;12 it is
 day, etc.). Note that dates that cannot be guessed by my function will
 return “FORMAT UNCERTAIN” so that you can handle them using your
 knowledge of the system (or by returning to your raw data if need
@@ -373,7 +373,7 @@ with APIs outside of R via R functions with hopefully more comfortable
 syntax. Because these functions rely on user credentials, they cannot be
 run non-interactively (as in a CRAN submission) so the following code
 chunks are not evaluated and are included as examples of the proper
-syntax for your refernece.</p>
+syntax for your reference.</p>
 <p>For GitHub users, I’ve developed two related functions:
 <code>github_ls</code> and <code>github_tree</code>.
 <code>github_ls</code> accepts the URL to a GitHub repository to which
@@ -398,11 +398,11 @@ diagram of that folder structure that is simple and human-readable.
 Unlike <code>github_ls</code>, <code>github_tree</code> only supports
 recursive identification of all files beginning at the top level of the
 repository. It does however allow users to exclude the listings of
-particular folders by specfiying their names in the <code>exclude</code>
+particular folders by specifying their names in the <code>exclude</code>
 argument.</p>
 <p>I think this could be particularly useful to embed in a repository’s
 <code>README.Rmd</code> to create a quick-and-easy file map for visitors
-to use as a guide in navigating the repo’s contents.</p>
+to use as a guide in navigating the repository’s contents.</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="co"># Create a file tree diagram of a GitHub repository</span></span>
 <span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>supportR<span class="sc">::</span><span class="fu">github_tree</span>(<span class="at">repo =</span> <span class="at">repo =</span> <span class="st">"https://github.com/njlyon0/supportR"</span>,</span>
 <span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a>                      <span class="at">exclude =</span> <span class="fu">c</span>(<span class="st">"docs"</span>, <span class="st">"man"</span>, <span class="st">".github"</span>), <span class="at">quiet =</span> <span class="cn">FALSE</span>)</span></code></pre></div>

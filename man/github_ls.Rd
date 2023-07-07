@@ -7,7 +7,7 @@
 github_ls(repo = NULL, folder = NULL, recursive = TRUE, quiet = FALSE)
 }
 \arguments{
-\item{repo}{(character) full URL for a github repository (including "github.com")}
+\item{repo}{(character) full URL for a GitHub repository (including "github.com")}
 
 \item{folder}{(NULL/character) either \code{NULL} or the name of the folder to list. If \code{NULL}, the top-level contents of the repository will be listed}
 

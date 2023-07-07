@@ -2,7 +2,7 @@
 #' 
 #' @description Accepts a GitHub repository URL and identifies all files in the specified folder. If no folder is specified, lists top-level repository contents. This function only works on repositories (public or private) to which you have access.
 #' 
-#' @param repo (character) full URL for a github repository (including "github.com")
+#' @param repo (character) full URL for a GitHub repository (including "github.com")
 #' @param folder (NULL/character) either `NULL` or the name of the folder to list. If `NULL`, the top-level contents of the repository will be listed
 #' 
 #' @return (dataframe) two-column dataframe including (1) the names of the contents and (2) the type of each content item (e.g., file/directory/etc.)
@@ -66,7 +66,7 @@ github_ls_single <- function(repo = NULL, folder = NULL){
 #' 
 #' @description Accepts a GitHub repository URL and identifies all files in the specified folder. If no folder is specified, lists top-level repository contents. Recursive listing of sub-folders is supported by an additional argument. This function only works on repositories (public or private) to which you have access.
 #' 
-#' @param repo (character) full URL for a github repository (including "github.com")
+#' @param repo (character) full URL for a GitHub repository (including "github.com")
 #' @param folder (NULL/character) either `NULL` or the name of the folder to list. If `NULL`, the top-level contents of the repository will be listed
 #' @param recursive (logical) whether to recursively list contents (i.e., list contents of sub-folders identified within previously identified sub-folders)
 #' @param quiet (logical) whether to print an informative message as the contents of each folder is being listed

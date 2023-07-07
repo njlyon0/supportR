@@ -129,7 +129,7 @@ Another date column quality control function is `date_format_guess`. This This f
 
 It can make a more informed guess if there is a grouping column because it can use the frequency of the "date" entries within those groups to guess whether a given number is the day or the month. This is based on the assumption that sampling occurs more often within months than across them so the number that occurs in more rows within the grouping values is most likely month.
 
-Recognizing that assumption may be uncomfortable for some users, the `groups` argument can be set to `FALSE` and it will do the clearer judgement calls (i.e., if a number is >12 it is day, etc.). Note that dates that cannot be guessed by my function will return "FORMAT UNCERTAIN" so that you can handle them using your knowledge of the system (or by returning to your raw data if need be).
+Recognizing that assumption may be uncomfortable for some users, the `groups` argument can be set to `FALSE` and it will do the clearer judgment calls (i.e., if a number is >12 it is day, etc.). Note that dates that cannot be guessed by my function will return "FORMAT UNCERTAIN" so that you can handle them using your knowledge of the system (or by returning to your raw data if need be).
 
 ```{r date_format_guess}
 # Make a dataframe with dates in various formats and a grouping column
@@ -209,7 +209,7 @@ supportR::nms_ord(mod = mds, groupcol = data$factor_4lvl,
 
 ### Operations Outside of R
 
-Finally, I've written several functions that allow you to interact with APIs outside of R via R functions with hopefully more comfortable syntax. Because these functions rely on user credentials, they cannot be run non-interactively (as in a CRAN submission) so the following code chunks are not evaluated and are included as examples of the proper syntax for your refernece.
+Finally, I've written several functions that allow you to interact with APIs outside of R via R functions with hopefully more comfortable syntax. Because these functions rely on user credentials, they cannot be run non-interactively (as in a CRAN submission) so the following code chunks are not evaluated and are included as examples of the proper syntax for your reference.
 
 For GitHub users, I've developed two related functions: `github_ls` and `github_tree`. `github_ls` accepts the URL to a GitHub repository to which you have access (public or private). It creates a dataframe of that repository's contents including their names, types, and full paths within the repository. Listing of a particular folder and recursive listing of all nested subfolders within a repository are both supported via additional arguments.
 
@@ -225,9 +225,9 @@ supportR::github_ls(repo = "https://github.com/njlyon0/supportR", folder = "R",
                     recursive = FALSE, quiet = TRUE)
 ```
 
-`github_tree` is an extension of `github_ls` that identifies all files in a repository and creates a file tree diagram of that folder structure that is simple and human-readable. Unlike `github_ls`, `github_tree` only supports recursive identification of all files beginning at the top level of the repository. It does however allow users to exclude the listings of particular folders by specfiying their names in the `exclude` argument.
+`github_tree` is an extension of `github_ls` that identifies all files in a repository and creates a file tree diagram of that folder structure that is simple and human-readable. Unlike `github_ls`, `github_tree` only supports recursive identification of all files beginning at the top level of the repository. It does however allow users to exclude the listings of particular folders by specifying their names in the `exclude` argument.
 
-I think this could be particularly useful to embed in a repository's `README.Rmd` to create a quick-and-easy file map for visitors to use as a guide in navigating the repo's contents.
+I think this could be particularly useful to embed in a repository's `README.Rmd` to create a quick-and-easy file map for visitors to use as a guide in navigating the repository's contents.
 
 ```{r github_tree, eval = F}
 # Create a file tree diagram of a GitHub repository
