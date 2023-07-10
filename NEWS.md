@@ -2,6 +2,8 @@
 
 Development version of `supportR`. Changes from preceding version will be listed here as they are made.
 
+- New function: `name_vec`. Creates a named vector of specified contents and names
+
 # supportR Version 1.1.0
 
 Changes from preceding version are listed below
