@@ -4,12 +4,12 @@
 \alias{github_tree}
 \title{Create File Tree of a GitHub Repository}
 \usage{
-github_tree(repo = NULL, exclude = c("docs"), quiet = FALSE)
+github_tree(repo = NULL, exclude = NULL, quiet = FALSE)
 }
 \arguments{
 \item{repo}{(character) full URL for a github repository (including "github.com")}
 
-\item{exclude}{(character) vector of folder names to exclude from the file tree (defaults to "docs" folder)}
+\item{exclude}{(character) vector of folder names to exclude from the file tree. If \code{NULL} (the default) no folders are excluded}
 
 \item{quiet}{(logical) whether to print an informative message as the contents of each folder is being listed and as the tree is prepared from that information}
 }
