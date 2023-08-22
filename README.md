@@ -59,12 +59,9 @@ devtools::install_github("njlyon0/supportR")
   dataframes to compare index column contents or to ensure no columns
   are unexpectedly lost during complex wrangling operations
 
-- **`num_check`**: Checks a column that *should* contain only
+- **`num_check`**: Checks column(s) that *should* contain only
   **numeric** values for any entries that would be coerced to NA if
   `as.numeric` is run
-
-  - An extension of this function is **`multi_num_check`** that accepts
-    a vector of columns to check at the same time
 
 - **`date_check`**: Checks a column that *should* contain only **date**
   values for any entries that would be coerced to NA if `as.Date` is run
