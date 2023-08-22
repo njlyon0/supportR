@@ -2,27 +2,30 @@
 % Please edit documentation in R/date_check.R
 \name{date_check}
 \alias{date_check}
-\title{Check a Column for Non-Dates}
+\title{Check Columns for Non-Dates}
 \usage{
 date_check(data = NULL, col = NULL)
 }
 \arguments{
 \item{data}{(dataframe) object containing at least one column of supposed dates}
 
-\item{col}{(character or numeric) name or column number of the column containing putative dates in the data object}
+\item{col}{(character or numeric) name(s) or column number(s) of the column(s) containing putative dates in the data object}
 }
 \value{
-(character) vector of malformed dates
+(list) malformed dates from each supplied column in separate list elements
 }
 \description{
-Any elements in the column that would be changed to NA if \code{as.Date} is used on the column are returned. This is useful for quickly identifying only the "problem" entries of an ostensibly date column that is read in as a character.
+Identifies any elements in the column(s) that would be changed to NA if \code{as.Date} is used on the column(s). This is useful for quickly identifying only the "problem" entries of ostensibly date column(s) that is/are read in as a character.
 }
 \examples{
-# Let's create some data that will be useful in demoing this function
 loc <- c("LTR", "GIL", "PYN", "RIN")
 time <- c('2021-01-01', '2021-01-0w', '1990', '2020-10-xx')
-sites <- data.frame('site' = loc, 'visit' = time)
+time2 <- c('1880-08-08', '2021-01-02', '1992', '2049-11-01')
+time3 <- c('2022-10-31', 'tomorrow', '1993', NA)
 
-# Now we can use our function to identify bad dates
-date_check(data = sites, col = 'visit')
+# Assemble our vectors into a dataframe
+sites <- data.frame('site' = loc, 'first_visit' = time, "second" = time2, "third" = time3)
+
+# Use `date_check()` to return only the entries that would be lost
+date_check(data = sites, col = c("first_visit", "second", "third"))
 }
