@@ -123,7 +123,7 @@ sites <- data.frame('site' = c("LTR", "GIL", "PYN", "RIN"),
 supportR::date_check(data = sites, col = 'visit')
 ```
 
-Both `num_check` and `date_check` have an expanded version (`multi_num_check` and `multi_date_check` respectively) that uses a `col_vec` argument instead of `col`. `col_vec` accepts a vector of column names and checks all of those columns for non-numbers or bad dates.
+Both `num_check` and `date_check` can accept multiple column names to the `col` argument (as of version 1.1.1) and all columns are checked separately.
 
 Another date column quality control function is `date_format_guess`. This This function checks a column of dates (stored as characters!) and tries to guess the format of the date (i.e., month/day/year, day/month/year, etc.).
 

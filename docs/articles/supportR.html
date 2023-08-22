@@ -246,12 +246,9 @@ thing.</p>
 <span><span class="co"># Now we can use our function to identify bad dates</span></span>
 <span><span class="fu">supportR</span><span class="fu">::</span><span class="fu"><a href="../reference/date_check.html">date_check</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">sites</span>, col <span class="op">=</span> <span class="st">'visit'</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "2021-01-0w" "1990"       "2020-10-xx"</span></span></code></pre></div>
-<p>Both <code>num_check</code> and <code>date_check</code> have an
-expanded version (<code>multi_num_check</code> and
-<code>multi_date_check</code> respectively) that uses a
-<code>col_vec</code> argument instead of <code>col</code>.
-<code>col_vec</code> accepts a vector of column names and checks all of
-those columns for non-numbers or bad dates.</p>
+<p>Both <code>num_check</code> and <code>date_check</code> can accept
+multiple column names to the <code>col</code> argument (as of version
+1.1.1) and all columns are checked separately.</p>
 <p>Another date column quality control function is
 <code>date_format_guess</code>. This This function checks a column of
 dates (stored as characters!) and tries to guess the format of the date
