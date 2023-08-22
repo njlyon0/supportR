@@ -26,8 +26,7 @@
 multi_num_check <- function(data = NULL, col_vec = NULL){
   
   # Add deprecation message
-  lifecycle::deprecate_warn(when = "1.1.1", what = "multi_num_check()",
-                            with = "num_check()")
+  lifecycle::deprecate_warn(when = "1.1.1", what = "multi_num_check()", with = "num_check()")
   
   # Invoke `num_check` instead
   num_check(data = data, col = col_vec)

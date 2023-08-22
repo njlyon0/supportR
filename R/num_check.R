@@ -1,6 +1,6 @@
-#' @title Check a Column for Non-Numbers
+#' @title Check Columns for Non-Numbers
 #' 
-#' @description Any elements in the column(s) that would be changed to NA if `as.numeric` is used on the column(s) are returned. This is useful for quickly identifying only the "problem" entries of an ostensibly numeric column that is read in as a character.
+#' @description Identifies any elements in the column(s) that would be changed to NA if `as.numeric` is used on the column(s). This is useful for quickly identifying only the "problem" entries of ostensibly numeric column(s) that is/are read in as a character.
 #'
 #' @param data (dataframe) object containing at least one column of supposed dates
 #' @param col (character or numeric) name(s) or column number(s) of the column(s) containing putative dates in the data object

@@ -2,7 +2,7 @@
 % Please edit documentation in R/num_check.R
 \name{num_check}
 \alias{num_check}
-\title{Check a Column for Non-Numbers}
+\title{Check Columns for Non-Numbers}
 \usage{
 num_check(data = NULL, col = NULL)
 }
@@ -15,7 +15,7 @@ num_check(data = NULL, col = NULL)
 (list) malformed numbers from each supplied column in separate list elements
 }
 \description{
-Any elements in the column(s) that would be changed to NA if \code{as.numeric} is used on the column(s) are returned. This is useful for quickly identifying only the "problem" entries of an ostensibly numeric column that is read in as a character.
+Identifies any elements in the column(s) that would be changed to NA if \code{as.numeric} is used on the column(s). This is useful for quickly identifying only the "problem" entries of ostensibly numeric column(s) that is/are read in as a character.
 }
 \examples{
 # Create dataframe with a numeric column where some entries would be coerced into NA
