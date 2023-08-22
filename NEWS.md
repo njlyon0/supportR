@@ -1,6 +1,6 @@
-# supportR Version 1.1.0.900
+# supportR Version 1.2.0
 
-Development version of `supportR`. Changes from preceding version will be listed here as they are made.
+Changes from preceding version are listed below
 
 - New function: `name_vec`. Creates a named vector of specified contents and names
 - `github_tree` now supports excluding no directories from the folder tree (this is the default behavior now)
