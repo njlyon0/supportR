@@ -5,7 +5,9 @@ Development version of `supportR`. Changes from preceding version will be listed
 - New function: `name_vec`. Creates a named vector of specified contents and names
 - `github_tree` now supports excluding no directories from the folder tree (this is the default behavior now)
 - New function behavior: `num_check` now accepts multiple column names/numbers to its `col` argument
+- New function behavior: `date_check` now accepts multiple column names/numbers to its `col` argument
 - Deprecated function: `multi_num_check` is now deprecated (with a warning) because it is a special case of `num_check`
+- Deprecated function: `multi_date_check` is now deprecated (with a warning) because it is a special case of `date_check`
 
 # supportR Version 1.1.0
 

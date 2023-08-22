@@ -95,12 +95,7 @@
 <ul>
 <li><p><strong><code>diff_check</code></strong>: Compares two vectors and identifies what elements are found in the first but not the second (i.e., <em>lost</em> components) and what elements are found in the second but not the first (i.e., <em>gained</em> components). Extremely useful prior to <code>join</code>ing two dataframes to compare index column contents or to ensure no columns are unexpectedly lost during complex wrangling operations</p></li>
 <li><p><strong><code>num_check</code></strong>: Checks column(s) that <em>should</em> contain only <strong>numeric</strong> values for any entries that would be coerced to NA if <code>as.numeric</code> is run</p></li>
-<li>
-<p><strong><code>date_check</code></strong>: Checks a column that <em>should</em> contain only <strong>date</strong> values for any entries that would be coerced to NA if <code>as.Date</code> is run</p>
-<ul>
-<li>An extension of this function is <strong><code>multi_date_check</code></strong> that accepts a vector of columns to check at the same time</li>
-</ul>
-</li>
+<li><p><strong><code>date_check</code></strong>: Checks column(s) that <em>should</em> contain only <strong>date</strong> values for any entries that would be coerced to NA if <code>as.Date</code> is run</p></li>
 <li><p><strong><code>date_format_guess</code></strong>: Checks a column containing multiple ambiguous date formats and identifies its best guess for the format each date is in (e.g., ‘dd/mm/yyyy’ versus ‘yyyy/dd/mm’, etc.)</p></li>
 </ul>
 </div>

@@ -44,12 +44,10 @@ devtools::install_github("njlyon0/supportR")
 
 - **`diff_check`**: Compares two vectors and identifies what elements are found in the first but not the second (i.e., *lost* components) and what elements are found in the second but not the first (i.e., *gained* components). Extremely useful prior to `join`ing two dataframes to compare index column contents or to ensure no columns are unexpectedly lost during complex wrangling operations
 
-- **`num_check`**: Checks column(s) that *should* contain only **numeric** values for any entries that would be coerced to NA if `as.numeric` is run
+- **`num_check`**: Checks column(s) that _should_ contain only **numeric** values for any entries that would be coerced to NA if `as.numeric` is run
 
-- **`date_check`**: Checks a column that *should* contain only **date** values for any entries that would be coerced to NA if `as.Date` is run
+- **`date_check`**: Checks column(s) that _should_ contain only **date** values for any entries that would be coerced to NA if `as.Date` is run
 
-    - An extension of this function is **`multi_date_check`** that accepts a vector of columns to check at the same time
-    
 - **`date_format_guess`**: Checks a column containing multiple ambiguous date formats and identifies its best guess for the format each date is in (e.g., 'dd/mm/yyyy' versus 'yyyy/dd/mm', etc.)
 
 ### Visualization & Graphics

@@ -63,11 +63,8 @@ devtools::install_github("njlyon0/supportR")
   **numeric** values for any entries that would be coerced to NA if
   `as.numeric` is run
 
-- **`date_check`**: Checks a column that *should* contain only **date**
+- **`date_check`**: Checks column(s) that *should* contain only **date**
   values for any entries that would be coerced to NA if `as.Date` is run
-
-  - An extension of this function is **`multi_date_check`** that accepts
-    a vector of columns to check at the same time
 
 - **`date_format_guess`**: Checks a column containing multiple ambiguous
   date formats and identifies its best guess for the format each date is

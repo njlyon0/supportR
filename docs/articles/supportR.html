@@ -245,6 +245,8 @@ thing.</p>
 <span></span>
 <span><span class="co"># Now we can use our function to identify bad dates</span></span>
 <span><span class="fu">supportR</span><span class="fu">::</span><span class="fu"><a href="../reference/date_check.html">date_check</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">sites</span>, col <span class="op">=</span> <span class="st">'visit'</span><span class="op">)</span></span>
+<span><span class="co">#&gt; For 'visit', 3 non-dates identified: '2021-01-0w' | '1990' | '2020-10-xx'</span></span>
+<span><span class="co">#&gt; $visit</span></span>
 <span><span class="co">#&gt; [1] "2021-01-0w" "1990"       "2020-10-xx"</span></span></code></pre></div>
 <p>Both <code>num_check</code> and <code>date_check</code> can accept
 multiple column names to the <code>col</code> argument (as of version
