@@ -7,9 +7,9 @@
 num_check(data = NULL, col = NULL)
 }
 \arguments{
-\item{data}{(dataframe) object containing at least one column of supposed dates}
+\item{data}{(dataframe) object containing at least one column of supposed numbers}
 
-\item{col}{(character or numeric) name(s) or column number(s) of the column(s) containing putative dates in the data object}
+\item{col}{(character or numeric) name(s) or column number(s) of the column(s) containing putative numbers in the data object}
 }
 \value{
 (list) malformed numbers from each supplied column in separate list elements
