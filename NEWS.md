@@ -2,6 +2,8 @@
 
 Development version of supportR. Changes are listed below as they are made
 
+- New function: `force_num`. Coerces a vector to numeric and automatically silences any warnings due to coercing values to NA
+
 # supportR Version 1.2.0
 
 Changes from preceding version are listed below
