@@ -1,47 +1,23 @@
-## --------------------------------------------- ##
-# Safely Rename Columns
-## --------------------------------------------- ##
-
-# PURPOSE:
-## Safely rename columns via a function
-## Alternative (unsafe) is something like:
-### `names(df)[1] <- c("x")`
-
-## ----------------------------- ##
-# Housekeeping ----
-## ----------------------------- ##
-
-# Load libraries
-librarian::shelf(tidyverse, supportR)
-
-# Clear environment
-rm(list = ls())
-
-## ----------------------------- ##
-# Testing Arena ----
-## ----------------------------- ##
-
-# Make a dataframe
-(df <- data.frame("first" = 1:3,
-                  "middle" = 4:6,
-                  "second" = 7:9))
-
-# Duplicate to test various renaming approaches
-df4 <- df3 <- df2 <- df
-
-# Rename in base R / unsafe manner
-names(df2)[1] <- "number_one"
-df2
-
-# Safe-r method
-## ID bad name
-bad_name <- c("first", "second")
-
-## Match and replace it in the names vector
-names(df3)[names(df3) %in% bad_name] <- c("safe_first", "safe_second")
-df3
-
-# Function-style exploration
+#' @title Safely Rename Columns in a Dataframe
+#' 
+#' @description Replaces specified column names with user-defined vector of new column name(s). This operation is done "safely" because it specifically matches each 'bad' name with its corresponding 'good' name and thus minimizes the risk of accidentally replacing the wrong column name.
+#' 
+#' @param data (dataframe or dataframe-like) object with column names that match the values passed to the `bad_names` argument
+#' @param bad_names (character) vector of column names to replace in original data object. Order does not need to match data column order but *must* match the `good_names` vector order
+#' @param good_names (character) vector of column names to use as replacements for data object. Order does not need to match data column order but *must* match the `good_names` vector order
+#' 
+#' @return (dataframe or dataframe-like) with renamed columns
+#' 
+#' @export
+#' 
+#' @examples
+#' # Make a dataframe to demonstrate
+#' df <- data.frame("first" = 1:3, "middle" = 4:6, "second" = 7:9)
+#' 
+#' # Invoke the function
+#' safe_rename(data = df, bad_names = c("second", "middle"),
+#'             good_names = c("third", "second"))
+#' 
 safe_rename <- function(data = NULL, bad_names = NULL, good_names = NULL){
   
   # Error out if any arguments are missing
@@ -78,11 +54,3 @@ safe_rename <- function(data = NULL, bad_names = NULL, good_names = NULL){
   
   # Return the renamed data object
   return(renamed_data) }
-
-# Invoke function
-safe_rename(data = df4, 
-            bad_names = c("second", "middle"), 
-            good_names = c("third", "second"))
-
-
-# End ----
