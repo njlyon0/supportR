@@ -71,7 +71,7 @@ safe_rename <- function(data = NULL, bad_names = NULL, good_names = NULL){
   return(renamed_data) }
 
 # Invoke function
-
+safe_rename(data = df4, bad_names = c("second", "middle"), good_names = c("third", "second"))
 
 
 # End ----
