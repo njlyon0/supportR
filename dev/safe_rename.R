@@ -21,6 +21,19 @@ rm(list = ls())
 # Testing Arena ----
 ## ----------------------------- ##
 
+# Make a dataframe
+(df <- data.frame("first" = 1:3,
+                  "second" = 7:9))
+
+# Duplicate to test various renaming approaches
+df3 <- df2 <- df
+
+# Rename in base R / unsafe manner
+names(df2)[1] <- "number_one"
+df2
+
+
+
 
 
 
