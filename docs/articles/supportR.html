@@ -140,13 +140,30 @@ you’d like to retain for the mean, SD, and SE.</p>
 <span><span class="co">#&gt; 3    Adelie Torgersen 38.95    3.03          52      0.42</span></span>
 <span><span class="co">#&gt; 4 Chinstrap     Dream 48.83    3.34          68      0.41</span></span>
 <span><span class="co">#&gt; 5    Gentoo    Biscoe 47.50    3.08         124      0.28</span></span></code></pre></div>
+<p>The <code>safe_rename</code> function allows–perhaps
+predicatably–“safe” renaming of column names in a given data object. The
+‘bad’ column names and corresponding ‘good’ names must be specified. The
+order of entries in the two vectors must match (i.e., the first bad name
+will be replaced with the first good name), but that order need not
+match the order in which they occur in the data!</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Make a dataframe to demonstrate</span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="st">"first"</span> <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, <span class="st">"middle"</span> <span class="op">=</span> <span class="fl">4</span><span class="op">:</span><span class="fl">6</span>, <span class="st">"second"</span> <span class="op">=</span> <span class="fl">7</span><span class="op">:</span><span class="fl">9</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Invoke the function</span></span>
+<span><span class="fu"><a href="../reference/safe_rename.html">safe_rename</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">df</span>, bad_names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"second"</span>, <span class="st">"middle"</span><span class="op">)</span>,</span>
+<span>            good_names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"third"</span>, <span class="st">"second"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   first second third</span></span>
+<span><span class="co">#&gt; 1     1      4     7</span></span>
+<span><span class="co">#&gt; 2     2      5     8</span></span>
+<span><span class="co">#&gt; 3     3      6     9</span></span></code></pre></div>
 <p><code>crop_tri</code> allows dropping one “triangle” of a symmetric
 dataframe / matrix. It also includes a <code>drop_diag</code> argument
 that accepts a logical for whether to drop the diagonal of the data
 object. This is primarily useful (I find) in allowing piping through
 this function as opposed to using the base R notation for removing a
 triangle of a symmetric data object.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Define a simple matrix wtih symmetric dimensions</span></span>
 <span><span class="va">mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, <span class="fl">2</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span>, nrow <span class="op">=</span> <span class="fl">2</span>, ncol <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
 <span></span>
@@ -165,7 +182,7 @@ triangle of a symmetric data object.</p>
 X, Y, and Z into a dataframe containing columns “x”, “y”, “z”, and
 “value” where “value” is whatever was stored at those coordinates in the
 array.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Make data to fill the array</span></span>
 <span><span class="va">vec1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">9</span>, <span class="fl">3</span><span class="op">)</span></span>
 <span><span class="va">vec2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span><span class="op">:</span><span class="fl">15</span><span class="op">)</span></span>
@@ -206,7 +223,7 @@ lengthy <code>tidyverse</code>-style pipes (<code>%&gt;%</code>).</p>
 <code>sort</code> and <code>return</code> that will respectively either
 sort the difference in both vectors and return a two-element if set to
 <code>TRUE</code>.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Make two vectors</span></span>
 <span><span class="va">vec1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"x"</span>, <span class="st">"a"</span>, <span class="st">"b"</span><span class="op">)</span></span>
 <span><span class="va">vec2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"y"</span>, <span class="st">"z"</span>, <span class="st">"a"</span><span class="op">)</span></span>
@@ -229,7 +246,7 @@ these non-numbers are identified you can handle that in whatever way you
 feel is most appropriate. <code>num_check</code> is intended only to
 flag these for your attention, <em>not</em> to attempt a fix using a
 method you may or may not support.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Make a dataframe with non-numbers in a number column</span></span>
 <span><span class="va">fish</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="st">'species'</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'salmon'</span>, <span class="st">'bass'</span>, <span class="st">'halibut'</span>, <span class="st">'eel'</span><span class="op">)</span>,</span>
 <span>                   <span class="st">'count'</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="st">'14x'</span>, <span class="st">'_23'</span>, <span class="fl">12</span><span class="op">)</span><span class="op">)</span></span>
@@ -245,7 +262,7 @@ column for entries that would be coerced to <code>NA</code> by
 formatted <code>as.Date</code> will throw an error instead of coercing
 to <code>NA</code> so <code>date_check</code> will do the same
 thing.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Make a dataframe including malformed dates</span></span>
 <span><span class="va">sites</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="st">'site'</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"LTR"</span>, <span class="st">"GIL"</span>, <span class="st">"PYN"</span>, <span class="st">"RIN"</span><span class="op">)</span>,</span>
 <span>                    <span class="st">'visit'</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'2021-01-01'</span>, <span class="st">'2021-01-0w'</span>, <span class="st">'1990'</span>, <span class="st">'2020-10-xx'</span><span class="op">)</span><span class="op">)</span></span>
@@ -275,7 +292,7 @@ day, etc.). Note that dates that cannot be guessed by my function will
 return “FORMAT UNCERTAIN” so that you can handle them using your
 knowledge of the system (or by returning to your raw data if need
 be).</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Make a dataframe with dates in various formats and a grouping column</span></span>
 <span><span class="va">my_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="st">'data_enterer'</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'person A'</span>, <span class="st">'person B'</span>,</span>
 <span>                                       <span class="st">'person B'</span>, <span class="st">'person B'</span>,</span>
@@ -328,7 +345,7 @@ preferences!</p>
 <li>Makes axes’ lines black</li>
 <li>Increases the font size of the axes titles and tick labels</li>
 </ul>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Load ggplot2</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
 <span></span>
@@ -336,7 +353,7 @@ preferences!</p>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">penguins</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">species</span>, y <span class="op">=</span> <span class="va">body_mass_g</span>, fill <span class="op">=</span> <span class="va">species</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html" class="external-link">geom_boxplot</a></span><span class="op">(</span>outlier.shape <span class="op">=</span> <span class="fl">24</span><span class="op">)</span></span></code></pre></div>
 <p><img src="supportR_files/figure-html/theme_lyon-1.png" width="480"></p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="co"># Compare with the same plot with my theme</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">penguins</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">species</span>, y <span class="op">=</span> <span class="va">body_mass_g</span>, fill <span class="op">=</span> <span class="va">species</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -346,7 +363,7 @@ preferences!</p>
 <p>I’ve also created <code>nms_ord</code> and <code>pcoa_ord</code> for
 Non-Metric Multi-Dimensional Scaling (NMS) &amp; Principal Coordinates
 Analysis (PCoA) Ordinations respectively.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Load data from the `vegan` package</span></span>
 <span><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"varespec"</span>, package <span class="op">=</span> <span class="st">'vegan'</span><span class="op">)</span></span>
 <span><span class="va">resp</span> <span class="op">&lt;-</span> <span class="va">varespec</span></span>
@@ -392,7 +409,7 @@ listing of all nested subfolders within a repository are both supported
 via additional arguments.</p>
 <p>If the <code>folder</code> argument is set to <code>NULL</code> (the
 default) the top level of the repository is listed.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># List all files in a GitHub repository</span></span>
 <span><span class="fu">supportR</span><span class="fu">::</span><span class="fu"><a href="../reference/github_ls.html">github_ls</a></span><span class="op">(</span>repo <span class="op">=</span> <span class="st">"https://github.com/njlyon0/supportR"</span>,</span>
 <span>                    recursive <span class="op">=</span> <span class="cn">TRUE</span>, quiet <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
@@ -411,9 +428,9 @@ argument.</p>
 <p>I think this could be particularly useful to embed in a repository’s
 <code>README.Rmd</code> to create a quick-and-easy file map for visitors
 to use as a guide in navigating the repository’s contents.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="co"># Create a file tree diagram of a GitHub repository</span></span>
-<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>supportR<span class="sc">::</span><span class="fu">github_tree</span>(<span class="at">repo =</span> <span class="at">repo =</span> <span class="st">"https://github.com/njlyon0/supportR"</span>,</span>
-<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a>                      <span class="at">exclude =</span> <span class="fu">c</span>(<span class="st">"docs"</span>, <span class="st">"man"</span>, <span class="st">".github"</span>), <span class="at">quiet =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="co"># Create a file tree diagram of a GitHub repository</span></span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a>supportR<span class="sc">::</span><span class="fu">github_tree</span>(<span class="at">repo =</span> <span class="at">repo =</span> <span class="st">"https://github.com/njlyon0/supportR"</span>,</span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a>                      <span class="at">exclude =</span> <span class="fu">c</span>(<span class="st">"docs"</span>, <span class="st">"man"</span>, <span class="st">".github"</span>), <span class="at">quiet =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <p>For users who create RMarkdown reports and want to store them in a
 Google Drive folder, <code>rmd_export</code> knits and exports a given R
 Markdown file both locally and to a user-designated Google Drive folder.
@@ -423,7 +440,7 @@ access the Drive folder you supply. I recommend running
 <code><a href="https://googledrive.tidyverse.org/reference/drive_auth.html" class="external-link">googledrive::drive_auth()</a></code> and doing the authentication
 “dance” in a browser before using <code>rmd_export</code> to reduce the
 chances of any errors.</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Authorize R to interact with GoogleDrive</span></span>
 <span><span class="fu">googledrive</span><span class="fu">::</span><span class="fu"><a href="https://googledrive.tidyverse.org/reference/drive_auth.html" class="external-link">drive_auth</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
