@@ -41,58 +41,36 @@ bad_name <- c("first", "second")
 names(df3)[names(df3) %in% bad_name] <- c("safe_first", "safe_second")
 df3
 
-
 # Function-style exploration
 safe_rename <- function(data = NULL, bad_names = NULL, good_names = NULL){
   
   # Error out if any arguments are missing
-  
+  if(any(is.null(data) | is.null(bad_names) | is.null(good_names)) == TRUE)
+    stop("All arguments must be specified")
   
   # Error out if a different number of bad names and good names
   if(length(bad_names) != length(good_names))
     stop("Must provide same number of replacement column names as names to be replaced")
   
   # Error out if good names are not characters
-  if(is.character(good_names) != TRUE)
-    stop("Replacement column names must be provided as a character")
+  if(is.character(bad_names) != TRUE |
+     is.character(good_names) != TRUE)
+    stop("Column names (bad and good) must be provided as characters")
   
-  # Error out if bad names are not either numbers or characters
-  if(is.character(bad_names) != TRUE & is.numeric(bad_names) != TRUE)
-    stop("`bad_names` must be either a character or a number")
+  # Error out if not all "bad_names" are found in the data
+  if(all(bad_names %in% names(data)) != TRUE)
+    stop("Not all `bad_names` found in data")
   
   # Duplicate data
   renamed_data <- data
   
-  # Number variant
-  if(is.numeric(bad_names) == TRUE){
-    
-    # Error out if numbers reference positions that don't exist
-    if(max(bad_names, na.rm = TRUE) > length(names(data)))
-      stop("Invalid column positions specified")
-    
-    # Replace names
-    names()
-    
-    
-    
-    
-  } # Close 'bad names are NUMBERS' conditional
-  
-  # Character variant
-  if(is.character(bad_names) == TRUE){
-    
-    # Error out if not all "bad_names" are found in the data
-    if(all(bad_names %in% names(data)) != TRUE)
-      stop("Not all `bad_names` found in data")
-    
-    # Replace names (safely)
-    names(renamed_data)[names(renamed_data) %in% bad_names] <- good_names
-    
-  } # Close 'bad names are CHARACTERS' conditional
+  # Replace names (safely)
+  names(renamed_data)[names(renamed_data) %in% bad_names] <- good_names
   
   # Return the renamed data object
   return(renamed_data) }
 
+# Invoke function
 
 
 
