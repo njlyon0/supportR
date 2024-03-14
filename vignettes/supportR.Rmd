@@ -49,8 +49,18 @@ supportR::summary_table(data = penguins, groups = c("species", "island"),
                         response = "bill_length_mm", drop_na = T)
 ```
 
-`crop_tri` allows dropping one "triangle" of a symmetric dataframe / matrix. It also includes a `drop_diag` argument that accepts a logical for whether to drop the diagonal of the data object. This is primarily useful (I find) in allowing piping through this function as opposed to using the base R notation for removing a triangle of a symmetric data object.
+The `safe_rename` function allows--perhaps predicatably--"safe" renaming of column names in a given data object. The 'bad' column names and corresponding 'good' names must be specified. The order of entries in the two vectors must match (i.e., the first bad name will be replaced with the first good name), but that order need not match the order in which they occur in the data!
 
+```{r safe-rename}
+# Make a dataframe to demonstrate
+df <- data.frame("first" = 1:3, "middle" = 4:6, "second" = 7:9)
+
+# Invoke the function
+safe_rename(data = df, bad_names = c("second", "middle"),
+            good_names = c("third", "second"))
+```
+
+`crop_tri` allows dropping one "triangle" of a symmetric dataframe / matrix. It also includes a `drop_diag` argument that accepts a logical for whether to drop the diagonal of the data object. This is primarily useful (I find) in allowing piping through this function as opposed to using the base R notation for removing a triangle of a symmetric data object.
 
 ```{r crop_tri}
 # Define a simple matrix wtih symmetric dimensions
