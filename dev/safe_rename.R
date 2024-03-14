@@ -64,14 +64,25 @@ safe_rename <- function(data = NULL, bad_names = NULL, good_names = NULL){
   # Duplicate data
   renamed_data <- data
   
-  # Replace names (safely)
-  names(renamed_data)[names(renamed_data) %in% bad_names] <- good_names
+  # Loop across provided bad names
+  for(k in 1:length(bad_names)){
+    
+    # Identify single bad name and corresponding good name
+    single_bad <- bad_names[k]
+    single_good <- good_names[k]
+    
+    # Replace that bad name
+    names(renamed_data)[names(renamed_data) == single_bad] <- single_good
+    
+  } # Close loop
   
   # Return the renamed data object
   return(renamed_data) }
 
 # Invoke function
-safe_rename(data = df4, bad_names = c("second", "middle"), good_names = c("third", "second"))
+safe_rename(data = df4, 
+            bad_names = c("second", "middle"), 
+            good_names = c("third", "second"))
 
 
 # End ----
