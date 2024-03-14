@@ -34,6 +34,8 @@ devtools::install_github("njlyon0/supportR")
 
 - **`summary_table`**: Calculates summary values (mean, standard deviation, sample size, and standard error) of a given response variable within supplied groups
 
+- **`safe_rename`**: Renames columns in a given dataframe by matching 'bad' names with 'good' names
+
 - **`crop_tri`**: Removes the specified "triangle" (either upper or lower) of a symmetric data object by replacing with NAs. Also allows user to specify whether to keep or also drop the diagonal
 
 - **`name_vec`**: Creates a named vector of specified contents and names. Useful when creating named vectors that are too long to create manually or when creating the vector and then naming it is cumbersome

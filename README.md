@@ -38,6 +38,9 @@ devtools::install_github("njlyon0/supportR")
   deviation, sample size, and standard error) of a given response
   variable within supplied groups
 
+- **`safe_rename`**: Renames columns in a given dataframe by matching
+  ‘bad’ names with ‘good’ names
+
 - **`crop_tri`**: Removes the specified “triangle” (either upper or
   lower) of a symmetric data object by replacing with NAs. Also allows
   user to specify whether to keep or also drop the diagonal
