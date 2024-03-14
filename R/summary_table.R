@@ -8,7 +8,7 @@
 #' @param drop_na (logical) whether to drop NAs in grouping variables. Defaults to FALSE
 #' @param round_digits (numeric) number of digits to which mean, standard deviation, and standard error should be rounded
 #'
-#' @return (dataframe) summary table containing the mean, standard deviation, sample size, and standard error of the supplied response variable)
+#' @return (dataframe) summary table containing the mean, standard deviation, sample size, and standard error of the supplied response variable
 #'
 #' @importFrom magrittr %>%
 #' @export

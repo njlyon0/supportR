@@ -62,6 +62,5 @@ rmd_export <- function(rmd = NULL, out_path = getwd(), out_name = NULL, out_type
 
     # Upload knit file to desired location
     googledrive::drive_upload(media = file.path(out_path, out_name),
-                              path = id, overwrite = TRUE)
-}
+                              path = id, overwrite = TRUE) }
 

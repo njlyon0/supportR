@@ -9,7 +9,7 @@ name_vec(content, name)
 \arguments{
 \item{content}{(vector) content of vector}
 
-\item{name}{(vector) names to assign to vector (must be in same order )}
+\item{name}{(vector) names to assign to vector (must be in same order)}
 }
 \value{
 (named vector) vector with contents from the \code{content} argument and names from the \code{name} argument

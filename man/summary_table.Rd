@@ -24,7 +24,7 @@ summary_table(
 \item{round_digits}{(numeric) number of digits to which mean, standard deviation, and standard error should be rounded}
 }
 \value{
-(dataframe) summary table containing the mean, standard deviation, sample size, and standard error of the supplied response variable)
+(dataframe) summary table containing the mean, standard deviation, sample size, and standard error of the supplied response variable
 }
 \description{
 Calculates mean, standard deviation, sample size, and standard error of a given response variable within user-defined grouping variables. This is meant as a convenience instead of doing \code{dplyr::group_by} followed by \code{dplyr::summarize} iteratively themselves.

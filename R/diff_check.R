@@ -7,7 +7,7 @@
 #' @param sort (logical) whether to sort the difference between the two vectors
 #' @param return (logical) whether to return the two vectors as a 2-element list
 #'
-#' @return No return value (unless `return = T`), called for side effects. If `return = T`, returns a two-element list
+#' @return No return value (unless `return = TRUE`), called for side effects. If `return = TRUE`, returns a two-element list
 #'
 #' @export
 #'
