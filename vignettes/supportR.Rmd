@@ -13,8 +13,7 @@ knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
 ```
 
 ```{r pre-setup, echo = FALSE, message = FALSE}
-# devtools::install_github("njlyon0/supportR")
-devtools::load_all()
+# devtools::install_github("njlyon0/supportR", force = TRUE)
 ```
 
 ## Overview
