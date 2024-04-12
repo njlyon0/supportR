@@ -17,6 +17,8 @@
 #' }
 #' 
 tabularize_md <- function(file = NULL){
+  # Handle no visible bindings note
+  . <- info <- level <- text <- type <- NULL
   
   # Error out if file isn't specified
   if(is.null(file) == TRUE)
@@ -39,7 +41,7 @@ tabularize_md <- function(file = NULL){
   
   # Remove empty entries
   ## Empty entries in this vector are blank lines in markdown file
-  md_v1 <- generics::setdiff(x = md_v0, y = "")
+  md_v1 <- base::setdiff(x = md_v0, y = "")
 
   # Make into a simple dataframe
   md_v2 <- data.frame("text" = md_v1)
@@ -66,7 +68,7 @@ tabularize_md <- function(file = NULL){
     dplyr::select(-type, -level)
   
   # Identify all heading types found in the provided markdown file
-  found_heads <- generics::setdiff(x = unique(md_v3$info), y = "content")
+  found_heads <- base::setdiff(x = unique(md_v3$info), y = "content")
   
   # Duplicate the data to avoid mistakes
   md_v4 <- md_v3
