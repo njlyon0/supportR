@@ -39,6 +39,7 @@ Imports:
     vegan
 Suggests: 
     ape,
+    devtools,
     knitr,
     palmerpenguins
 Roxygen: list(markdown = TRUE)
