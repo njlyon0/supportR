@@ -4,7 +4,7 @@
 #'
 #' @param file (character/url connection) name and file path of markdown file to transform into a table or a connection object to a URL of a markdown file (see `?base::url` for more details)
 #' 
-#' @return (dataframe) table with one additional column than there are heading levels in the document (e.g., if first and second level headings are in the document, the resulting table will have three columns) and one row per line of non-heading content in the markdwon file.
+#' @return (dataframe) table with one additional column than there are heading levels in the document (e.g., if first and second level headings are in the document, the resulting table will have three columns) and one row per line of non-heading content in the markdown file.
 #' 
 #' @importFrom magrittr %>%
 #' @importFrom magrittr %<>%

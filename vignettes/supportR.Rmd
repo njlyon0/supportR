@@ -49,7 +49,7 @@ supportR::summary_table(data = penguins, groups = c("species", "island"),
                         response = "bill_length_mm", drop_na = T)
 ```
 
-The `safe_rename` function allows--perhaps predicatably--"safe" renaming of column names in a given data object. The 'bad' column names and corresponding 'good' names must be specified. The order of entries in the two vectors must match (i.e., the first bad name will be replaced with the first good name), but that order need not match the order in which they occur in the data!
+The `safe_rename` function allows--perhaps predictably--"safe" renaming of column names in a given data object. The 'bad' column names and corresponding 'good' names must be specified. The order of entries in the two vectors must match (i.e., the first bad name will be replaced with the first good name), but that order need not match the order in which they occur in the data!
 
 ```{r safe-rename}
 # Make a dataframe to demonstrate

@@ -7,7 +7,7 @@
 force_num(x = NULL)
 }
 \arguments{
-\item{x}{(non-numeric) vector containing elements to be coereced into class numeric}
+\item{x}{(non-numeric) vector containing elements to be coerced into class numeric}
 }
 \value{
 (numeric) vector of numeric values

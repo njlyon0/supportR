@@ -19,7 +19,7 @@ rmd_export(
 
 \item{out_name}{(character) desired name for knit file (with or without file suffix)}
 
-\item{out_type}{(character) either "html" or "pdf" depending on what YML entry you have in the \verb{output: } field of your R Markdown file}
+\item{out_type}{(character) either "html" or "pdf" depending on what YAML entry you have in the \verb{output: } field of your R Markdown file}
 
 \item{drive_link}{(character) full URL of drive folder to upload the knit document}
 }

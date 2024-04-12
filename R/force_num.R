@@ -2,7 +2,7 @@
 #' 
 #' @description Coerces a vector into a numeric vector and automatically silences `NAs introduced by coercion` warning. Useful for cases where non-numbers are known to exist in vector and their coercion to NA is expected / unremarkable. Essentially just a way of forcing this coercion more succinctly than wrapping `as.numeric` in `suppressWarnings`.
 #'
-#' @param x (non-numeric) vector containing elements to be coereced into class numeric
+#' @param x (non-numeric) vector containing elements to be coerced into class numeric
 #'
 #' @return (numeric) vector of numeric values
 #' @export
