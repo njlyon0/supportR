@@ -117,16 +117,21 @@ rm(list = ls())
 # Define function
 tabularize_md <- function(file = NULL){
   
-  # # DELETE ME----
-  # file <- file.path("dev", "test-markdown.md")
-  # # DELETE ME ----
-  
   # Error out if file isn't specified
+  if(is.null(file) == TRUE)
+    stop("`file` must be specified")
   
   # Error out for non-character entry
+  if(is.character(file) != TRUE)
+    stop("`file` must be specified as a character")
+  
+  # Error out if multiple files are provided
+  if(length(file) != 1)
+    stop("Only one markdown file can be tabularized at a time")
   
   # Error out for non-markdown
-  ## maybe use `tools::file_ext`?
+  if(tolower(x = tools::file_ext(x = file)) %in% c("md", "qmd", "rmd") != TRUE)
+    stop("`file` must be a markdown file (with the 'md' file extension)")
   
   # Read in specified markdown file and
   md_v0 <- base::readLines(con = file)
@@ -197,6 +202,25 @@ tabularize_md <- function(file = NULL){
 
 # Invoke function
 tabularize_md(file = file.path("dev", "test-markdown.md"))
+
+# Try to trip errors
+## No file specified
+tabularize_md()
+
+## Non-character entry
+tabularize_md(file = 333)
+
+## Too many entries
+tabularize_md(file = c("xx", "aa"))
+
+## Non-markdown file
+tabularize_md(file = file.path("dev", "colinear_plot.R"))
+
+# Does it work with Rmd files?
+tabularize_md(file = file.path("dev", "test-rmark.Rmd"))
+
+# What about Quarto documents?
+tabularize_md(file = file.path("dev", "test-quarto.qmd"))
 
 
 # End ----
