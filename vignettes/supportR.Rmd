@@ -29,7 +29,7 @@ library(supportR)
 
 ### Data Wrangling
 
-In order to demonstrate some of the data wrangling functions of `supportR`, we'll use some some example data from Dr. [Allison Horst](https://allisonhorst.com/)'s [`palmerpenguins` R package](https://github.com/allisonhorst/palmerpenguins).
+In order to demonstrate some of the data wrangling functions of `supportR`, we'll use some some example data from Dr. [Allison Horst](https://allisonhorst.com/allison-horst)'s [`palmerpenguins` R package](https://github.com/allisonhorst/palmerpenguins).
 
 ```{r ex-data-pngn}
 # Load library
