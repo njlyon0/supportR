@@ -35,13 +35,50 @@ rm(list = ls())
 text_v4 <- text_v3 %>% 
   dplyr::mutate(level = stringr::str_count(string = text, pattern = "#"),
                 .before = dplyr::everything()) %>% 
+  # Remove hashtags from text
+  dplyr::mutate(text = gsub(pattern = "#", replacement = "", x = text)) %>% 
+  # Remove leading/trailing white space
+  dplyr::mutate(text = trimws(x = text)) %>% 
   # Coerce 0s to an artificially high number
-  dplyr::mutate(level = ifelse(test = (level == 0), yes = 999, no = level))
+  dplyr::mutate(level = ifelse(test = (level == 0), yes = 999, no = level)) %>% 
+  # Separate headings versus non-heading content
+  dplyr::mutate(type = ifelse(test = (level < 999), yes = "heading", no = "content"),
+                .before = text) %>% 
+  # Combine level and type
+  dplyr::mutate(info = ifelse(test = (type == "heading"),
+                              yes = paste0(type, "_", level), no = type),
+                .before = dplyr::everything()) %>% 
+  # Remove superseded columns
+  dplyr::select(-type, -level)
 
 # Check that out
 text_v4
 
+# Identify just level 1s
+text_v5 <- text_v4 %>% 
+  dplyr::mutate(level_1 = ifelse(test = (info == "heading_1"),
+                                 yes = text, no = NA)) %>% 
+  # Fill downward with whatever the level one heading text is
+  tidyr::fill(level_1, .direction = "down")
 
+# Examine
+text_v5
+
+
+
+
+
+# Demo/check pivoting
+text_v4 %>% 
+  dplyr::mutate(row_num = 1:nrow(x = . )) %>% 
+  select(-info) %>% 
+  pivot_wider(names_from = type, values_from = text)
+
+
+text_v4 %>% 
+  dplyr::mutate(row_num = 1:nrow(x = . )) %>% 
+  dplyr::select(-level, -type) %>% 
+  pivot_wider(names_from = info, values_from = text)
 
 
 # End ----
