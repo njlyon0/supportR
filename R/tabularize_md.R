@@ -12,8 +12,8 @@
 #' 
 #' @examples
 #' \dontrun{
-#' # Identify URL to README.md in `supportR` GitHub repo
-#' md_cxn <- url("https://raw.githubusercontent.com/njlyon0/supportR/main/README.md")
+#' # Identify URL to the NEWS.md file in `supportR` GitHub repo
+#' md_cxn <- url("https://raw.githubusercontent.com/njlyon0/supportR/main/NEWS.md")
 #' 
 #' # Transform it into a table
 #' md_df <- tabularize_md(file = md_cxn)
