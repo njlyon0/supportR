@@ -2,7 +2,7 @@
 #' 
 #' @description Accepts one markdown file (i.e., "md" file extension) and returns its content as a table. Nested heading structure in markdown file--as defined by hashtags / pounds signs (#)--is identified and preserved as columns in the resulting tabular format. Each line of non-heading content in the file is preserved in the right-most column of one row of the table.
 #'
-#' @param file (character) name and file path of markdown file to transform into a table
+#' @param file (character/url connection) name and file path of markdown file to transform into a table or a connection object to a URL of a markdown file (see `?base::url` for more details)
 #' 
 #' @return (dataframe) table with one additional column than there are heading levels in the document (e.g., if first and second level headings are in the document, the resulting table will have three columns) and one row per line of non-heading content in the markdwon file.
 #' 
@@ -12,8 +12,17 @@
 #' 
 #' @examples
 #' \dontrun{
-#' # Invoke function
-#' tabularize_md(file = file.path("dev", "test-markdown.md"))
+#' # Identify URL to README.md in `supportR` GitHub repo
+#' md_cxn <- url("https://raw.githubusercontent.com/njlyon0/supportR/main/README.md")
+#' 
+#' # Transform it into a table
+#' md_df <- tabularize_md(file = md_cxn)
+#' 
+#' # Close connection (just good housekeeping to do so)
+#' close(md_cxn)
+#' 
+#' # Check out the table format
+#' str(md_df)
 #' }
 #' 
 tabularize_md <- function(file = NULL){
@@ -24,17 +33,24 @@ tabularize_md <- function(file = NULL){
   if(is.null(file) == TRUE)
     stop("`file` must be specified")
   
-  # Error out for non-character entry
-  if(is.character(file) != TRUE)
-    stop("`file` must be specified as a character")
-  
   # Error out if multiple files are provided
   if(length(file) != 1)
     stop("Only one markdown file can be tabularized at a time")
   
-  # Error out for non-markdown
-  if(tolower(x = tools::file_ext(x = file)) %in% c("md") != TRUE)
-    stop("`file` must be a markdown file (with the 'md' file extension)")
+  # Handle URL/connection possibility
+  if(methods::is(object = file, class2 = "url") == TRUE &
+     methods::is(object = file, class2 = "connection") == TRUE){
+    
+    # Handle non-URL inputs
+  } else {
+    # If not URL/connection, file needs to be provided as a character
+    if(is.character(file) != TRUE)
+      stop("`file` must be specified as a character")
+    
+    # Error out for non-markdown file types
+    if(tolower(x = tools::file_ext(x = file)) %in% c("md") != TRUE)
+      stop("`file` must be a markdown file (with the 'md' file extension)")
+  }
   
   # Read in specified markdown file and
   md_v0 <- base::readLines(con = file)

@@ -7,7 +7,7 @@
 tabularize_md(file = NULL)
 }
 \arguments{
-\item{file}{(character) name and file path of markdown file to transform into a table}
+\item{file}{(character/url connection) name and file path of markdown file to transform into a table or a connection object to a URL of a markdown file (see \code{?base::url} for more details)}
 }
 \value{
 (dataframe) table with one additional column than there are heading levels in the document (e.g., if first and second level headings are in the document, the resulting table will have three columns) and one row per line of non-heading content in the markdwon file.
@@ -17,8 +17,17 @@ Accepts one markdown file (i.e., "md" file extension) and returns its content as
 }
 \examples{
 \dontrun{
-# Invoke function
-tabularize_md(file = file.path("dev", "test-markdown.md"))
+# Identify URL to README.md in `supportR` GitHub repo
+md_cxn <- url("https://raw.githubusercontent.com/njlyon0/supportR/main/README.md")
+
+# Transform it into a table
+md_df <- tabularize_md(file = md_cxn)
+
+# Close connection (just good housekeeping to do so)
+close(md_cxn)
+
+# Check out the table format
+str(md_df)
 }
 
 }
