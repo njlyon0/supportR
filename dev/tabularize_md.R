@@ -130,7 +130,7 @@ tabularize_md <- function(file = NULL){
     stop("Only one markdown file can be tabularized at a time")
   
   # Error out for non-markdown
-  if(tolower(x = tools::file_ext(x = file)) %in% c("md", "qmd", "rmd") != TRUE)
+  if(tolower(x = tools::file_ext(x = file)) %in% c("md") != TRUE)
     stop("`file` must be a markdown file (with the 'md' file extension)")
   
   # Read in specified markdown file and
@@ -215,12 +215,5 @@ tabularize_md(file = c("xx", "aa"))
 
 ## Non-markdown file
 tabularize_md(file = file.path("dev", "colinear_plot.R"))
-
-# Does it work with Rmd files?
-tabularize_md(file = file.path("dev", "test-rmark.Rmd"))
-
-# What about Quarto documents?
-tabularize_md(file = file.path("dev", "test-quarto.qmd"))
-
 
 # End ----
