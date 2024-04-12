@@ -1,3 +1,9 @@
+# supportR Version 1.3.0.900
+
+This is the development version of `supportR`. Changes will be listed here as they are made.
+
+- No current changes
+
 # supportR Version 1.3.0
 
 Changes from preceding version are listed below
