@@ -14,6 +14,7 @@
 # Load desired libraries
 # install.packages("librarian")
 librarian::shelf(tidyverse, devtools)
+load_all()
 
 # Clear environment
 rm(list = ls())
@@ -55,30 +56,55 @@ text_v4 <- text_v3 %>%
 text_v4
 
 # Identify just level 1s
-text_v5 <- text_v4 %>% 
+text_v5a <- text_v4 %>% 
   dplyr::mutate(level_1 = ifelse(test = (info == "heading_1"),
                                  yes = text, no = NA)) %>% 
   # Fill downward with whatever the level one heading text is
   tidyr::fill(level_1, .direction = "down")
 
 # Examine
-text_v5
+text_v5a
 
+# Identify all heading types found in the provided markdown file
+(found_heads <- generics::setdiff(x = unique(text_v4$info), y = "content"))
 
+# Duplicate the data to avoid mistakes
+text_v5b <- text_v4
 
+# Attempt a for-loop variant of identifying header nesting structure
+for(head in found_heads){
+  
+  # Replace head with level (for use as a column name)
+  lvl <- gsub(pattern = "heading", replacement = "level", x = head)
+  
+  # Actually do header structure identification
+  text_v5b  %<>%
+    # Pull this level of heading into its own column with only its text or nothing
+    dplyr::mutate(lvl = ifelse(test = (info == head), yes = text, no = NA)) %>% 
+    # Fill down
+    tidyr::fill(lvl, .direction = "down") %>% 
+    # Rename this new column more specifically
+    safe_rename(data = ., bad_names = "lvl", good_names = eval(lvl))
+  
+  # Finishing message
+  message("Finished identifying ", head, " structure")
+  
+} # Close loop
 
+# Check out the result
+text_v5b
 
-# Demo/check pivoting
-text_v4 %>% 
-  dplyr::mutate(row_num = 1:nrow(x = . )) %>% 
-  select(-info) %>% 
-  pivot_wider(names_from = type, values_from = text)
+# Final parsing
+text_v6 <- text_v5b %>% 
+  # Move text column after everything
+  dplyr::relocate(text, .after = dplyr::everything()) %>% 
+  # Filter out any rows where the 'info' is anything other than content
+  ## All other info is now duplicated into level-specific columns
+  dplyr::filter(info == "content") %>% 
+  # Ditch 'info' column
+  dplyr::select(-info)
 
-
-text_v4 %>% 
-  dplyr::mutate(row_num = 1:nrow(x = . )) %>% 
-  dplyr::select(-level, -type) %>% 
-  pivot_wider(names_from = info, values_from = text)
-
+# Final check
+text_v6
 
 # End ----
