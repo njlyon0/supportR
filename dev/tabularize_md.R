@@ -107,4 +107,96 @@ text_v6 <- text_v5b %>%
 # Final check
 text_v6
 
+## --------------------------- ##
+# Function Writing ----
+## --------------------------- ##
+
+# Clear environment
+rm(list = ls())
+
+# Define function
+tabularize_md <- function(file = NULL){
+  
+  # # DELETE ME----
+  # file <- file.path("dev", "test-markdown.md")
+  # # DELETE ME ----
+  
+  # Error out if file isn't specified
+  
+  # Error out for non-character entry
+  
+  # Error out for non-markdown
+  ## maybe use `tools::file_ext`?
+  
+  # Read in specified markdown file and
+  md_v0 <- base::readLines(con = file)
+  
+  # Remove empty entries
+  ## Empty entries in this vector are blank lines in markdown file
+  md_v1 <- generics::setdiff(x = md_v0, y = "")
+
+  # Make into a simple dataframe
+  md_v2 <- data.frame("text" = md_v1)
+  
+  # Do preparatory wrangling
+  md_v3 <- md_v2 %>% 
+    # Count number of hashtags in each row
+    dplyr::mutate(level = stringr::str_count(string = text, pattern = "#"),
+                  .before = dplyr::everything()) %>% 
+    # Remove hashtags from text
+    dplyr::mutate(text = gsub(pattern = "#", replacement = "", x = text)) %>% 
+    # Remove leading/trailing white space
+    dplyr::mutate(text = trimws(x = text)) %>% 
+    # Coerce 0s to an artificially high number
+    dplyr::mutate(level = ifelse(test = (level == 0), yes = 999, no = level)) %>% 
+    # Separate headings versus non-heading content
+    dplyr::mutate(type = ifelse(test = (level < 999), yes = "heading", no = "content"),
+                  .before = text) %>% 
+    # Combine level and type
+    dplyr::mutate(info = ifelse(test = (type == "heading"),
+                                yes = paste0(type, "_", level), no = type),
+                  .before = dplyr::everything()) %>% 
+    # Remove superseded columns
+    dplyr::select(-type, -level)
+  
+  # Identify all heading types found in the provided markdown file
+  found_heads <- generics::setdiff(x = unique(md_v3$info), y = "content")
+  
+  # Duplicate the data to avoid mistakes
+  md_v4 <- md_v3
+  
+  # Attempt a for-loop variant of identifying header nesting structure
+  for(head in found_heads){
+    
+    # Replace head with level (for use as a column name)
+    lvl <- gsub(pattern = "heading", replacement = "level", x = head)
+    
+    # Actually do header structure identification
+    md_v4 %<>%
+      # Pull this level of heading into its own column with only its text or nothing
+      dplyr::mutate(lvl = ifelse(test = (info == head), yes = text, no = NA)) %>% 
+      # Fill down
+      tidyr::fill(lvl, .direction = "down") %>% 
+      # Rename this new column more specifically
+      safe_rename(data = ., bad_names = "lvl", good_names = eval(lvl))
+    
+  } # Close loop
+  
+  # Final parsing
+  md_v5 <- md_v4 %>% 
+    # Move text column after everything
+    dplyr::relocate(text, .after = dplyr::everything()) %>% 
+    # Filter out any rows where the 'info' is anything other than content
+    ## All other info is now duplicated into level-specific columns
+    dplyr::filter(info == "content") %>% 
+    # Ditch 'info' column
+    dplyr::select(-info)
+  
+  # Return this 'tabularized' markdown file
+  return(md_v5) }
+
+# Invoke function
+tabularize_md(file = file.path("dev", "test-markdown.md"))
+
+
 # End ----
