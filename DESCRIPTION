@@ -2,6 +2,7 @@ Package: supportR
 Type: Package
 Title: Support Functions for Wrangling and Visualization
 Version: 1.3.0.900
+Date: `r Sys.Date()`
 Authors@R: c(
     person(given = 'Nicholas J',
            family = 'Lyon',
