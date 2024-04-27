@@ -60,6 +60,15 @@ fix_non_ascii <- function(x = NULL){
   q <- gsub(pattern = "ä|á|à|å", replacement = "a", x = q)
   q <- gsub(pattern = "ü|ú|ù", replacement = "u", x = q)
   
+  # See if any are not fixed manually above
+  unfixed <- q[stringr::str_detect(string = q, pattern = "[^[:ascii:]]") == TRUE]
+  
+  # Give a warning if any are found
+  if(length(unfixed) != 0){
+    warning("Failed to fix following non-ASCII characters: ", 
+            paste0("'", unfixed, "'", collapse = "', '"), 
+            "\nPlease open a GitHub Issue if you'd like this function to support a particular fix for this character") }
+  
   # Return that fixed vector
   return(q) }
 
@@ -68,5 +77,9 @@ fix_non_ascii <- function(x = NULL){
 
 # Check to see if that worked
 good_vec[stringr::str_detect(string = good_vec, pattern = "[^[:ascii:]]") == TRUE]
+
+# Check on one that should throw the warning
+fix_non_ascii(x = "§")
+
 
 # End ----
