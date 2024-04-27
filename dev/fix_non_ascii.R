@@ -21,10 +21,12 @@ rm(list = ls())
 ## ----------------------------------- ##
 
 # Make a vector of non-ASCII characters
-(bad_vec <- c("’", "“", "”", "—", "−", "–", "×", "ﬁ", "ö", "­", "·", "…"))
+(bad_vec <- c("’", "“", "”", "—", "−", "–", "×", "ﬁ", "ö", "­", 
+              "·", "…", "`", "ò", "ó", "á", "à", "å", "ë", "ä", 
+              "é", "è", "ü", "ú", "ù"))
 
 # Check to make sure they are all non-ASCII characters
-stringr::str_detect(string = bad_vec, pattern = "[^[:ascii:]]")
+bad_vec[stringr::str_detect(string = bad_vec, pattern = "[^[:ascii:]]") == TRUE]
 
 # Define function
 fix_non_ascii <- function(x = NULL){
@@ -37,11 +39,26 @@ fix_non_ascii <- function(x = NULL){
   if(is.character(x) != TRUE)
     stop("'x' must be a character")
   
-  # Make a new object for ease of later manipulations
+  # Make a new object so we can make all find/replace steps identical
   q <- x
   
-  # Do actually fixing
-  
+  # Do actual fixing
+  ## Quotes / apostrophes
+  q <- gsub(pattern = "’|`", replacement = "'", x = q)
+  q <- gsub(pattern = "“|”", replacement = '"', x = q)
+  ## Dashes / symbols
+  q <- gsub(pattern = "—|−|–", replacement = "-", x = q)
+  q <- gsub(pattern = "×", replacement = "*", x = q)
+  q <- gsub(pattern = "·", replacement = ".", x = q)
+  q <- gsub(pattern = "…", replacement = "...", x = q)
+  ## Spaces
+  q <- gsub(pattern = "­", replacement = " ", x = q)
+  ## Letters
+  q <- gsub(pattern = "ﬁ", replacement = "fi", x = q)
+  q <- gsub(pattern = "ö|ó|ò", replacement = "o", x = q)
+  q <- gsub(pattern = "ë|é|è", replacement = "e", x = q)
+  q <- gsub(pattern = "ä|á|à|å", replacement = "a", x = q)
+  q <- gsub(pattern = "ü|ú|ù", replacement = "u", x = q)
   
   # Return that fixed vector
   return(q) }
@@ -50,7 +67,6 @@ fix_non_ascii <- function(x = NULL){
 (good_vec <- fix_non_ascii(x = bad_vec))
 
 # Check to see if that worked
-## Conditional is a double negative ('not not ASCII')
-any(stringr::str_detect(string = good_vec, pattern = "[^[:ascii:]]") != TRUE)
+good_vec[stringr::str_detect(string = good_vec, pattern = "[^[:ascii:]]") == TRUE]
 
 # End ----
