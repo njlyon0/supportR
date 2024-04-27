@@ -32,6 +32,39 @@ fix_non_ascii <- function(x = NULL){
   q <- x
   
   # Do actual fixing
+  ## Symbols ----
+  q <- gsub(pattern = "\u00A1", replacement = "!", x = q) # inverted !
+  q <- gsub(pattern = "\u00A2", replacement = "c", x = q) # cents
+  q <- gsub(pattern = "\u00A3", replacement = "L", x = q) # pounds
+  q <- gsub(pattern = "\u00A4", replacement = "ox", x = q) # "currency symbol"
+  q <- gsub(pattern = "\u00A5", replacement = "Y", x = q) # yen
+  q <- gsub(pattern = "\u00A6", replacement = "|", x = q) # "broken bar"
+  q <- gsub(pattern = "\u00A7", replacement = "S", x = q) # section sign
+  q <- gsub(pattern = "\u00A8", replacement = "..", x = q) # spacing diaresis
+  q <- gsub(pattern = "\u00A9", replacement = "(C)", x = q) # copyright
+  q <- gsub(pattern = "\u00AA", replacement = "a", x = q) # "feminine ordinal indicator"
+  q <- gsub(pattern = "\u00AB", replacement = "<<", x = q) # 
+  q <- gsub(pattern = "\u00AC", replacement = "-", x = q)
+  
+  
+  
+  
+  stringi::stri_escape_unicode("¬")
+  
+  q <- gsub(pattern = "\u00", replacement = "", x = q)
+  
+  
+  # Letters ----
+  q <- gsub(pattern = "\u00FC", replacement = "u", x = q)
+  
+  
+  stringi::stri_escape_unicode("ü")
+  
+  q <- gsub(pattern = "\u00", replacement = "", x = q)
+  
+  
+  
+  
   ## Quotes / apostrophes
   q <- gsub(pattern = "’|`", replacement = "'", x = q)
   q <- gsub(pattern = "“|”", replacement = '"', x = q)
@@ -60,3 +93,18 @@ fix_non_ascii <- function(x = NULL){
   
   # Return that fixed vector
   return(q) }
+
+
+
+
+stringi::stri_escape_unicode("£")
+
+sprintf("%X", as.integer(charToRaw("£")))
+
+
+
+gsub(pattern = "\u00a3", replacement = "xx", x = "£")
+stringr::str_detect(string = "\u00A3", pattern = "[[:ascii:]]")
+
+
+
