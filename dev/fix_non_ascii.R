@@ -1,34 +1,25 @@
-## ------------------------------------------------------- ##
-# Remove Non-ASCII Characters
-## ------------------------------------------------------- ##
-# Script author(s): Nick Lyon
-
-# Purpose
-## A function for coercing non-ASCII characters into ASCII equivalents
-
-## ----------------------------------- ##
-# Housekeeping ----
-## ----------------------------------- ##
-
-# Load libraries
-librarian::shelf(tidyverse, supportR)
-
-# Clear environment
-rm(list = ls())
-
-## ----------------------------------- ##
-# Exploration ----
-## ----------------------------------- ##
-
-# Make a vector of non-ASCII characters
-(bad_vec <- c("’", "“", "”", "—", "−", "–", "×", "ﬁ", "ö", "­", 
-              "·", "…", "`", "ò", "ó", "á", "à", "å", "ë", "ä", 
-              "é", "è", "ü", "ú", "ù"))
-
-# Check to make sure they are all non-ASCII characters
-bad_vec[stringr::str_detect(string = bad_vec, pattern = "[^[:ascii:]]") == TRUE]
-
-# Define function
+#' @title Replace Non-ASCII Characters with ASCII Equivalents
+#' 
+#' @description Finds all non-ASCII () characters in a character vector and replaces them with their ASCII equivalents. For example, vowels with umlauts over them are returned as the vowel without accent marks. The function will return a warning if it finds any non-ASCII characters for which it does not have a hard-coded fix. Please open a [GitHub Issue](https://github.com/njlyon0/supportR/issues) if you encounter this warning but know what the replacement character should be for that particular character.
+#' 
+#' @param x (character) vector in which to fix non-ASCII characters
+#' 
+#' @return (character) vector where all non-ASCII characters have been replaced by ASCII equivalents
+#' 
+#' @export
+#' 
+#' @examples
+#' # Make a vector of non-ASCII characters
+#' (bad_vec <- c("’", "“", "”", "—", "−", "–", "×", "ﬁ", "ö", "­", 
+#'               "·", "…", "`", "ò", "ó", "á", "à", "å", "ë", "ä", 
+#'               "é", "è", "ü", "ú", "ù"))
+#' 
+#' # Invoke function
+#' (good_vec <- fix_non_ascii(x = bad_vec))
+#' 
+#' # Check to see if that worked
+#' good_vec[stringr::str_detect(string = good_vec, pattern = "[^[:ascii:]]") == TRUE]
+#' 
 fix_non_ascii <- function(x = NULL){
   
   # Error out if x isn't supplied
@@ -71,15 +62,3 @@ fix_non_ascii <- function(x = NULL){
   
   # Return that fixed vector
   return(q) }
-
-# Invoke function
-(good_vec <- fix_non_ascii(x = bad_vec))
-
-# Check to see if that worked
-good_vec[stringr::str_detect(string = good_vec, pattern = "[^[:ascii:]]") == TRUE]
-
-# Check on one that should throw the warning
-fix_non_ascii(x = "§")
-
-
-# End ----
