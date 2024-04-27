@@ -9,10 +9,8 @@
 #' @export
 #' 
 #' @examples
-#' # Make a vector of non-ASCII characters
-#' (bad_vec <- c("’", "“", "”", "—", "−", "–", "×", "ﬁ", "ö", "­", 
-#'               "·", "…", "`", "ò", "ó", "á", "à", "å", "ë", "ä", 
-#'               "é", "è", "ü", "ú", "ù"))
+#' # Make a vector of several non-ASCII characters
+#' (bad_vec <- c("’", "“", "×", "ﬁ", "ö", "ü"))
 #' 
 #' # Invoke function
 #' (good_vec <- fix_non_ascii(x = bad_vec))
