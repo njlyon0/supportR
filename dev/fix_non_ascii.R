@@ -1,6 +1,6 @@
 #' @title Replace Non-ASCII Characters with ASCII Equivalents
 #' 
-#' @description Finds all non-ASCII () characters in a character vector and replaces them with their ASCII equivalents. For example, vowels with umlauts over them are returned as the vowel without accent marks. The function will return a warning if it finds any non-ASCII characters for which it does not have a hard-coded fix. Please open a [GitHub Issue](https://github.com/njlyon0/supportR/issues) if you encounter this warning but know what the replacement character should be for that particular character.
+#' @description Finds all non-ASCII (American Standard Code for Information Interchange) characters in a character vector and replaces them with their ASCII equivalents. For example, vowels with umlauts over them are returned as the vowel without accent marks. The function will return a warning if it finds any non-ASCII characters for which it does not have a hard-coded fix. Please open a [GitHub Issue](https://github.com/njlyon0/supportR/issues) if you encounter this warning but know what the replacement character should be for that particular character.
 #' 
 #' @param x (character) vector in which to fix non-ASCII characters
 #' 
