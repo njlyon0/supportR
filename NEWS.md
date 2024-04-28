@@ -2,7 +2,7 @@
 
 This is the development version of `supportR`. Changes will be listed here as they are made.
 
-- No current changes
+- New function: `replace_non_ascii`. Replaces non-ASCII characters with ASCII characters that are as visually similar as possible
 
 # supportR Version 1.3.0
 
