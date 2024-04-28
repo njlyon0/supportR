@@ -1,22 +1,20 @@
-#' @title Replace Non-ASCII Characters with ASCII Equivalents
+#' @title Replace Non-ASCII Characters with Comparable ASCII Characters
 #' 
-#' @description Finds all non-ASCII (American Standard Code for Information Interchange) characters in a character vector and replaces them with their ASCII equivalents. For example, vowels with umlauts over them are returned as the vowel without accent marks. The function will return a warning if it finds any non-ASCII characters for which it does not have a hard-coded fix. Please open a [GitHub Issue](https://github.com/njlyon0/supportR/issues) if you encounter this warning but know what the replacement character should be for that particular character.
+#' @description Finds all non-ASCII (American Standard Code for Information Interchange) characters in a character vector and replaces them with ASCII characters that are as visually similar as possible. For example, various special dash types (e.g., em dash, en dash, etc.) are replaced with a hypen. The function will return a warning if it finds any non-ASCII characters for which it does not have a hard-coded replacement. Please open a [GitHub Issue](https://github.com/njlyon0/supportR/issues) if you encounter this warning and have a suggestion for what the replacement character should be for that particular character.
 #' 
-#' @param x (character) vector in which to fix non-ASCII characters
+#' @param x (character) vector in which to replace non-ASCII characters
 #' 
 #' @return (character) vector where all non-ASCII characters have been replaced by ASCII equivalents
 #' 
 #' @export
 #' 
 #' @examples
-#' # Make a vector of several non-ASCII characters
-#' (bad_vec <- c("’", "“", "×", "ﬁ", "ö", "ü"))
+#' # Make a vector of the hexadecimal codes for several non-ASCII characters
+#' ## This function accepts the characters themselves but CRAN checks do not
+#' non_ascii <- c("\u201C", "\u00AC", "\u00D7")
 #' 
 #' # Invoke function
-#' (good_vec <- fix_non_ascii(x = bad_vec))
-#' 
-#' # Check to see if that worked
-#' good_vec[stringr::str_detect(string = good_vec, pattern = "[^[:ascii:]]") == TRUE]
+#' (ascii <- fix_non_ascii(x = non_ascii))
 #' 
 fix_non_ascii <- function(x = NULL){
   
@@ -157,7 +155,7 @@ fix_non_ascii <- function(x = NULL){
   q <- gsub(pattern = "\u0397", replacement = "ETA", x = q)
   q <- gsub(pattern = "\u03B7", replacement = "eta", x = q)
   q <- gsub(pattern = "\u0398", replacement = "THETA", x = q)
-  q <- gsub(pattern = "\u03B8|\u03C9", replacement = "theta", x = q)
+  q <- gsub(pattern = "\u03B8", replacement = "theta", x = q)
   q <- gsub(pattern = "\u0399", replacement = "IOTA", x = q)
   q <- gsub(pattern = "\u03B9", replacement = "iota", x = q)
   q <- gsub(pattern = "\u039A", replacement = "KAPPA", x = q)
@@ -182,7 +180,7 @@ fix_non_ascii <- function(x = NULL){
   q <- gsub(pattern = "\u03C4", replacement = "tau", x = q)
   q <- gsub(pattern = "\u03A5", replacement = "UPSILON", x = q)
   q <- gsub(pattern = "\u03C5|\u03D2", replacement = "upsilon", x = q)
-  # q <- gsub(pattern = "\u03A6", replacement = "PHI", x = q)
+  q <- gsub(pattern = "\u03A6", replacement = "PHI", x = q)
   q <- gsub(pattern = "\u03C6", replacement = "phi", x = q)
   q <- gsub(pattern = "\u03A7", replacement = "CHI", x = q)
   q <- gsub(pattern = "\u03C7", replacement = "chi", x = q)
@@ -191,33 +189,25 @@ fix_non_ascii <- function(x = NULL){
   q <- gsub(pattern = "\u03A9", replacement = "OMEGA", x = q)
   q <- gsub(pattern = "\u03C9", replacement = "omega", x = q)
   
-  # See if any are not fixed manually above
-  unfixed <- q[stringr::str_detect(string = q, pattern = "[^[:ascii:]]") == TRUE]
+  # See if any are not replaced manually above
+  remaining <- q[stringr::str_detect(string = q, pattern = "[^[:ascii:]]") == TRUE]
   
   # Give a warning if any are found
-  if(length(unfixed) != 0){
-    warning("Failed to fix following non-ASCII characters: ", 
-            paste0("'", unfixed, "'", collapse = "', '"), 
-            "\nPlease open a GitHub Issue if you'd like this function to support a particular fix for this character") }
+  if(length(remaining) != 0){
+    warning("Failed to replace the following non-ASCII characters: ", 
+            paste0("'", remaining, "'", collapse = ", "), 
+            "\nHexadecimal codes for these characters are as follows: ",
+            paste0("'", stringi::stri_escape_unicode(remaining), "'", collapse = ", "),
+            "\n\nPlease open a GitHub Issue if you'd like this function to support a particular fix for this character") }
   
   # Return that fixed vector
   return(q) }
 
 
-bad_chars <- c("¡", "¢", "£", "¤", "¥", "¦", "§", "¨", "©", "ª", "«", "¬", "­", "®", "¯", "°", "±", "²", "³", "´", "µ", "¶", "·", "¸", "¹", "º", "»", "¼", "½", "¾", "¿", "À", "Á", "Â", "Ã", "Å", "Æ", "Ç", "È", "É", "Ê", "Ì", "Í", "Î", "Ï", "Ð", "Ñ", "Ò", "Ó", "Ô", "Õ", "Ö", "Ø", "Ù", "Ú", "Û", "Ü", "Ý", "Þ", "ß", "à", "á", "â", "ã", "ä", "æ", "ç", "è", "é", "ê", "ë", "ì", "í", "î", "ï", "ð", "ñ", "ò", "ó", "ô", "õ", "ö", "÷", "ø", "ù", "ú", "û", "ü", "ý", "þ", "ÿ", "ƒ", "Α", "Β", "Γ", "Δ", "Ε", "Ζ", "Η", "Θ", "Ι", "Κ", "Λ", "Μ", "Ν", "Ξ", "Ο", "Π", "Ρ", "Σ", "Τ", "Υ", "Φ", "Χ", "Ψ", "Ω", "α", "β", "γ", "δ,	ε", "ζ", "η", "θ", "ι", "κ", "λ", "μ", "ν", "ξ", "ο", "π", "ρ", "ς", "σ", "τ", "υ", "φ", "χ", "ψ", "ϑ", "ϒ", "ϖ", "•", "…", "′", "″", "‾", "⁄", "℘", "ℑ", "ℜ", "™", "ℵ", "←", "↑", "→", "↓", "↔", "∏", "∑", "−", "∗", "√", "∂", "∧", "∨", "∩", "∪", "∼", "≠", "≤", "≥", "⋅", "⟨", "〉", "‹", "›", "♠", "♣", "♥", "♦", "Œ", "œ", "Š", "š", "Ÿ", "ˆ", "˜", " ", " ", " ", " ", "‌", "‍", "‎", "–", "—", "‘", "’", "‚", '“', '”', '„', "†", "‰", "⇐", "⇒", "⇔")
+non_ascii_chars <- c("¡", "¢", "£", "¤", "¥", "¦", "§", "¨", "©", "ª", "«", "¬", "­", "®", "¯", "°", "±", "²", "³", "´", "µ", "¶", "·", "¸", "¹", "º", "»", "¼", "½", "¾", "¿", "À", "Á", "Â", "Ã", "Å", "Æ", "Ç", "È", "É", "Ê", "Ì", "Í", "Î", "Ï", "Ð", "Ñ", "Ò", "Ó", "Ô", "Õ", "Ö", "Ø", "Ù", "Ú", "Û", "Ü", "Ý", "Þ", "ß", "à", "á", "â", "ã", "ä", "æ", "ç", "è", "é", "ê", "ë", "ì", "í", "î", "ï", "ð", "ñ", "ò", "ó", "ô", "õ", "ö", "÷", "ø", "ù", "ú", "û", "ü", "ý", "þ", "ÿ", "ƒ", "Α", "Β", "Γ", "Δ", "Ε", "Ζ", "Η", "Θ", "Ι", "Κ", "Λ", "Μ", "Ν", "Ξ", "Ο", "Π", "Ρ", "Σ", "Τ", "Υ", "Φ", "Χ", "Ψ", "Ω", "α", "β", "γ", "δ,	ε", "ζ", "η", "θ", "ι", "κ", "λ", "μ", "ν", "ξ", "ο", "π", "ρ", "ς", "σ", "τ", "υ", "φ", "χ", "ψ", "ϑ","ω","ϒ", "ϖ", "•", "…", "′", "″", "‾", "⁄", "℘", "ℑ", "ℜ", "™", "ℵ", "←", "↑", "→", "↓", "↔", "∏", "∑", "−", "∗", "√", "∂", "∧", "∨", "∩", "∪", "∼", "≠", "≤", "≥", "⋅", "⟨", "〉", "‹", "›", "♠", "♣", "♥", "♦", "Œ", "œ", "Š", "š", "Ÿ", "ˆ", "˜", " ", " ", " ", " ", "‌", "‍", "‎", "–", "—", "‘", "’", "‚", '“', '”', '„', "†", "‰", "⇐", "⇒", "⇔")
                 
 
-f <- fix_non_ascii(x = bad_chars)
+f <- fix_non_ascii(x = non_ascii_chars)
 f[stringr::str_detect(string = f, pattern = "[^[:ascii:]]") == TRUE]
-
-stringi::stri_escape_unicode("〉")
-
-sprintf("%X", as.integer(charToRaw("£")))
-
-
-
-gsub(pattern = "\u00a3", replacement = "xx", x = "£")
-stringr::str_detect(string = "\u00A3", pattern = "[[:ascii:]]")
-
 
 
