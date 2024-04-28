@@ -3,6 +3,7 @@
 #' @description Finds all non-ASCII (American Standard Code for Information Interchange) characters in a character vector and replaces them with ASCII characters that are as visually similar as possible. For example, various special dash types (e.g., em dash, en dash, etc.) are replaced with a hypen. The function will return a warning if it finds any non-ASCII characters for which it does not have a hard-coded replacement. Please open a [GitHub Issue](https://github.com/njlyon0/supportR/issues) if you encounter this warning and have a suggestion for what the replacement character should be for that particular character.
 #' 
 #' @param x (character) vector in which to replace non-ASCII characters
+#' @param include_letters (logical) whether to include letters with accents (e.g., u with an umlaut, etc.). Defaults to `FALSE`
 #' 
 #' @return (character) vector where all non-ASCII characters have been replaced by ASCII equivalents
 #' 
@@ -16,7 +17,7 @@
 #' # Invoke function
 #' (ascii <- replace_non_ascii(x = non_ascii))
 #' 
-replace_non_ascii <- function(x = NULL){
+replace_non_ascii <- function(x = NULL, include_letters = FALSE){
   
   # Error out if x isn't supplied
   if(is.null(x) == TRUE)
@@ -25,6 +26,11 @@ replace_non_ascii <- function(x = NULL){
   # Error out if x isn't a character
   if(is.character(x) != TRUE)
     stop("'x' must be a character")
+  
+  # Coerce `sort` to TRUE if not a logical
+  if(is.logical(include_letters) != TRUE){
+    warning("'include_letters' must be either TRUE or FALSE. Coercing to FALSE")
+    include_letters <- FALSE }
   
   # Make a new object so we can make all find/replace steps identical
   q <- x
@@ -67,37 +73,40 @@ replace_non_ascii <- function(x = NULL){
   q <- gsub(pattern = "\u0192", replacement = "f", x = q)
   
   # Letters ----
-  q <- gsub(pattern = "\u00C0|\u00C1|\u00C2|\u00C3|\u00C4|\u00C5", replacement = "A", x = q)
-  q <- gsub(pattern = "\u00E0|\u00E1|\u00E2|\u00E3|\u00E4|\u00E5", replacement = "a", x = q)
-  q <- gsub(pattern = "\u00C6", replacement = "AE", x = q)
-  q <- gsub(pattern = "\u00E6", replacement = "ae", x = q)
-  q <- gsub(pattern = "\u0152", replacement = "OE", x = q)
-  q <- gsub(pattern = "\u0153", replacement = "oe", x = q)
-  q <- gsub(pattern = "\u00C7", replacement = "C", x = q)
-  q <- gsub(pattern = "\u00E7", replacement = "c", x = q)
-  q <- gsub(pattern = "\u00C8|\u00C9|\u00CA|\u00CB", replacement = "E", x = q)
-  q <- gsub(pattern = "\u00E8|\u00E9|\u00EA|\u00EB", replacement = "e", x = q)
-  q <- gsub(pattern = "\u00CC|\u00CD|\u00CE|\u00CF", replacement = "I", x = q)
-  q <- gsub(pattern = "\u00EC|\u00ED|\u00EE|\u00EF", replacement = "i", x = q)
-  q <- gsub(pattern = "\u00D0", replacement = "D", x = q)
-  q <- gsub(pattern = "\u00F0|\u2202|\u03D1", replacement = "d", x = q)
-  q <- gsub(pattern = "\u00D1", replacement = "N", x = q)
-  q <- gsub(pattern = "\u00F1|\u2229", replacement = "n", x = q)
-  q <- gsub(pattern = "\u00D2|\u00D3|\u00D4|\u00D5|\u00D6", replacement = "O", x = q)
-  q <- gsub(pattern = "\u00F2|\u00F3|\u00F4|\u00F5|\u00F6", replacement = "o", x = q)
-  q <- gsub(pattern = "\u00D8", replacement = "O", x = q)
-  q <- gsub(pattern = "\u00F8", replacement = "o", x = q)
-  q <- gsub(pattern = "\u00D9|\u00DA|\u00DB|\u00DC", replacement = "U", x = q)
-  q <- gsub(pattern = "\u00F9|\u00FA|\u00FB|\u00FC|\u222a", replacement = "u", x = q)
-  q <- gsub(pattern = "\u00DD|\u0178", replacement = "Y", x = q)
-  q <- gsub(pattern = "\u00FD|\u00FF", replacement = "y", x = q)
-  q <- gsub(pattern = "\u00DE", replacement = "P", x = q)
-  q <- gsub(pattern = "\u00FE", replacement = "p", x = q)
-  q <- gsub(pattern = "\u00DF", replacement = "B", x = q)
-  q <- gsub(pattern = "\u0160", replacement = "S", x = q)
-  q <- gsub(pattern = "\u0161", replacement = "s", x = q)  
-  q <- gsub(pattern = "\u2020", replacement = "t", x = q)
-  q <- gsub(pattern = "\uFB01", replacement = "fi", x = q)
+  if(include_letters == TRUE){
+    q <- gsub(pattern = "\u00C0|\u00C1|\u00C2|\u00C3|\u00C4|\u00C5",
+              replacement = "A", x = q)
+    q <- gsub(pattern = "\u00E0|\u00E1|\u00E2|\u00E3|\u00E4|\u00E5",
+              replacement = "a", x = q)
+    q <- gsub(pattern = "\u00C6", replacement = "AE", x = q)
+    q <- gsub(pattern = "\u00E6", replacement = "ae", x = q)
+    q <- gsub(pattern = "\u0152", replacement = "OE", x = q)
+    q <- gsub(pattern = "\u0153", replacement = "oe", x = q)
+    q <- gsub(pattern = "\u00C7", replacement = "C", x = q)
+    q <- gsub(pattern = "\u00E7", replacement = "c", x = q)
+    q <- gsub(pattern = "\u00C8|\u00C9|\u00CA|\u00CB", replacement = "E", x = q)
+    q <- gsub(pattern = "\u00E8|\u00E9|\u00EA|\u00EB", replacement = "e", x = q)
+    q <- gsub(pattern = "\u00CC|\u00CD|\u00CE|\u00CF", replacement = "I", x = q)
+    q <- gsub(pattern = "\u00EC|\u00ED|\u00EE|\u00EF", replacement = "i", x = q)
+    q <- gsub(pattern = "\u00D0", replacement = "D", x = q)
+    q <- gsub(pattern = "\u00F0|\u2202|\u03D1", replacement = "d", x = q)
+    q <- gsub(pattern = "\u00D1", replacement = "N", x = q)
+    q <- gsub(pattern = "\u00F1|\u2229", replacement = "n", x = q)
+    q <- gsub(pattern = "\u00D2|\u00D3|\u00D4|\u00D5|\u00D6", replacement = "O", x = q)
+    q <- gsub(pattern = "\u00F2|\u00F3|\u00F4|\u00F5|\u00F6", replacement = "o", x = q)
+    q <- gsub(pattern = "\u00D8", replacement = "O", x = q)
+    q <- gsub(pattern = "\u00F8", replacement = "o", x = q)
+    q <- gsub(pattern = "\u00D9|\u00DA|\u00DB|\u00DC", replacement = "U", x = q)
+    q <- gsub(pattern = "\u00F9|\u00FA|\u00FB|\u00FC|\u222A", replacement = "u", x = q)
+    q <- gsub(pattern = "\u00DD|\u0178", replacement = "Y", x = q)
+    q <- gsub(pattern = "\u00FD|\u00FF", replacement = "y", x = q)
+    q <- gsub(pattern = "\u00DE", replacement = "P", x = q)
+    q <- gsub(pattern = "\u00FE", replacement = "p", x = q)
+    q <- gsub(pattern = "\u00DF", replacement = "B", x = q)
+    q <- gsub(pattern = "\u0160", replacement = "S", x = q)
+    q <- gsub(pattern = "\u0161", replacement = "s", x = q)  
+    q <- gsub(pattern = "\uFB01", replacement = "fi", x = q)
+  }
   
   # Other Symbols ----
   q <- gsub(pattern = "\u00A9", replacement = "(C)", x = q)
@@ -123,6 +132,7 @@ replace_non_ascii <- function(x = NULL){
   q <- gsub(pattern = "\u2193|\u2228", replacement = "v", x = q)
   q <- gsub(pattern = "\u2194", replacement = "<->", x = q)
   q <- gsub(pattern = "\u21D4", replacement = "<=>", x = q)
+  q <- gsub(pattern = "\u2020", replacement = "t", x = q)
   q <- gsub(pattern = "\u2660", replacement = "spade", x = q)
   q <- gsub(pattern = "\u2663", replacement = "club", x = q)
   q <- gsub(pattern = "\u2665", replacement = "heart", x = q)
@@ -189,10 +199,33 @@ replace_non_ascii <- function(x = NULL){
   # See if any are not replaced manually above
   remaining <- q[stringr::str_detect(string = q, pattern = "[^[:ascii:]]") == TRUE]
   
+  # Remove letters from this vector if the user doesn't want them replaced
+  if(include_letters != TRUE){
+
+    # Vector of all uxxx escapes for non-ASCII letter characters
+    non_ascii_letters <- c("\u00C0", "\u00C1", "\u00C2", "\u00C3", "\u00C4",
+                           "\u00C5", "\u00E0", "\u00E1", "\u00E2", "\u00E3",
+                           "\u00E4", "\u00E5", "\u00C6", "\u00E6", "\u0152",
+                           "\u0153", "\u00C7", "\u00E7", "\u00C8", "\u00C9",
+                           "\u00CA", "\u00CB", "\u00E8", "\u00E9", "\u00EA",
+                           "\u00EB", "\u00CC", "\u00CD", "\u00CE", "\u00CF",
+                           "\u00EC", "\u00ED", "\u00EE", "\u00EF", "\u00D0",
+                           "\u00F0", "\u2202", "\u03D1", "\u00D1", "\u00F1",
+                           "\u2229", "\u00D2", "\u00D3", "\u00D4", "\u00D5",
+                           "\u00D6", "\u00F2", "\u00F3", "\u00F4", "\u00F5",
+                           "\u00F6", "\u00D8", "\u00F8", "\u00D9", "\u00DA",
+                           "\u00DB", "\u00DC", "\u00F9", "\u00FA", "\u00FB",
+                           "\u00FC", "\u222A", "\u00DD", "\u0178", "\u00FD",
+                           "\u00FF", "\u00DE", "\u00FE", "\u00DF", "\u0160",
+                           "\u0161", "\u2020", "\uFB01")
+
+    # Remove the hexadecimal escapes for these letters from the 'remaining' vector
+    remaining <- setdiff(x = remaining, y = non_ascii_letters) }
+  
   # Give a warning if any are found
   if(length(remaining) != 0){
     warning("Failed to replace the following non-ASCII characters: ", 
-            paste0("'", remaining, "'", collapse = ", "), 
+            paste0("'", remaining, "'", collapse = ", "),
             "\nHexadecimal codes for these characters are as follows: ",
             paste0("'", stringi::stri_escape_unicode(remaining), "'", collapse = ", "),
             "\n\nPlease open a GitHub Issue if you'd like this function to support a particular replacement for this character") }

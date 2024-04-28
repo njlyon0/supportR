@@ -4,10 +4,12 @@
 \alias{replace_non_ascii}
 \title{Replace Non-ASCII Characters with Comparable ASCII Characters}
 \usage{
-replace_non_ascii(x = NULL)
+replace_non_ascii(x = NULL, include_letters = FALSE)
 }
 \arguments{
 \item{x}{(character) vector in which to replace non-ASCII characters}
+
+\item{include_letters}{(logical) whether to include letters with accents (e.g., u with an umlaut, etc.). Defaults to \code{FALSE}}
 }
 \value{
 (character) vector where all non-ASCII characters have been replaced by ASCII equivalents
