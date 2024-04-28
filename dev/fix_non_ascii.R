@@ -82,115 +82,95 @@ fix_non_ascii <- function(x = NULL){
   
   # UNSORTED ----
   q <- gsub(pattern = "\u00C0|\u00C1|\u00C2|\u00C3|\u00C4|\u00C5", replacement = "A", x = q)
+  q <- gsub(pattern = "\u00E0|\u00E1|\u00E2|\u00E3|\u00E4|\u00E5", replacement = "a", x = q)
   q <- gsub(pattern = "\u00C6", replacement = "AE", x = q)
+  q <- gsub(pattern = "\u00E6", replacement = "ae", x = q)
   q <- gsub(pattern = "\u00C7", replacement = "C", x = q)
+  q <- gsub(pattern = "\u00E7", replacement = "c", x = q)
   q <- gsub(pattern = "\u00C8|\u00C9|\u00CA|\u00CB", replacement = "E", x = q)
+  q <- gsub(pattern = "\u00E8|\u00E9|\u00EA|\u00EB", replacement = "e", x = q)
   q <- gsub(pattern = "\u00CC|\u00CD|\u00CE|\u00CF", replacement = "I", x = q)
-  q <- gsub(pattern = "\u00D0", replacement = "-D", x = q)
+  q <- gsub(pattern = "\u00EC|\u00ED|\u00EE|\u00EF", replacement = "i", x = q)
+  q <- gsub(pattern = "\u00D0", replacement = "D", x = q)
+  q <- gsub(pattern = "\u00F0", replacement = "d", x = q)
   q <- gsub(pattern = "\u00D1", replacement = "N", x = q)
+  q <- gsub(pattern = "\u00F1", replacement = "n", x = q)
   q <- gsub(pattern = "\u00D2|\u00D3|\u00D4|\u00D5|\u00D6", replacement = "O", x = q)
+  q <- gsub(pattern = "\u00F2|\u00F3|\u00F4|\u00F5|\u00F6", replacement = "o", x = q)
   q <- gsub(pattern = "\u00D8", replacement = "0", x = q)
+  q <- gsub(pattern = "\u00F8", replacement = "o", x = q)
   q <- gsub(pattern = "\u00D9|\u00DA|\u00DB|\u00DC", replacement = "U", x = q)
+  q <- gsub(pattern = "\u00F9|\u00FA|\u00FB|\u00FC", replacement = "u", x = q)
+  q <- gsub(pattern = "\u00DD", replacement = "Y", x = q)
+  q <- gsub(pattern = "\u00FD|\u00FF", replacement = "y", x = q)
+  q <- gsub(pattern = "\u00DE", replacement = "P", x = q)
+  q <- gsub(pattern = "\u00FE", replacement = "p", x = q)
+  q <- gsub(pattern = "\u00DF", replacement = "B", x = q)
+  q <- gsub(pattern = "\u00F7", replacement = "/", x = q) # math
+  q <- gsub(pattern = "\u0192", replacement = "f", x = q) # math
   
+  # Greek
+  q <- gsub(pattern = "\u0391", replacement = "ALPHA", x = q)
+  q <- gsub(pattern = "\u03B1", replacement = "alpha", x = q)
+  q <- gsub(pattern = "\u0392", replacement = "BETA", x = q)
+  q <- gsub(pattern = "\u03B2", replacement = "beta", x = q)
+  q <- gsub(pattern = "\u0393", replacement = "GAMMA", x = q)
+  q <- gsub(pattern = "\u03B3", replacement = "gamma", x = q)
+  q <- gsub(pattern = "\u0394", replacement = "DELTA", x = q)
+  q <- gsub(pattern = "\u03B4", replacement = "delta", x = q)
+  q <- gsub(pattern = "\u0395", replacement = "EPSILON", x = q)
+  q <- gsub(pattern = "\u0395", replacement = "epsilon", x = q)
+  q <- gsub(pattern = "\u0396", replacement = "ZETA", x = q)
+  q <- gsub(pattern = "\u03B6", replacement = "zeta", x = q)
+  q <- gsub(pattern = "\u0397", replacement = "ETA", x = q)
+  q <- gsub(pattern = "\u03B7", replacement = "eta", x = q)
+  q <- gsub(pattern = "\u0398", replacement = "THETA", x = q)
+  q <- gsub(pattern = "\u03B8|\u03C9", replacement = "theta", x = q)
+  q <- gsub(pattern = "\u0399", replacement = "IOTA", x = q)
+  q <- gsub(pattern = "\u03B9", replacement = "iota", x = q)
+  q <- gsub(pattern = "\u039A", replacement = "KAPPA", x = q)
+  q <- gsub(pattern = "\u03BA", replacement = "kappa", x = q)
+  q <- gsub(pattern = "\u039B", replacement = "LAMBDA", x = q)
+  q <- gsub(pattern = "\u03BB", replacement = "lamda", x = q)
+  q <- gsub(pattern = "\u039C", replacement = "MU", x = q)
+  q <- gsub(pattern = "\u03BC", replacement = "mu", x = q)
+  q <- gsub(pattern = "\u039D", replacement = "NU", x = q)
+  q <- gsub(pattern = "\u03BD", replacement = "nu", x = q)
+  q <- gsub(pattern = "\u039E", replacement = "XI", x = q)
+  q <- gsub(pattern = "\u03BE", replacement = "xi", x = q)
+  q <- gsub(pattern = "\u039F", replacement = "OMICRON", x = q)
+  q <- gsub(pattern = "\u03BF", replacement = "omicron", x = q)
+  q <- gsub(pattern = "\u03A0", replacement = "PI", x = q)
+  q <- gsub(pattern = "\u03C0|\u03D6", replacement = "pi", x = q)
+  q <- gsub(pattern = "\u03A1", replacement = "RHO", x = q)
+  q <- gsub(pattern = "\u03C1", replacement = "rho", x = q)
+  q <- gsub(pattern = "\u03A3", replacement = "SIGMA", x = q)
+  q <- gsub(pattern = "\u03C3", replacement = "sigma", x = q)
+  q <- gsub(pattern = "\u03A4", replacement = "TAU", x = q)
+  q <- gsub(pattern = "\u03C4", replacement = "tau", x = q)
+  q <- gsub(pattern = "\u03A5", replacement = "UPSILON", x = q)
+  q <- gsub(pattern = "\u03C5|\u03D2", replacement = "upsilon", x = q)
+  q <- gsub(pattern = "\u03A6", replacement = "PHI", x = q)
+  q <- gsub(pattern = "\u03C6", replacement = "phi", x = q)
+  q <- gsub(pattern = "\u03A7", replacement = "CHI", x = q)
+  q <- gsub(pattern = "\u03C7", replacement = "chi", x = q)
+  q <- gsub(pattern = "\u03A8", replacement = "PSI", x = q)
+  q <- gsub(pattern = "\u03C8", replacement = "psi", x = q)
+  q <- gsub(pattern = "\u03A9", replacement = "OMEGA", x = q)
+  q <- gsub(pattern = "\u03C9", replacement = "omega", x = q)
+  q <- gsub(pattern = "\u03C9", replacement = "omega", x = q)
   
-  stringi::stri_escape_unicode("Ü")
+  stringi::stri_escape_unicode("ϖ")
 
-  q <- gsub(pattern = "\u00", replacement = "", x = q)
-
-
-  bad_chars <- c(¡, ¢, £, ¤, ¥, ¦, §, ¨, ©, ª, «, ¬, ­, ®, ¯, °, ±, ², ³, ´, µ, ¶, ·, ¸, ¹, º, », ¼, ½, ¾, ¿, À, Á, Â, Ã, Å, Æ, Ç, È, É, Ê, Ì, Í, Î, Ï, Ð, Ñ, Ò, Ó, Ô, Õ, Ö, Ø, Ù, Ú, Û, Ü)
+  bad_chars <- c(¡, ¢, £, ¤, ¥, ¦, §, ¨, ©, ª, «, ¬, ­, ®, ¯, °, ±, ², ³, ´, µ, ¶, ·, ¸, ¹, º, », ¼, ½, ¾, ¿, À, Á, Â, Ã, Å, Æ, Ç, È, É, Ê, Ì, Í, Î, Ï, Ð, Ñ, Ò, Ó, Ô, Õ, Ö, Ø, Ù, Ú, Û, Ü, Ý, Þ, ß, à, á, â, ã, ä, æ, ç, è, é, ê, ë, ì, í, î, ï, ð, ñ, ò, ó, ô, õ, ö, ÷, ø, ù, ú, û, ü, ý, þ, ÿ, ƒ, Α, Β, Γ, Δ, Ε, Ζ, Η, Θ, Ι, Κ, Λ, Μ, Ν, Ξ, Ο, Π, Ρ, Σ, Τ, Υ, Φ, Χ, Ψ, Ω, α, β, γ, δ,	ε, ζ, η, θ, ι, κ, λ, μ, ν, ξ, ο, π, ρ, ς, σ, τ, υ, φ, χ, ψ, ϑ, ϒ, ϖ
+                  
+)
   
    	
   
-
-    latin capital letter Y with acute 	&Yacute;	Ý 	&#221;	Ý
-    latin capital letter THORN 	&THORN;	Þ 	&#222;	Þ
-    latin small letter sharp s = ess-zed 	&szlig;	ß 	&#223;	ß
-    latin small letter a with grave 	&agrave;	à 	&#224;	à
-    latin small letter a with acute 	&aacute;	á 	&#225;	á
-    latin small letter a with circumflex 	&acirc;	â 	&#226;	â
-    latin small letter a with tilde 	&atilde;	ã 	&#227;	ã
-    latin small letter a with diaeresis 	&auml;	ä 	&#228;	ä
-    latin small letter a with ring above 	&aring;	å 	&#229;	å
-    latin small letter ae 	&aelig;	æ 	&#230;	æ
-    latin small letter c with cedilla 	&ccedil;	ç 	&#231;	ç
-    latin small letter e with grave 	&egrave;	è 	&#232;	è
-    latin small letter e with acute 	&eacute;	é 	&#233;	é
-    latin small letter e with circumflex 	&ecirc;	ê 	&#234;	ê
-    latin small letter e with diaeresis 	&euml;	ë 	&#235;	ë
-    latin small letter i with grave 	&igrave;	ì 	&#236;	ì
-    latin small letter i with acute 	&iacute;	í 	&#237;	í
-    latin small letter i with circumflex 	&icirc;	î 	&#238;	î
-    latin small letter i with diaeresis 	&iuml;	ï 	&#239;	ï
-    latin small letter eth 	&eth;	ð 	&#240;	ð
-    latin small letter n with tilde 	&ntilde;	ñ 	&#241;	ñ
-    latin small letter o with grave 	&ograve;	ò 	&#242;	ò
-    latin small letter o with acute 	&oacute;	ó 	&#243;	ó
-    latin small letter o with circumflex 	&ocirc;	ô 	&#244;	ô
-    latin small letter o with tilde 	&otilde;	õ 	&#245;	õ
-    latin small letter o with diaeresis 	&ouml;	ö 	&#246;	ö
-    division sign 	&divide;	÷ 	&#247;	÷
-    latin small letter o with stroke 	&oslash;	ø 	&#248;	ø
-    latin small letter u with grave 	&ugrave;	ù 	&#249;	ù
-    latin small letter u with acute 	&uacute;	ú 	&#250;	ú
-    latin small letter u with circumflex 	&ucirc;	û 	&#251;	û
-    latin small letter u with diaeresis 	&uuml;	ü 	&#252;	ü
-    latin small letter y with acute 	&yacute;	ý 	&#253;	ý
-    latin small letter thorn with 	&thorn;	þ 	&#254;	þ
-    latin small letter y with diaeresis 	&yuml;	ÿ 	&#255;	ÿ
-    latin small f with hook = function 	&fnof;	ƒ 	&#402;	ƒ
-    greek capital letter alpha 	&Alpha;	Α 	&#913;	Α
-    greek capital letter beta 	&Beta;	Β 	&#914;	Β
-    greek capital letter gamma 	&Gamma;	Γ 	&#915;	Γ
-    greek capital letter delta 	&Delta;	Δ 	&#916;	Δ
-    greek capital letter epsilon 	&Epsilon;	Ε 	&#917;	Ε
-    greek capital letter zeta 	&Zeta;	Ζ 	&#918;	Ζ
-    greek capital letter eta 	&Eta;	Η 	&#919;	Η
-    greek capital letter theta 	&Theta;	Θ 	&#920;	Θ
-    greek capital letter iota 	&Iota;	Ι 	&#921;	Ι
-    greek capital letter kappa 	&Kappa;	Κ 	&#922;	Κ
-    greek capital letter lambda 	&Lambda;	Λ 	&#923;	Λ
-    greek capital letter mu 	&Mu;	Μ 	&#924;	Μ
-    greek capital letter nu 	&Nu;	Ν 	&#925;	Ν
-    greek capital letter xi 	&Xi;	Ξ 	&#926;	Ξ
-    greek capital letter omicron 	&Omicron;	Ο 	&#927;	Ο
-    greek capital letter pi 	&Pi;	Π 	&#928;	Π
-    greek capital letter rho 	&Rho;	Ρ 	&#929;	Ρ
-    greek capital letter sigma 	&Sigma;	Σ 	&#931;	Σ
-    greek capital letter tau 	&Tau;	Τ 	&#932;	Τ
-    greek capital letter upsilon 	&Upsilon;	Υ 	&#933;	Υ
-    greek capital letter phi 	&Phi;	Φ 	&#934;	Φ
-    greek capital letter chi 	&Chi;	Χ 	&#935;	Χ
-    greek capital letter psi 	&Psi;	Ψ 	&#936;	Ψ
-    greek capital letter omega 	&Omega;	Ω 	&#937;	Ω
-    greek small letter alpha 	&alpha;	α 	&#945;	α
-    greek small letter beta 	&beta;	β 	&#946;	β
-    greek small letter gamma 	&gamma;	γ 	&#947;	γ
-    greek small letter delta 	&delta;	δ 	&#948;	δ
-    greek small letter epsilon 	&epsilon;	ε 	&#949;	ε
-    greek small letter zeta 	&zeta;	ζ 	&#950;	ζ
-    greek small letter eta 	&eta;	η 	&#951;	η
-    greek small letter theta 	&theta;	θ 	&#952;	θ
-    greek small letter iota 	&iota;	ι 	&#953;	ι
-    greek small letter kappa 	&kappa;	κ 	&#954;	κ
-    greek small letter lambda 	&lambda;	λ 	&#955;	λ
-    greek small letter mu 	&mu;	μ 	&#956;	μ
-    greek small letter nu 	&nu;	ν 	&#957;	ν
-    greek small letter xi 	&xi;	ξ 	&#958;	ξ
-    greek small letter omicron 	&omicron;	ο 	&#959;	ο
-    greek small letter pi 	&pi;	π 	&#960;	π
-    greek small letter rho 	&rho;	ρ 	&#961;	ρ
-    greek small letter final sigma 	&sigmaf;	ς 	&#962;	ς
-    greek small letter sigma 	&sigma;	σ 	&#963;	σ
-    greek small letter tau 	&tau;	τ 	&#964;	τ
-    greek small letter upsilon 	&upsilon;	υ 	&#965;	υ
-    greek small letter phi 	&phi;	φ 	&#966;	φ
-    greek small letter chi 	&chi;	χ 	&#967;	χ
-    greek small letter psi 	&psi;	ψ 	&#968;	ψ
-    greek small letter omega 	&omega;	ω 	&#969;	ω
-    greek small letter theta symbol 	&thetasym;	ϑ 	&#977;	ϑ
-    greek upsilon with hook symbol 	&upsih;	ϒ 	&#978;	ϒ
-    greek pi symbol 	&piv;	ϖ 	&#982;	ϖ
+    
+    
+    
     bullet = black small circle 	&bull;	• 	&#8226;	•
     horizontal ellipsis = three dot leader 	&hellip;	… 	&#8230;	…
     prime = minutes = feet 	&prime;	′ 	&#8242;	′
