@@ -97,6 +97,7 @@ replace_non_ascii <- function(x = NULL){
   q <- gsub(pattern = "\u0160", replacement = "S", x = q)
   q <- gsub(pattern = "\u0161", replacement = "s", x = q)  
   q <- gsub(pattern = "\u2020", replacement = "t", x = q)
+  q <- gsub(pattern = "\uFB01", replacement = "fi", x = q)
   
   # Other Symbols ----
   q <- gsub(pattern = "\u00A9", replacement = "(C)", x = q)
