@@ -140,11 +140,11 @@ fix_non_ascii <- function(x = NULL){
   q <- gsub(pattern = "\u03BE", replacement = "xi", x = q)
   q <- gsub(pattern = "\u039F", replacement = "OMICRON", x = q)
   q <- gsub(pattern = "\u03BF", replacement = "omicron", x = q)
-  q <- gsub(pattern = "\u03A0", replacement = "PI", x = q)
+  q <- gsub(pattern = "\u03A0|\u220F", replacement = "PI", x = q)
   q <- gsub(pattern = "\u03C0|\u03D6", replacement = "pi", x = q)
   q <- gsub(pattern = "\u03A1", replacement = "RHO", x = q)
   q <- gsub(pattern = "\u03C1", replacement = "rho", x = q)
-  q <- gsub(pattern = "\u03A3", replacement = "SIGMA", x = q)
+  q <- gsub(pattern = "\u03A3|\u2211", replacement = "SIGMA", x = q)
   q <- gsub(pattern = "\u03C3", replacement = "sigma", x = q)
   q <- gsub(pattern = "\u03A4", replacement = "TAU", x = q)
   q <- gsub(pattern = "\u03C4", replacement = "tau", x = q)
@@ -160,120 +160,100 @@ fix_non_ascii <- function(x = NULL){
   q <- gsub(pattern = "\u03C9", replacement = "omega", x = q)
   q <- gsub(pattern = "\u03C9", replacement = "omega", x = q)
   
-  stringi::stri_escape_unicode("ϖ")
-
-  bad_chars <- c(¡, ¢, £, ¤, ¥, ¦, §, ¨, ©, ª, «, ¬, ­, ®, ¯, °, ±, ², ³, ´, µ, ¶, ·, ¸, ¹, º, », ¼, ½, ¾, ¿, À, Á, Â, Ã, Å, Æ, Ç, È, É, Ê, Ì, Í, Î, Ï, Ð, Ñ, Ò, Ó, Ô, Õ, Ö, Ø, Ù, Ú, Û, Ü, Ý, Þ, ß, à, á, â, ã, ä, æ, ç, è, é, ê, ë, ì, í, î, ï, ð, ñ, ò, ó, ô, õ, ö, ÷, ø, ù, ú, û, ü, ý, þ, ÿ, ƒ, Α, Β, Γ, Δ, Ε, Ζ, Η, Θ, Ι, Κ, Λ, Μ, Ν, Ξ, Ο, Π, Ρ, Σ, Τ, Υ, Φ, Χ, Ψ, Ω, α, β, γ, δ,	ε, ζ, η, θ, ι, κ, λ, μ, ν, ξ, ο, π, ρ, ς, σ, τ, υ, φ, χ, ψ, ϑ, ϒ, ϖ
+  # Other symbols
+  q <- gsub(pattern = "\u2022", replacement = ".", x = q)
+  q <- gsub(pattern = "\u2026", replacement = "...", x = q)
+  q <- gsub(pattern = "\u2032", replacement = "'", x = q)
+  q <- gsub(pattern = "\u2033", replacement = '"', x = q)
+  q <- gsub(pattern = "\u203E", replacement = "-", x = q)
+  q <- gsub(pattern = "\u2044", replacement = "/", x = q)
+  q <- gsub(pattern = "\u2118", replacement = "*P*", x = q)
+  q <- gsub(pattern = "\u2111", replacement = "*I*", x = q)
+  q <- gsub(pattern = "\u211C", replacement = "*R*", x = q)
+  q <- gsub(pattern = "\u2122", replacement = "^TM", x = q)
+  q <- gsub(pattern = "\u2135", replacement = "alef", x = q)
+  q <- gsub(pattern = "\u2190", replacement = "<-", x = q)
+  q <- gsub(pattern = "\u2191", replacement = "^", x = q)
+  q <- gsub(pattern = "\u2192", replacement = "->", x = q)
+  q <- gsub(pattern = "\u2193", replacement = "v", x = q)
+  q <- gsub(pattern = "\u2194", replacement = "<->", x = q)
+  q <- gsub(pattern = "\u2212", replacement = "-", x = q)
+  q <- gsub(pattern = "\u2217", replacement = "*", x = q)
+  q <- gsub(pattern = "\u221A", replacement = "/", x = q)
+  q <- gsub(pattern = "\u2202", replacement = "d", x = q)
+  q <- gsub(pattern = "\u2227", replacement = "^", x = q)
+  q <- gsub(pattern = "\u2228", replacement = "v", x = q)
+  q <- gsub(pattern = "\u2229", replacement = "n", x = q)
+  q <- gsub(pattern = "\u222a", replacement = "u", x = q)
+  q <- gsub(pattern = "\u223C", replacement = "~", x = q)
+  q <- gsub(pattern = "\u2260", replacement = "=/=", x = q)
+  q <- gsub(pattern = "\u2264", replacement = "<=", x = q)
+  q <- gsub(pattern = "\u2265", replacement = ">=", x = q)
+  q <- gsub(pattern = "\u22C5", replacement = ".", x = q)
+  q <- gsub(pattern = "\u27E8|\u2039", replacement = "<", x = q)
+  q <- gsub(pattern = "\u27E9|\u203A", replacement = ">", x = q)
+  q <- gsub(pattern = "\u2660", replacement = "spade", x = q)
+  q <- gsub(pattern = "\u2663", replacement = "club", x = q)
+  q <- gsub(pattern = "\u2665", replacement = "heart", x = q)
+  q <- gsub(pattern = "\u2666", replacement = "diamond", x = q)
+  q <- gsub(pattern = "\u0152", replacement = "OE", x = q)
+  q <- gsub(pattern = "\u0153", replacement = "oe", x = q)
+  q <- gsub(pattern = "\u0160", replacement = "S", x = q)
+  q <- gsub(pattern = "\u0161", replacement = "s", x = q)
+  q <- gsub(pattern = "\u0178", replacement = "Y", x = q)
+  q <- gsub(pattern = "\u02C6", replacement = "^", x = q)
+  q <- gsub(pattern = "\u02DC", replacement = "~", x = q)
+  q <- gsub(pattern = "\u2002|\u2003|\u2009|\u200C|\u200D|\u200E|\u200F", 
+            replacement = " ", x = q)
+  q <- gsub(pattern = "\u2013|\u2014", replacement = "-", x = q)
+  q <- gsub(pattern = "\u2018|\u2019", replacement = "'", x = q)
+  q <- gsub(pattern = "\u201A", replacement = ",", x = q)
+  q <- gsub(pattern = "\u201C|\u201D", replacement = "", x = q)
+  q <- gsub(pattern = "\u201E", replacement = ",,", x = q)
+  q <- gsub(pattern = "\u2020", replacement = "t", x = q)
+  q <- gsub(pattern = "\u2030", replacement = "o/oo", x = q)
+  
                   
-)
+                  
+                  
   
-   	
-  
-    
-    
-    
-    bullet = black small circle 	&bull;	• 	&#8226;	•
-    horizontal ellipsis = three dot leader 	&hellip;	… 	&#8230;	…
-    prime = minutes = feet 	&prime;	′ 	&#8242;	′
-    double prime = seconds = inches 	&Prime;	″ 	&#8243;	″
-    overline = spacing overscore 	&oline;	‾ 	&#8254;	‾
-    fraction slash 	&frasl;	⁄ 	&#8260;	⁄
-    script capital P = power set 	&weierp;	℘ 	&#8472;	℘
-    blackletter capital I = imaginary part 	&image;	ℑ 	&#8465;	ℑ
-    blackletter capital R = real part symbol 	&real;	ℜ 	&#8476;	ℜ
-    trade mark sign 	&trade;	™ 	&#8482;	™
-    alef symbol = first transfinite cardinal 	&alefsym;	ℵ 	&#8501;	ℵ
-    leftwards arrow 	&larr;	← 	&#8592;	←
-    upwards arrow 	&uarr;	↑ 	&#8593;	↑
-    rightwards arrow 	&rarr;	→ 	&#8594;	→
-    downwards arrow 	&darr;	↓ 	&#8595;	↓
-    left right arrow 	&harr;	↔ 	&#8596;	↔
-    downwards arrow with corner leftwards 	&crarr;	↵ 	&#8629;	↵
-    leftwards double arrow 	&lArr;	⇐ 	&#8656;	⇐
-    upwards double arrow 	&uArr;	⇑ 	&#8657;	⇑
-    rightwards double arrow 	&rArr;	⇒ 	&#8658;	⇒
-    downwards double arrow 	&dArr;	⇓ 	&#8659;	⇓
-    left right double arrow 	&hArr;	⇔ 	&#8660;	⇔
-    for all 	&forall;	∀ 	&#8704;	∀
-    partial differential 	&part;	∂ 	&#8706;	∂
-    there exists 	&exist;	∃ 	&#8707;	∃
-    empty set = null set = diameter 	&empty;	∅ 	&#8709;	∅
-    nabla = backward difference 	&nabla;	∇ 	&#8711;	∇
-    element of 	&isin;	∈ 	&#8712;	∈
-    not an element of 	&notin;	∉ 	&#8713;	∉
-    contains as member 	&ni;	∋ 	&#8715;	∋
-    n-ary product = product sign 	&prod;	∏ 	&#8719;	∏
-    n-ary sumation 	&sum;	∑ 	&#8721;	∑
-    minus sign 	&minus;	− 	&#8722;	−
-    asterisk operator 	&lowast;	∗ 	&#8727;	∗
-    square root = radical sign 	&radic;	√ 	&#8730;	√
-    proportional to 	&prop;	∝ 	&#8733;	∝
-    infinity 	&infin;	∞ 	&#8734;	∞
-    angle 	&ang;	∠ 	&#8736;	∠
-    logical and = wedge 	&and;	∧ 	&#8743;	∧
-    logical or = vee 	&or;	∨ 	&#8744;	∨
-    intersection = cap 	&cap;	∩ 	&#8745;	∩
-    union = cup 	&cup;	∪ 	&#8746;	∪
-    integral 	&int;	∫ 	&#8747;	∫
-    therefore 	&there4;	∴ 	&#8756;	∴
-    tilde operator = varies with = similar to 	&sim;	∼ 	&#8764;	∼
-    approximately equal to 	&cong;	≅ 	&#8773;	≅
-    almost equal to = asymptotic to 	&asymp;	≈ 	&#8776;	≈
-    not equal to 	&ne;	≠ 	&#8800;	≠
-    identical to 	&equiv;	≡ 	&#8801;	≡
-    less-than or equal to 	&le;	≤ 	&#8804;	≤
-    greater-than or equal to 	&ge;	≥ 	&#8805;	≥
-    subset of 	&sub;	⊂ 	&#8834;	⊂
-    superset of 	&sup;	⊃ 	&#8835;	⊃
-    not a subset of 	&nsub;	⊄ 	&#8836;	⊄
-    subset of or equal to 	&sube;	⊆ 	&#8838;	⊆
-    superset of or equal to 	&supe;	⊇ 	&#8839;	⊇
-    circled plus = direct sum 	&oplus;	⊕ 	&#8853;	⊕
-    circled times = vector product 	&otimes;	⊗ 	&#8855;	⊗
-    up tack = orthogonal to = perpendicular 	&perp;	⊥ 	&#8869;	⊥
-    dot operator 	&sdot;	⋅ 	&#8901;	⋅
-    left ceiling = apl upstile 	&lceil;	⌈ 	&#8968;	⌈
-    right ceiling 	&rceil;	⌉ 	&#8969;	⌉
-    left floor = apl downstile 	&lfloor;	⌊ 	&#8970;	⌊
-    right floor 	&rfloor;	⌋ 	&#8971;	⌋
-    left-pointing angle bracket = bra 	&lang;	⟨ 	&#9001;	〈
-    right-pointing angle bracket = ket 	&rang;	⟩ 	&#9002;	〉
-    lozenge 	&loz;	◊ 	&#9674;	◊
-    black spade suit 	&spades;	♠ 	&#9824;	♠
-    black club suit = shamrock 	&clubs;	♣ 	&#9827;	♣
-    black heart suit = valentine 	&hearts;	♥ 	&#9829;	♥
-    black diamond suit 	&diams;	♦ 	&#9830;	♦
-    quotation mark = APL quote 	&quot;	" 	&#34;	"
-  ampersand 	&amp;	& 	&#38;	&
-    less-than sign 	&lt;	< 	&#60;	<
-    greater-than sign 	&gt;	> 	&#62;	>
-    latin capital ligature OE 	&OElig;	Œ 	&#338;	Œ
-    latin small ligature oe 	&oelig;	œ 	&#339;	œ
-    latin capital letter S with caron 	&Scaron;	Š 	&#352;	Š
-    latin small letter s with caron 	&scaron;	š 	&#353;	š
-    latin capital letter Y with diaeresis 	&Yuml;	Ÿ 	&#376;	Ÿ
-    modifier letter circumflex accent 	&circ;	ˆ 	&#710;	ˆ
-    small tilde 	&tilde;	˜ 	&#732;	˜
-    en space 	&ensp;	  	&#8194;	 
-    em space 	&emsp;	  	&#8195;	 
-    thin space 	&thinsp;	  	&#8201;	 
-    zero width non-joiner 	&zwnj;	‌ 	&#8204;	‌
-    zero width joiner 	&zwj;	‍ 	&#8205;	‍
-    left-to-right mark 	&lrm;	‎ 	&#8206;	‎
-    right-to-left mark 	&rlm;	‏ 	&#8207;	‏
-    en dash 	&ndash;	– 	&#8211;	–
-    em dash 	&mdash;	— 	&#8212;	—
-    left single quotation mark 	&lsquo;	‘ 	&#8216;	‘
-    right single quotation mark 	&rsquo;	’ 	&#8217;	’
-    single low-9 quotation mark 	&sbquo;	‚ 	&#8218;	‚
-    left double quotation mark 	&ldquo;	“ 	&#8220;	“
-    right double quotation mark 	&rdquo;	” 	&#8221;	”
-    double low-9 quotation mark 	&bdquo;	„ 	&#8222;	„
-    dagger 	&dagger;	† 	&#8224;	†
-    double dagger 	&Dagger;	‡ 	&#8225;	‡
-    per mille sign 	&permil;	‰ 	&#8240;	‰
-    single left-pointing angle quotation mark 	&lsaquo;	‹ 	&#8249;	‹
-    single right-pointing angle quotation mark 	&rsaquo;	› 	&#8250;	›
-
+      
+      # double dagger 	&Dagger;	‡ 	&#8225;	‡
+    # downwards arrow with corner leftwards 	&crarr;	↵ 	&#8629;	↵
+    # leftwards double arrow 	&lArr;	⇐ 	&#8656;	⇐
+    # upwards double arrow 	&uArr;	⇑ 	&#8657;	⇑
+    # rightwards double arrow 	&rArr;	⇒ 	&#8658;	⇒
+    # downwards double arrow 	&dArr;	⇓ 	&#8659;	⇓
+    # left right double arrow 	&hArr;	⇔ 	&#8660;	⇔
+    # for all 	&forall;	∀ 	&#8704;	∀
+    # there exists 	&exist;	∃ 	&#8707;	∃
+    # empty set = null set = diameter 	&empty;	∅ 	&#8709;	∅
+    # nabla = backward difference 	&nabla;	∇ 	&#8711;	∇
+    # element of 	&isin;	∈ 	&#8712;	∈
+    # not an element of 	&notin;	∉ 	&#8713;	∉
+    # contains as member 	&ni;	∋ 	&#8715;	∋
+    #   proportional to 	&prop;	∝ 	&#8733;	∝
+    # infinity 	&infin;	∞ 	&#8734;	∞
+    # angle 	&ang;	∠ 	&#8736;	∠
+    # integral 	&int;	∫ 	&#8747;	∫
+    # therefore 	&there4;	∴ 	&#8756;	∴
+  # approximately equal to 	&cong;	≅ 	&#8773;	≅
+  #   almost equal to = asymptotic to 	&asymp;	≈ 	&#8776;	≈
+  #   identical to 	&equiv;	≡ 	&#8801;	≡
+    # subset of 	&sub;	⊂ 	&#8834;	⊂
+    # superset of 	&sup;	⊃ 	&#8835;	⊃
+    # not a subset of 	&nsub;	⊄ 	&#8836;	⊄
+    # subset of or equal to 	&sube;	⊆ 	&#8838;	⊆
+    # superset of or equal to 	&supe;	⊇ 	&#8839;	⊇
+    # circled plus = direct sum 	&oplus;	⊕ 	&#8853;	⊕
+    # circled times = vector product 	&otimes;	⊗ 	&#8855;	⊗
+    # up tack = orthogonal to = perpendicular 	&perp;	⊥ 	&#8869;	⊥
+    # left ceiling = apl upstile 	&lceil;	⌈ 	&#8968;	⌈
+    # right ceiling 	&rceil;	⌉ 	&#8969;	⌉
+    # left floor = apl downstile 	&lfloor;	⌊ 	&#8970;	⌊
+    # right floor 	&rfloor;	⌋ 	&#8971;	⌋
+    # lozenge 	&loz;	◊ 	&#9674;	◊
+ 
   
   # ## Quotes / apostrophes
   # q <- gsub(pattern = "’|`", replacement = "'", x = q)
@@ -303,6 +283,10 @@ fix_non_ascii <- function(x = NULL){
   
   # Return that fixed vector
   return(q) }
+
+
+bad_chars <- c("¡", "¢", "£", "¤", "¥", "¦", "§", "¨", "©", "ª", "«", "¬", "­", "®", "¯", "°", "±", "²", "³", "´", "µ", "¶", "·", "¸", "¹", "º", "»", "¼", "½", "¾", "¿", "À", "Á", "Â", "Ã", "Å", "Æ", "Ç", "È", "É", "Ê", "Ì", "Í", "Î", "Ï", "Ð", "Ñ", "Ò", "Ó", "Ô", "Õ", "Ö", "Ø", "Ù", "Ú", "Û", "Ü", "Ý", "Þ", "ß", "à", "á", "â", "ã", "ä", "æ", "ç", "è", "é", "ê", "ë", "ì", "í", "î", "ï", "ð", "ñ", "ò", "ó", "ô", "õ", "ö", "÷", "ø", "ù", "ú", "û", "ü", "ý", "þ", "ÿ", "ƒ", "Α", "Β", "Γ", "Δ", "Ε", "Ζ", "Η", "Θ", "Ι", "Κ", "Λ", "Μ", "Ν", "Ξ", "Ο", "Π", "Ρ", "Σ", "Τ", "Υ", "Φ", "Χ", "Ψ", "Ω", "α", "β", "γ", "δ,	ε", "ζ", "η", "θ", "ι", "κ", "λ", "μ", "ν", "ξ", "ο", "π", "ρ", "ς", "σ", "τ", "υ", "φ", "χ", "ψ", "ϑ", "ϒ", "ϖ", "•", "…", "′", "″", "‾", "⁄", "℘", "ℑ", "ℜ", "™", "ℵ", "←", "↑", "→", "↓", "↔", "∏", "∑", "−", "∗", "√", "∂", "∧", "∨", "∩", "∪", "∼", "≠", "≤", "≥", "⋅", "⟨", "〉", "‹", "›", "♠", "♣", "♥", "♦", "Œ", "œ", "Š", "š", "Ÿ", "ˆ", "˜", " ", " ", " ", " ", "‌", "‍", "‎", "–", "—", "‘", "’", "‚", '“', '”', '„', "†", "‰")
+                
 
 
 
