@@ -38,16 +38,11 @@ fix_non_ascii <- function(x = NULL){
   
   ## Apostrophes & Quotes ----
   q <- gsub(pattern = "\u00B4", replacement = "'", x = q)
-  
-  
-  stringi::stri_escape_unicode("¿")
-  
-  q <- gsub(pattern = "\u00FC", replacement = "u", x = q)
-  
+
   ## Greek Letters ----
   q <- gsub(pattern = "\u00B5", replacement = "u", x = q) # mu ('micro')
   
-  ## Misc. Math ----
+  ## Math ----
   q <- gsub(pattern = "\u00B1", replacement = "+/-", x = q)
   q <- gsub(pattern = "\u2260", replacement = "=/=", x = q)
   q <- gsub(pattern = "\u00D7", replacement = "x", x = q)
@@ -59,7 +54,7 @@ fix_non_ascii <- function(x = NULL){
   q <- gsub(pattern = "\u00BE", replacement = "3/4", x = q)
   
   
-  ## Misc. Symbols ----
+  ## Currency ----
   q <- gsub(pattern = "\u00A1", replacement = "!", x = q)
   q <- gsub(pattern = "\u00BF", replacement = "?", x = q)
   q <- gsub(pattern = "\u00A2", replacement = "c", x = q)
@@ -67,6 +62,8 @@ fix_non_ascii <- function(x = NULL){
   q <- gsub(pattern = "\u00A5", replacement = "Y", x = q)
   q <- gsub(pattern = "\u20AC", replacement = "E", x = q)
   q <- gsub(pattern = "\u00A4", replacement = "ox", x = q)
+  
+  ## Misc. Other ----
   q <- gsub(pattern = "\u00A6", replacement = "|", x = q)
   q <- gsub(pattern = "\u00A7", replacement = "S", x = q)
   q <- gsub(pattern = "\u00A8", replacement = "..", x = q)
@@ -82,48 +79,30 @@ fix_non_ascii <- function(x = NULL){
   q <- gsub(pattern = "\u00B8", replacement = ",", x = q)
   
   
-  stringi::stri_escape_unicode("¼")
+  
+  # UNSORTED ----
+  q <- gsub(pattern = "\u00C0|\u00C1|\u00C2|\u00C3|\u00C4|\u00C5", replacement = "A", x = q)
+  q <- gsub(pattern = "\u00C6", replacement = "AE", x = q)
+  q <- gsub(pattern = "\u00C7", replacement = "C", x = q)
+  q <- gsub(pattern = "\u00C8|\u00C9|\u00CA|\u00CB", replacement = "E", x = q)
+  q <- gsub(pattern = "\u00CC|\u00CD|\u00CE|\u00CF", replacement = "I", x = q)
+  q <- gsub(pattern = "\u00D0", replacement = "-D", x = q)
+  q <- gsub(pattern = "\u00D1", replacement = "N", x = q)
+  q <- gsub(pattern = "\u00D2|\u00D3|\u00D4|\u00D5|\u00D6", replacement = "O", x = q)
+  q <- gsub(pattern = "\u00D8", replacement = "0", x = q)
+  q <- gsub(pattern = "\u00D9|\u00DA|\u00DB|\u00DC", replacement = "U", x = q)
+  
+  
+  stringi::stri_escape_unicode("Ü")
 
   q <- gsub(pattern = "\u00", replacement = "", x = q)
+
+
+  bad_chars <- c(¡, ¢, £, ¤, ¥, ¦, §, ¨, ©, ª, «, ¬, ­, ®, ¯, °, ±, ², ³, ´, µ, ¶, ·, ¸, ¹, º, », ¼, ½, ¾, ¿, À, Á, Â, Ã, Å, Æ, Ç, È, É, Ê, Ì, Í, Î, Ï, Ð, Ñ, Ò, Ó, Ô, Õ, Ö, Ø, Ù, Ú, Û, Ü)
   
+   	
   
-  # Letters ----
-  q <- gsub(pattern = "\u00FC", replacement = "u", x = q)
-  
-  
-  stringi::stri_escape_unicode("×")
-  
-  q <- gsub(pattern = "\u00", replacement = "", x = q)
-  
-  À 	&#192;	À
-    latin capital letter A with acute 	&Aacute;	Á 	&#193;	Á
-    latin capital letter A with circumflex 	&Acirc;	Â 	&#194;	Â
-    latin capital letter A with tilde 	&Atilde;	Ã 	&#195;	Ã
-    latin capital letter A with diaeresis 	&Auml;	Ä 	&#196;	Ä
-    latin capital letter A with ring above 	&Aring;	Å 	&#197;	Å
-    latin capital letter AE 	&AElig;	Æ
-  Ç 	&#199;	Ç
-    latin capital letter E with grave 	&Egrave;	È 	&#200;	È
-    latin capital letter E with acute 	&Eacute;	É 	&#201;	É
-    latin capital letter E with circumflex 	&Ecirc;	Ê 	&#202;	Ê
-    latin capital letter E with diaeresis 	&Euml;	Ë 	&#203;	Ë
-    latin capital letter I with grave 	&Igrave;	Ì 	&#204;	Ì
-    latin capital letter I with acute 	&Iacute;	Í 	&#205;	Í
-    latin capital letter I with circumflex 	&Icirc;	Î 	&#206;	Î
-    latin capital letter I with diaeresis 	&Iuml;	Ï 	&#207;	Ï
-    latin capital letter ETH 	&ETH;	Ð 	&#208;	Ð
-    latin capital letter N with tilde 	&Ntilde;	Ñ 	&#209;	Ñ
-    latin capital letter O with grave 	&Ograve;	Ò 	&#210;	Ò
-    latin capital letter O with acute 	&Oacute;	Ó 	&#211;	Ó
-    latin capital letter O with circumflex 	&Ocirc;	Ô 	&#212;	Ô
-    latin capital letter O with tilde 	&Otilde;	Õ 	&#213;	Õ
-    latin capital letter O with diaeresis 	&Ouml;	Ö 	&#214;	Ö
-    multiplication sign 	&times;	× 	&#215;	×
-    latin capital letter O with stroke 	&Oslash;	Ø 	&#216;	Ø
-    latin capital letter U with grave 	&Ugrave;	Ù 	&#217;	Ù
-    latin capital letter U with acute 	&Uacute;	Ú 	&#218;	Ú
-    latin capital letter U with circumflex 	&Ucirc;	Û 	&#219;	Û
-    latin capital letter U with diaeresis 	&Uuml;	Ü 	&#220;	Ü
+
     latin capital letter Y with acute 	&Yacute;	Ý 	&#221;	Ý
     latin capital letter THORN 	&THORN;	Þ 	&#222;	Þ
     latin small letter sharp s = ess-zed 	&szlig;	ß 	&#223;	ß
@@ -314,25 +293,24 @@ fix_non_ascii <- function(x = NULL){
     per mille sign 	&permil;	‰ 	&#8240;	‰
     single left-pointing angle quotation mark 	&lsaquo;	‹ 	&#8249;	‹
     single right-pointing angle quotation mark 	&rsaquo;	› 	&#8250;	›
-    euro sign 	&euro;	€ 	&#8364;	€
+
   
-  
-  ## Quotes / apostrophes
-  q <- gsub(pattern = "’|`", replacement = "'", x = q)
-  q <- gsub(pattern = "“|”", replacement = '"', x = q)
-  ## Dashes / symbols
-  q <- gsub(pattern = "—|−|–", replacement = "-", x = q)
-  q <- gsub(pattern = "×", replacement = "*", x = q)
-  q <- gsub(pattern = "·", replacement = ".", x = q)
-  q <- gsub(pattern = "…", replacement = "...", x = q)
-  ## Spaces
-  q <- gsub(pattern = "­", replacement = " ", x = q)
-  ## Letters
-  q <- gsub(pattern = "ﬁ", replacement = "fi", x = q)
-  q <- gsub(pattern = "ö|ó|ò", replacement = "o", x = q)
-  q <- gsub(pattern = "ë|é|è", replacement = "e", x = q)
-  q <- gsub(pattern = "ä|á|à|å", replacement = "a", x = q)
-  q <- gsub(pattern = "ü|ú|ù", replacement = "u", x = q)
+  # ## Quotes / apostrophes
+  # q <- gsub(pattern = "’|`", replacement = "'", x = q)
+  # q <- gsub(pattern = "“|”", replacement = '"', x = q)
+  # ## Dashes / symbols
+  # q <- gsub(pattern = "—|−|–", replacement = "-", x = q)
+  # q <- gsub(pattern = "×", replacement = "*", x = q)
+  # q <- gsub(pattern = "·", replacement = ".", x = q)
+  # q <- gsub(pattern = "…", replacement = "...", x = q)
+  # ## Spaces
+  # q <- gsub(pattern = "­", replacement = " ", x = q)
+  # ## Letters
+  # q <- gsub(pattern = "ﬁ", replacement = "fi", x = q)
+  # q <- gsub(pattern = "ö|ó|ò", replacement = "o", x = q)
+  # q <- gsub(pattern = "ë|é|è", replacement = "e", x = q)
+  # q <- gsub(pattern = "ä|á|à|å", replacement = "a", x = q)
+  # q <- gsub(pattern = "ü|ú|ù", replacement = "u", x = q)
   
   # See if any are not fixed manually above
   unfixed <- q[stringr::str_detect(string = q, pattern = "[^[:ascii:]]") == TRUE]
