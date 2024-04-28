@@ -213,65 +213,6 @@ fix_non_ascii <- function(x = NULL){
   q <- gsub(pattern = "\u2020", replacement = "t", x = q)
   q <- gsub(pattern = "\u2030", replacement = "o/oo", x = q)
   
-                  
-                  
-                  
-  
-      
-      # double dagger 	&Dagger;	‡ 	&#8225;	‡
-    # downwards arrow with corner leftwards 	&crarr;	↵ 	&#8629;	↵
-    # leftwards double arrow 	&lArr;	⇐ 	&#8656;	⇐
-    # upwards double arrow 	&uArr;	⇑ 	&#8657;	⇑
-    # rightwards double arrow 	&rArr;	⇒ 	&#8658;	⇒
-    # downwards double arrow 	&dArr;	⇓ 	&#8659;	⇓
-    # left right double arrow 	&hArr;	⇔ 	&#8660;	⇔
-    # for all 	&forall;	∀ 	&#8704;	∀
-    # there exists 	&exist;	∃ 	&#8707;	∃
-    # empty set = null set = diameter 	&empty;	∅ 	&#8709;	∅
-    # nabla = backward difference 	&nabla;	∇ 	&#8711;	∇
-    # element of 	&isin;	∈ 	&#8712;	∈
-    # not an element of 	&notin;	∉ 	&#8713;	∉
-    # contains as member 	&ni;	∋ 	&#8715;	∋
-    #   proportional to 	&prop;	∝ 	&#8733;	∝
-    # infinity 	&infin;	∞ 	&#8734;	∞
-    # angle 	&ang;	∠ 	&#8736;	∠
-    # integral 	&int;	∫ 	&#8747;	∫
-    # therefore 	&there4;	∴ 	&#8756;	∴
-  # approximately equal to 	&cong;	≅ 	&#8773;	≅
-  #   almost equal to = asymptotic to 	&asymp;	≈ 	&#8776;	≈
-  #   identical to 	&equiv;	≡ 	&#8801;	≡
-    # subset of 	&sub;	⊂ 	&#8834;	⊂
-    # superset of 	&sup;	⊃ 	&#8835;	⊃
-    # not a subset of 	&nsub;	⊄ 	&#8836;	⊄
-    # subset of or equal to 	&sube;	⊆ 	&#8838;	⊆
-    # superset of or equal to 	&supe;	⊇ 	&#8839;	⊇
-    # circled plus = direct sum 	&oplus;	⊕ 	&#8853;	⊕
-    # circled times = vector product 	&otimes;	⊗ 	&#8855;	⊗
-    # up tack = orthogonal to = perpendicular 	&perp;	⊥ 	&#8869;	⊥
-    # left ceiling = apl upstile 	&lceil;	⌈ 	&#8968;	⌈
-    # right ceiling 	&rceil;	⌉ 	&#8969;	⌉
-    # left floor = apl downstile 	&lfloor;	⌊ 	&#8970;	⌊
-    # right floor 	&rfloor;	⌋ 	&#8971;	⌋
-    # lozenge 	&loz;	◊ 	&#9674;	◊
- 
-  
-  # ## Quotes / apostrophes
-  # q <- gsub(pattern = "’|`", replacement = "'", x = q)
-  # q <- gsub(pattern = "“|”", replacement = '"', x = q)
-  # ## Dashes / symbols
-  # q <- gsub(pattern = "—|−|–", replacement = "-", x = q)
-  # q <- gsub(pattern = "×", replacement = "*", x = q)
-  # q <- gsub(pattern = "·", replacement = ".", x = q)
-  # q <- gsub(pattern = "…", replacement = "...", x = q)
-  # ## Spaces
-  # q <- gsub(pattern = "­", replacement = " ", x = q)
-  # ## Letters
-  # q <- gsub(pattern = "ﬁ", replacement = "fi", x = q)
-  # q <- gsub(pattern = "ö|ó|ò", replacement = "o", x = q)
-  # q <- gsub(pattern = "ë|é|è", replacement = "e", x = q)
-  # q <- gsub(pattern = "ä|á|à|å", replacement = "a", x = q)
-  # q <- gsub(pattern = "ü|ú|ù", replacement = "u", x = q)
-  
   # See if any are not fixed manually above
   unfixed <- q[stringr::str_detect(string = q, pattern = "[^[:ascii:]]") == TRUE]
   
