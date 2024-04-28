@@ -14,9 +14,9 @@
 #' non_ascii <- c("\u201C", "\u00AC", "\u00D7")
 #' 
 #' # Invoke function
-#' (ascii <- fix_non_ascii(x = non_ascii))
+#' (ascii <- replace_non_ascii(x = non_ascii))
 #' 
-fix_non_ascii <- function(x = NULL){
+replace_non_ascii <- function(x = NULL){
   
   # Error out if x isn't supplied
   if(is.null(x) == TRUE)
@@ -198,16 +198,16 @@ fix_non_ascii <- function(x = NULL){
             paste0("'", remaining, "'", collapse = ", "), 
             "\nHexadecimal codes for these characters are as follows: ",
             paste0("'", stringi::stri_escape_unicode(remaining), "'", collapse = ", "),
-            "\n\nPlease open a GitHub Issue if you'd like this function to support a particular fix for this character") }
+            "\n\nPlease open a GitHub Issue if you'd like this function to support a particular replacement for this character") }
   
-  # Return that fixed vector
+  # Return that final vector
   return(q) }
 
 
 non_ascii_chars <- c("¡", "¢", "£", "¤", "¥", "¦", "§", "¨", "©", "ª", "«", "¬", "­", "®", "¯", "°", "±", "²", "³", "´", "µ", "¶", "·", "¸", "¹", "º", "»", "¼", "½", "¾", "¿", "À", "Á", "Â", "Ã", "Å", "Æ", "Ç", "È", "É", "Ê", "Ì", "Í", "Î", "Ï", "Ð", "Ñ", "Ò", "Ó", "Ô", "Õ", "Ö", "Ø", "Ù", "Ú", "Û", "Ü", "Ý", "Þ", "ß", "à", "á", "â", "ã", "ä", "æ", "ç", "è", "é", "ê", "ë", "ì", "í", "î", "ï", "ð", "ñ", "ò", "ó", "ô", "õ", "ö", "÷", "ø", "ù", "ú", "û", "ü", "ý", "þ", "ÿ", "ƒ", "Α", "Β", "Γ", "Δ", "Ε", "Ζ", "Η", "Θ", "Ι", "Κ", "Λ", "Μ", "Ν", "Ξ", "Ο", "Π", "Ρ", "Σ", "Τ", "Υ", "Φ", "Χ", "Ψ", "Ω", "α", "β", "γ", "δ,	ε", "ζ", "η", "θ", "ι", "κ", "λ", "μ", "ν", "ξ", "ο", "π", "ρ", "ς", "σ", "τ", "υ", "φ", "χ", "ψ", "ϑ","ω","ϒ", "ϖ", "•", "…", "′", "″", "‾", "⁄", "℘", "ℑ", "ℜ", "™", "ℵ", "←", "↑", "→", "↓", "↔", "∏", "∑", "−", "∗", "√", "∂", "∧", "∨", "∩", "∪", "∼", "≠", "≤", "≥", "⋅", "⟨", "〉", "‹", "›", "♠", "♣", "♥", "♦", "Œ", "œ", "Š", "š", "Ÿ", "ˆ", "˜", " ", " ", " ", " ", "‌", "‍", "‎", "–", "—", "‘", "’", "‚", '“', '”', '„', "†", "‰", "⇐", "⇒", "⇔")
                 
 
-f <- fix_non_ascii(x = non_ascii_chars)
+f <- replace_non_ascii(x = non_ascii_chars)
 f[stringr::str_detect(string = f, pattern = "[^[:ascii:]]") == TRUE]
 
 
