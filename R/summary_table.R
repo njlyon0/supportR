@@ -23,7 +23,7 @@ summary_table <- function(data = NULL, groups = NULL, response = NULL,
     stop("All arguments must be specified")
 
   # Error out if groups or response are not characters
-  if(!is.character(groups) | !is.character(response))
+  if(is.character(groups) != TRUE | is.character(response) != TRUE)
     stop("Grouping and response variables must be supplied as characters")
 
   # Error out if groups or response are not column names in the data
@@ -32,17 +32,17 @@ summary_table <- function(data = NULL, groups = NULL, response = NULL,
     stop("Grouping and response variables must be identical to column names in data object")
 
   # Error out if response is non-numeric
-  if(!is.numeric(data[[response]]))
+  if(is.numeric(data[[response]]) != TRUE)
     stop("Response variable must be numeric")
 
   # Warn if drop na isn't a logical
   if(is.logical(drop_na) != TRUE){
-    message("`drop_na` must be a logical. Defaulting to FALSE")
+    warning("'drop_na' must be a logical. Defaulting to FALSE")
     drop_na <- FALSE }
 
   # Warn if rounding digits is not a number
-  if(!is.numeric(round_digits)){
-    message("`round_digits` must be an integer. Defaulting to 2")
+  if(is.numeric(round_digits) != TRUE){
+    warning("'round_digits' must be an integer. Defaulting to 2")
     round_digits <- 2 }
 
   # Silence `dplr::summarize`

@@ -42,54 +42,65 @@ date_format_guess <- function(data = NULL, date_col = NULL,
   new_dates <- simp_dates <- simp_dates2 <- NULL
   num_L <- num_R <- year <- format_guess <- NULL
 
-  # Error out if `data` isn't defined
-  if(is.null(data)) stop("`data` must be defined")
+  # Error out if 'data' isn't defined
+  if(is.null(data)) 
+    stop("'data' must be defined")
 
-  # Error out if `date_col` is undefined...
-  if(is.null(date_col)) stop("`date_col` must be defined")
+  # Error out if 'date_col' is undefined...
+  if(is.null(date_col)) 
+    stop("'date_col' must be defined")
+  
   # ...Or isn't a character...
   if(is.character(date_col) != TRUE)
-    stop("`date_col` must be a character")
-  # ...Or isn't a column in `data`...
+    stop("'date_col' must be a character")
+  
+  # ...Or isn't a column in 'data'...
   if(!date_col %in% names(data))
-    stop("`date_col` must be a column name in `data`")
+    stop("'date_col' must be a column name in 'data'")
+  
   # ...Or the column isn't a character/factor column
   if(date_col %in% names(data) & is.character(data[[date_col]]) != TRUE)
-    stop("`date_col` must refer to a character column in the `data` object")
+    stop("'date_col' must refer to a character column in the 'data' object")
 
-  # Warn when `groups` isn't a logical and re-set it to `FALSE`
-  if(methods::is(groups, "logical") != TRUE){
-    message("`groups` must be a logical. Re-setting to `FALSE`")
+  # Warn when 'groups' isn't a logical and re-set it to 'FALSE'
+  if(is.logical(groups) != TRUE){
+    warning("'groups' must be a logical. Re-setting to 'FALSE'")
     groups <- FALSE }
 
-  # Error out if `groups = TRUE` but `group_col` is undefined...
+  # Error out if 'groups = TRUE' but 'group_col' is undefined...
   if(groups == TRUE & is.null(group_col))
-    stop("`group_col` must be defined if `groups == TRUE`")
-  # Error out if `groups = TRUE` and `group_col` *is* defined BUT...
+    stop("'group_col' must be defined if 'groups == TRUE'")
+  
+  # Error out if 'groups = TRUE' and 'group_col' *is* defined BUT...
   if(groups == TRUE & !is.null(group_col)){
     # ...Includes more than one column...
     if(length(group_col) > 1)
-      stop("`group_col` only supports a single grouping column. Consider collapsing several columns to achieve this if necessary")
+      stop("'group_col' only supports a single grouping column. Consider collapsing several columns to achieve this if necessary")
+    
     # ...Isn't a character...
     if(is.character(group_col) != TRUE)
-      stop("`group_col` must be a character")
+      stop("'group_col' must be a character")
+    
     #...Or isn't in the dataframe...
     if(!group_col %in% names(data))
-      stop("`group_col` must be a column name in `data`")
+      stop("'group_col' must be a column name in 'data'")
+    
     # ...Or the column isn't a character/factor column
     if(group_col %in% names(data) & is.character(data[[group_col]]) != TRUE)
-      stop("`group_col` must refer to a character column") }
+      stop("'group_col' must refer to a character column") }
 
-  # Warn when `quiet` isn't a logical and re-set it to `FALSE`
+  # Warn when 'quiet' isn't a logical and re-set it to 'FALSE'
   if(is.logical(quiet) != TRUE){
-    message("`quiet` must be a logical. Defaulting to `FALSE`")
+    warning("'quiet' must be a logical. Defaulting to 'FALSE'")
     quiet <- FALSE }
 
-  # Error out if `return is unspecified`...
-  if(is.null(return)) stop("`return` must be defined")
+  # Error out if 'return is unspecified'...
+  if(is.null(return) == TRUE) 
+    stop("'return' must be defined")
+  
   # ...Or isn't either "dataframe" or "vector"
   if(!return %in% c("dataframe", "vector"))
-    stop("`return` must be one of either 'dataframe' or 'vector'")
+    stop("'return' must be one of either 'dataframe' or 'vector'")
 
   # Do some initial standardization & extraction
   guess_v1 <- data %>%
@@ -110,7 +121,7 @@ date_format_guess <- function(data = NULL, date_col = NULL,
     # Make both numbers truly numeric
     dplyr::mutate(num_L = as.numeric(num_L), num_R = as.numeric(num_R))
 
-  # `groups == TRUE` ----
+  # 'groups == TRUE' ----
   # Count frequencies and use that to help our inference
   if(groups == TRUE) {
 
@@ -153,12 +164,12 @@ date_format_guess <- function(data = NULL, date_col = NULL,
       "/" %in% gsub(pattern = "0|1|2|3|4|5|6|7|8|9", replacement = "",
                     x = year_partial) ~ paste0("year/", guess_partial) ) ) }
 
-  # `groups == FALSE` ----
+  # 'groups == FALSE' ----
   if(groups == FALSE){
 
     # Warn the user that lacking groups makes the function worse
     if(quiet != TRUE){
-      message("Defining `groups` is strongly recommended! If none exist, consider adding a single artificial group shared by all rows then re-run this function") }
+      message("Defining 'groups' is strongly recommended! If none exist, consider adding a single artificial group shared by all rows then re-run this function") }
 
     # We can't do the frequency counting thing so we'll just make empty columns
     guess_v2 <- guess_v1 %>%
@@ -196,11 +207,11 @@ date_format_guess <- function(data = NULL, date_col = NULL,
     # Make it a dataframe
     as.data.frame()
 
-  # If `return = "dataframe"`, return that object
+  # If 'return = "dataframe"', return that object
   if(return == "dataframe"){
     if(quiet != TRUE){ message("Returning dataframe of data format guesses") }
     return(guess_actual) }
-  # If `return = "vector"`, return *that* object
+  # If 'return = "vector"', return *that* object
   if(return == "vector"){
     if(quiet != TRUE){ message("Returning vector of data format guesses") }
     return(guess_actual$format_guess) }

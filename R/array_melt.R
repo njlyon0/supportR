@@ -35,7 +35,7 @@ array_melt <- function(array = NULL){
 
   # Error out if `array` is null or isn't an array
   if(is.null(array) | methods::is(object = array, class2 = "array") != TRUE)
-    stop("`array` must be provided and must be an array")
+    stop("'array' must be provided and must be an array")
 
   df <- array %>%
     # Flatten array to a list (margin = 3 because each z should be in a separate list element)

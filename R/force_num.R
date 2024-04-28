@@ -14,7 +14,7 @@ force_num <- function(x = NULL){
   
   # Error out for no argument specification
   if(is.null(x))
-    stop("`x` argument must be defined")
+    stop("'x' argument must be defined")
   
   # Coerce to numeric
   y <- suppressWarnings(expr = as.numeric(x = x))

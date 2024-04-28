@@ -29,13 +29,12 @@ safe_rename <- function(data = NULL, bad_names = NULL, good_names = NULL){
     stop("Must provide same number of replacement column names as names to be replaced")
   
   # Error out if good names are not characters
-  if(is.character(bad_names) != TRUE |
-     is.character(good_names) != TRUE)
+  if(is.character(bad_names) != TRUE | is.character(good_names) != TRUE)
     stop("Column names (bad and good) must be provided as characters")
   
   # Error out if not all "bad_names" are found in the data
   if(all(bad_names %in% names(data)) != TRUE)
-    stop("Not all `bad_names` found in data")
+    stop("Not all elements of 'bad_names' found in data")
   
   # Duplicate data
   renamed_data <- data

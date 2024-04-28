@@ -31,7 +31,7 @@ tabularize_md <- function(file = NULL){
   
   # Error out if file isn't specified
   if(is.null(file) == TRUE)
-    stop("`file` must be specified")
+    stop("'file' must be specified")
   
   # Error out if multiple files are provided
   if(length(file) != 1)
@@ -45,11 +45,11 @@ tabularize_md <- function(file = NULL){
   } else {
     # If not URL/connection, file needs to be provided as a character
     if(is.character(file) != TRUE)
-      stop("`file` must be specified as a character")
+      stop("'file' must be specified as a character")
     
     # Error out for non-markdown file types
     if(tolower(x = tools::file_ext(x = file)) %in% c("md") != TRUE)
-      stop("`file` must be a markdown file (with the 'md' file extension)")
+      stop("'file' must be a markdown file (with the 'md' file extension)")
   }
   
   # Read in specified markdown file and
@@ -102,7 +102,7 @@ tabularize_md <- function(file = NULL){
       # Fill down
       tidyr::fill(lvl, .direction = "down") %>% 
       # Rename this new column more specifically
-      safe_rename(data = ., bad_names = "lvl", good_names = eval(lvl))
+      supportR::safe_rename(data = ., bad_names = "lvl", good_names = eval(lvl))
     
   } # Close loop
   

@@ -4,7 +4,7 @@
 \alias{name_vec}
 \title{Create Named Vector}
 \usage{
-name_vec(content, name)
+name_vec(content = NULL, name = NULL)
 }
 \arguments{
 \item{content}{(vector) content of vector}

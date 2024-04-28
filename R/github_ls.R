@@ -17,14 +17,14 @@ github_ls_single <- function(repo = NULL, folder = NULL){
   
   # Error out for missing repo URL
   if(is.null(repo) == TRUE)
-    stop("`repo` must be the URL for a GitHub repository (including 'github.com')")
+    stop("'repo' must be the URL for a GitHub repository (including 'github.com')")
   
   # Break URL into its component parts
   url_bits <- stringr::str_split_1(string = repo, pattern = "/")
   
   # Error out if "github.com" isn't in the URL
   if(!"github.com" %in% url_bits)
-    stop("`repo` must be the URL for a GitHub repository (including 'github.com')")
+    stop("'repo' must be the URL for a GitHub repository (including 'github.com')")
   
   # Drop unwanted parts of that
   repo_id <- setdiff(x = url_bits, y = c("https:", "", "www.", "github.com"))

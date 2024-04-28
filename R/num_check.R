@@ -37,13 +37,11 @@ num_check <- function(data = NULL, col = NULL) {
     col_opt <- col[k]
     
     # Remove NA entries
-    notNA <- base::subset(df, !base::is.na(df[, col_opt]))
+    not_na <- base::subset(df, !base::is.na(df[, col_opt]))
     
     # Identify rows that would be lost if `as.numeric()` is used
-    bad_df <- base::subset(notNA,
-                           base::is.na(
-                             base::suppressWarnings(
-                               base::as.numeric(notNA[, col_opt]))))
+    bad_df <- base::subset(not_na,
+                           base::is.na(supportR::force_num(x = not_na[, col_opt])))
     
     # Get a vector of just the unique 'bad' entries
     bad_vec <- base::unique(bad_df[, col_opt])

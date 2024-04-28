@@ -55,27 +55,27 @@ nms_ord <- function(mod = NULL, groupcol = NULL, title = NA,
 
   # Error out if the model is the wrong class
   if(base::unique(base::class(mod) %in% c("metaMDS", "monoMDS")) != TRUE)
-    stop("Model must be returned by `vegan::metaMDS`")
+    stop("Model must be returned by 'vegan::metaMDS'")
 
   # Error out for inappropriate shapes / lines
   if(!is.numeric(shapes) | base::max(shapes) > 25 | base::min(shapes < 0))
-    stop("`shapes` must be numeric value as defined in `?pch`")
+    stop("'shapes' must be numeric value as defined in '?pch'")
   
   # Warn and coerce to default for inappropriate point size
   if(!is.numeric(pt_size)) {
-    message("`pt_size` must be numeric. Coercing to 1.5")
+    warning("'pt_size' must be numeric. Coercing to 1.5")
     pt_size <- 1.5 }
   
   # Do the same for transparency
   if(!is.numeric(pt_alpha)) {
-    message("`pt_alpha` must be numeric. Coercing to 1")
+    warning("'pt_alpha' must be numeric. Coercing to 1")
     pt_alpha <- 1 }
   
   # Warning message when attempting to plot too many groups
   if (base::length(base::unique(groupcol)) > base::min(base::length(colors),
                                                        base::length(shapes),
                                                        base::length(lines))) {
-    message('Insufficient aesthetic values provided. 10 colors/shapes/lines are built into the function but you have supplied ', base::length(base::unique(groupcol)), ' groups. Please modify `colors`, `lines`, or `shapes` as needed to provide one value per category in your group column.')
+    warning("Insufficient aesthetic values provided. 10 colors/shapes/lines are built into the function but you have supplied ", base::length(base::unique(groupcol)), " groups. Please modify 'colors', 'lines', or 'shapes' as needed to provide one value per category in your group column.")
   } else {
 
     # Before actually creating the plot we need to make sure colors/shapes/lines are correctly formatted

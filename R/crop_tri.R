@@ -20,20 +20,21 @@
 crop_tri <- function(data = NULL, drop_tri = "upper", drop_diag = FALSE){
 
   # Error out for missing data
-  if(is.null(data)) stop("`data` must be provided")
+  if(is.null(data) == TRUE) 
+    stop("'data' must be provided")
 
   # Error out if data aren't symmetric
   if(nrow(data) != ncol(data))
-    stop("`data` must be have same number of rows as columns (i.e., must be symmetric")
+    stop("'data' must be have same number of rows as columns (i.e., must be symmetric)")
 
   # Error out if triangle argument isn't supported
-  if(!drop_tri %in% c("upper", "lower"))
-    stop("`drop_tri` must be one of 'upper' or 'lower'")
+  if(drop_tri %in% c("upper", "lower") != TRUE)
+    stop("'drop_tri' must be one of 'upper' or 'lower'")
 
   # Coerce `drop_diag` to logical if it isn't
-  if(methods::is(object = drop_diag, class2 = "logical") != TRUE){
-    drop_diag <- FALSE
-    message("`drop_diag` must be logical. Defaulting to FALSE") }
+  if(is.logical(drop_diag) != TRUE){
+    warning("'drop_diag' must be logical. Defaulting to FALSE")
+    drop_diag <- FALSE }
 
   # Duplicate data
   crop_data <- data

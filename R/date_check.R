@@ -39,10 +39,10 @@ date_check <- function(data = NULL, col = NULL) {
     col_opt <- col[j]
     
     # Remove NA entries
-    notNA <- base::subset(df, !base::is.na(df[, col_opt]))
+    not_na <- base::subset(df, !base::is.na(df[, col_opt]))
     
     # Identify rows that would be lost if `as.Date()` is used
-    bad_df <- base::subset(notNA, is.na(base::as.Date(notNA[, col_opt])))
+    bad_df <- base::subset(not_na, is.na(base::as.Date(not_na[, col_opt])))
     
     # Get a vector of just the unique 'bad' entries
     bad_vec <- base::unique(bad_df[, col_opt])

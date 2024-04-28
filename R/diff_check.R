@@ -31,17 +31,17 @@ diff_check <- function(old = NULL, new = NULL,
     stop("Both arguments must be specified")
 
   # Error out if either is not a vector
-  if(!is.vector(old) | !is.vector(new))
+  if(is.vector(old) != TRUE | is.vector(new) != TRUE)
     stop("Both arguments must be vectors")
 
   # Coerce `sort` to TRUE if not a logical
-  if(!is.logical(sort)){
-    message("`sort` must be either TRUE or FALSE. Coercing to TRUE")
+  if(is.logical(sort) != TRUE){
+    warning("'sort' must be either TRUE or FALSE. Defaulting to TRUE")
     sort <- TRUE }
 
   # Coerce `return` to FALSE if not a logical
-  if(!is.logical(return)){
-    message("`return` must be either TRUE or FALSE. Coercing to FALSE")
+  if(is.logical(return) != TRUE){
+    warning("'return' must be either TRUE or FALSE. Defaulting to FALSE")
     return <- FALSE }
 
   # Identify what is lost (i.e., in old but not new)

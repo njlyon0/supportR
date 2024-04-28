@@ -15,7 +15,7 @@ rmd_export(
 \arguments{
 \item{rmd}{(character) name and path to R markdown file to knit}
 
-\item{out_path}{(character) path to the knit file's destination (defaults to path returned by \code{getwd})}
+\item{out_path}{(character) path to the knit file's destination (defaults to path returned by \code{getwd()})}
 
 \item{out_name}{(character) desired name for knit file (with or without file suffix)}
 
