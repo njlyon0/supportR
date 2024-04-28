@@ -60,7 +60,7 @@ fix_non_ascii <- function(x = NULL){
   q <- gsub(pattern = "\u2260", replacement = "=/=", x = q)
   q <- gsub(pattern = "\u27E8|\u2039", replacement = "<", x = q)
   q <- gsub(pattern = "\u2264", replacement = "<=", x = q)
-  q <- gsub(pattern = "\u27E9|\u203A", replacement = ">", x = q)
+  q <- gsub(pattern = "\u27E9|\u203A|\u3009", replacement = ">", x = q)
   q <- gsub(pattern = "\u2265", replacement = ">=", x = q)
   q <- gsub(pattern = "\u02C6", replacement = "^", x = q)
   q <- gsub(pattern = "\u00B9", replacement = "^1", x = q)
@@ -118,7 +118,8 @@ fix_non_ascii <- function(x = NULL){
   q <- gsub(pattern = "\u21D2", replacement = "=>", x = q)
   q <- gsub(pattern = "\u2193|\u2228", replacement = "v", x = q)
   q <- gsub(pattern = "\u2194", replacement = "<->", x = q)
-  q <- gsub(pattern = "\u2202", replacement = "d", x = q)
+  q <- gsub(pattern = "\u21D4", replacement = "<=>", x = q)
+  q <- gsub(pattern = "\u2202|\u03D1", replacement = "d", x = q)
   q <- gsub(pattern = "\u2229", replacement = "n", x = q)
   q <- gsub(pattern = "\u222a", replacement = "u", x = q)
   q <- gsub(pattern = "\u2660", replacement = "spade", x = q)
@@ -150,9 +151,9 @@ fix_non_ascii <- function(x = NULL){
   q <- gsub(pattern = "\u0394", replacement = "DELTA", x = q)
   q <- gsub(pattern = "\u03B4", replacement = "delta", x = q)
   q <- gsub(pattern = "\u0395", replacement = "EPSILON", x = q)
-  q <- gsub(pattern = "\u0395", replacement = "epsilon", x = q)
+  q <- gsub(pattern = "\u03B5", replacement = "epsilon", x = q)
   q <- gsub(pattern = "\u0396", replacement = "ZETA", x = q)
-  q <- gsub(pattern = "\u03B6", replacement = "zeta", x = q)
+  q <- gsub(pattern = "\u03B6|\u03C2", replacement = "zeta", x = q)
   q <- gsub(pattern = "\u0397", replacement = "ETA", x = q)
   q <- gsub(pattern = "\u03B7", replacement = "eta", x = q)
   q <- gsub(pattern = "\u0398", replacement = "THETA", x = q)
@@ -181,7 +182,7 @@ fix_non_ascii <- function(x = NULL){
   q <- gsub(pattern = "\u03C4", replacement = "tau", x = q)
   q <- gsub(pattern = "\u03A5", replacement = "UPSILON", x = q)
   q <- gsub(pattern = "\u03C5|\u03D2", replacement = "upsilon", x = q)
-  q <- gsub(pattern = "\u03A6", replacement = "PHI", x = q)
+  # q <- gsub(pattern = "\u03A6", replacement = "PHI", x = q)
   q <- gsub(pattern = "\u03C6", replacement = "phi", x = q)
   q <- gsub(pattern = "\u03A7", replacement = "CHI", x = q)
   q <- gsub(pattern = "\u03C7", replacement = "chi", x = q)
@@ -203,13 +204,13 @@ fix_non_ascii <- function(x = NULL){
   return(q) }
 
 
-bad_chars <- c("¡", "¢", "£", "¤", "¥", "¦", "§", "¨", "©", "ª", "«", "¬", "­", "®", "¯", "°", "±", "²", "³", "´", "µ", "¶", "·", "¸", "¹", "º", "»", "¼", "½", "¾", "¿", "À", "Á", "Â", "Ã", "Å", "Æ", "Ç", "È", "É", "Ê", "Ì", "Í", "Î", "Ï", "Ð", "Ñ", "Ò", "Ó", "Ô", "Õ", "Ö", "Ø", "Ù", "Ú", "Û", "Ü", "Ý", "Þ", "ß", "à", "á", "â", "ã", "ä", "æ", "ç", "è", "é", "ê", "ë", "ì", "í", "î", "ï", "ð", "ñ", "ò", "ó", "ô", "õ", "ö", "÷", "ø", "ù", "ú", "û", "ü", "ý", "þ", "ÿ", "ƒ", "Α", "Β", "Γ", "Δ", "Ε", "Ζ", "Η", "Θ", "Ι", "Κ", "Λ", "Μ", "Ν", "Ξ", "Ο", "Π", "Ρ", "Σ", "Τ", "Υ", "Φ", "Χ", "Ψ", "Ω", "α", "β", "γ", "δ,	ε", "ζ", "η", "θ", "ι", "κ", "λ", "μ", "ν", "ξ", "ο", "π", "ρ", "ς", "σ", "τ", "υ", "φ", "χ", "ψ", "ϑ", "ϒ", "ϖ", "•", "…", "′", "″", "‾", "⁄", "℘", "ℑ", "ℜ", "™", "ℵ", "←", "↑", "→", "↓", "↔", "∏", "∑", "−", "∗", "√", "∂", "∧", "∨", "∩", "∪", "∼", "≠", "≤", "≥", "⋅", "⟨", "〉", "‹", "›", "♠", "♣", "♥", "♦", "Œ", "œ", "Š", "š", "Ÿ", "ˆ", "˜", " ", " ", " ", " ", "‌", "‍", "‎", "–", "—", "‘", "’", "‚", '“', '”', '„', "†", "‰", "⇐", "⇒")
+bad_chars <- c("¡", "¢", "£", "¤", "¥", "¦", "§", "¨", "©", "ª", "«", "¬", "­", "®", "¯", "°", "±", "²", "³", "´", "µ", "¶", "·", "¸", "¹", "º", "»", "¼", "½", "¾", "¿", "À", "Á", "Â", "Ã", "Å", "Æ", "Ç", "È", "É", "Ê", "Ì", "Í", "Î", "Ï", "Ð", "Ñ", "Ò", "Ó", "Ô", "Õ", "Ö", "Ø", "Ù", "Ú", "Û", "Ü", "Ý", "Þ", "ß", "à", "á", "â", "ã", "ä", "æ", "ç", "è", "é", "ê", "ë", "ì", "í", "î", "ï", "ð", "ñ", "ò", "ó", "ô", "õ", "ö", "÷", "ø", "ù", "ú", "û", "ü", "ý", "þ", "ÿ", "ƒ", "Α", "Β", "Γ", "Δ", "Ε", "Ζ", "Η", "Θ", "Ι", "Κ", "Λ", "Μ", "Ν", "Ξ", "Ο", "Π", "Ρ", "Σ", "Τ", "Υ", "Φ", "Χ", "Ψ", "Ω", "α", "β", "γ", "δ,	ε", "ζ", "η", "θ", "ι", "κ", "λ", "μ", "ν", "ξ", "ο", "π", "ρ", "ς", "σ", "τ", "υ", "φ", "χ", "ψ", "ϑ", "ϒ", "ϖ", "•", "…", "′", "″", "‾", "⁄", "℘", "ℑ", "ℜ", "™", "ℵ", "←", "↑", "→", "↓", "↔", "∏", "∑", "−", "∗", "√", "∂", "∧", "∨", "∩", "∪", "∼", "≠", "≤", "≥", "⋅", "⟨", "〉", "‹", "›", "♠", "♣", "♥", "♦", "Œ", "œ", "Š", "š", "Ÿ", "ˆ", "˜", " ", " ", " ", " ", "‌", "‍", "‎", "–", "—", "‘", "’", "‚", '“', '”', '„', "†", "‰", "⇐", "⇒", "⇔")
                 
 
 f <- fix_non_ascii(x = bad_chars)
 f[stringr::str_detect(string = f, pattern = "[^[:ascii:]]") == TRUE]
 
-stringi::stri_escape_unicode("⇒")
+stringi::stri_escape_unicode("〉")
 
 sprintf("%X", as.integer(charToRaw("£")))
 
