@@ -3,6 +3,8 @@
 This is the development version of `supportR`. Changes will be listed here as they are made.
 
 - New function: `replace_non_ascii`. Replaces non-ASCII characters with ASCII characters that are as visually similar as possible
+- New function behavior: `nms_ord` now supports modifying axis label text size and axis tickmark text size
+- New function behavior: `pcoa_ord` now supports modifying axis label text size and axis tickmark text size
 
 # supportR Version 1.3.0
 
