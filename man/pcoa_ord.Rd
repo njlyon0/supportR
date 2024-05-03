@@ -14,6 +14,8 @@ pcoa_ord(
   lines = rep(x = 1, times = 10),
   pt_size = 1.5,
   pt_alpha = 1,
+  lab_text_size = 1.25,
+  axis_text_size = 1,
   leg_pos = "bottomleft",
   leg_cont = unique(groupcol)
 )
@@ -34,6 +36,10 @@ pcoa_ord(
 \item{pt_size}{(numeric) value for point size (controlled by character expansion i.e., \code{cex})}
 
 \item{pt_alpha}{(numeric) value for transparency of points (ranges from 0 to 1)}
+
+\item{lab_text_size}{(numeric) value for axis label text size}
+
+\item{axis_text_size}{(numeric) value for axis tick text size}
 
 \item{leg_pos}{(character or numeric) legend position, either numeric vector of x/y coordinates or shorthand accepted by \code{graphics::legend}}
 

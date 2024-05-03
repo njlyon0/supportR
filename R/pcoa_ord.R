@@ -9,6 +9,8 @@
 #' @param lines (numeric) vector of line types (as integers) of length >= group levels
 #' @param pt_size (numeric) value for point size (controlled by character expansion i.e., `cex`)
 #' @param pt_alpha (numeric) value for transparency of points (ranges from 0 to 1)
+#' @param lab_text_size (numeric) value for axis label text size
+#' @param axis_text_size (numeric) value for axis tick text size
 #' @param leg_pos (character or numeric) legend position, either numeric vector of x/y coordinates or shorthand accepted by `graphics::legend`
 #' @param leg_cont (character) vector of desired legend entries. Defaults to `unique` entries in `groupcol` argument (this argument provided in case syntax of legend contents should differ from data contents)
 #'
@@ -47,6 +49,7 @@ pcoa_ord <- function(mod = NULL, groupcol = NULL, title = NA,
                      shapes = rep(x = 21:25, times = 2),
                      lines = rep(x = 1, times = 10),
                      pt_size = 1.5, pt_alpha = 1,
+                     lab_text_size = 1.25, axis_text_size = 1,
                      leg_pos = 'bottomleft', leg_cont = unique(groupcol)) {
 
   # Error out if model or groupcolumn are not specified
@@ -70,6 +73,16 @@ pcoa_ord <- function(mod = NULL, groupcol = NULL, title = NA,
   if(!is.numeric(pt_alpha)) {
     warning("'pt_alpha' must be numeric. Coercing to 1")
     pt_alpha <- 1 }
+  
+  # Warning label size
+  if(!is.numeric(lab_text_size)){
+    warning("'lab_text_size' must be numeric. Coercing to 1.25")
+    lab_text_size <- 1.25 }
+  
+  # And axis text size
+  if(!is.numeric(axis_text_size)){
+    warning("'axis_text_size' must be numeric. Coercing to 1")
+    axis_text_size <- 1 }
   
   # Warning message when attempting to plot too many groups
   if (base::length(base::unique(groupcol)) > base::min(base::length(colors),
@@ -108,7 +121,7 @@ pcoa_ord <- function(mod = NULL, groupcol = NULL, title = NA,
          ylab = base::paste0("PC2 (",
                              base::round(mod$values$Relative_eig[2] * 100,
                                          digits = 2), "%)"),
-         col = 'white', pch = 1)
+         col = 'white', pch = 1, cex.lab = lab_text_size, cex.axis = axis_text_size)
 
     # For each group, add points of a unique color and (up to 5 groups) unique shape (only 5 hollow shapes are available so they're recycled 2x each)
     for(level in levels(group_col_fct)){
