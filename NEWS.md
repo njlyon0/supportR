@@ -6,6 +6,7 @@ This is the development version of `supportR`. Changes will be listed here as th
 - New function: `count`. Counts occurrences of each unique element in the provided vector
 - New function behavior: `nms_ord` now supports modifying axis label text size and axis tickmark text size
 - New function behavior: `pcoa_ord` now supports modifying axis label text size and axis tickmark text size
+- Began the process of adding units tests for most functions in the package. Users may notice some small cases where more informative errors/warnings are returned but generally this shouldn't change function behavior in an appreciable way
 
 # supportR Version 1.3.0
 
