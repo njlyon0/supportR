@@ -41,13 +41,13 @@ devtools::install_github("njlyon0/supportR")
 - **`safe_rename`**: Renames columns in a given dataframe by matching
   ‘bad’ names with ‘good’ names
 
-- **`crop_tri`**: Removes the specified “triangle” (either upper or
-  lower) of a symmetric data object by replacing with NAs. Also allows
-  user to specify whether to keep or also drop the diagonal
-
 - **`name_vec`**: Creates a named vector of specified contents and
   names. Useful when creating named vectors that are too long to create
   manually or when creating the vector and then naming it is cumbersome
+
+- **`crop_tri`**: Removes the specified “triangle” (either upper or
+  lower) of a symmetric data object by replacing with NAs. Also allows
+  user to specify whether to keep or also drop the diagonal
 
 - **`array_melt`**: “Flattens” an array of dimensions X, Y, and Z into a
   dataframe containing columns `x`, `y`, `z`, and `value` where `value`
@@ -65,6 +65,9 @@ devtools::install_github("njlyon0/supportR")
 - **`num_check`**: Checks column(s) that *should* contain only
   **numeric** values for any entries that would be coerced to NA if
   `as.numeric` is run
+
+- **`count`**: Counts instances of each unique element in a provided
+  vector
 
 - **`date_check`**: Checks column(s) that *should* contain only **date**
   values for any entries that would be coerced to NA if `as.Date` is run
