@@ -10,20 +10,29 @@
 #'
 #' @examples
 #' # Create dataframe with a numeric column where some entries would be coerced into NA
-#' spp <- c('salmon', 'bass', 'halibut', 'eel')
-#' ct <- c(1, '14x', '_23', 12)
-#' ct2 <- c('a', '2', '4', '0')
-#' ct3 <- c(NA, 'Y', 'typo', '2')
-#' fish <- data.frame('species' = spp, 'count' = ct, 'num_col2' = ct2, 'third_count' = ct3)
+#' spp <- c("salmon", "bass", "halibut", "eel")
+#' ct <- c(1, "14x", "_23", 12)
+#' ct2 <- c("a", "2", "4", "0")
+#' ct3 <- c(NA, "Y", "typo", "2")
+#' fish <- data.frame("species" = spp, "count" = ct, "num_col2" = ct2, "third_count" = ct3)
 #'
 #' # Use `num_check()` to return only the entries that would be lost
 #' num_check(data = fish, col = c("count", "num_col2", "third_count"))
+#' 
 num_check <- function(data = NULL, col = NULL) {
 
   # Error out if anything is missing
-  if(base::is.null(data) | base::is.null(col))
-    stop("Data object name and column name must be provided")
-
+  if(is.null(data) == TRUE)
+    stop("Data object name must be provided")
+  
+  # Error out if column(s) is/are missing
+  if(is.null(col) == TRUE)
+    stop("Column name(s) must be provided")
+  
+  # Error out for non-dataframe data
+  if(any(class(data) == "data.frame") != TRUE)
+    stop("Data object must be dataframe-like")
+  
   # Make an empty list to store the malformed dates in
   bad_list <- base::list()
   

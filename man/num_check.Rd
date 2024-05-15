@@ -19,12 +19,13 @@ Identifies any elements in the column(s) that would be changed to NA if \code{as
 }
 \examples{
 # Create dataframe with a numeric column where some entries would be coerced into NA
-spp <- c('salmon', 'bass', 'halibut', 'eel')
-ct <- c(1, '14x', '_23', 12)
-ct2 <- c('a', '2', '4', '0')
-ct3 <- c(NA, 'Y', 'typo', '2')
-fish <- data.frame('species' = spp, 'count' = ct, 'num_col2' = ct2, 'third_count' = ct3)
+spp <- c("salmon", "bass", "halibut", "eel")
+ct <- c(1, "14x", "_23", 12)
+ct2 <- c("a", "2", "4", "0")
+ct3 <- c(NA, "Y", "typo", "2")
+fish <- data.frame("species" = spp, "count" = ct, "num_col2" = ct2, "third_count" = ct3)
 
 # Use `num_check()` to return only the entries that would be lost
 num_check(data = fish, col = c("count", "num_col2", "third_count"))
+
 }

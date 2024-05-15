@@ -18,14 +18,16 @@ date_check(data = NULL, col = NULL)
 Identifies any elements in the column(s) that would be changed to NA if \code{as.Date} is used on the column(s). This is useful for quickly identifying only the "problem" entries of ostensibly date column(s) that is/are read in as a character.
 }
 \examples{
+# Make a dataframe to test the function
 loc <- c("LTR", "GIL", "PYN", "RIN")
-time <- c('2021-01-01', '2021-01-0w', '1990', '2020-10-xx')
-time2 <- c('1880-08-08', '2021-01-02', '1992', '2049-11-01')
-time3 <- c('2022-10-31', 'tomorrow', '1993', NA)
+time <- c("2021-01-01", "2021-01-0w", "1990", "2020-10-xx")
+time2 <- c("1880-08-08", "2021-01-02", "1992", "2049-11-01")
+time3 <- c("2022-10-31", "tomorrow", "1993", NA)
 
 # Assemble our vectors into a dataframe
-sites <- data.frame('site' = loc, 'first_visit' = time, "second" = time2, "third" = time3)
+sites <- data.frame("site" = loc, "first_visit" = time, "second" = time2, "third" = time3)
 
 # Use `date_check()` to return only the entries that would be lost
 date_check(data = sites, col = c("first_visit", "second", "third"))
+
 }
