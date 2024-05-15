@@ -33,10 +33,15 @@ array_melt <- function(array = NULL){
   # Squelch visible bindings note
   . <- z <- y_raw <- y <- NULL
 
-  # Error out if `array` is null or isn't an array
-  if(is.null(array) | methods::is(object = array, class2 = "array") != TRUE)
-    stop("'array' must be provided and must be an array")
+  # Error out if `array` is null
+  if(is.null(array) == TRUE)
+    stop("'array' must be provided")
 
+  # Error out if `array` isn't an array
+  if(methods::is(object = array, class2 = "array") != TRUE)
+    stop("'array' must be an array")
+    
+  # Actual parsing of array
   df <- array %>%
     # Flatten array to a list (margin = 3 because each z should be in a separate list element)
     purrr::array_tree(margin = 3) %>%
