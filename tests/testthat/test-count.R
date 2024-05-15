@@ -30,4 +30,5 @@ test_that("Outputs are as expected", {
   
   # Check certain aspects of output
   expect_equal(nrow(occ_df), length(unique(test_vec)))
+  expect_true(class(occ_df) == "data.frame")
 })
