@@ -1,19 +1,17 @@
-# Explore 'count' Function
-
-## With `plyr` deprecated, its helpful `count` function is likewise inaccessible
-## While there is a workaround with `dplyr` it is three lines and it'd be nice to have a one-line simple option
-
-# Load libraries
-librarian::shelf(tidyverse)
-
-# Clear environment
-rm(list = ls())
-
-# Make a test vector
-(test_vec <- c(rep("a", times = 5), rep("x", times = 2),  rep("33", times = 6), 11, rep(NA, times = 3)))
-# vec <- test_vec
-
-# Define function
+#' @title Count Occurrences of Unique Vector Elements
+#' 
+#' @description Counts the number of occurrences of each element in the provided vector. Counting of NAs in addition to non-NA values is supported.
+#' 
+#' @param vec (vector) vector containing elements to count
+#' 
+#' @return (dataframe) two-column dataframe with as many rows as there are unique elements in the provided vector. First column is named "value" and includes the unique elements of the vector, second column is named "count" and includes the number of occurrences of each vector element.
+#' 
+#' @export
+#' 
+#' @examples
+#' # Count instances of vector elements
+#' count(vec = c(1, 1, NA, "a", "a", 1, "a", NA, "x"))
+#' 
 count <- function(vec = NULL){
   
   # Error out for missing vector
@@ -57,10 +55,3 @@ count <- function(vec = NULL){
   
   # Return that dataframe
   return(count_df) }
-
-# Invoke function
-count(vec = test_vec)
-
-# Provoke errors
-count()
-count(vec = data.frame("x" = 1:3))
