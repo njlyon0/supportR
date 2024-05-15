@@ -17,6 +17,6 @@ Counts the number of occurrences of each element in the provided vector. Countin
 }
 \examples{
 # Count instances of vector elements
-count(vec = c(1, 1, NA, "a", "a", 1, "a", NA, "x"))
+count(vec = c(1, 1, NA, "a", 1, "a", NA, "x"))
 
 }

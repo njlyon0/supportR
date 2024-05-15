@@ -10,7 +10,7 @@
 #' 
 #' @examples
 #' # Count instances of vector elements
-#' count(vec = c(1, 1, NA, "a", "a", 1, "a", NA, "x"))
+#' count(vec = c(1, 1, NA, "a", 1, "a", NA, "x"))
 #' 
 count <- function(vec = NULL){
   
@@ -44,8 +44,10 @@ count <- function(vec = NULL){
       # If not NA...
     } else {
       
+      no_empty_vec <- vec[!is.na(vec)]
+      
       # Count occurrences
-      bit_ct <- length(vec[vec == bit])
+      bit_ct <- length(no_empty_vec[no_empty_vec == bit])
       
       # Add to dataframe
       count_df[(count_df$value == bit & !is.na(count_df$value)), ]$count <- bit_ct
