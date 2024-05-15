@@ -43,6 +43,8 @@ Suggests:
     ape,
     devtools,
     knitr,
-    palmerpenguins
+    palmerpenguins,
+    testthat (>= 3.0.0)
 Roxygen: list(markdown = TRUE)
 VignetteBuilder: knitr
+Config/testthat/edition: 3
