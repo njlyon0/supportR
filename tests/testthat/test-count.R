@@ -1,5 +1,5 @@
 # Run all tests in this script:
-## testthat::test_file(file.path("tests", "testthat", "test-FXN.R"))
+## testthat::test_file(file.path("tests", "testthat", "test-count.R"))
 
 # Error testing
 test_that("Errors work as desired", {
