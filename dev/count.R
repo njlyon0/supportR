@@ -61,4 +61,6 @@ count <- function(vec = NULL){
 # Invoke function
 count(vec = test_vec)
 
-
+# Provoke errors
+count()
+count(vec = data.frame("x" = 1:3))
