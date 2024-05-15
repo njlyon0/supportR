@@ -27,10 +27,18 @@ crop_tri <- function(data = NULL, drop_tri = "upper", drop_diag = FALSE){
   if(nrow(data) != ncol(data))
     stop("'data' must be have same number of rows as columns (i.e., must be symmetric)")
 
+  # Error out for missing argument
+  if(is.null(drop_tri) == TRUE)
+    stop("'drop_tri' must be provided")
+  
+  # Also too many triangle arguments
+  if(length(drop_tri) != 1)
+    stop("Only one entry can be provided to 'drop_tri' argument")
+  
   # Error out if triangle argument isn't supported
   if(drop_tri %in% c("upper", "lower") != TRUE)
     stop("'drop_tri' must be one of 'upper' or 'lower'")
-
+  
   # Coerce `drop_diag` to logical if it isn't
   if(is.logical(drop_diag) != TRUE){
     warning("'drop_diag' must be logical. Defaulting to FALSE")
