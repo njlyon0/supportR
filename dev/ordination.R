@@ -141,5 +141,46 @@ ordination(mod = pcoa_mod, grps = data$factor_4lvl, alpha = 0.5)
 ## NMS variant
 ordination(mod = nms_mod, grps = data$factor_4lvl, alpha = 0.2)
 
+## ------------------------------------ ##
+# Ellipsis Testing ----
+## ------------------------------------ ##
+
+# Re-clear environment
+rm(list = ls())
+
+# Define function
+test_fxn <- function(...){
+  
+  # Extract list information
+  input_list <- as.list(substitute(expr = list(...)))
+  
+  # Identify arguments specific to a particular sub-function
+  mean_list <- input_list[which(names(input_list) %in% c("x"))]
+  round_list <- input_list[which(names(input_list) %in% c("digits"))]
+
+  # Take average
+  mean_obj <- do.call(what = "mean", args = mean_list)
+  
+  # Round the average value
+  round_obj <- do.call(what = "round", 
+                       args = append(x = round_list, 
+                                     values = c("x" = mean_obj)))
+
+  # Return output
+  return(round_obj) }
+
+# Invoke function
+test_fxn(x = c(1, 5, 7), digits = 2)
+
+
+
+# Other experimentation
+(test <- list("x" = 4.3333333333))
+
+(test2 <- append(x = test, values = c("digits" = 3)))
+
+do.call(what = round, args = test2)
+do.call(what = "round", args = test2)
+
 # End ----
 
