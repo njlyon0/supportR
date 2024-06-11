@@ -59,7 +59,8 @@ ordination <- function(
     lab_text_size = 1.25,
     axis_text_size = 1,
     leg_pos = "bottomleft",
-    leg_cont = unique(grps)
+    leg_cont = unique(grps),
+    ...
 ){
   
   # Model-specific stuff
@@ -117,7 +118,7 @@ ordination <- function(
     graphics::points(x = mod_points[grp_names == focal_grp, 1],
                      y = mod_points[grp_names == focal_grp, 2],
                      pch = shapes_actual[focal_grp], 
-                     bg = scales::alpha(colour = colors_actual[focal_grp], alpha = pt_alpha),
+                     bg = scales::alpha(colour = colors_actual[focal_grp], ...),
                      cex = pt_size)
     
   } # Close points loop
@@ -136,9 +137,9 @@ ordination <- function(
 
 # Invoke function
 ## PCoA variant
-ordination(mod = pcoa_mod, grps = data$factor_4lvl)
+ordination(mod = pcoa_mod, grps = data$factor_4lvl, alpha = 0.5)
 ## NMS variant
-ordination(mod = nms_mod, grps = data$factor_4lvl)
+ordination(mod = nms_mod, grps = data$factor_4lvl, alpha = 0.2)
 
 # End ----
 
