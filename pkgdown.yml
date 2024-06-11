@@ -3,7 +3,7 @@ pkgdown: 2.0.9
 pkgdown_sha: ~
 articles:
   supportR: supportR.html
-last_built: 2024-06-11T16:07Z
+last_built: 2024-06-11T20:37Z
 urls:
   reference: https://njlyon0.github.io/supportR/reference
   article: https://njlyon0.github.io/supportR/articles
