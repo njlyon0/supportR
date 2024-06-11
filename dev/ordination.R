@@ -71,7 +71,7 @@ leg_pos = 'bottomleft'
 leg_cont = unique(grps)
 
 # Define model
-mod <- nms_mod
+# mod <- nms_mod
 mod <- pcoa_mod
 
 # Model-specific stuff
@@ -86,7 +86,7 @@ if(all(class(mod) == "pcoa")){
   # Create informative plot labels
   xlab_actual <- paste0("PC1 (", round(mod$values$Relative_eig[1] * 100, digits = 2), "%)")
   ylab_actual <- paste0("PC2 (", round(mod$values$Relative_eig[2] * 100, digits = 2), "%)")
-  title_actual <- NULL
+  leg_title <- NULL
 }
 ## Non-Metric Multidimensional Scaling
 if(all(class(mod) %in% c("metaMDS", "monoMDS"))){
@@ -98,7 +98,7 @@ if(all(class(mod) %in% c("metaMDS", "monoMDS"))){
   # Create informative axis labels
   xlab_actual <- "NMS Axis 1"
   ylab_actual <- "NMS Axis 2"
-  title_actual <- paste0("Stress = ", round(mod_actual$stress, digits = 3))
+  leg_title <- paste0("Stress = ", round(mod_actual$stress, digits = 3))
 }
 
 # Identify unique groups in dat
@@ -123,8 +123,8 @@ graphics::plot(x = mod_actual, type = 'n', col = 'white', pch = 1,
 for(focal_grp in grp_names){
   
   # Add points
-  graphics::points(x = mod_actual[grp_names == focal_grp, 1],
-                   y = mod_actual[grp_names == focal_grp, 2],
+  graphics::points(x = mod_points[grp_names == focal_grp, 1],
+                   y = mod_points[grp_names == focal_grp, 2],
                    pch = shapes_actual[focal_grp], 
                    bg = scales::alpha(colour = colors_actual[focal_grp], alpha = pt_alpha),
                    cex = pt_size)
@@ -138,8 +138,9 @@ vegan::ordiellipse(ord = mod_actual, groups = grps, col = colors_actual,
                    lty = lines_actual, label = FALSE)
 
 # Finally, add a legend
-graphics::legend(x = leg_pos, legend = leg_cont, bty = "n", title = title_actual,
-                 pt.cex = pt_size, pch = shapes_actual, cex = 1.15, pt.bg = colors_actual)
+graphics::legend(x = leg_pos, legend = leg_cont, bty = "n", title = leg_title,
+                 pt.cex = 1.25, pch = shapes_actual, cex = 1.15, pt.bg = colors_actual)
 
 
 # End ----
+
