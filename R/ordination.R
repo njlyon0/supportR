@@ -32,8 +32,9 @@
 #' nms_mod <- vegan::metaMDS(data[-1], autotransform = FALSE, expand = FALSE, k = 2, try = 50)
 #' 
 #' # Create PCoA ordination (with optional agruments)
-#' ordination(mod = pcoa_mod, grps = data$treatment, bg = "red", 
-#'            col = "black", lty = 2)
+#' ordination(mod = pcoa_mod, grps = data$treatment, 
+#'            bg = c("red", "blue", "purple", "orange"),
+#'            lty = 2, col = "black")
 #' 
 #' # Create NMS ordination
 #' ordination(mod = nms_mod, grps = data$treatment, alpha = 0.3, 
@@ -106,7 +107,7 @@ ordination <- function(mod = NULL, grps = NULL, ...){
     bonus_args <- append(x = bonus_args, values = list("cex" = 1.5))
   }
   if("alpha" %in% names(bonus_args) != TRUE){
-    bonus_args <- append(x = bonus_args, values = list("alpha" = 1))
+    bonus_args <- append(x = bonus_args, values = list("alpha" = 0.99))
   }
   if("lty" %in% names(bonus_args) != TRUE){
     bonus_args <- append(x = bonus_args, values = list("lty" = 1))
@@ -120,6 +121,46 @@ ordination <- function(mod = NULL, grps = NULL, ...){
   
   # Certain aesthetics need to be handled separately
   ## Point / line color
+  if("col" %in% names(bonus_args) != TRUE & 
+     "bg" %in% names(bonus_args) != TRUE){
+    
+    # Define default colors
+    default_line_cols <- c('#41b6c4', '#c51b7d', '#7fbc41', '#d73027', '#4575b4',
+                           '#e08214', '#8073ac', '#f1b6da', '#b8e186', '#8c96c6')
+    
+    # Crop to desired length
+    needed_line_cols <- default_line_cols[1:length(grp_names)]
+    
+    # Make it a named vector
+    colors_line_actual <- supportR::name_vec(content = needed_line_cols, 
+                                             name = grp_names)
+  } else if ("col" %in% names(bonus_args) != TRUE & 
+             "bg" %in% names(bonus_args) == TRUE) {
+    
+    # Identify colors (from bg)
+    user_line_cols <- eval(bonus_args$bg)
+    
+    # Crop to desired length
+    needed_line_cols <- user_line_cols[1:length(grp_names)]
+    
+    # Make it a named vector
+    colors_line_actual <- supportR::name_vec(content = needed_line_cols, 
+                                             name = grp_names)    
+  } else {
+    
+    # Identify colors
+    user_line_cols <- eval(bonus_args$col)
+    
+    # Crop to desired length
+    needed_line_cols <- user_line_cols[1:length(grp_names)]
+    
+    # Make it a named vector
+    colors_line_actual <- supportR::name_vec(content = needed_line_cols, 
+                                             name = grp_names)
+    
+    # Remove the user-supplied value from the argument list
+    bonus_args <- bonus_args[names(bonus_args) != "col"]
+  }
   if("bg" %in% names(bonus_args) != TRUE){
     
     # Define default colors
@@ -135,7 +176,7 @@ ordination <- function(mod = NULL, grps = NULL, ...){
   } else {
     
     # Identify colors
-    user_pt_cols <- bonus_args$bg
+    user_pt_cols <- eval(bonus_args$bg)
     
     # Crop to desired length
     needed_pt_cols <- user_pt_cols[1:length(grp_names)]
@@ -146,33 +187,6 @@ ordination <- function(mod = NULL, grps = NULL, ...){
     
     # Remove the user-supplied value from the argument list
     bonus_args <- bonus_args[names(bonus_args) != "bg"]
-  }
-  if("col" %in% names(bonus_args) != TRUE){
-    
-    # Define default colors
-    default_line_cols <- c('#41b6c4', '#c51b7d', '#7fbc41', '#d73027', '#4575b4',
-                           '#e08214', '#8073ac', '#f1b6da', '#b8e186', '#8c96c6')
-    
-    # Crop to desired length
-    needed_line_cols <- default_line_cols[1:length(grp_names)]
-    
-    # Make it a named vector
-    colors_line_actual <- supportR::name_vec(content = needed_line_cols, 
-                                             name = grp_names)
-  } else {
-    
-    # Identify colors
-    user_line_cols <- bonus_args$col
-    
-    # Crop to desired length
-    needed_line_cols <- user_line_cols[1:length(grp_names)]
-    
-    # Make it a named vector
-    colors_line_actual <- supportR::name_vec(content = needed_line_cols, 
-                                             name = grp_names)
-    
-    # Remove the user-supplied value from the argument list
-    bonus_args <- bonus_args[names(bonus_args) != "col"]
   }
   ## Point shapes
   if("pch" %in% names(bonus_args) != TRUE){
@@ -189,7 +203,7 @@ ordination <- function(mod = NULL, grps = NULL, ...){
   } else {
     
     # Identify shapes
-    user_shps <- bonus_args$pch
+    user_shps <- eval(bonus_args$pch)
     
     # Crop to desired length
     if(length(user_shps) >= length(grp_names)){ 
