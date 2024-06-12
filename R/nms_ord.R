@@ -1,7 +1,13 @@
 #' @title Publication-Quality Non-metric Multi-dimensional Scaling (NMS) Ordinations
-#' @description Produces Non-Metric Multi-dimensional Scaling (NMS) ordinations for up to 10 groups. Assigns a unique color for each group and draws an ellipse around the standard deviation of the points. Automatically adds stress (see `vegan::metaMDS` for explanation of "stress") as legend title. Because there are only five hollow shapes (see `?graphics::pch()`) all shapes are re-used a maximum of 2 times when more than 5 groups are supplied.
+#' 
+#' @description 
+#' `r lifecycle::badge("superseded")`
+#' 
+#' This function has been superseded by `ordination` because this is just a special case of that function. Additionally, `ordination` provides users much more control over the internal `graphics` functions used to create the fundamental elements of the graph
+#' 
+#' Produces Non-Metric Multi-dimensional Scaling (NMS) ordinations for up to 10 groups. Assigns a unique color for each group and draws an ellipse around the standard deviation of the points. Automatically adds stress (see `vegan::metaMDS` for explanation of "stress") as legend title. Because there are only five hollow shapes (see `?graphics::pch()`) all shapes are re-used a maximum of 2 times when more than 5 groups are supplied.
 #'
-#' @param mod Object returned by `vegan::metaMDS`
+#' @param mod (metaMDS/monoMDS) object returned by `vegan::metaMDS`
 #' @param groupcol (dataframe) column specification in the data that includes the groups (accepts either bracket or $ notation)
 #' @param title (character) string to use as title for plot
 #' @param colors (character) vector of colors (as hexadecimal codes) of length >= group levels (default *not* colorblind safe because of need for 10 built-in unique colors)
@@ -14,7 +20,7 @@
 #' @param leg_pos (character or numeric) legend position, either numeric vector of x/y coordinates or shorthand accepted by `graphics::legend`
 #' @param leg_cont (character) vector of desired legend entries. Defaults to `unique` entries in `groupcol` argument (this argument provided in case syntax of legend contents should differ from data contents)
 #'
-#' @return (base R plot) base R plot with ellipses for each group
+#' @return (plot) base R ordination with an ellipse for each group
 #'
 #' @export
 #'

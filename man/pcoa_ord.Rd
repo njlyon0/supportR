@@ -21,7 +21,7 @@ pcoa_ord(
 )
 }
 \arguments{
-\item{mod}{Object returned by \code{ape::pcoa}}
+\item{mod}{(pcoa) object returned by \code{ape::pcoa}}
 
 \item{groupcol}{(dataframe) column specification in the data that includes the groups (accepts either bracket or $ notation)}
 
@@ -46,9 +46,13 @@ pcoa_ord(
 \item{leg_cont}{(character) vector of desired legend entries. Defaults to \code{unique} entries in \code{groupcol} argument (this argument provided in case syntax of legend contents should differ from data contents)}
 }
 \value{
-(base R plot) base R plot with ellipses for each group
+(plot) base R ordination with an ellipse for each group
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#superseded}{\figure{lifecycle-superseded.svg}{options: alt='[Superseded]'}}}{\strong{[Superseded]}}
+
+This function has been superseded by \code{ordination} because this is just a special case of that function. Additionally, \code{ordination} provides users much more control over the internal \code{graphics} functions used to create the fundamental elements of the graph
+
 Produces Principal Coordinates Analysis (PCoA) ordinations for up to 10 groups. Assigns a unique color for each group and draws an ellipse around the standard deviation of the points. Automatically adds percent of variation explained by first two principal component axes parenthetically to axis labels. Because there are only five hollow shapes (see \code{?graphics::pch}) all shapes are re-used a maximum of 2 times when more than 5 groups are supplied.
 }
 \examples{
