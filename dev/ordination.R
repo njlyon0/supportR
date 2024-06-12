@@ -47,24 +47,23 @@ class(nms_mod)
 ## ------------------------------------ ##
 
 # Define function
-ordination <- function(
-    mod = NULL,
-    grps = NULL, 
-    grp_colors = c('#41b6c4', '#c51b7d', '#7fbc41', '#d73027', '#4575b4',
-                   '#e08214', '#8073ac', '#f1b6da', '#b8e186', '#8c96c6'),
-    grp_shapes = rep(x = 21:25, times = 2),
-    # grp_lines = rep(x = 1, times = 10),
-    # pt_size = 1.5,
-    # pt_alpha = 1,
-    # lab_text_size = 1.25,
-    # axis_text_size = 1,
-    # leg_pos = "bottomleft",
-    # leg_cont = unique(grps),
-    ...
-){
+ordination <- function(mod = NULL, grps = NULL, ...){
+  
+  # Error out for missing (required) arguments
+  if(is.null(mod) == TRUE)
+    stop("Model must be provided")
+  if(is.null(grps) == TRUE)
+    stop("Categorical groups must be specified")
+  
+  # Error out for unsupported model type
+  if(all(class(mod) %in% c("pcoa", "metaMDS", "monoMDS")) != TRUE)
+    stop("Model must be returned by 'ape::pcoa' or 'vegan::metaMDS'")
+  
+  # Error out for unsupported group type
+  if(is.vector(grps) != TRUE)
+    stop("Groups must be provided as a vector")
   
   # Model-specific stuff
-  # Identify axis labels (ordination type-dependent)
   ## Principal Coordinates Analysis
   if(all(class(mod) == "pcoa")){
     
@@ -77,6 +76,7 @@ ordination <- function(
     ylab_actual <- paste0("PC2 (", round(mod$values$Relative_eig[2] * 100, digits = 2), "%)")
     leg_title <- NULL
   }
+  
   ## Non-Metric Multidimensional Scaling
   if(all(class(mod) %in% c("metaMDS", "monoMDS"))){
     
@@ -90,17 +90,12 @@ ordination <- function(
     leg_title <- paste0("Stress = ", round(mod_actual$stress, digits = 3))
   }
   
-  # Identify unique groups in data
-  grp_names <- unique(grps)
+  # Error out for mismatch in ordination data and group vector
+  if(nrow(mod_points) != length(grps))
+    stop("Incorrect number of groups provided relative to model.",
+         "\n  ", length(grps), " groups specified but model has ", 
+         nrow(mod_points), " rows")
   
-  # Assign names to the vectors of aesthetics
-  names(grp_colors) <- grp_names
-  names(grp_shapes) <- grp_names
-
-  # Crop aesthetic vectors to the length of groups in the data
-  colors_actual <- grp_colors[is.na(names(grp_colors)) != TRUE]
-  shapes_actual <- grp_shapes[is.na(names(grp_shapes)) != TRUE]
-
   # Identify arguments in `...` argument
   bonus_args <- as.list(substitute(expr = list(...)))
   
@@ -127,6 +122,94 @@ ordination <- function(
     bonus_args <- append(x = bonus_args, values = list("legend" = grp_names))
   }
   
+  # Certain aesthetics need to be handled separately
+  ## Point / line color
+  if("bg" %in% names(bonus_args) != TRUE){
+    
+    # Define default colors
+    default_pt_cols <- c('#41b6c4', '#c51b7d', '#7fbc41', '#d73027', '#4575b4',
+                         '#e08214', '#8073ac', '#f1b6da', '#b8e186', '#8c96c6')
+    
+    # Crop to desired length
+    needed_pt_cols <- default_pt_cols[1:length(grp_names)]
+    
+    # Make it a named vector
+    colors_pt_actual <- supportR::name_vec(content = needed_pt_cols, 
+                                           name = grp_names)
+  } else {
+    
+    # Identify colors
+    user_pt_cols <- bonus_args$bg
+    
+    # Crop to desired length
+    needed_pt_cols <- user_pt_cols[1:length(grp_names)]
+    
+    # Make it a named vector
+    colors_pt_actual <- supportR::name_vec(content = needed_pt_cols, 
+                                           name = grp_names)
+    
+    # Remove the user-supplied value from the argument list
+    bonus_args <- bonus_args[names(bonus_args) != "bg"]
+  }
+  if("col" %in% names(bonus_args) != TRUE){
+    
+    # Define default colors
+    default_line_cols <- c('#41b6c4', '#c51b7d', '#7fbc41', '#d73027', '#4575b4',
+                           '#e08214', '#8073ac', '#f1b6da', '#b8e186', '#8c96c6')
+    
+    # Crop to desired length
+    needed_line_cols <- default_line_cols[1:length(grp_names)]
+    
+    # Make it a named vector
+    colors_line_actual <- supportR::name_vec(content = needed_line_cols, 
+                                             name = grp_names)
+  } else {
+    
+    # Identify colors
+    user_line_cols <- bonus_args$col
+    
+    # Crop to desired length
+    needed_line_cols <- user_line_cols[1:length(grp_names)]
+    
+    # Make it a named vector
+    colors_line_actual <- supportR::name_vec(content = needed_line_cols, 
+                                             name = grp_names)
+    
+    # Remove the user-supplied value from the argument list
+    bonus_args <- bonus_args[names(bonus_args) != "col"]
+  }
+  ## Point shapes
+  if("pch" %in% names(bonus_args) != TRUE){
+    
+    # Define default shapes
+    default_shps <- rep(x = 21:25, times = 2)
+    
+    # Crop to desired length
+    needed_shps <- default_shps[1:length(grp_names)]
+    
+    # Make it a named vector
+    shapes_actual <- supportR::name_vec(content = needed_shps, 
+                                        name = grp_names)
+  } else {
+    
+    # Identify shapes
+    user_shps <- bonus_args$pch
+    
+    # Crop to desired length
+    if(length(user_shps) >= length(grp_names)){ 
+      needed_shps <- user_shps[1:length(grp_names)] 
+    } else {
+      needed_shps <- rep(x = user_shps, times = 30)[1:length(grp_names)]
+    }
+    
+    # Make it a named vector
+    shapes_actual <- supportR::name_vec(content = needed_shps, 
+                                        name = grp_names)
+    
+    # Remove the user-supplied value from the argument list
+    bonus_args <- bonus_args[names(bonus_args) != "pch"]
+  }
+  
   # Separate them based on which sub-function they belong with
   graphics.plot_args <- bonus_args[which(names(bonus_args) %in% c("cex.lab", "cex.axis"))]
   graphics.points_args <- bonus_args[which(names(bonus_args) %in% c("cex"))]
@@ -136,8 +219,8 @@ ordination <- function(
   
   # Identify any named bonus arguments that aren't identified above
   missing_args <- setdiff(x = names(bonus_args), 
-                          y = c("", "cex.lab", "cex.axis", "cex", "alpha", 
-                                "lty", "x", "legend"))
+                          y = c("", "cex.lab", "cex.axis", "cex",
+                                "alpha", "lty", "x", "legend"))
   
   # Warning if any are found
   if(length(missing_args) != 0){
@@ -158,7 +241,7 @@ ordination <- function(
     # Apply desired transparency to chosen color
     focal_color <- do.call(what = scales::alpha,
                            args = append(x = scales.alpha_args,
-                                         values = list("colour" = colors_actual[focal_grp])))
+                                         values = list("colour" = colors_pt_actual[focal_grp])))
     
     # Actually add points
     do.call(what = graphics::points,
@@ -175,7 +258,7 @@ ordination <- function(
           args = append(x = vegan.ordiellipse_args,
                         values = list("ord" = mod_actual, 
                                       "groups" = grps, 
-                                      "col" = colors_actual,
+                                      "col" = colors_line_actual,
                                       "display" = "sites", 
                                       "kind" = "sd", 
                                       "lwd" = 2,
@@ -189,26 +272,32 @@ ordination <- function(
                                       "pt.cex" = 1.25, 
                                       "pch" = shapes_actual, 
                                       "cex" = 1.15, 
-                                      "pt.bg" = colors_actual)))
+                                      "pt.bg" = colors_pt_actual)))
 
   } # Close function
 
 # Invoke function
 ## PCoA variant
 ordination(mod = pcoa_mod, grps = data$factor_4lvl, 
-           # alpha = 0.5, 
-           # cex.lab = 2, 
-           # cex.axis = 0.2,
-           # cex = 6, 
-           # lty = 3, 
-           # x = "topright", 
-           # legend = c("A", "B", "C", "D")
+           bg = "red",
+           col = "black",
+           lty = 2,
+           pch = 21,
+           alpha = 0.5,
+           cex.lab = 2,
+           cex.axis = 0.2,
+           cex = 6,
+           x = "topright",
+           legend = c("A", "B", "C", "D")
            )
 
 ## NMS variant
 ordination(mod = nms_mod, grps = data$factor_4lvl, alpha = 0.2,
            lty = 5,
            x = "bottomright")
+
+
+ordination(mod = pcoa_mod, grps = unique(data$factor_4lvl))
 
 # End ----
 
