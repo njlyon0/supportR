@@ -15,7 +15,7 @@ replace_non_ascii(x = NULL, include_letters = FALSE)
 (character) vector where all non-ASCII characters have been replaced by ASCII equivalents
 }
 \description{
-Finds all non-ASCII (American Standard Code for Information Interchange) characters in a character vector and replaces them with ASCII characters that are as visually similar as possible. For example, various special dash types (e.g., em dash, en dash, etc.) are replaced with a hypen. The function will return a warning if it finds any non-ASCII characters for which it does not have a hard-coded replacement. Please open a \href{https://github.com/njlyon0/supportR/issues}{GitHub Issue} if you encounter this warning and have a suggestion for what the replacement character should be for that particular character.
+Finds all non-ASCII (American Standard Code for Information Interchange) characters in a character vector and replaces them with ASCII characters that are as visually similar as possible. For example, various special dash types (e.g., em dash, en dash, etc.) are replaced with a hyphen. The function will return a warning if it finds any non-ASCII characters for which it does not have a hard-coded replacement. Please open a \href{https://github.com/njlyon0/supportR/issues}{GitHub Issue} if you encounter this warning and have a suggestion for what the replacement character should be for that particular character.
 }
 \examples{
 # Make a vector of the hexadecimal codes for several non-ASCII characters
