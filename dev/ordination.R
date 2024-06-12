@@ -51,15 +51,15 @@ ordination <- function(
     mod = NULL,
     grps = NULL, 
     grp_colors = c('#41b6c4', '#c51b7d', '#7fbc41', '#d73027', '#4575b4',
-                   '#e08214', '#8073ac', '#f1b6da', '#b8e186', '#8c96c6'), 
-    grp_shapes = rep(x = 21:25, times = 2), 
-    grp_lines = rep(x = 1, times = 10),
-    pt_size = 1.5,
-    pt_alpha = 1,
-    lab_text_size = 1.25,
-    axis_text_size = 1,
-    leg_pos = "bottomleft",
-    leg_cont = unique(grps),
+                   '#e08214', '#8073ac', '#f1b6da', '#b8e186', '#8c96c6'),
+    grp_shapes = rep(x = 21:25, times = 2),
+    # grp_lines = rep(x = 1, times = 10),
+    # pt_size = 1.5,
+    # pt_alpha = 1,
+    # lab_text_size = 1.25,
+    # axis_text_size = 1,
+    # leg_pos = "bottomleft",
+    # leg_cont = unique(grps),
     ...
 ){
   
@@ -82,7 +82,7 @@ ordination <- function(
     
     # Define actual model object (with plot-able data points)
     mod_actual <- mod
-    mod_points <- mod$points
+    mod_points <- mod_actual$points
     
     # Create informative axis labels
     xlab_actual <- "NMS Axis 1"
@@ -90,56 +90,141 @@ ordination <- function(
     leg_title <- paste0("Stress = ", round(mod_actual$stress, digits = 3))
   }
   
-  # Identify unique groups in dat
-  (grp_names <- unique(grps))
+  # Identify unique groups in data
+  grp_names <- unique(grps)
   
   # Assign names to the vectors of colors/shapes/lines
-  (names(grp_colors) <- grp_names)
-  (names(grp_shapes) <- grp_names)
-  (names(grp_lines) <- grp_names)
-  
+  names(grp_colors) <- grp_names
+  names(grp_shapes) <- grp_names
+
   # Crop all three vectors to the length of groups in the data
   ## Also adjust color opacity
-  (colors_actual <- grp_colors[is.na(names(grp_colors)) != TRUE])
-  (shapes_actual <- grp_shapes[is.na(names(grp_shapes)) != TRUE])
-  (lines_actual <- grp_lines[is.na(names(grp_lines)) != TRUE])
+  colors_actual <- grp_colors[is.na(names(grp_colors)) != TRUE]
+  shapes_actual <- grp_shapes[is.na(names(grp_shapes)) != TRUE]
+
+  # Identify arguments in `...` argument
+  bonus_args <- as.list(substitute(expr = list(...)))
+  
+  # Add in defaults for each supported argument if they are absent
+  if("cex.lab" %in% names(bonus_args) != TRUE){
+    bonus_args <- append(x = bonus_args, values = list("cex.lab" = 1.5))
+  }
+  if("cex.axis" %in% names(bonus_args) != TRUE){
+    bonus_args <- append(x = bonus_args, values = list("cex.axis" = 1))
+  }
+  if("cex" %in% names(bonus_args) != TRUE){
+    bonus_args <- append(x = bonus_args, values = list("cex" = 1.5))
+  }
+  if("alpha" %in% names(bonus_args) != TRUE){
+    bonus_args <- append(x = bonus_args, values = list("alpha" = 1))
+  }
+  if("lty" %in% names(bonus_args) != TRUE){
+    bonus_args <- append(x = bonus_args, values = list("lty" = 1))
+  }
+  if("x" %in% names(bonus_args) != TRUE){
+    bonus_args <- append(x = bonus_args, values = list("x" = "bottomleft"))
+  }
+  if("legend" %in% names(bonus_args) != TRUE){
+    bonus_args <- append(x = bonus_args, values = list("legend" = grp_names))
+  }
+  
+  # Separate them based on which sub-function they belong with
+  graphics.plot_args <- bonus_args[which(names(bonus_args) %in% c("cex.lab", "cex.axis"))]
+  graphics.points_args <- bonus_args[which(names(bonus_args) %in% c("cex"))]
+  scales.alpha_args <- bonus_args[which(names(bonus_args) %in% c("alpha"))]
+  vegan.ordiellipse_args <- bonus_args[which(names(bonus_args) %in% c("lty"))]
+  graphics.legend_args <- bonus_args[which(names(bonus_args) %in% c("x", "legend"))]
+  
+  # Identify any named bonus arguments that aren't identified above
+  missing_args <- setdiff(x = names(bonus_args), 
+                          y = c("", "cex.lab", "cex.axis", "cex", "alpha", 
+                                "lty", "x", "legend"))
+  
+  # Warning if any are found
+  if(length(missing_args) != 0){
+    warning("Unknown additional arguments detected: '",
+            paste(missing_args, collapse = "', '"), "'",
+            "\nThose arguments are ignored.",
+            "\nPlease open a GitHub issue to expand function behavior.") }
   
   # Create blank plot
-  graphics::plot(x = mod_actual, type = 'n', col = 'white', pch = 1,
-                 xlab = xlab_actual, 
-                 ylab = ylab_actual,
-                 cex.lab = lab_text_size,
-                 cex.axis = axis_text_size)
+  do.call(what = graphics::plot, 
+          args = append(x = graphics.plot_args,
+                        values = list("x" = mod_points, "type" = "n", "col" = "white",
+                                      "pch" = 1, "xlab" = xlab_actual, "ylab" = ylab_actual)))
   
   # For each group in the ordination
   for(focal_grp in grp_names){
     
+    # Apply desired transparency to chosen color
+    focal_color <- do.call(what = scales::alpha,
+                           args = append(x = scales.alpha_args,
+                                         values = list("colour" = colors_actual[focal_grp])))
+    
+    # focal_color <- scales::alpha(colour = colors_actual[focal_grp], ...)
+    
+    # Actually add points
+    do.call(what = graphics::points,
+            args = append(x = graphics.points_args,
+                          values = list("x" = mod_points[grp_names == focal_grp, 1],
+                                        "y" = mod_points[grp_names == focal_grp, 2],
+                                        "pch" = shapes_actual[focal_grp], 
+                                        "bg" = focal_color)))
+    
     # Add points
-    graphics::points(x = mod_points[grp_names == focal_grp, 1],
-                     y = mod_points[grp_names == focal_grp, 2],
-                     pch = shapes_actual[focal_grp], 
-                     bg = scales::alpha(colour = colors_actual[focal_grp], ...),
-                     cex = pt_size)
+    # graphics::points(x = mod_points[grp_names == focal_grp, 1],
+    #                  y = mod_points[grp_names == focal_grp, 2],
+    #                  pch = shapes_actual[focal_grp], 
+    #                  bg = scales::alpha(colour = colors_actual[focal_grp], ...),
+    #                  cex = pt_size)
     
   } # Close points loop
   
   # With all of the points plotted, add ellipses of matched colors
-  # This also allows for variation in line type if desired
-  vegan::ordiellipse(ord = mod_actual, groups = grps, col = colors_actual,
-                     display = 'sites', kind = 'sd', lwd = 2,
-                     lty = lines_actual, label = FALSE)
+  do.call(what = vegan::ordiellipse,
+          args = append(x = vegan.ordiellipse_args,
+                        values = list("ord" = mod_actual, 
+                                      "groups" = grps, 
+                                      "col" = colors_actual,
+                                      "display" = "sites", 
+                                      "kind" = "sd", 
+                                      "lwd" = 2,
+                                      "label" = FALSE)))
   
+  # vegan::ordiellipse(ord = mod_actual, groups = grps, col = colors_actual,
+  #                    display = 'sites', kind = 'sd', lwd = 2,
+  #                    lty = lines_actual, label = FALSE)
+  # 
   # Finally, add a legend
-  graphics::legend(x = leg_pos, legend = leg_cont, bty = "n", title = leg_title,
-                   pt.cex = 1.25, pch = shapes_actual, cex = 1.15, pt.bg = colors_actual)
+  do.call(what = graphics::legend,
+          args = append(x = graphics.legend_args,
+                        values = list("bty" = "n", 
+                                      "title" = leg_title,
+                                      "pt.cex" = 1.25, 
+                                      "pch" = shapes_actual, 
+                                      "cex" = 1.15, 
+                                      "pt.bg" = colors_actual)))
+  
+  # graphics::legend(x = leg_pos, legend = leg_cont, bty = "n", title = leg_title,
+  #                  pt.cex = 1.25, pch = shapes_actual, cex = 1.15, pt.bg = colors_actual)
   
 } # Close function
 
 # Invoke function
 ## PCoA variant
-ordination(mod = pcoa_mod, grps = data$factor_4lvl, alpha = 0.5)
+ordination(mod = pcoa_mod, grps = data$factor_4lvl, 
+           # alpha = 0.5, 
+           # cex.lab = 2, 
+           # cex.axis = 0.2,
+           # cex = 6, 
+           # lty = 3, 
+           # x = "topright", 
+           # legend = c("A", "B", "C", "D")
+           )
+
 ## NMS variant
-ordination(mod = nms_mod, grps = data$factor_4lvl, alpha = 0.2)
+ordination(mod = nms_mod, grps = data$factor_4lvl, alpha = 0.2,
+           x = "bottomright")
 
 ## ------------------------------------ ##
 # Ellipsis Testing ----
