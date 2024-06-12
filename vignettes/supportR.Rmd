@@ -8,11 +8,16 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r knitr-mechanics, include = F}
+```{r knitr-mechanics}
+#| include: false
+
 knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
 ```
 
-```{r pre-setup, echo = FALSE, message = FALSE}
+```{r pre-setup}
+#| echo: false
+#| message: false
+
 # devtools::install_github("njlyon0/supportR", force = TRUE)
 ```
 
@@ -35,6 +40,9 @@ In order to demonstrate some of the data wrangling functions of `supportR`, we'l
 # Load library
 library(palmerpenguins)
 
+# Get the penguins data
+utils::data("penguins", package = "palmerpenguins")
+
 # Glimpse the penguins dataset
 str(penguins)
 ```
@@ -46,7 +54,7 @@ The `groups` argument supports a vector of all of the column names to group by w
 ```{r summary_table}
 # Summarize the data
 supportR::summary_table(data = penguins, groups = c("species", "island"),
-                        response = "bill_length_mm", drop_na = T)
+                        response = "bill_length_mm", drop_na = TRUE)
 ```
 
 The `safe_rename` function allows--perhaps predictably--"safe" renaming of column names in a given data object. The 'bad' column names and corresponding 'good' names must be specified. The order of entries in the two vectors must match (i.e., the first bad name will be replaced with the first good name), but that order need not match the order in which they occur in the data!
@@ -115,8 +123,8 @@ This package also includes the function `num_check` that identifies all values o
 
 ```{r num_check}
 # Make a dataframe with non-numbers in a number column
-fish <- data.frame('species' = c('salmon', 'bass', 'halibut', 'eel'),
-                   'count' = c(1, '14x', '_23', 12))
+fish <- data.frame("species" = c("salmon", "bass", "halibut", "eel"),
+                   "count" = c(1, "14x", "_23", 12))
 
 # Use `num_check` to identify non-numbers
 num_check(data = fish, col = "count")
@@ -126,11 +134,11 @@ num_check(data = fish, col = "count")
 
 ```{r date_check}
 # Make a dataframe including malformed dates
-sites <- data.frame('site' = c("LTR", "GIL", "PYN", "RIN"),
-                    'visit' = c('2021-01-01', '2021-01-0w', '1990', '2020-10-xx'))
+sites <- data.frame("site" = c("LTR", "GIL", "PYN", "RIN"),
+                    "visit" = c("2021-01-01", "2021-01-0w", "1990", "2020-10-xx"))
 
 # Now we can use our function to identify bad dates
-supportR::date_check(data = sites, col = 'visit')
+supportR::date_check(data = sites, col = "visit")
 ```
 
 Both `num_check` and `date_check` can accept multiple column names to the `col` argument (as of version 1.1.1) and all columns are checked separately.
@@ -143,16 +151,16 @@ Recognizing that assumption may be uncomfortable for some users, the `groups` ar
 
 ```{r date_format_guess}
 # Make a dataframe with dates in various formats and a grouping column
-my_df <- data.frame('data_enterer' = c('person A', 'person B',
-                                       'person B', 'person B',
-                                       'person C', 'person D',
-                                       'person E', 'person F',
-                                       'person G'),
-                    'bad_dates' = c('2022.13.08', '2021/2/02',
-                                    '2021/2/03', '2021/2/04',
-                                    '1899/1/15', '10-31-1901',
-                                    '26/11/1901', '08.11.2004',
-                                    '6/10/02'))
+my_df <- data.frame("data_enterer" = c("person A", "person B",
+                                       "person B", "person B",
+                                       "person C", "person D",
+                                       "person E", "person F",
+                                       "person G"),
+                    "bad_dates" = c("2022.13.08", "2021/2/02",
+                                    "2021/2/03", "2021/2/04",
+                                    "1899/1/15", "10-31-1901",
+                                    "26/11/1901", "08.11.2004",
+                                    "6/10/02"))
 
 # Now we can invoke the function!
 supportR::date_format_guess(data = my_df, date_col = "bad_dates",
@@ -175,7 +183,12 @@ I've created a set of custom `ggplot2` `theme` elements to guarantee that all of
 - Makes axes' lines black
 - Increases the font size of the axes titles and tick labels
 
-```{r theme_lyon, message = F, warning = F, fig.width = 5}
+```{r theme_lyon}
+#| message: false
+#| warning: false
+#| fig.width: 5
+#| fig.align: "center"
+
 # Load ggplot2
 library(ggplot2)
 
@@ -191,11 +204,13 @@ ggplot(penguins, aes(x = species, y = body_mass_g, fill = species)) +
 
 I've also created `ordination` for Nonmetric Multidimensional Scaling (NMS) or Principal Coordinates Analysis (PCoA) ordinations. Note that this function requires your multidimensional scaling object be created by either `ape::pcoa` or `vegan::metaMDS`.
 
-```{r ordination, fig.width = 5, fig.height = 5}
+```{r ordination}
 #| message: false
 #| warning: false
 #| results: "hide"
-#| eval: false
+#| fig.height: 5
+#| fig.width: 5
+#| fig.align: "center"
 
 # Load data from the `vegan` package
 utils::data("varespec", package = 'vegan')
@@ -255,7 +270,9 @@ supportR::github_tree(repo = repo = "https://github.com/njlyon0/supportR",
 
 Valuable information is sometimes stored as markdown files which--while consistently formatted internally--are not always easily parsed through R. I've written `tabularize_md` to ingest a markdown file and collapse it into a table while still preserving the nested structure of any headings that may be in the source file. This function accepts either a local markdown file name/path or a connection (via URL) to an online markdown file. I'll demonstrate the URL-based variant here but to use it on a local file you need only provide the file name/path as you would to any other reading function (e.g., `read.csv`, etc.)
 
-```{r tabularize_md, eval = F}
+```{r tabularize_md}
+#| eval: false
+
 # Identify URL to the NEWS.md file in `supportR` GitHub repo
 md_cxn <- url("https://raw.githubusercontent.com/njlyon0/supportR/main/NEWS.md")
 
@@ -273,7 +290,9 @@ str(md_df)
 
 For users who create RMarkdown reports and want to store them in a Google Drive folder,  `rmd_export` knits and exports a given R Markdown file both locally and to a user-designated Google Drive folder. Note that you **_MUST_** authenticate your R session with the `googledrive` package so that it has permission to access the Drive folder you supply. I recommend running `googledrive::drive_auth()` and doing the authentication "dance" in a browser before using `rmd_export` to reduce the chances of any errors.
 
-```{r rmd_export, eval = F}
+```{r rmd_export}
+#| eval: false
+
 # Authorize R to interact with GoogleDrive
 googledrive::drive_auth()
 
