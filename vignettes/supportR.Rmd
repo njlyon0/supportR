@@ -41,7 +41,7 @@ In order to demonstrate some of the data wrangling functions of `supportR`, we'l
 library(palmerpenguins)
 
 # Get the penguins data
-utils::data("penguins", package = "palmerpenguins")
+penguins <- palmerpenguins::penguins
 
 # Glimpse the penguins dataset
 str(penguins)
@@ -213,7 +213,7 @@ I've also created `ordination` for Nonmetric Multidimensional Scaling (NMS) or P
 #| fig.align: "center"
 
 # Load data from the `vegan` package
-utils::data("varespec", package = 'vegan')
+utils::data("varespec", package = "vegan")
 
 # Make a columns to split the data into 4 groups
 treatment <- c(rep.int("Trt_1", (nrow(varespec)/4)),
