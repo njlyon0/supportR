@@ -1,52 +1,45 @@
-## --------------------------------------------------- ##
-# General Ordination Function
-## --------------------------------------------------- ##
-
-# PURPOSE
-## Dev area for a generic 'ordination' function to supersede `pcoa_ord` and `nms_ord`
-## Plus explore use of `...` parameter to simplify arguments of this function
-
-## ------------------------------------ ##
-# Housekeeping ----
-## ------------------------------------ ##
-
-# Library loading
-librarian::shelf(tidyverse, vegan)
-devtools::load_all()
-
-# Clear environment
-rm(list = ls())
-
-# Use data from the vegan package
-utils::data("varespec", package = 'vegan')
-resp <- varespec
-
-# Make some columns of known number of groups
-factor_4lvl <- c(rep.int("Trt1", (nrow(resp)/4)),
-                 rep.int("Trt2", (nrow(resp)/4)),
-                 rep.int("Trt3", (nrow(resp)/4)),
-                 rep.int("Trt4", (nrow(resp)/4)))
-
-# And combine them into a single data object
-data <- cbind(factor_4lvl, resp)
-str(data)
-
-# Get a distance matrix from the data
-dist <- vegan::vegdist(resp, method = 'kulczynski')
-
-# Perform a PCoA on the distance matrix to get points for an ordination
-pcoa_mod <- ape::pcoa(dist)
-class(pcoa_mod)
-
-# Actually perform multidimensional scaling
-nms_mod <- vegan::metaMDS(data[-1], autotransform = FALSE, expand = FALSE, k = 2, try = 50)
-class(nms_mod)
-
-## ------------------------------------ ##
-# Explore ----
-## ------------------------------------ ##
-
-# Define function
+#' @title Create an Ordination with Ellipses for Groups
+#' 
+#' @description Produces a Nonmetric Multidimensional Scaling (NMS) or Principal Coordinate Analysis (PCoA) for up to 10 groups. Draws an ellipse around the standard deviation of the points in each group. By default, assigns a unique color (colorblind-safe) and point shape for each group. If the user supplies colors/shapes then the function can support more than 10 groups. For NMS ordinations, includes the stress as the legend title (see `?vegan::metaMDS` for explanation of "stress"). For PCoA ordinations includes the percent variation explained parenthetically in the axis labels.
+#' 
+#' @param mod (pcoa | monoMDS/metaMDS) object returned by `ape::pcoa` or `vegan::metaMDS`
+#' @param grps (vector) vector of categorical groups for data. Must be same length as number of rows in original data object
+#' @param ... additional arguments passed to `graphics::plot`, `graphics::points`, `scales::alpha`, `vegan::ordiellipse`, or `graphics::legend`. Open a GitHub Issue if function must support additional arguments
+#' 
+#' @return (plot) base R ordination with an ellipse for each group
+#' 
+#' @export
+#' 
+#' @examples
+#' \donttest{
+#' # Use data from the vegan package
+#' utils::data("varespec", package = 'vegan')
+#' 
+#' # Make some columns of known number of groups
+#' treatment <- c(rep.int("Trt1", (nrow(varespec)/4)),
+#'                rep.int("Trt2", (nrow(varespec)/4)),
+#'                rep.int("Trt3", (nrow(varespec)/4)),
+#'                rep.int("Trt4", (nrow(varespec)/4)))
+#' 
+#' # And combine them into a single data object
+#' data <- cbind(treatment, varespec)
+#' 
+#' # Get a distance matrix from the data
+#' dist <- vegan::vegdist(varespec, method = 'kulczynski')
+#' 
+#' # Perform PCoA / NMS
+#' pcoa_mod <- ape::pcoa(dist)
+#' nms_mod <- vegan::metaMDS(data[-1], autotransform = FALSE, expand = FALSE, k = 2, try = 50)
+#' 
+#' # Create PCoA ordination (with optional agruments)
+#' ordination(mod = pcoa_mod, grps = data$treatment, bg = "red", 
+#'            col = "black", lty = 2)
+#' 
+#' # Create NMS ordination
+#' ordination(mod = nms_mod, grps = data$treatment, alpha = 0.3, 
+#'            x = "topright", legend = LETTERS[1:4])
+#' }
+#' 
 ordination <- function(mod = NULL, grps = NULL, ...){
   
   # Error out for missing (required) arguments
@@ -62,6 +55,9 @@ ordination <- function(mod = NULL, grps = NULL, ...){
   # Error out for unsupported group type
   if(is.vector(grps) != TRUE)
     stop("Groups must be provided as a vector")
+  
+  # Identify group names
+  grp_names <- unique(grps)
   
   # Model-specific stuff
   ## Principal Coordinates Analysis
@@ -101,7 +97,7 @@ ordination <- function(mod = NULL, grps = NULL, ...){
   
   # Add in defaults for each supported argument if they are absent
   if("cex.lab" %in% names(bonus_args) != TRUE){
-    bonus_args <- append(x = bonus_args, values = list("cex.lab" = 1.5))
+    bonus_args <- append(x = bonus_args, values = list("cex.lab" = 1.25))
   }
   if("cex.axis" %in% names(bonus_args) != TRUE){
     bonus_args <- append(x = bonus_args, values = list("cex.axis" = 1))
@@ -261,43 +257,15 @@ ordination <- function(mod = NULL, grps = NULL, ...){
                                       "col" = colors_line_actual,
                                       "display" = "sites", 
                                       "kind" = "sd", 
-                                      "lwd" = 2,
-                                      "label" = FALSE)))
+                                      "lwd" = 2, "label" = FALSE)))
   
   # Finally, add a legend
   do.call(what = graphics::legend,
           args = append(x = graphics.legend_args,
                         values = list("bty" = "n", 
                                       "title" = leg_title,
-                                      "pt.cex" = 1.25, 
+                                      "pt.cex" = 1.25, "cex" = 1.15,
                                       "pch" = shapes_actual, 
-                                      "cex" = 1.15, 
                                       "pt.bg" = colors_pt_actual)))
 
-  } # Close function
-
-# Invoke function
-## PCoA variant
-ordination(mod = pcoa_mod, grps = data$factor_4lvl, 
-           bg = "red",
-           col = "black",
-           lty = 2,
-           pch = 21,
-           alpha = 0.5,
-           cex.lab = 2,
-           cex.axis = 0.2,
-           cex = 6,
-           x = "topright",
-           legend = c("A", "B", "C", "D")
-           )
-
-## NMS variant
-ordination(mod = nms_mod, grps = data$factor_4lvl, alpha = 0.2,
-           lty = 5,
-           x = "bottomright")
-
-
-ordination(mod = pcoa_mod, grps = unique(data$factor_4lvl))
-
-# End ----
-
+  }
