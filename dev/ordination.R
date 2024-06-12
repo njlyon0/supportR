@@ -93,12 +93,11 @@ ordination <- function(
   # Identify unique groups in data
   grp_names <- unique(grps)
   
-  # Assign names to the vectors of colors/shapes/lines
+  # Assign names to the vectors of aesthetics
   names(grp_colors) <- grp_names
   names(grp_shapes) <- grp_names
 
-  # Crop all three vectors to the length of groups in the data
-  ## Also adjust color opacity
+  # Crop aesthetic vectors to the length of groups in the data
   colors_actual <- grp_colors[is.na(names(grp_colors)) != TRUE]
   shapes_actual <- grp_shapes[is.na(names(grp_shapes)) != TRUE]
 
@@ -161,8 +160,6 @@ ordination <- function(
                            args = append(x = scales.alpha_args,
                                          values = list("colour" = colors_actual[focal_grp])))
     
-    # focal_color <- scales::alpha(colour = colors_actual[focal_grp], ...)
-    
     # Actually add points
     do.call(what = graphics::points,
             args = append(x = graphics.points_args,
@@ -170,14 +167,7 @@ ordination <- function(
                                         "y" = mod_points[grp_names == focal_grp, 2],
                                         "pch" = shapes_actual[focal_grp], 
                                         "bg" = focal_color)))
-    
-    # Add points
-    # graphics::points(x = mod_points[grp_names == focal_grp, 1],
-    #                  y = mod_points[grp_names == focal_grp, 2],
-    #                  pch = shapes_actual[focal_grp], 
-    #                  bg = scales::alpha(colour = colors_actual[focal_grp], ...),
-    #                  cex = pt_size)
-    
+
   } # Close points loop
   
   # With all of the points plotted, add ellipses of matched colors
@@ -191,10 +181,6 @@ ordination <- function(
                                       "lwd" = 2,
                                       "label" = FALSE)))
   
-  # vegan::ordiellipse(ord = mod_actual, groups = grps, col = colors_actual,
-  #                    display = 'sites', kind = 'sd', lwd = 2,
-  #                    lty = lines_actual, label = FALSE)
-  # 
   # Finally, add a legend
   do.call(what = graphics::legend,
           args = append(x = graphics.legend_args,
@@ -204,11 +190,8 @@ ordination <- function(
                                       "pch" = shapes_actual, 
                                       "cex" = 1.15, 
                                       "pt.bg" = colors_actual)))
-  
-  # graphics::legend(x = leg_pos, legend = leg_cont, bty = "n", title = leg_title,
-  #                  pt.cex = 1.25, pch = shapes_actual, cex = 1.15, pt.bg = colors_actual)
-  
-} # Close function
+
+  } # Close function
 
 # Invoke function
 ## PCoA variant
@@ -224,48 +207,8 @@ ordination(mod = pcoa_mod, grps = data$factor_4lvl,
 
 ## NMS variant
 ordination(mod = nms_mod, grps = data$factor_4lvl, alpha = 0.2,
+           lty = 5,
            x = "bottomright")
-
-## ------------------------------------ ##
-# Ellipsis Testing ----
-## ------------------------------------ ##
-
-# Re-clear environment
-rm(list = ls())
-
-# Define function
-test_fxn <- function(...){
-  
-  # Extract list information
-  input_list <- as.list(substitute(expr = list(...)))
-  
-  # Identify arguments specific to a particular sub-function
-  mean_list <- input_list[which(names(input_list) %in% c("x"))]
-  round_list <- input_list[which(names(input_list) %in% c("digits"))]
-
-  # Take average
-  mean_obj <- do.call(what = "mean", args = mean_list)
-  
-  # Round the average value
-  round_obj <- do.call(what = "round", 
-                       args = append(x = round_list, 
-                                     values = c("x" = mean_obj)))
-
-  # Return output
-  return(round_obj) }
-
-# Invoke function
-test_fxn(x = c(1, 5, 7), digits = 2)
-
-
-
-# Other experimentation
-(test <- list("x" = 4.3333333333))
-
-(test2 <- append(x = test, values = c("digits" = 3)))
-
-do.call(what = round, args = test2)
-do.call(what = "round", args = test2)
 
 # End ----
 
