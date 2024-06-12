@@ -52,8 +52,10 @@
 <p>This is the development version of <code>supportR</code>. Changes will be listed here as they are made.</p>
 <ul><li>New function: <code>replace_non_ascii</code>. Replaces non-ASCII characters with ASCII characters that are as visually similar as possible</li>
 <li>New function: <code>count</code>. Counts occurrences of each unique element in the provided vector</li>
-<li>New function behavior: <code>nms_ord</code> now supports modifying axis label text size and axis tickmark text size</li>
-<li>New function behavior: <code>pcoa_ord</code> now supports modifying axis label text size and axis tickmark text size</li>
+<li>New function: <code>ordination</code>. Generic function that creates either NMS or PCoA ordinations. Makes extensive use of the <code>...</code> argument to greatly increase level of control user can expect over internal base R graphing functions. Supersedes <code>nms_ord</code> and <code>pcoa_ord</code>.</li>
+<li>Superseded functions: <code>nms_ord</code> and <code>pcoa_ord</code> are now superseded because they are special cases of <code>ordination</code>
+</li>
+<li>New function behavior: <code>nms_ord</code> and <code>pcoa_ord</code> now support modifying axis label text size and axis tickmark text size</li>
 <li>Began the process of adding units tests for most functions in the package. Users may notice some small cases where more informative errors/warnings are returned but generally this shouldn’t change function behavior in an appreciable way</li>
 </ul></div>
     <div class="section level2">
