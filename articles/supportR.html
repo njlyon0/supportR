@@ -105,6 +105,9 @@ R package</a>.</p>
 <code class="sourceCode R"><span><span class="co"># Load library</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://allisonhorst.github.io/palmerpenguins/" class="external-link">palmerpenguins</a></span><span class="op">)</span></span>
 <span></span>
+<span><span class="co"># Get the penguins data</span></span>
+<span><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"penguins"</span>, package <span class="op">=</span> <span class="st">"palmerpenguins"</span><span class="op">)</span></span>
+<span></span>
 <span><span class="co"># Glimpse the penguins dataset</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">penguins</span><span class="op">)</span></span>
 <span><span class="co">#&gt; tibble [344 × 8] (S3: tbl_df/tbl/data.frame)</span></span>
@@ -131,7 +134,7 @@ you’d like to retain for the mean, SD, and SE.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Summarize the data</span></span>
 <span><span class="fu">supportR</span><span class="fu">::</span><span class="fu"><a href="../reference/summary_table.html">summary_table</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">penguins</span>, groups <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"species"</span>, <span class="st">"island"</span><span class="op">)</span>,</span>
-<span>                        response <span class="op">=</span> <span class="st">"bill_length_mm"</span>, drop_na <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span>
+<span>                        response <span class="op">=</span> <span class="st">"bill_length_mm"</span>, drop_na <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt;     species    island  mean std_dev sample_size std_error</span></span>
 <span><span class="co">#&gt; 1    Adelie    Biscoe 38.98    2.48          44      0.37</span></span>
 <span><span class="co">#&gt; 2    Adelie     Dream 38.50    2.47          56      0.33</span></span>
@@ -247,8 +250,8 @@ flag these for your attention, <em>not</em> to attempt a fix using a
 method you may or may not support.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Make a dataframe with non-numbers in a number column</span></span>
-<span><span class="va">fish</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="st">'species'</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'salmon'</span>, <span class="st">'bass'</span>, <span class="st">'halibut'</span>, <span class="st">'eel'</span><span class="op">)</span>,</span>
-<span>                   <span class="st">'count'</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="st">'14x'</span>, <span class="st">'_23'</span>, <span class="fl">12</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">fish</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="st">"species"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"salmon"</span>, <span class="st">"bass"</span>, <span class="st">"halibut"</span>, <span class="st">"eel"</span><span class="op">)</span>,</span>
+<span>                   <span class="st">"count"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="st">"14x"</span>, <span class="st">"_23"</span>, <span class="fl">12</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Use `num_check` to identify non-numbers</span></span>
 <span><span class="fu"><a href="../reference/num_check.html">num_check</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">fish</span>, col <span class="op">=</span> <span class="st">"count"</span><span class="op">)</span></span>
@@ -263,11 +266,11 @@ to <code>NA</code> so <code>date_check</code> will do the same
 thing.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Make a dataframe including malformed dates</span></span>
-<span><span class="va">sites</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="st">'site'</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"LTR"</span>, <span class="st">"GIL"</span>, <span class="st">"PYN"</span>, <span class="st">"RIN"</span><span class="op">)</span>,</span>
-<span>                    <span class="st">'visit'</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'2021-01-01'</span>, <span class="st">'2021-01-0w'</span>, <span class="st">'1990'</span>, <span class="st">'2020-10-xx'</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">sites</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="st">"site"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"LTR"</span>, <span class="st">"GIL"</span>, <span class="st">"PYN"</span>, <span class="st">"RIN"</span><span class="op">)</span>,</span>
+<span>                    <span class="st">"visit"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"2021-01-01"</span>, <span class="st">"2021-01-0w"</span>, <span class="st">"1990"</span>, <span class="st">"2020-10-xx"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Now we can use our function to identify bad dates</span></span>
-<span><span class="fu">supportR</span><span class="fu">::</span><span class="fu"><a href="../reference/date_check.html">date_check</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">sites</span>, col <span class="op">=</span> <span class="st">'visit'</span><span class="op">)</span></span>
+<span><span class="fu">supportR</span><span class="fu">::</span><span class="fu"><a href="../reference/date_check.html">date_check</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">sites</span>, col <span class="op">=</span> <span class="st">"visit"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; For 'visit', 3 non-dates identified: '2021-01-0w' | '1990' | '2020-10-xx'</span></span>
 <span><span class="co">#&gt; $visit</span></span>
 <span><span class="co">#&gt; [1] "2021-01-0w" "1990"       "2020-10-xx"</span></span></code></pre></div>
@@ -293,16 +296,16 @@ knowledge of the system (or by returning to your raw data if need
 be).</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Make a dataframe with dates in various formats and a grouping column</span></span>
-<span><span class="va">my_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="st">'data_enterer'</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'person A'</span>, <span class="st">'person B'</span>,</span>
-<span>                                       <span class="st">'person B'</span>, <span class="st">'person B'</span>,</span>
-<span>                                       <span class="st">'person C'</span>, <span class="st">'person D'</span>,</span>
-<span>                                       <span class="st">'person E'</span>, <span class="st">'person F'</span>,</span>
-<span>                                       <span class="st">'person G'</span><span class="op">)</span>,</span>
-<span>                    <span class="st">'bad_dates'</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'2022.13.08'</span>, <span class="st">'2021/2/02'</span>,</span>
-<span>                                    <span class="st">'2021/2/03'</span>, <span class="st">'2021/2/04'</span>,</span>
-<span>                                    <span class="st">'1899/1/15'</span>, <span class="st">'10-31-1901'</span>,</span>
-<span>                                    <span class="st">'26/11/1901'</span>, <span class="st">'08.11.2004'</span>,</span>
-<span>                                    <span class="st">'6/10/02'</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">my_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="st">"data_enterer"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"person A"</span>, <span class="st">"person B"</span>,</span>
+<span>                                       <span class="st">"person B"</span>, <span class="st">"person B"</span>,</span>
+<span>                                       <span class="st">"person C"</span>, <span class="st">"person D"</span>,</span>
+<span>                                       <span class="st">"person E"</span>, <span class="st">"person F"</span>,</span>
+<span>                                       <span class="st">"person G"</span><span class="op">)</span>,</span>
+<span>                    <span class="st">"bad_dates"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"2022.13.08"</span>, <span class="st">"2021/2/02"</span>,</span>
+<span>                                    <span class="st">"2021/2/03"</span>, <span class="st">"2021/2/04"</span>,</span>
+<span>                                    <span class="st">"1899/1/15"</span>, <span class="st">"10-31-1901"</span>,</span>
+<span>                                    <span class="st">"26/11/1901"</span>, <span class="st">"08.11.2004"</span>,</span>
+<span>                                    <span class="st">"6/10/02"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Now we can invoke the function!</span></span>
 <span><span class="fu">supportR</span><span class="fu">::</span><span class="fu"><a href="../reference/date_format_guess.html">date_format_guess</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">my_df</span>, date_col <span class="op">=</span> <span class="st">"bad_dates"</span>,</span>
@@ -352,14 +355,14 @@ preferences!</p>
 <span><span class="co"># Create a plot and allow default ggplot themeing to be added</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">penguins</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">species</span>, y <span class="op">=</span> <span class="va">body_mass_g</span>, fill <span class="op">=</span> <span class="va">species</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html" class="external-link">geom_boxplot</a></span><span class="op">(</span>outlier.shape <span class="op">=</span> <span class="fl">24</span><span class="op">)</span></span></code></pre></div>
-<p><img src="supportR_files/figure-html/theme_lyon-1.png" width="480"></p>
+<p><img src="supportR_files/figure-html/theme_lyon-1.png" width="480" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="co"># Compare with the same plot with my theme</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">penguins</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">species</span>, y <span class="op">=</span> <span class="va">body_mass_g</span>, fill <span class="op">=</span> <span class="va">species</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html" class="external-link">geom_boxplot</a></span><span class="op">(</span>outlier.shape <span class="op">=</span> <span class="fl">24</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">supportR</span><span class="fu">::</span><span class="fu"><a href="../reference/theme_lyon.html">theme_lyon</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="supportR_files/figure-html/theme_lyon-2.png" width="480"></p>
+<p><img src="supportR_files/figure-html/theme_lyon-2.png" width="480" style="display: block; margin: auto;"></p>
 <p>I’ve also created <code>ordination</code> for Nonmetric
 Multidimensional Scaling (NMS) or Principal Coordinates Analysis (PCoA)
 ordinations. Note that this function requires your multidimensional
@@ -384,6 +387,7 @@ scaling object be created by either <code><a href="https://rdrr.io/pkg/ape/man/p
 <span></span>
 <span><span class="co"># With the scaled object and original dataframe we can use this function</span></span>
 <span><span class="fu"><a href="../reference/ordination.html">ordination</a></span><span class="op">(</span>mod <span class="op">=</span> <span class="va">mds</span>, grps <span class="op">=</span> <span class="va">data</span><span class="op">$</span><span class="va">treatment</span>, x <span class="op">=</span> <span class="st">"bottomright"</span>, legend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"Treat-"</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p><img src="supportR_files/figure-html/ordination-1.png" width="480" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level3">
 <h3 id="operations-outside-of-r">Operations Outside of R<a class="anchor" aria-label="anchor" href="#operations-outside-of-r"></a>
