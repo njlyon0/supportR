@@ -189,33 +189,33 @@ ggplot(penguins, aes(x = species, y = body_mass_g, fill = species)) +
   supportR::theme_lyon()
 ```
 
-I've also created `nms_ord` and `pcoa_ord` for Non-Metric Multi-Dimensional Scaling (NMS) & Principal Coordinates Analysis (PCoA) Ordinations respectively.
+I've also created `ordination` for Nonmetric Multidimensional Scaling (NMS) or Principal Coordinates Analysis (PCoA) ordinations. Note that this function requires your multidimensional scaling object be created by either `ape::pcoa` or `vegan::metaMDS`.
 
-```{r nms_ord, message = F, warning = F, results = 'hide', fig.width = 5, fig.height = 5}
+```{r ordination, fig.width = 5, fig.height = 5}
+#| message: false
+#| warning: false
+#| results: "hide"
+#| eval: false
+
 # Load data from the `vegan` package
 utils::data("varespec", package = 'vegan')
-resp <- varespec
 
 # Make a columns to split the data into 4 groups
-factor_4lvl <- c(rep.int("Trt_1", (nrow(resp)/4)),
-                 rep.int("Trt_2", (nrow(resp)/4)),
-                 rep.int("Trt_3", (nrow(resp)/4)),
-                 rep.int("Trt_4", (nrow(resp)/4)))
+treatment <- c(rep.int("Trt_1", (nrow(varespec)/4)),
+               rep.int("Trt_2", (nrow(varespec)/4)),
+               rep.int("Trt_3", (nrow(varespec)/4)),
+               rep.int("Trt_4", (nrow(varespec)/4)))
 
 # And combine them into a single data object
-data <- cbind(factor_4lvl, resp)
+data <- cbind(treatment, varespec)
 
 # Actually perform multidimensional scaling
 mds <- vegan::metaMDS(data[-1], autotransform = FALSE, 
                       expand = FALSE, k = 2, try = 10)
 
 # With the scaled object and original dataframe we can use this function
-supportR::nms_ord(mod = mds, groupcol = data$factor_4lvl,
-                  title = '4-Level NMS', leg_pos = 'topright',
-                  leg_cont = c('1', '2', '3', '4'))
+ordination(mod = mds, grps = data$treatment, x = "bottomright", legend = paste0("Treat-", 1:4))
 ```
-
-`pcoa_ord` has the same syntax as `nms_ord` but it expects an object created by `ape::pcoa` rather than `vegan::metaMDS`.
 
 ### Operations Outside of R
 
@@ -227,7 +227,9 @@ For GitHub users, I've developed two related functions: `github_ls` and `github_
 
 If the `folder` argument is set to `NULL` (the default) the top level of the repository is listed.
 
-```{r github_ls, eval = F}
+```{r github_ls}
+#| eval: false
+
 # List all files in a GitHub repository
 supportR::github_ls(repo = "https://github.com/njlyon0/supportR",
                     recursive = TRUE, quiet = FALSE)
@@ -241,7 +243,9 @@ supportR::github_ls(repo = "https://github.com/njlyon0/supportR", folder = "R",
 
 I think this could be particularly useful to embed in a repository's `README.Rmd` to create a quick-and-easy file map for visitors to use as a guide in navigating the repository's contents.
 
-```{r github_tree, eval = F}
+```{r github_tree}
+#| eval: false
+
 # Create a file tree diagram of a GitHub repository
 supportR::github_tree(repo = repo = "https://github.com/njlyon0/supportR",
                       exclude = c("docs", "man", ".github"), quiet = FALSE)
@@ -281,4 +285,3 @@ supportR::rmd_export(rmd = "my_markdown.Rmd",
                      out_type = "html",
                      drive_link = "<Full Google Drive link>")
 ```
-
