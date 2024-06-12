@@ -1,6 +1,6 @@
-# supportR Version 1.3.0.900
+# supportR Version 1.4.0
 
-This is the development version of `supportR`. Changes will be listed here as they are made.
+Changes from preceding version are listed below
 
 - New function: `replace_non_ascii`. Replaces non-ASCII characters with ASCII characters that are as visually similar as possible
 - New function: `count`. Counts occurrences of each unique element in the provided vector
