@@ -82,13 +82,10 @@ devtools::install_github("njlyon0/supportR")
   aspects of a `ggplot2` plot to ensure a consistent “feel” of a set of
   plots
 
-- **`nms_ord`**: Creates a Non-Metric Multi-Dimensional Scaling (NMS)
-  ordination with base R. Requires the dissimilarity matrix returned by
-  `vegan::metaMDS`
-
-- **`pcoa_ord`**: Creates a Principal Coordinates Analysis (PCoA)
-  ordination with base R. Requires the distance matrix returned by
-  `ape::pcoa`
+- **`ordination`**: Creates an ordination for either the nonmetric
+  multidimensional scaling (NMS) dissimilarity matrix created by
+  `vegan::metaMDS` or for the principal coordinates analysis (PCoA)
+  distance matrix returned by `ape::pcoa`
 
 ### Operations Outside of R
 
