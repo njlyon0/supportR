@@ -1,3 +1,9 @@
+# supportR Version 1.4.0.900
+
+Development version, changes from preceding version are listed below:
+
+- No changes (yet)
+
 # supportR Version 1.4.0
 
 Changes from preceding version are listed below
