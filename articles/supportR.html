@@ -102,23 +102,17 @@ using the examples included in each function.</p>
 <code>supportR</code>, we’ll use some some example data from Dr. <a href="https://allisonhorst.com/allison-horst" class="external-link">Allison Horst</a>’s <a href="https://github.com/allisonhorst/palmerpenguins" class="external-link"><code>palmerpenguins</code>
 R package</a>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Load library</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://allisonhorst.github.io/palmerpenguins/" class="external-link">palmerpenguins</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Get the penguins data</span></span>
-<span><span class="va">penguins</span> <span class="op">&lt;-</span> <span class="fu">palmerpenguins</span><span class="fu">::</span><span class="va"><a href="https://allisonhorst.github.io/palmerpenguins/reference/penguins.html" class="external-link">penguins</a></span></span>
-<span></span>
-<span><span class="co"># Glimpse the penguins dataset</span></span>
+<code class="sourceCode R"><span><span class="co"># Check the structure of the penguins dataset</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">penguins</span><span class="op">)</span></span>
-<span><span class="co">#&gt; tibble [344 × 8] (S3: tbl_df/tbl/data.frame)</span></span>
+<span><span class="co">#&gt; 'data.frame':    344 obs. of  8 variables:</span></span>
 <span><span class="co">#&gt;  $ species          : Factor w/ 3 levels "Adelie","Chinstrap",..: 1 1 1 1 1 1 1 1 1 1 ...</span></span>
 <span><span class="co">#&gt;  $ island           : Factor w/ 3 levels "Biscoe","Dream",..: 3 3 3 3 3 3 3 3 3 3 ...</span></span>
-<span><span class="co">#&gt;  $ bill_length_mm   : num [1:344] 39.1 39.5 40.3 NA 36.7 39.3 38.9 39.2 34.1 42 ...</span></span>
-<span><span class="co">#&gt;  $ bill_depth_mm    : num [1:344] 18.7 17.4 18 NA 19.3 20.6 17.8 19.6 18.1 20.2 ...</span></span>
-<span><span class="co">#&gt;  $ flipper_length_mm: int [1:344] 181 186 195 NA 193 190 181 195 193 190 ...</span></span>
-<span><span class="co">#&gt;  $ body_mass_g      : int [1:344] 3750 3800 3250 NA 3450 3650 3625 4675 3475 4250 ...</span></span>
+<span><span class="co">#&gt;  $ bill_length_mm   : num  39.1 39.5 40.3 NA 36.7 39.3 38.9 39.2 34.1 42 ...</span></span>
+<span><span class="co">#&gt;  $ bill_depth_mm    : num  18.7 17.4 18 NA 19.3 20.6 17.8 19.6 18.1 20.2 ...</span></span>
+<span><span class="co">#&gt;  $ flipper_length_mm: int  181 186 195 NA 193 190 181 195 193 190 ...</span></span>
+<span><span class="co">#&gt;  $ body_mass_g      : int  3750 3800 3250 NA 3450 3650 3625 4675 3475 4250 ...</span></span>
 <span><span class="co">#&gt;  $ sex              : Factor w/ 2 levels "female","male": 2 1 1 NA 1 2 1 2 NA NA ...</span></span>
-<span><span class="co">#&gt;  $ year             : int [1:344] 2007 2007 2007 2007 2007 2007 2007 2007 2007 2007 ...</span></span></code></pre></div>
+<span><span class="co">#&gt;  $ year             : int  2007 2007 2007 2007 2007 2007 2007 2007 2007 2007 ...</span></span></code></pre></div>
 <p>With that data loaded, we can use the <code>summary_table</code>
 function to quickly get group-wise summaries and retrieve generally
 useful summary statistics.</p>
