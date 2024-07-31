@@ -1,102 +1,36 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://njlyon0.github.io/supportR/404.html</loc>
-  </url>
-  <url>
-    <loc>https://njlyon0.github.io/supportR/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>https://njlyon0.github.io/supportR/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>https://njlyon0.github.io/supportR/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>https://njlyon0.github.io/supportR/articles/supportR.html</loc>
-  </url>
-  <url>
-    <loc>https://njlyon0.github.io/supportR/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://njlyon0.github.io/supportR/index.html</loc>
-  </url>
-  <url>
-    <loc>https://njlyon0.github.io/supportR/news/index.html</loc>
-  </url>
-  <url>
-    <loc>https://njlyon0.github.io/supportR/reference/array_melt.html</loc>
-  </url>
-  <url>
-    <loc>https://njlyon0.github.io/supportR/reference/count.html</loc>
-  </url>
-  <url>
-    <loc>https://njlyon0.github.io/supportR/reference/crop_tri.html</loc>
-  </url>
-  <url>
-    <loc>https://njlyon0.github.io/supportR/reference/date_check.html</loc>
-  </url>
-  <url>
-    <loc>https://njlyon0.github.io/supportR/reference/date_format_guess.html</loc>
-  </url>
-  <url>
-    <loc>https://njlyon0.github.io/supportR/reference/diff_check.html</loc>
-  </url>
-  <url>
-    <loc>https://njlyon0.github.io/supportR/reference/force_num.html</loc>
-  </url>
-  <url>
-    <loc>https://njlyon0.github.io/supportR/reference/github_ls.html</loc>
-  </url>
-  <url>
-    <loc>https://njlyon0.github.io/supportR/reference/github_ls_single.html</loc>
-  </url>
-  <url>
-    <loc>https://njlyon0.github.io/supportR/reference/github_tree.html</loc>
-  </url>
-  <url>
-    <loc>https://njlyon0.github.io/supportR/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://njlyon0.github.io/supportR/reference/multi_date_check.html</loc>
-  </url>
-  <url>
-    <loc>https://njlyon0.github.io/supportR/reference/multi_num_check.html</loc>
-  </url>
-  <url>
-    <loc>https://njlyon0.github.io/supportR/reference/name_vec.html</loc>
-  </url>
-  <url>
-    <loc>https://njlyon0.github.io/supportR/reference/nms_ord.html</loc>
-  </url>
-  <url>
-    <loc>https://njlyon0.github.io/supportR/reference/num_check.html</loc>
-  </url>
-  <url>
-    <loc>https://njlyon0.github.io/supportR/reference/ordination.html</loc>
-  </url>
-  <url>
-    <loc>https://njlyon0.github.io/supportR/reference/pcoa_ord.html</loc>
-  </url>
-  <url>
-    <loc>https://njlyon0.github.io/supportR/reference/replace_non_ascii.html</loc>
-  </url>
-  <url>
-    <loc>https://njlyon0.github.io/supportR/reference/rmd_export.html</loc>
-  </url>
-  <url>
-    <loc>https://njlyon0.github.io/supportR/reference/safe_rename.html</loc>
-  </url>
-  <url>
-    <loc>https://njlyon0.github.io/supportR/reference/summary_table.html</loc>
-  </url>
-  <url>
-    <loc>https://njlyon0.github.io/supportR/reference/supportR-package.html</loc>
-  </url>
-  <url>
-    <loc>https://njlyon0.github.io/supportR/reference/tabularize_md.html</loc>
-  </url>
-  <url>
-    <loc>https://njlyon0.github.io/supportR/reference/theme_lyon.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://njlyon0.github.io/supportR/404.html</loc></url>
+<url><loc>https://njlyon0.github.io/supportR/LICENSE-text.html</loc></url>
+<url><loc>https://njlyon0.github.io/supportR/LICENSE.html</loc></url>
+<url><loc>https://njlyon0.github.io/supportR/articles/index.html</loc></url>
+<url><loc>https://njlyon0.github.io/supportR/articles/supportR.html</loc></url>
+<url><loc>https://njlyon0.github.io/supportR/authors.html</loc></url>
+<url><loc>https://njlyon0.github.io/supportR/index.html</loc></url>
+<url><loc>https://njlyon0.github.io/supportR/news/index.html</loc></url>
+<url><loc>https://njlyon0.github.io/supportR/reference/array_melt.html</loc></url>
+<url><loc>https://njlyon0.github.io/supportR/reference/count.html</loc></url>
+<url><loc>https://njlyon0.github.io/supportR/reference/crop_tri.html</loc></url>
+<url><loc>https://njlyon0.github.io/supportR/reference/date_check.html</loc></url>
+<url><loc>https://njlyon0.github.io/supportR/reference/date_format_guess.html</loc></url>
+<url><loc>https://njlyon0.github.io/supportR/reference/diff_check.html</loc></url>
+<url><loc>https://njlyon0.github.io/supportR/reference/force_num.html</loc></url>
+<url><loc>https://njlyon0.github.io/supportR/reference/github_ls.html</loc></url>
+<url><loc>https://njlyon0.github.io/supportR/reference/github_ls_single.html</loc></url>
+<url><loc>https://njlyon0.github.io/supportR/reference/github_tree.html</loc></url>
+<url><loc>https://njlyon0.github.io/supportR/reference/index.html</loc></url>
+<url><loc>https://njlyon0.github.io/supportR/reference/multi_date_check.html</loc></url>
+<url><loc>https://njlyon0.github.io/supportR/reference/multi_num_check.html</loc></url>
+<url><loc>https://njlyon0.github.io/supportR/reference/name_vec.html</loc></url>
+<url><loc>https://njlyon0.github.io/supportR/reference/nms_ord.html</loc></url>
+<url><loc>https://njlyon0.github.io/supportR/reference/num_check.html</loc></url>
+<url><loc>https://njlyon0.github.io/supportR/reference/ordination.html</loc></url>
+<url><loc>https://njlyon0.github.io/supportR/reference/pcoa_ord.html</loc></url>
+<url><loc>https://njlyon0.github.io/supportR/reference/replace_non_ascii.html</loc></url>
+<url><loc>https://njlyon0.github.io/supportR/reference/rmd_export.html</loc></url>
+<url><loc>https://njlyon0.github.io/supportR/reference/safe_rename.html</loc></url>
+<url><loc>https://njlyon0.github.io/supportR/reference/summary_table.html</loc></url>
+<url><loc>https://njlyon0.github.io/supportR/reference/supportR-package.html</loc></url>
+<url><loc>https://njlyon0.github.io/supportR/reference/tabularize_md.html</loc></url>
+<url><loc>https://njlyon0.github.io/supportR/reference/theme_lyon.html</loc></url>
 </urlset>
+
