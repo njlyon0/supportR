@@ -62,8 +62,8 @@ shiny_explore <- function(){
                        shiny::tabsetPanel(id = "graph_tabs",
                                           tabPanel(title = "Data Table", 
                                                    DT::dataTableOutput(outputId = "table_out")),
-                                          tabPanel(title = "Violin Plot"
-                                                   ),
+                                          tabPanel(title = "Boxplot",
+                                                   shiny::plotOutput(outputId = "box_out")),
                                           tabPanel(title = "Scatter Plot"
                                                    )
                        ) # Close 'tabsetPanel'
@@ -75,7 +75,7 @@ shiny_explore <- function(){
   explore_server <- function(input, output, session){ 
     
     # Server - Data ingestion ----
-    df_actual <- reactive({
+    df_raw <- reactive({
       # If no file is attached, do nothing
       if(is.null(input$file_upload)) { return(NULL) } else {
         # If there is a file, make it reactive
@@ -85,36 +85,73 @@ shiny_explore <- function(){
     # Server - Update axis dropdowns ----
     shiny::observe({
       shiny::updateSelectInput(session = session, inputId = "plot_x",
-                               choice = names(df_actual()),
-                               select = names(df_actual())[1])
+                               choice = names(df_raw()),
+                               select = names(df_raw())[1])
     })
     shiny::observe({
       shiny::updateSelectInput(session = session, inputId = "plot_y",
-                               choice = names(df_actual()),
-                               select = names(df_actual())[2])
+                               choice = names(df_raw()),
+                               select = names(df_raw())[2])
     })
     shiny::observe({
       shiny::updateSelectInput(session = session, inputId = "plot_groups",
-                               choice = c("No groups", names(df_actual())),
+                               choice = c("No groups", names(df_raw())),
                                select = "No groups")
     })
+    
+    # Server - React to axis choices
+    picked_x <- reactive({ input$plot_x })
+    picked_y <- reactive({ input$plot_y })
+    picked_groups <- reactive({ input$plot_groups })
     
     # Server - Data table rendering ----
     output$table_out <- DT::renderDataTable({
       if(is.null(input$file_upload)){ attach_error } else {
-          DT::datatable(data = df_actual(), 
+          DT::datatable(data = df_raw(), 
                         options = list(pageLength = 10),
                         rownames = FALSE) }
     })
   
+    # Server - Remove missing values ----
+    df_subx <- reactive({
+      df_raw()[is.na(df_raw()[[picked_x()]]) != TRUE, ]
+    })
+    df_subxy <- reactive({
+      df_subx()[is.na(df_subx()[[picked_y()]]) != TRUE, ]
+    })
+    df_ready <- reactive({
+      if(picked_groups() == "No groups"){ df_subxy() } else {
+        df_subxy()[is.na(df_subxy()[[picked_groups()]]) != TRUE, ] }
+    })
+    
+    # Server - Boxplot core ----
+    box_core <- reactive({
+      ggplot2::ggplot(data = df_ready(), 
+                      ggplot2::aes(x = .data[[picked_x()]], 
+                                   y = .data[[picked_y()]])) +
+        ggplot2::labs(x = picked_x(), y = picked_y()) +
+        supportR::theme_lyon() +
+        theme(axis.text.x = ggplot2::element_text(angle = 35, hjust = 1))
+    })
+    
+    # Server - Boxplot final ----
+    output$box_out <- shiny::renderPlot(
+      if(picked_groups() == "No groups"){ 
+        box_core() +
+          ggplot2::geom_boxplot(pch = 21) +
+          ggplot2::geom_jitter(width = 0.1, alpha = 0.5)
+      } else {
+        box_core() +
+          ggplot2::geom_boxplot(ggplot2::aes(fill = .data[[picked_groups()]]),
+                                pch = 21) +
+          ggplot2::geom_jitter(width = 0.1, alpha = 0.5)
+      }
+    )
+    
     # Server - Error/warning messages ----
     # If data aren't attached
     attach_error <- data.frame("ALERT" = c("No data detected. Have you attached your data file?"))  
-  }
-  
-  
-  
-  
+  } # Close server
   
   # App Call ----
   shiny::shinyApp(ui = explore_ui, server = explore_server) }
