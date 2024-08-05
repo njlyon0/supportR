@@ -57,6 +57,17 @@ shiny_explore <- function(){
                    shiny::selectInput(inputId = "plot_groups", label = "Grouping Variable",
                                       choices = "Pending data upload"),
                    
+                   # Select trendline type
+                   htmltools::h4("Which of the following trendline types should be included?"),
+                   "Note this only applies to scatterplots!",
+                   
+                   shiny::checkboxInput(inputId = "incl_smooth",
+                                        label = "Smooth", value = FALSE),
+                   shiny::checkboxInput(inputId = "incl_best",
+                                        label = "Best-Fit", value = FALSE),
+                   shiny::checkboxInput(inputId = "incl_path",
+                                        label = "Connected Path", value = FALSE)
+                   
       ), # Close 'sidebarPanel'
       
       # UI - Main panel ----
@@ -168,7 +179,7 @@ shiny_explore <- function(){
     })
     
     # Server - Scatterplot middle ----
-    output$point_mid <- shiny::renderPlot(
+    point_mid1 <- reactive({
       if(picked_groups() == "No groups"){ 
         point_core() +
           ggplot2::geom_jitter(ggplot2::aes(fill = "x"), width = 0.1, 
@@ -180,24 +191,35 @@ shiny_explore <- function(){
           ggplot2::geom_jitter(ggplot2::aes(fill = .data[[picked_groups()]]),
                                width = 0.1, pch = 21, size = 2.5)
       }
-    )
+    })
+    
+    # Server - Scatterplot trendline(s) ----
+    ## Smooth trendline
+    point_mid2 <- shiny::reactive({
+      if(input$incl_smooth != TRUE){ point_mid1() } else {
+        point_mid1() +
+          ggplot2::geom_smooth(color = "black", method = "loess", 
+                               formula = "y ~ x", se = FALSE)
+      }
+    })
+    ## Best-Fit
+    point_mid3 <- shiny::reactive({
+      if(input$incl_best != TRUE){ point_mid2() } else {
+        point_mid2() +
+          ggplot2::geom_smooth(color = "black", method = "lm", 
+                               formula = "y ~ x", se = FALSE)
+      }
+    })
+    ## Path
+    point_mid4 <- shiny::reactive({
+      if(input$incl_path != TRUE){ point_mid3() } else {
+        point_mid3() +
+          ggplot2::geom_path(color = "black")
+      }
+    })
     
     # Server - Scatterplot final ----
-    output$point_out <- shiny::renderPlot(
-     
-point_mid()      
-       # if(
-       #  
-       #  ggplot2::geom_smooth(color = "black", type = 1, size = 2 +
-       #                       method = "lm", formula = "y ~ x", se = FALSE) +
-      
-    )
-    
-    
-    
-    
-      
-    
+    output$point_out <- shiny::renderPlot( point_mid4() )
     
     # Server - Violin core ----
     violin_core <- reactive({
