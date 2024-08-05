@@ -11,7 +11,7 @@
 ## https://shiny.rstudio.com/articles/tag-glossary.html
 
 # Load libraries
-librarian::shelf(tidyverse, shiny, htmltools, DT)
+librarian::shelf(devtools, tidyverse, shiny, htmltools, DT)
 
 # Define function
 shiny_explore <- function(){
