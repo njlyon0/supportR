@@ -39,14 +39,21 @@ shiny_explore <- function(){
       # UI - Sidebar panel ----
       sidebarPanel(width = 3, 
                    
-                   
-                   htmltools::br(),
-                   
                    # Attach file
                    fileInput(inputId = "file_upload",
                              label = htmltools::tags$h3("Attach file here:"),
                              accept = c(".csv"), width = "100%"),
-                   "Note that the file ", htmltools::tags$strong("must"), " be a CSV."
+                   "Note that the file ", htmltools::tags$strong("must"), " be a CSV.",
+                   
+                   htmltools::br(),
+                   
+                   # Select X/Y axes & group variable
+                   shiny::selectInput(inputId = "plot_x", label = "X Axis",
+                                      choices = "Pending data upload"),
+                   shiny::selectInput(inputId = "plot_y", label = "Y Axis",
+                                      choices = "Pending data upload"),
+                   shiny::selectInput(inputId = "plot_groups", label = "Grouping Variable",
+                                      choices = "Pending data upload"),
                    
       ), # Close 'sidebarPanel'
       
@@ -54,14 +61,18 @@ shiny_explore <- function(){
       shiny::mainPanel(width = 9,
                        shiny::tabsetPanel(id = "graph_tabs",
                                           tabPanel(title = "Data Table", 
-                                                   DT::dataTableOutput(outputId = "table_out"))
+                                                   DT::dataTableOutput(outputId = "table_out")),
+                                          tabPanel(title = "Violin Plot"
+                                                   ),
+                                          tabPanel(title = "Scatter Plot"
+                                                   )
                        ) # Close 'tabsetPanel'
       ) # Close 'mainPanel'
     ) # Close 'sidebarLayout'
   ) # Close UI
   
   # Server ----
-  explore_server <- function(input, output){ 
+  explore_server <- function(input, output, session){ 
     
     # Server - Data ingestion ----
     df_actual <- reactive({
@@ -71,10 +82,26 @@ shiny_explore <- function(){
         read.csv(file = input$file_upload$datapath, stringsAsFactors = FALSE) }
     })
     
+    # Server - Update axis dropdowns ----
+    shiny::observe({
+      shiny::updateSelectInput(session = session, inputId = "plot_x",
+                               choice = names(df_actual()),
+                               select = names(df_actual())[1])
+    })
+    shiny::observe({
+      shiny::updateSelectInput(session = session, inputId = "plot_y",
+                               choice = names(df_actual()),
+                               select = names(df_actual())[2])
+    })
+    shiny::observe({
+      shiny::updateSelectInput(session = session, inputId = "plot_groups",
+                               choice = c("No groups", names(df_actual())),
+                               select = "No groups")
+    })
+    
     # Server - Data table rendering ----
     output$table_out <- DT::renderDataTable({
-      if(is.null(input$file_upload)){ 
-        attach_error } else {
+      if(is.null(input$file_upload)){ attach_error } else {
           DT::datatable(data = df_actual(), 
                         options = list(pageLength = 10),
                         rownames = FALSE) }
