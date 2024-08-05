@@ -65,7 +65,9 @@ shiny_explore <- function(){
                                           tabPanel(title = "Boxplot",
                                                    shiny::plotOutput(outputId = "box_out")),
                                           tabPanel(title = "Scatter Plot",
-                                                   shiny::plotOutput(outputId = "point_out"))
+                                                   shiny::plotOutput(outputId = "point_out")),
+                                          tabPanel(title = "Violin Plot",
+                                                   shiny::plotOutput(outputId = "violin_out"))
                        ) # Close 'tabsetPanel'
       ) # Close 'mainPanel'
     ) # Close 'sidebarLayout'
@@ -73,6 +75,9 @@ shiny_explore <- function(){
   
   # Server ----
   explore_server <- function(input, output, session){ 
+    
+    # Defaults / Constants ----
+    default_fill <- "#ff006e"
     
     # Server - Data ingestion ----
     df_raw <- reactive({
@@ -107,11 +112,11 @@ shiny_explore <- function(){
     # Server - Data table rendering ----
     output$table_out <- DT::renderDataTable({
       if(is.null(input$file_upload)){ attach_error } else {
-          DT::datatable(data = df_raw(), 
-                        options = list(pageLength = 10),
-                        rownames = FALSE) }
+        DT::datatable(data = df_raw(), 
+                      options = list(pageLength = 10),
+                      rownames = FALSE) }
     })
-  
+    
     # Server - Remove missing values ----
     df_subx <- reactive({
       df_raw()[is.na(df_raw()[[picked_x()]]) != TRUE, ]
@@ -138,8 +143,10 @@ shiny_explore <- function(){
     output$box_out <- shiny::renderPlot(
       if(picked_groups() == "No groups"){ 
         box_core() +
-          ggplot2::geom_boxplot(pch = 21) +
-          ggplot2::geom_jitter(width = 0.1, alpha = 0.5)
+          ggplot2::geom_boxplot(ggplot2::aes(fill = "x"), pch = 21) +
+          ggplot2::geom_jitter(width = 0.1, alpha = 0.5) +
+          ggplot2::scale_fill_manual(values = c("x" = default_fill)) +
+          ggplot2::theme(legend.position = "none")
       } else {
         box_core() +
           ggplot2::geom_boxplot(ggplot2::aes(fill = .data[[picked_groups()]]),
@@ -157,19 +164,47 @@ shiny_explore <- function(){
         supportR::theme_lyon() +
         theme(axis.text.x = ggplot2::element_text(angle = 35, hjust = 1))
     })
-
+    
     # Server - Scatterplot final ----
     output$point_out <- shiny::renderPlot(
       if(picked_groups() == "No groups"){ 
         point_core() +
-          ggplot2::geom_jitter(width = 0.1, pch = 21, size = 2.5)
+          ggplot2::geom_jitter(ggplot2::aes(fill = "x"), width = 0.1, 
+                               pch = 21, size = 2.5) +
+          ggplot2::scale_fill_manual(values = c("x" = default_fill)) +
+          ggplot2::theme(legend.position = "none")
       } else {
         point_core() +
           ggplot2::geom_jitter(ggplot2::aes(fill = .data[[picked_groups()]]),
                                width = 0.1, pch = 21, size = 2.5)
       }
     )
-        
+    
+    # Server - Violin core ----
+    violin_core <- reactive({
+      ggplot2::ggplot(data = df_ready(), 
+                      ggplot2::aes(x = .data[[picked_x()]], 
+                                   y = .data[[picked_y()]])) +
+        ggplot2::labs(x = picked_x(), y = picked_y()) +
+        supportR::theme_lyon() +
+        theme(axis.text.x = ggplot2::element_text(angle = 35, hjust = 1))
+    })
+    
+    # Server - Violin final ----
+    output$violin_out <- shiny::renderPlot(
+      if(picked_groups() == "No groups"){ 
+        violin_core() +
+          ggplot2::geom_violin(ggplot2::aes(fill = "x")) +
+          ggplot2::geom_jitter(width = 0.1, alpha = 0.5) +
+          ggplot2::scale_fill_manual(values = c("x" = default_fill)) +
+          ggplot2::theme(legend.position = "none")
+      } else {
+        violin_core() +
+          ggplot2::geom_violin(ggplot2::aes(fill = .data[[picked_groups()]]) ) +
+          ggplot2::geom_jitter(width = 0.1, alpha = 0.5)
+      }
+    )
+    
     # Server - Error/warning messages ----
     # If data aren't attached
     attach_error <- data.frame("ALERT" = c("No data detected. Have you attached your data file?"))  
@@ -180,5 +215,3 @@ shiny_explore <- function(){
 
 # Invoke function
 shiny_explore()
-
-
