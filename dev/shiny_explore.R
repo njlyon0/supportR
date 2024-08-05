@@ -22,10 +22,12 @@ shiny_explore <- function(){
     # UI - Header / Instructions
     # Browser tab text
     title = "Shiny Explore",
+    
     # Instructions
     htmltools::tags$h3("Welcome!"),
     htmltools::tags$h4("Please attach a data file of your choice and then use the provided tabs to explore your desired graphs."),
     htmltools::br(),
+    
     # Issue link
     htmltools::tags$h4("If you encounter an issue, please ",
                        htmltools::tags$a(href = "https://github.com/njlyon0/supportR/issues",
@@ -34,8 +36,8 @@ shiny_explore <- function(){
                        "will attempt to resolve the problem."),
     htmltools::br(),
     
+    
     shiny::sidebarLayout(
-      
       # UI - Sidebar panel ----
       sidebarPanel(width = 3, 
                    
@@ -165,8 +167,8 @@ shiny_explore <- function(){
         theme(axis.text.x = ggplot2::element_text(angle = 35, hjust = 1))
     })
     
-    # Server - Scatterplot final ----
-    output$point_out <- shiny::renderPlot(
+    # Server - Scatterplot middle ----
+    output$point_mid <- shiny::renderPlot(
       if(picked_groups() == "No groups"){ 
         point_core() +
           ggplot2::geom_jitter(ggplot2::aes(fill = "x"), width = 0.1, 
@@ -179,6 +181,23 @@ shiny_explore <- function(){
                                width = 0.1, pch = 21, size = 2.5)
       }
     )
+    
+    # Server - Scatterplot final ----
+    output$point_out <- shiny::renderPlot(
+     
+point_mid()      
+       # if(
+       #  
+       #  ggplot2::geom_smooth(color = "black", type = 1, size = 2 +
+       #                       method = "lm", formula = "y ~ x", se = FALSE) +
+      
+    )
+    
+    
+    
+    
+      
+    
     
     # Server - Violin core ----
     violin_core <- reactive({
