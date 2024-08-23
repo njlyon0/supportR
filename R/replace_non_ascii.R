@@ -19,6 +19,9 @@
 #' 
 replace_non_ascii <- function(x = NULL, include_letters = FALSE){
   
+  # Can identify codes for new non-ASCII chars like so:
+  ## stringi::stri_escape_unicode(str = "")
+  
   # Error out if x isn't supplied
   if(is.null(x) == TRUE)
     stop("'x' must be specified")
@@ -219,8 +222,21 @@ replace_non_ascii <- function(x = NULL, include_letters = FALSE){
                            "\u00FF", "\u00DE", "\u00FE", "\u00DF", "\u0160",
                            "\u0161", "\u2020", "\uFB01")
 
-    # Remove the hexadecimal escapes for these letters from the 'remaining' vector
-    remaining <- setdiff(x = remaining, y = non_ascii_letters) }
+    # Identify non-ASCII u-codes too
+    non_ascii_ucodes <- stringi::stri_escape_unicode(str = non_ascii_letters)
+    
+    # Make an empty vector
+    remaining_letters <- c()
+    
+    # Identify any positions that contain non-ASCII letters
+    for(i in seq_along(along.with = remaining)){
+      if( any(stringr::str_detect(string = remaining[i], 
+                                 pattern = c(non_ascii_letters, non_ascii_ucodes))) ){
+        remaining_letters <- c(remaining_letters, i) }
+    }
+    
+    # Remove non-ASCII letters from the 'remaining' vector (don't want them to come up as a warning)
+    remaining <- remaining[(remaining_letters * -1)] }
   
   # Give a warning if any are found
   if(length(remaining) != 0){
