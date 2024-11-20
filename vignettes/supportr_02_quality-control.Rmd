@@ -1,0 +1,104 @@
+---
+title: "Quality Control"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Quality Control}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r knitr-mechanics}
+#| include: false
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+```
+
+```{r pre-setup}
+#| echo: false
+#| message: false
+
+# devtools::install_github("njlyon0/supportR", force = TRUE)
+```
+
+## Overview
+
+The `supportR` package is an amalgam of distinct functions I've written to accomplish small data wrangling, quality control, or visualization tasks. These functions tend to be short and narrowly-defined. An additional consequence of the motivation for creating them is that they tend to not be inter-related or united by a common theme. If this vignette feels somewhat scattered because of that, I hope it doesn't negatively affect how informative it is or your willingness to adopt `supportR` into your scripts!
+
+This vignette describes the main functions of `supportR` using the examples included in each function.
+
+```{r setup}
+#install.packages("supportR")
+library(supportR)
+```
+
+### Identify Differences Between Two Vectors
+
+In terms of quality control functions, `diff_check` compares two vectors and reports back what is in the first but not the second (i.e., what is "lost") and what is in the second but not the first (i.e., what is "gained"). I find this most useful (A) when comparing the index columns of two data objects I intend to join together and (B) to ensure no columns are unintentionally removed during lengthy `tidyverse`-style  pipes (`%>%`).
+
+`diff_check` also includes optional logical arguments `sort` and `return` that will respectively either sort the difference in both vectors and return a two-element if set to `TRUE`.
+
+```{r diff_check}
+# Make two vectors
+vec1 <- c("x", "a", "b")
+vec2 <- c("y", "z", "a")
+
+# Compare them!
+supportR::diff_check(old = vec1, new = vec2, sort = TRUE, return = TRUE)
+```
+
+### Identify Non-Numbers
+
+This package also includes the function `num_check` that identifies all values of a column that would be coerced to `NA` if `as.numeric` was run on the column. Once these non-numbers are identified you can handle that in whatever way you feel is most appropriate. `num_check` is intended only to flag these for your attention, _not_ to attempt a fix using a method you may or may not support.
+
+```{r num_check}
+# Make a dataframe with non-numbers in a number column
+fish <- data.frame("species" = c("salmon", "bass", "halibut", "eel"),
+                   "count" = c(1, "14x", "_23", 12))
+
+# Use `num_check` to identify non-numbers
+num_check(data = fish, col = "count")
+```
+
+### Identify Malformed Dates
+
+`date_check` does a similar operation but is checking a column for entries that would be coerced to `NA` by `as.Date` instead. Note that if a date is sufficiently badly formatted `as.Date` will throw an error instead of coercing to `NA` so `date_check` will do the same thing.
+
+```{r date_check}
+# Make a dataframe including malformed dates
+sites <- data.frame("site" = c("LTR", "GIL", "PYN", "RIN"),
+                    "visit" = c("2021-01-01", "2021-01-0w", "1990", "2020-10-xx"))
+
+# Now we can use our function to identify bad dates
+supportR::date_check(data = sites, col = "visit")
+```
+
+Both `num_check` and `date_check` can accept multiple column names to the `col` argument (as of version 1.1.1) and all columns are checked separately.
+
+### Deduce Date Formats from Ambiguous Dates
+
+Another date column quality control function is `date_format_guess`. This This function checks a column of dates (stored as characters!) and tries to guess the format of the date (i.e., month/day/year, day/month/year, etc.).
+
+It can make a more informed guess if there is a grouping column because it can use the frequency of the "date" entries within those groups to guess whether a given number is the day or the month. This is based on the assumption that sampling occurs more often within months than across them so the number that occurs in more rows within the grouping values is most likely month.
+
+Recognizing that assumption may be uncomfortable for some users, the `groups` argument can be set to `FALSE` and it will do the clearer judgment calls (i.e., if a number is >12 it is day, etc.). Note that dates that cannot be guessed by my function will return "FORMAT UNCERTAIN" so that you can handle them using your knowledge of the system (or by returning to your raw data if need be).
+
+```{r date_format_guess}
+# Make a dataframe with dates in various formats and a grouping column
+my_df <- data.frame("data_enterer" = c("person A", "person B",
+                                       "person B", "person B",
+                                       "person C", "person D",
+                                       "person E", "person F",
+                                       "person G"),
+                    "bad_dates" = c("2022.13.08", "2021/2/02",
+                                    "2021/2/03", "2021/2/04",
+                                    "1899/1/15", "10-31-1901",
+                                    "26/11/1901", "08.11.2004",
+                                    "6/10/02"))
+
+# Now we can invoke the function!
+supportR::date_format_guess(data = my_df, date_col = "bad_dates",
+                            group_col = "data_enterer", return = "dataframe")
+
+# If preferred, do it without groups and return a vector
+supportR::date_format_guess(data = my_df, date_col = "bad_dates",
+                            groups = FALSE, return = "vector")
+```
