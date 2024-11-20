@@ -2,7 +2,7 @@ Package: supportR
 Type: Package
 Title: Support Functions for Wrangling and Visualization
 Version: 1.4.0.900
-Date: 2024-06-13
+Date: 2024-11-20
 Authors@R: c(
     person(given = 'Nicholas J',
            family = 'Lyon',
