@@ -69,6 +69,9 @@ devtools::install_github("njlyon0/supportR")
 - **`count`**: Counts instances of each unique element in a provided
   vector
 
+- **`replace_non_ascii`**: Replaces non-ASCII characters with visually
+  comparable ASCII equivalents
+
 - **`date_check`**: Checks column(s) that *should* contain only **date**
   values for any entries that would be coerced to NA if `as.Date` is run
 
