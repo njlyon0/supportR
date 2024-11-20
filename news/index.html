@@ -15,8 +15,14 @@
     </button>
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
-      <ul class="navbar-nav me-auto"><li class="nav-item"><a class="nav-link" href="../articles/supportR.html">Get started</a></li>
-<li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
+      <ul class="navbar-nav me-auto"><li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
+<li class="nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/supportr_01_wrangle.html">Data Wrangling</a></li>
+    <li><a class="dropdown-item" href="../articles/supportr_02_quality-control.html">Quality Control</a></li>
+    <li><a class="dropdown-item" href="../articles/supportr_03_visualizations.html">Data Visualization</a></li>
+    <li><a class="dropdown-item" href="../articles/supportr_04_outside-of-r.html">Operating Outside of R</a></li>
+  </ul></li>
 <li class="active nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
@@ -37,6 +43,7 @@
 <h2 class="pkg-version" data-toc-text="1.4.0.900" id="supportr-version-140900">supportR Version 1.4.0.900<a class="anchor" aria-label="anchor" href="#supportr-version-140900"></a></h2>
 <p>Development version, changes from preceding version are listed below:</p>
 <ul><li>Function fix: Fixed issue with <code>replace_non_ascii</code> where if <code>include_letters</code> was set to <code>FALSE</code> a warning was still generated for non-ASCII letters when they were part of a larger string (e.g., “&lt;non-ascii&gt;xyz”, etc.)</li>
+<li>Vignette update: separated the single package vignette into separate, smaller files that give a tutorial for groups of functions with similar use-cases (e.g., quality control, data visualization, etc.)</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.4.0" id="supportr-version-140">supportR Version 1.4.0<a class="anchor" aria-label="anchor" href="#supportr-version-140"></a></h2><p class="text-muted">CRAN release: 2024-06-13</p>

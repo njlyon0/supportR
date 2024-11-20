@@ -2,8 +2,11 @@ pandoc: 3.1.11
 pkgdown: 2.1.1
 pkgdown_sha: ~
 articles:
-  supportR: supportR.html
-last_built: 2024-11-20T15:39Z
+  supportr_01_wrangle: supportr_01_wrangle.html
+  supportr_02_quality-control: supportr_02_quality-control.html
+  supportr_03_visualizations: supportr_03_visualizations.html
+  supportr_04_outside-of-r: supportr_04_outside-of-r.html
+last_built: 2024-11-20T16:21Z
 urls:
   reference: https://njlyon0.github.io/supportR/reference
   article: https://njlyon0.github.io/supportR/articles
