@@ -3,6 +3,7 @@
 Development version, changes from preceding version are listed below:
 
 - Function fix: Fixed issue with `replace_non_ascii` where if `include_letters` was set to `FALSE` a warning was still generated for non-ASCII letters when they were part of a larger string (e.g., "\<non-ascii\>xyz", etc.)
+- Vignette update: separated the single package vignette into separate, smaller files that give a tutorial for groups of functions with similar use-cases (e.g., quality control, data visualization, etc.)
 
 # supportR Version 1.4.0
 
