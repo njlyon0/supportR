@@ -81,14 +81,14 @@
 <span class="r-in"><span><span class="va">vec2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"y"</span>, <span class="st">"z"</span>, <span class="st">"a"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Compare them!</span></span></span>
-<span class="r-in"><span><span class="fu">diff_check</span><span class="op">(</span>old <span class="op">=</span> <span class="va">vec1</span>, new <span class="op">=</span> <span class="va">vec2</span>, return <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">supportR</span><span class="fu">::</span><span class="fu">diff_check</span><span class="op">(</span>old <span class="op">=</span> <span class="va">vec1</span>, new <span class="op">=</span> <span class="va">vec2</span>, return <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Following element(s) found in old object but not new: </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "b" "x"</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Following element(s) found in new object but not old: </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "y" "z"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Return the difference for later use</span></span></span>
-<span class="r-in"><span><span class="va">diff_out</span> <span class="op">&lt;-</span> <span class="fu">diff_check</span><span class="op">(</span>old <span class="op">=</span> <span class="va">vec1</span>, new <span class="op">=</span> <span class="va">vec2</span>, return <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">diff_out</span> <span class="op">&lt;-</span> <span class="fu">supportR</span><span class="fu">::</span><span class="fu">diff_check</span><span class="op">(</span>old <span class="op">=</span> <span class="va">vec1</span>, new <span class="op">=</span> <span class="va">vec2</span>, return <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Following element(s) found in old object but not new: </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "b" "x"</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Following element(s) found in new object but not old: </span>

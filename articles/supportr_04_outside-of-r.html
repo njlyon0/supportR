@@ -152,7 +152,7 @@ file name/path as you would to any other reading function (e.g.,
 <span><span class="va">md_cxn</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/connections.html" class="external-link">url</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/njlyon0/supportR/main/NEWS.md"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Transform it into a table</span></span>
-<span><span class="va">md_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tabularize_md.html">tabularize_md</a></span><span class="op">(</span>file <span class="op">=</span> <span class="va">md_cxn</span><span class="op">)</span></span>
+<span><span class="va">md_df</span> <span class="op">&lt;-</span> <span class="fu">supportR</span><span class="fu">::</span><span class="fu"><a href="../reference/tabularize_md.html">tabularize_md</a></span><span class="op">(</span>file <span class="op">=</span> <span class="va">md_cxn</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Close connection (just good housekeeping to do so)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/connections.html" class="external-link">close</a></span><span class="op">(</span><span class="va">md_cxn</span><span class="op">)</span></span>

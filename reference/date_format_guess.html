@@ -104,8 +104,8 @@
 <span class="r-in"><span>                                    <span class="st">'6/10/02'</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Now we can invoke the function!</span></span></span>
-<span class="r-in"><span><span class="fu">date_format_guess</span><span class="op">(</span>data <span class="op">=</span> <span class="va">my_df</span>, date_col <span class="op">=</span> <span class="st">"bad_dates"</span>,</span></span>
-<span class="r-in"><span>group_col <span class="op">=</span> <span class="st">"data_enterer"</span>, return <span class="op">=</span> <span class="st">"dataframe"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">supportR</span><span class="fu">::</span><span class="fu">date_format_guess</span><span class="op">(</span>data <span class="op">=</span> <span class="va">my_df</span>, date_col <span class="op">=</span> <span class="st">"bad_dates"</span>,</span></span>
+<span class="r-in"><span>                            group_col <span class="op">=</span> <span class="st">"data_enterer"</span>, return <span class="op">=</span> <span class="st">"dataframe"</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Returning dataframe of data format guesses</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   data_enterer  bad_dates     format_guess</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1     person A 2022.13.08   year/day/month</span>
@@ -119,8 +119,8 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 9     person G    6/10/02 FORMAT UNCERTAIN</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># If preferred, do it without groups and return a vector</span></span></span>
-<span class="r-in"><span><span class="fu">date_format_guess</span><span class="op">(</span>data <span class="op">=</span> <span class="va">my_df</span>, date_col <span class="op">=</span> <span class="st">"bad_dates"</span>,</span></span>
-<span class="r-in"><span>groups <span class="op">=</span> <span class="cn">FALSE</span>, return <span class="op">=</span> <span class="st">"vector"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">supportR</span><span class="fu">::</span><span class="fu">date_format_guess</span><span class="op">(</span>data <span class="op">=</span> <span class="va">my_df</span>, date_col <span class="op">=</span> <span class="st">"bad_dates"</span>,</span></span>
+<span class="r-in"><span>                            groups <span class="op">=</span> <span class="cn">FALSE</span>, return <span class="op">=</span> <span class="st">"vector"</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Defining 'groups' is strongly recommended! If none exist, consider adding a single artificial group shared by all rows then re-run this function</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Returning vector of data format guesses</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "year/day/month"   "FORMAT UNCERTAIN" "FORMAT UNCERTAIN" "FORMAT UNCERTAIN"</span>

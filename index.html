@@ -62,7 +62,7 @@
 </h1></div>
 <!-- badges: start -->
 
-<p><code>supportR</code> is an R package where the only unifying theme of the functions is honestly just that I wrote them. That said, there are some useful functions for <strong>data wrangling</strong> and <strong>plotting</strong> in particular, though functions for <em>other purposes</em> are also included. I’ll add functions to this package as I write more orphan scripts that I hope others might find useful so stay tuned!</p>
+<p><code>supportR</code> is an R package where the only unifying theme of the functions is honestly just that I wrote them. That said, there are some useful functions for <strong>data wrangling</strong> and <strong>plotting</strong> in particular, though functions for <em>other purposes</em> are also included.Check out the package website (<a href="https://njlyon0.github.io/supportR/">njlyon0.github.io/supportR</a>) for documentation of the functions currently included in the package. I’ll add functions to this package as I write more orphan scripts that I hope others might find useful so stay tuned!</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
@@ -70,47 +70,6 @@
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("devtools")</span></span>
 <span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"njlyon0/supportR"</span><span class="op">)</span></span></code></pre></div>
-<div class="section level3">
-<h3 id="data-wrangling">Data Wrangling<a class="anchor" aria-label="anchor" href="#data-wrangling"></a>
-</h3>
-<ul>
-<li><p><strong><code>summary_table</code></strong>: Calculates summary values (mean, standard deviation, sample size, and standard error) of a given response variable within supplied groups</p></li>
-<li><p><strong><code>safe_rename</code></strong>: Renames columns in a given dataframe by matching ‘bad’ names with ‘good’ names</p></li>
-<li><p><strong><code>name_vec</code></strong>: Creates a named vector of specified contents and names. Useful when creating named vectors that are too long to create manually or when creating the vector and then naming it is cumbersome</p></li>
-<li><p><strong><code>crop_tri</code></strong>: Removes the specified “triangle” (either upper or lower) of a symmetric data object by replacing with NAs. Also allows user to specify whether to keep or also drop the diagonal</p></li>
-<li><p><strong><code>array_melt</code></strong>: “Flattens” an array of dimensions X, Y, and Z into a dataframe containing columns <code>x</code>, <code>y</code>, <code>z</code>, and <code>value</code> where <code>value</code> is whatever was stored in the array at those coordinates</p></li>
-</ul>
-</div>
-<div class="section level3">
-<h3 id="quality-control-qc">Quality Control (QC)<a class="anchor" aria-label="anchor" href="#quality-control-qc"></a>
-</h3>
-<ul>
-<li><p><strong><code>diff_check</code></strong>: Compares two vectors and identifies what elements are found in the first but not the second (i.e., <em>lost</em> components) and what elements are found in the second but not the first (i.e., <em>gained</em> components). Extremely useful prior to <code>join</code>ing two dataframes to compare index column contents or to ensure no columns are unexpectedly lost during complex wrangling operations</p></li>
-<li><p><strong><code>num_check</code></strong>: Checks column(s) that <em>should</em> contain only <strong>numeric</strong> values for any entries that would be coerced to NA if <code>as.numeric</code> is run</p></li>
-<li><p><strong><code>count</code></strong>: Counts instances of each unique element in a provided vector</p></li>
-<li><p><strong><code>replace_non_ascii</code></strong>: Replaces non-ASCII characters with visually comparable ASCII equivalents</p></li>
-<li><p><strong><code>date_check</code></strong>: Checks column(s) that <em>should</em> contain only <strong>date</strong> values for any entries that would be coerced to NA if <code>as.Date</code> is run</p></li>
-<li><p><strong><code>date_format_guess</code></strong>: Checks a column containing multiple ambiguous date formats and identifies its best guess for the format each date is in (e.g., ‘dd/mm/yyyy’ versus ‘yyyy/dd/mm’, etc.)</p></li>
-</ul>
-</div>
-<div class="section level3">
-<h3 id="visualization--graphics">Visualization &amp; Graphics<a class="anchor" aria-label="anchor" href="#visualization--graphics"></a>
-</h3>
-<ul>
-<li><p><strong><code>theme_lyon</code></strong>: Applies a set of modifications to the non-data aspects of a <code>ggplot2</code> plot to ensure a consistent “feel” of a set of plots</p></li>
-<li><p><strong><code>ordination</code></strong>: Creates an ordination for either the nonmetric multidimensional scaling (NMS) dissimilarity matrix created by <code><a href="https://rdrr.io/pkg/vegan/man/metaMDS.html" class="external-link">vegan::metaMDS</a></code> or for the principal coordinates analysis (PCoA) distance matrix returned by <code><a href="https://rdrr.io/pkg/ape/man/pcoa.html" class="external-link">ape::pcoa</a></code></p></li>
-</ul>
-</div>
-<div class="section level3">
-<h3 id="operations-outside-of-r">Operations Outside of R<a class="anchor" aria-label="anchor" href="#operations-outside-of-r"></a>
-</h3>
-<ul>
-<li><p><strong><code>github_ls</code></strong>: Lists contents of a GitHub repository from its URL and returns a simple dataframe containing the name, type, and file path of identified objects. Supports recursive listing (i.e., listing of contents of subfolders identified in first list of contents)</p></li>
-<li><p><strong><code>github_tree</code></strong>: Creates a file tree diagram of a GitHub repository from its URL</p></li>
-<li><p><strong><code>tabularize_md</code></strong>: Converts a markdown file into a table that retains the nested structure of any headings in the file. Accepts either the file name/path locally or a URL connection to a markdown file hosted online (e.g., a GitHub repository README.md, etc.)</p></li>
-<li><p><strong><code>rmd_export</code></strong>: Allows knitting of a specified R Markdown file locally and simultaneously to a specified Google Drive folder. <strong>NOTE:</strong> you must authorize R to work with Google Drive by using <code>googldrive::drive_auth()</code> for this function to work</p></li>
-</ul>
-</div>
 </div>
 <div class="section level2">
 <h2 id="looking-ahead">Looking Ahead<a class="anchor" aria-label="anchor" href="#looking-ahead"></a>
@@ -147,7 +106,7 @@
 <div class="developers">
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li>Nicholas J Lyon <br><small class="roles"> Author, maintainer, copyright holder </small> <a href="https://orcid.org/0000-0003-3905-1078" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Nicholas J Lyon <br><small class="roles"> Author, maintainer, copyright holder </small> <a href="https://orcid.org/https://orcid.org/0000-0003-3905-1078" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 </ul>
 </div>
 
