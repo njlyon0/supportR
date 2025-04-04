@@ -26,10 +26,10 @@ test_that("Errors work as desired", {
   nms_mod <- vegan::metaMDS(data[-1], autotransform = FALSE, expand = FALSE, k = 2, try = 50)
   
   # Actual error testing
-  expect_error(ordination(mod = NULL, grps = 1:5))
-  expect_error(ordination(mod = nms_mod, grps = NULL))
-  expect_error(ordination(mod = pcoa_mod, grps = as.data.frame(1:5)))
-  expect_error(ordination(mod = pcoa_mod, grps = unique(data$treatment)))
+  expect_error(supportR::ordination(mod = NULL, grps = 1:5))
+  expect_error(supportR::ordination(mod = nms_mod, grps = NULL))
+  expect_error(supportR::ordination(mod = pcoa_mod, grps = as.data.frame(1:5)))
+  expect_error(supportR::ordination(mod = pcoa_mod, grps = unique(data$treatment)))
 })
 
 # Warning testing
@@ -57,7 +57,7 @@ test_that("Warnings work as desired", {
   nms_mod <- vegan::metaMDS(data[-1], autotransform = FALSE, expand = FALSE, k = 2, try = 50)
   
   # Actual warning testing
-  expect_warning(ordination(mod = nms_mod, grps = data$treatment, bad_arg = 555))
+  expect_warning(supportR::ordination(mod = nms_mod, grps = data$treatment, bad_arg = 555))
 })
 
 # Message testing

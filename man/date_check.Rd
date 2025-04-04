@@ -28,6 +28,6 @@ time3 <- c("2022-10-31", "tomorrow", "1993", NA)
 sites <- data.frame("site" = loc, "first_visit" = time, "second" = time2, "third" = time3)
 
 # Use `date_check()` to return only the entries that would be lost
-date_check(data = sites, col = c("first_visit", "second", "third"))
+supportR::date_check(data = sites, col = c("first_visit", "second", "third"))
 
 }

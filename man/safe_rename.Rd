@@ -24,7 +24,7 @@ Replaces specified column names with user-defined vector of new column name(s). 
 df <- data.frame("first" = 1:3, "middle" = 4:6, "second" = 7:9)
 
 # Invoke the function
-safe_rename(data = df, bad_names = c("second", "middle"),
-            good_names = c("third", "second"))
+supportR::safe_rename(data = df, bad_names = c("second", "middle"),
+                      good_names = c("third", "second"))
 
 }

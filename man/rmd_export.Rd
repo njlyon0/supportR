@@ -36,9 +36,9 @@ googledrive::drive_auth()
 ## NOTE: See warning about possible misstep at this stage
 
 # Use `rmd_export()` to knit and export an .Rmd file
-rmd_export(rmd = "my_markdown.Rmd",  in_path = getwd(), out_path = getwd(),
-           out_name = "my_markdown", out_type = "html",
-           drive_link = "<Google Drive folder URL>")
+supportR::rmd_export(rmd = "my_markdown.Rmd",  in_path = getwd(), out_path = getwd(),
+                     out_name = "my_markdown", out_type = "html",
+                     drive_link = "<Google Drive folder URL>")
 }
 
 }

@@ -55,7 +55,7 @@ fish <- data.frame("species" = c("salmon", "bass", "halibut", "eel"),
                    "count" = c(1, "14x", "_23", 12))
 
 # Use `num_check` to identify non-numbers
-num_check(data = fish, col = "count")
+supportR::num_check(data = fish, col = "count")
 ```
 
 ### Identify Malformed Dates

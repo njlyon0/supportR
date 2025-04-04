@@ -11,9 +11,9 @@ test_that("Errors work as desired", {
                      "third_count" = c(NA, "Y", "typo", "2"))
   
   # Inputs checking
-  expect_error(num_check(data = NULL, col = "count"))
-  expect_error(num_check(data = fish, col = NULL))
-  expect_error(num_check(data = as.matrix(fish), col = "count"))
+  expect_error(supportR::num_check(data = NULL, col = "count"))
+  expect_error(supportR::num_check(data = fish, col = NULL))
+  expect_error(supportR::num_check(data = as.matrix(fish), col = "count"))
 })
 
 # # Warning testing
@@ -32,7 +32,7 @@ test_that("Messages work as desired", {
                      "third_count" = c(NA, "Y", "typo", "2"))
   
   # Primary output is the message produced my malformed entries
-  expect_message(num_check(data = fish, col = c("count")))
+  expect_message(supportR::num_check(data = fish, col = c("count")))
 })
 
 # Output testing
@@ -45,7 +45,7 @@ test_that("Outputs are as expected", {
                      "third_count" = c(NA, "Y", "typo", "2"))
   
   # Identify malformed entries
-  bad_values <- suppressMessages(num_check(data = fish, col = c("count", "num_col2", "third_count")))
+  bad_values <- suppressMessages(supportR::num_check(data = fish, col = c("count", "num_col2", "third_count")))
   
   # Output testing
   expect_equal(class(bad_values), "list")

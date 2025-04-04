@@ -11,9 +11,9 @@ test_that("Errors work as desired", {
                       "third" = c("2022-10-31", "tomorrow", "1993", NA))
   
   # Inputs checking
-  expect_error(date_check(data = NULL, col = "first_visit"))
-  expect_error(date_check(data = sites, col = NULL))
-  expect_error(date_check(data = as.matrix(sites), col = "first_visit"))
+  expect_error(supportR::date_check(data = NULL, col = "first_visit"))
+  expect_error(supportR::date_check(data = sites, col = NULL))
+  expect_error(supportR::date_check(data = as.matrix(sites), col = "first_visit"))
 })
 
 # # Warning testing
@@ -32,7 +32,7 @@ test_that("Messages work as desired", {
                       "third" = c("2022-10-31", "tomorrow", "1993", NA))
   
   # Primary output is the message produced my malformed entries
-  expect_message(date_check(data = sites, col = c("first_visit")))
+  expect_message(supportR::date_check(data = sites, col = c("first_visit")))
 })
 
 # Output testing
@@ -45,7 +45,7 @@ test_that("Outputs are as expected", {
                       "third" = c("2022-10-31", "tomorrow", "1993", NA))
   
   # Identify malformed entries
-  bad_values <- suppressMessages(date_check(data = sites, col = c("first_visit", "second", "third")))
+  bad_values <- suppressMessages(supportR::date_check(data = sites, col = c("first_visit", "second", "third")))
   
   # Output testing
   expect_equal(class(bad_values), "list")

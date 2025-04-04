@@ -17,7 +17,7 @@
 #' fish <- data.frame("species" = spp, "count" = ct, "num_col2" = ct2, "third_count" = ct3)
 #'
 #' # Use `num_check()` to return only the entries that would be lost
-#' num_check(data = fish, col = c("count", "num_col2", "third_count"))
+#' supportR::num_check(data = fish, col = c("count", "num_col2", "third_count"))
 #' 
 num_check <- function(data = NULL, col = NULL) {
 

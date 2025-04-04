@@ -26,7 +26,7 @@
 #'            dimnames = list(x_vals, y_vals, z_vals))
 #'
 #' ## "Melt" the array into a dataframe
-#' array_melt(array = g)
+#' supportR::array_melt(array = g)
 #'
 array_melt <- function(array = NULL){
 

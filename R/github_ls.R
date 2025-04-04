@@ -10,7 +10,7 @@
 #' @examples
 #' \dontrun{
 #' # List contents of the top-level of the `supportR` package repository
-#' github_ls_single(repo = "https://github.com/njlyon0/supportR")
+#' supportR::github_ls_single(repo = "https://github.com/njlyon0/supportR")
 #' }
 #' 
 github_ls_single <- function(repo = NULL, folder = NULL){
@@ -75,7 +75,7 @@ github_ls_single <- function(repo = NULL, folder = NULL){
 #' @examples
 #' \dontrun{
 #' # List complete contents of the `supportR` package repository
-#' github_ls(repo = "https://github.com/njlyon0/supportR", recursive = TRUE, quiet = FALSE)
+#' supportR::github_ls(repo = "https://github.com/njlyon0/supportR", recursive = TRUE, quiet = FALSE)
 #' }
 #' 
 github_ls <- function(repo = NULL, folder = NULL, recursive = TRUE, quiet = FALSE){

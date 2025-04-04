@@ -27,10 +27,10 @@ vec1 <- c("x", "a", "b")
 vec2 <- c("y", "z", "a")
 
 # Compare them!
-diff_check(old = vec1, new = vec2, return = FALSE)
+supportR::diff_check(old = vec1, new = vec2, return = FALSE)
 
 # Return the difference for later use
-diff_out <- diff_check(old = vec1, new = vec2, return = TRUE)
+diff_out <- supportR::diff_check(old = vec1, new = vec2, return = TRUE)
 diff_out
 
 }

@@ -19,6 +19,6 @@ Create a named vector in a single line without either manually defining names at
 }
 \examples{
 # Create a named vector
-name_vec(content = 1:10, name = paste0("text_", 1:10))
+supportR::name_vec(content = 1:10, name = paste0("text_", 1:10))
 
 }

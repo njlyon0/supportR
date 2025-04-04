@@ -14,7 +14,7 @@
 #' @examples
 #' \dontrun{
 #' # Create a file tree for the `supportR` package GitHub repository
-#' github_tree(repo = "github.com/njlyon0/supportR", exclude = c("man", "docs", ".github"))
+#' supportR::github_tree(repo = "github.com/njlyon0/supportR", exclude = c("man", "docs", ".github"))
 #' }
 #' 
 github_tree <- function(repo = NULL, exclude = NULL, quiet = FALSE){

@@ -24,7 +24,7 @@ Accepts a GitHub repository URL and identifies all files in the specified folder
 \examples{
 \dontrun{
 # List complete contents of the `supportR` package repository
-github_ls(repo = "https://github.com/njlyon0/supportR", recursive = TRUE, quiet = FALSE)
+supportR::github_ls(repo = "https://github.com/njlyon0/supportR", recursive = TRUE, quiet = FALSE)
 }
 
 }

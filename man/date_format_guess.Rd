@@ -46,11 +46,11 @@ my_df <- data.frame('data_enterer' = c('person A', 'person B',
                                     '6/10/02'))
 
 # Now we can invoke the function!
-date_format_guess(data = my_df, date_col = "bad_dates",
-group_col = "data_enterer", return = "dataframe")
+supportR::date_format_guess(data = my_df, date_col = "bad_dates",
+                            group_col = "data_enterer", return = "dataframe")
 
 # If preferred, do it without groups and return a vector
-date_format_guess(data = my_df, date_col = "bad_dates",
-groups = FALSE, return = "vector")
+supportR::date_format_guess(data = my_df, date_col = "bad_dates",
+                            groups = FALSE, return = "vector")
 
 }

@@ -31,6 +31,6 @@ g <- array(data = c(vec1, vec2), dim = c(3, 3, 2),
            dimnames = list(x_vals, y_vals, z_vals))
 
 ## "Melt" the array into a dataframe
-array_melt(array = g)
+supportR::array_melt(array = g)
 
 }

@@ -3,8 +3,8 @@
 
 # Error testing
 test_that("Errors work as desired", {
-  expect_error(array_melt(array = NULL))
-  expect_error(array_melt(array = data.frame("x" = 1:3)))
+  expect_error(supportR::array_melt(array = NULL))
+  expect_error(supportR::array_melt(array = data.frame("x" = 1:3)))
 })
 
 # # Warning testing
@@ -36,7 +36,7 @@ test_that("Outputs are as expected", {
              dimnames = list(x_vals, y_vals, z_vals))
   
   # "Melt" the array into a dataframe
-  melted_df <- array_melt(array = g)
+  melted_df <- supportR::array_melt(array = g)
   
   # Test various facets of output
   expect_true(class(melted_df) == "data.frame")

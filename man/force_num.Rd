@@ -17,5 +17,6 @@ Coerces a vector into a numeric vector and automatically silences \verb{NAs intr
 }
 \examples{
 # Coerce a character vector to numeric without throwing a warning
-force_num(x = c(2, "A", 4))
+supportR::force_num(x = c(2, "A", 4))
+
 }

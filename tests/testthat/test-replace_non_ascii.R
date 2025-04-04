@@ -3,13 +3,13 @@
 
 # Error testing
 test_that("Errors work as desired", {
-  expect_error(replace_non_ascii(x = NULL, include_letters = FALSE))
-  expect_error(replace_non_ascii(x = 10, include_letters = FALSE))
+  expect_error(supportR::replace_non_ascii(x = NULL, include_letters = FALSE))
+  expect_error(supportR::replace_non_ascii(x = 10, include_letters = FALSE))
 })
 
 # Warning testing
 test_that("Warnings work as desired", {
-  expect_warning(replace_non_ascii(x = "aaa", include_letters = "false"))
+  expect_warning(supportR::replace_non_ascii(x = "aaa", include_letters = "false"))
 })
 
 # Message testing

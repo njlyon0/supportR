@@ -23,6 +23,6 @@ Finds all non-ASCII (American Standard Code for Information Interchange) charact
 non_ascii <- c("\u201C", "\u00AC", "\u00D7")
 
 # Invoke function
-(ascii <- replace_non_ascii(x = non_ascii))
+(ascii <- supportR::replace_non_ascii(x = non_ascii))
 
 }

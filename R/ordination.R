@@ -32,13 +32,13 @@
 #' nms_mod <- vegan::metaMDS(data[-1], autotransform = FALSE, expand = FALSE, k = 2, try = 50)
 #' 
 #' # Create PCoA ordination (with optional agruments)
-#' ordination(mod = pcoa_mod, grps = data$treatment, 
-#'            bg = c("red", "blue", "purple", "orange"),
-#'            lty = 2, col = "black")
+#' supportR::ordination(mod = pcoa_mod, grps = data$treatment, 
+#'                      bg = c("red", "blue", "purple", "orange"),
+#'                      lty = 2, col = "black")
 #' 
 #' # Create NMS ordination
-#' ordination(mod = nms_mod, grps = data$treatment, alpha = 0.3, 
-#'            x = "topright", legend = LETTERS[1:4])
+#' supportR::ordination(mod = nms_mod, grps = data$treatment, alpha = 0.3, 
+#'                      x = "topright", legend = LETTERS[1:4])
 #' }
 #' 
 ordination <- function(mod = NULL, grps = NULL, ...){

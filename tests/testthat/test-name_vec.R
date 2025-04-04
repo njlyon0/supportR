@@ -3,10 +3,10 @@
 
 # Error testing
 test_that("Errors work as desired", {
-  expect_error(name_vec(content = NULL, name = NULL))
-  expect_error(name_vec(content = "x", name = NULL))
-  expect_error(name_vec(content = NULL, name = "name 1"))
-  expect_error(name_vec(content = "x", name = c("name 1", "name 2")))
+  expect_error(supportR::name_vec(content = NULL, name = NULL))
+  expect_error(supportR::name_vec(content = "x", name = NULL))
+  expect_error(supportR::name_vec(content = NULL, name = "name 1"))
+  expect_error(supportR::name_vec(content = "x", name = c("name 1", "name 2")))
 })
 
 # # Warning testing

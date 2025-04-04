@@ -22,7 +22,7 @@ Recursively identifies all files in a GitHub repository and creates a file tree 
 \examples{
 \dontrun{
 # Create a file tree for the `supportR` package GitHub repository
-github_tree(repo = "github.com/njlyon0/supportR", exclude = c("man", "docs", ".github"))
+supportR::github_tree(repo = "github.com/njlyon0/supportR", exclude = c("man", "docs", ".github"))
 }
 
 }

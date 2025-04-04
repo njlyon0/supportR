@@ -20,7 +20,7 @@ Accepts a GitHub repository URL and identifies all files in the specified folder
 \examples{
 \dontrun{
 # List contents of the top-level of the `supportR` package repository
-github_ls_single(repo = "https://github.com/njlyon0/supportR")
+supportR::github_ls_single(repo = "https://github.com/njlyon0/supportR")
 }
 
 }

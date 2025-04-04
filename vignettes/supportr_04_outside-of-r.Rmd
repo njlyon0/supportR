@@ -85,7 +85,7 @@ Valuable information is sometimes stored as markdown files which--while consiste
 md_cxn <- url("https://raw.githubusercontent.com/njlyon0/supportR/main/NEWS.md")
 
 # Transform it into a table
-md_df <- tabularize_md(file = md_cxn)
+md_df <- supportR::tabularize_md(file = md_cxn)
 
 # Close connection (just good housekeeping to do so)
 close(md_cxn)

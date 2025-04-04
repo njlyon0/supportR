@@ -3,8 +3,8 @@
 
 # Error testing
 test_that("Errors work as desired", {
-  expect_error(count(vec = NULL))
-  expect_error(count(vec = data.frame("x" = 1:5)))
+  expect_error(supportR::count(vec = NULL))
+  expect_error(supportR::count(vec = data.frame("x" = 1:5)))
 })
 
 # Warning testing
@@ -26,7 +26,7 @@ test_that("Outputs are as expected", {
   test_vec <- c(1, 1, NA, "a", 1, "a", NA, "x")
   
   # Count occurrences
-  occ_df <- count(vec = test_vec)
+  occ_df <- supportR::count(vec = test_vec)
   
   # Check certain aspects of output
   expect_equal(nrow(occ_df), length(unique(test_vec)))
