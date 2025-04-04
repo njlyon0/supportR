@@ -20,21 +20,17 @@
 #' 
 safe_rename <- function(data = NULL, bad_names = NULL, good_names = NULL){
   
-  # Error out if any arguments are missing
-  if(any(is.null(data) | is.null(bad_names) | is.null(good_names)) == TRUE)
-    stop("All arguments must be specified")
+  # Error check for data object
+  if(is.null(data))
+    stop("'data' must be specified")
   
-  # Error out if a different number of bad names and good names
-  if(length(bad_names) != length(good_names))
-    stop("Must provide same number of replacement column names as names to be replaced")
+  # Error check for bad names
+  if(is.null(bad_names) || is.character(bad_names) != TRUE || all(bad_names %in% names(data)) != TRUE)
+    stop("'bad_names' must be a character vector of names that all exist in 'data'")
   
-  # Error out if good names are not characters
-  if(is.character(bad_names) != TRUE | is.character(good_names) != TRUE)
-    stop("Column names (bad and good) must be provided as characters")
-  
-  # Error out if not all "bad_names" are found in the data
-  if(all(bad_names %in% names(data)) != TRUE)
-    stop("Not all elements of 'bad_names' found in data")
+  # Similar check for good names
+  if(is.null(good_names) || is.character(good_names) != TRUE || length(good_names) != length(bad_names))
+    stop("'good_names' must be a character vector with the same number of elements as 'bad_names'")
   
   # Duplicate data
   renamed_data <- data

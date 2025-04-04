@@ -14,13 +14,9 @@
 #' 
 count <- function(vec = NULL){
   
-  # Error out for missing vector
-  if(is.null(vec) == TRUE)
-    stop("'vec' must be specified")
-  
-  # Error out for non-vector
-  if(is.vector(vec) != TRUE)
-    stop("'vec' must be a vector")
+  # Error checks for vector
+  if(is.null(vec) || is.vector(vec) != TRUE)
+    stop("'vec' must be provided as a vector")
   
   # Identify unique bits
   unique_vec <- unique(vec)

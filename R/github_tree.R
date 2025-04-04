@@ -41,7 +41,7 @@ github_tree <- function(repo = NULL, exclude = NULL, quiet = FALSE){
                               exclude_num = 0)
     
     # Identify all rows where excluded files are part of the path
-    for(j in 1:length(exclude)){
+    for(j in seq_along(exclude)){
       
       # Identify all contents of folders that are marked for exclusion
       conts_v2 %<>%

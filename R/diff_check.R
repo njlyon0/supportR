@@ -26,14 +26,14 @@
 diff_check <- function(old = NULL, new = NULL,
                        sort = TRUE, return = FALSE){
 
-  # Error out if either is null
-  if(is.null(old) | is.null(new))
-    stop("Both arguments must be specified")
-
-  # Error out if either is not a vector
-  if(is.vector(old) != TRUE | is.vector(new) != TRUE)
-    stop("Both arguments must be vectors")
-
+  # Error check for old vector
+  if(is.null(old) || is.vector(old) != TRUE)
+    stop("'old' must be supplied as a vector")
+  
+  # Same error checks for new
+  if(is.null(new) || is.vector(new) != TRUE)
+    stop("'new' must be supplied as a vector")
+  
   # Coerce `sort` to TRUE if not a logical
   if(is.logical(sort) != TRUE){
     warning("'sort' must be either TRUE or FALSE. Defaulting to TRUE")
@@ -45,10 +45,10 @@ diff_check <- function(old = NULL, new = NULL,
     return <- FALSE }
 
   # Identify what is lost (i.e., in old but not new)
-  lost <- base::setdiff(x = old, y = new)
+  lost <- setdiff(x = old, y = new)
 
   # Identify what is gained (i.e., in new but not old)
-  gained <- base::setdiff(x = new, y = old)
+  gained <- setdiff(x = new, y = old)
 
   # If sort is TRUE, sort both vectors
   if(sort == TRUE){

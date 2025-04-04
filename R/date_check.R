@@ -23,23 +23,19 @@
 #' 
 date_check <- function(data = NULL, col = NULL) {
 
-  # Error out if anything is missing
-  if(is.null(data) == TRUE)
-    stop("Data object name must be provided")
-
-  # Error out if column(s) is/are missing
-  if(is.null(col) == TRUE)
-    stop("Column name(s) must be provided")
+  # Error check for data object
+  if(is.null(data) || "data.frame" %in% class(data) != TRUE)
+    stop("'data' must be specified as a dataframe-like object")
   
-  # Error out for non-dataframe data
-  if(any(class(data) == "data.frame") != TRUE)
-    stop("Data object must be dataframe-like")
+  # Error out if column(s) is/are missing
+  if(is.null(col))
+    stop("'col' must be provided")
   
   # Make an empty list to store the malformed dates in
-  bad_list <- base::list()
+  bad_list <- list()
   
   # Make the data a dataframe
-  df <- base::as.data.frame(data)
+  df <- as.data.frame(data)
 
   # For each column the column vector...
   for(j in 1:length(col)) {
@@ -48,16 +44,16 @@ date_check <- function(data = NULL, col = NULL) {
     col_opt <- col[j]
     
     # Remove NA entries
-    not_na <- base::subset(df, !base::is.na(df[, col_opt]))
+    not_na <- subset(df, !is.na(df[, col_opt]))
     
     # Identify rows that would be lost if `as.Date()` is used
-    bad_df <- base::subset(not_na, is.na(base::as.Date(not_na[, col_opt])))
+    bad_df <- subset(not_na, is.na(as.Date(not_na[, col_opt])))
     
     # Get a vector of just the unique 'bad' entries
-    bad_vec <- base::unique(bad_df[, col_opt])
+    bad_vec <- unique(bad_df[, col_opt])
     
     # If that vector is length 0 (i.e., no bad entries)...
-    if(base::length(bad_vec) == 0){
+    if(length(bad_vec) == 0){
       # ...print a message saying so
       message("For '", col_opt, "', no non-dates identified.")
       

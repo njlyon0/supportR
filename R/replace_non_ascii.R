@@ -22,13 +22,9 @@ replace_non_ascii <- function(x = NULL, include_letters = FALSE){
   # Can identify codes for new non-ASCII chars like so:
   ## stringi::stri_escape_unicode(str = "")
   
-  # Error out if x isn't supplied
-  if(is.null(x) == TRUE)
-    stop("'x' must be specified")
-  
-  # Error out if x isn't a character
-  if(is.character(x) != TRUE)
-    stop("'x' must be a character")
+  # Error checks for x
+  if(is.null(x) || is.character(x) != TRUE)
+    stop("'x' must be specified as a character vector")
   
   # Coerce `sort` to TRUE if not a logical
   if(is.logical(include_letters) != TRUE){

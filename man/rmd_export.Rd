@@ -24,7 +24,7 @@ rmd_export(
 \item{drive_link}{(character) full URL of drive folder to upload the knit document}
 }
 \value{
-No return value, called to knit R Markdown file
+No return value, called for side effect (to knit R Markdown file)
 }
 \description{
 This function allows you to knit a specified R Markdown file locally and export it to the Google Drive folder for which you provided a link. NOTE that if you have not used \code{googledrive::drive_auth} this will prompt you to authorize a Google account in a new browser tab. If you do not check the box in that screen before continuing you will not be able to use this function until you clear your browser cache and re-authenticate. I recommend invoking \code{drive_auth} beforehand to reduce the chances of this error

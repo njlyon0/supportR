@@ -11,12 +11,16 @@
 #'
 theme_lyon <- function(title_size = 16, text_size = 13){
 
-  # Error out if font sizes aren't numeric
-  if(!is.numeric(title_size) | !is.numeric(text_size))
-    stop("Font sizes must be specified by numeric values")
-
-  # Actually run the function
-  ggplot2::theme(
+  # Title size must be specified as a single number
+  if(is.null(title_size) || is.numeric(title_size) != TRUE || length(title_size) != 1)
+    stop("'title_size' must be specified as a single number")
+  
+  # Same error for text size
+  if(is.null(text_size) || is.numeric(text_size) != TRUE || length(text_size) != 1)
+    stop("'text_size' must be specified as a single number")
+  
+  # Actually build the custom theme object
+  theme_obj <- ggplot2::theme(
     # Customize legend stuff
     legend.title = ggplot2::element_blank(),
     legend.background = ggplot2::element_blank(),
@@ -32,4 +36,6 @@ theme_lyon <- function(title_size = 16, text_size = 13){
     axis.title = ggplot2::element_text(size = title_size),
     axis.text = ggplot2::element_text(size = text_size,
                                       color = "black") )
-  }
+  
+  # Return that object
+  return(theme_obj) }

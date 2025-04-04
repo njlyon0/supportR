@@ -43,19 +43,13 @@
 #' 
 ordination <- function(mod = NULL, grps = NULL, ...){
   
-  # Error out for missing (required) arguments
-  if(is.null(mod) == TRUE)
-    stop("Model must be provided")
-  if(is.null(grps) == TRUE)
-    stop("Categorical groups must be specified")
+  # Error checks for provided model
+  if(is.null(mod) || all(class(mod) %in% c("pcoa", "metaMDS", "monoMDS")) != TRUE)
+    stop("'mod' must be provided as an object returned by 'ape::pcoa' or 'vegan::metaMDS'")
   
-  # Error out for unsupported model type
-  if(all(class(mod) %in% c("pcoa", "metaMDS", "monoMDS")) != TRUE)
-    stop("Model must be returned by 'ape::pcoa' or 'vegan::metaMDS'")
-  
-  # Error out for unsupported group type
-  if(is.vector(grps) != TRUE)
-    stop("Groups must be provided as a vector")
+  # Error check for groups
+  if(is.null(grps) || is.vector(grps) != TRUE)
+    stop("'grps' must be provided as a vector")
   
   # Identify group names
   grp_names <- unique(grps)

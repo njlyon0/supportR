@@ -15,13 +15,13 @@
 #' 
 name_vec <- function(content = NULL, name = NULL){
   
-  # Error out either is not provided
-  if(is.null(content) == TRUE | is.null(name) == TRUE)
-    stop("Both arguments must be specified")
+  # Error checks for content
+  if(is.null(content))
+    stop("'content' must be specified")
   
-  # Error out if content & name are not the same length
-  if(length(x = content) != length(x = name))
-    stop("Vector content and names must be the same length")
+  # Error checks for name
+  if(is.null(name) || length(name) != length(content))
+    stop("'name' must be specified and have the same length as 'content'")
   
   # Construct the named vector
   names(content) <- name

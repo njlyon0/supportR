@@ -2,7 +2,7 @@
 #' 
 #' @description Accepts one markdown file (i.e., "md" file extension) and returns its content as a table. Nested heading structure in markdown file--as defined by hashtags / pounds signs (#)--is identified and preserved as columns in the resulting tabular format. Each line of non-heading content in the file is preserved in the right-most column of one row of the table.
 #'
-#' @param file (character/url connection) name and file path of markdown file to transform into a table or a connection object to a URL of a markdown file (see `?base::url` for more details)
+#' @param file (character/url connection) name and file path of markdown file to transform into a table or a connection object to a URL of a markdown file (see `?url` for more details)
 #' 
 #' @return (dataframe) table with one additional column than there are heading levels in the document (e.g., if first and second level headings are in the document, the resulting table will have three columns) and one row per line of non-heading content in the markdown file.
 #' 
@@ -16,7 +16,7 @@
 #' md_cxn <- url("https://raw.githubusercontent.com/njlyon0/supportR/main/NEWS.md")
 #' 
 #' # Transform it into a table
-#' md_df <- tabularize_md(file = md_cxn)
+#' md_df <- supportR::tabularize_md(file = md_cxn)
 #' 
 #' # Close connection (just good housekeeping to do so)
 #' close(md_cxn)
@@ -29,13 +29,9 @@ tabularize_md <- function(file = NULL){
   # Handle no visible bindings note
   . <- info <- level <- text <- type <- NULL
   
-  # Error out if file isn't specified
-  if(is.null(file) == TRUE)
-    stop("'file' must be specified")
-  
-  # Error out if multiple files are provided
-  if(length(file) != 1)
-    stop("Only one markdown file can be tabularized at a time")
+  # Error checks for file input
+  if(is.null(file) || length(file) != 1)
+    stop("'file' must be specified and refer to a single markdown file")
   
   # Handle URL/connection possibility
   if(methods::is(object = file, class2 = "url") == TRUE &
@@ -53,11 +49,11 @@ tabularize_md <- function(file = NULL){
   }
   
   # Read in specified markdown file and
-  md_v0 <- base::readLines(con = file)
+  md_v0 <- readLines(con = file)
   
   # Remove empty entries
   ## Empty entries in this vector are blank lines in markdown file
-  md_v1 <- base::setdiff(x = md_v0, y = "")
+  md_v1 <- setdiff(x = md_v0, y = "")
 
   # Make into a simple dataframe
   md_v2 <- data.frame("text" = md_v1)
@@ -84,7 +80,7 @@ tabularize_md <- function(file = NULL){
     dplyr::select(-type, -level)
   
   # Identify all heading types found in the provided markdown file
-  found_heads <- base::setdiff(x = unique(md_v3$info), y = "content")
+  found_heads <- setdiff(x = unique(md_v3$info), y = "content")
   
   # Duplicate the data to avoid mistakes
   md_v4 <- md_v3
