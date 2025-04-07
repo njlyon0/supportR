@@ -2,6 +2,7 @@
 
 export(array_melt)
 export(count)
+export(count_diff)
 export(crop_tri)
 export(date_check)
 export(date_format_guess)
