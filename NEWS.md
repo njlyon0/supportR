@@ -2,6 +2,7 @@
 
 Development version, changes from preceding version are listed below:
 
+- New function: `count_diff`. Similar to `count` except that it accepts two input vectors and counts the difference for each specified element (or all elements) between the two
 - Function fix: Fixed issue with `replace_non_ascii` where if `include_letters` was set to `FALSE` a warning was still generated for non-ASCII letters when they were part of a larger string (e.g., "\<non-ascii\>xyz", etc.)
 - Vignette update: separated the single package vignette into separate, smaller files that give a tutorial for groups of functions with similar use-cases (e.g., quality control, data visualization, etc.)
 - Namespaced all function examples--should allow users to run example code without loading the package explicitly (though they will need to have installed the package at least once before)
