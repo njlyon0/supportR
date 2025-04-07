@@ -42,7 +42,8 @@
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.4.0.900" id="supportr-version-140900">supportR Version 1.4.0.900<a class="anchor" aria-label="anchor" href="#supportr-version-140900"></a></h2>
 <p>Development version, changes from preceding version are listed below:</p>
-<ul><li>Function fix: Fixed issue with <code>replace_non_ascii</code> where if <code>include_letters</code> was set to <code>FALSE</code> a warning was still generated for non-ASCII letters when they were part of a larger string (e.g., “&lt;non-ascii&gt;xyz”, etc.)</li>
+<ul><li>New function: <code>count_diff</code>. Similar to <code>count</code> except that it accepts two input vectors and counts the difference for each specified element (or all elements) between the two</li>
+<li>Function fix: Fixed issue with <code>replace_non_ascii</code> where if <code>include_letters</code> was set to <code>FALSE</code> a warning was still generated for non-ASCII letters when they were part of a larger string (e.g., “&lt;non-ascii&gt;xyz”, etc.)</li>
 <li>Vignette update: separated the single package vignette into separate, smaller files that give a tutorial for groups of functions with similar use-cases (e.g., quality control, data visualization, etc.)</li>
 <li>Namespaced all function examples–should allow users to run example code without loading the package explicitly (though they will need to have installed the package at least once before)</li>
 </ul></div>
