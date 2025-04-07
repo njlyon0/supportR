@@ -64,6 +64,10 @@ count_diff <- function(vec1, vec2, what = NULL){
   # Subset to only desired items
   sub_n <- dplyr::filter(.data = full_n, value %in% what)
   
+  # Return warning if 'what' is not found in either vector
+  if(nrow(sub_n) == 0)
+    warning("No values found in either vector matching 'what' specification")
+  
   # Return that
   return(sub_n) }
 
@@ -77,6 +81,9 @@ count_diff(vec1 = x1, vec2 = x2, what = NULL)
 # Invoke again to count difference in a specific element
 count_diff(vec1 = x1, vec2 = x2, what = NA)
 count_diff(vec1 = x1, vec2 = x2, what = "a")
+
+# Check for warnings
+count_diff(vec1 = x1, vec2 = x2, what = "B")
 
 # Clear environment
 rm(list = ls()); gc()
