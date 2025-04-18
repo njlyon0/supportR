@@ -18,7 +18,7 @@ requests](https://img.shields.io/github/issues-pr/njlyon0/supportR)
 `supportR` is an R package where the only unifying theme of the
 functions is honestly just that I wrote them. That said, there are some
 useful functions for **data wrangling** and **plotting** in particular,
-though functions for *other purposes* are also included.Check out the
+though functions for *other purposes* are also included. Check out the
 package website
 ([njlyon0.github.io/supportR](https://njlyon0.github.io/supportR/)) for
 documentation of the functions currently included in the package. I’ll
@@ -38,6 +38,6 @@ devtools::install_github("njlyon0/supportR")
 ## Looking Ahead
 
 More functions are likely to be developed and housed within this package
-so stay tuned! Feel free to post ideas for new functions as [an
-issue](https://github.com/njlyon0/supportR/issues) on this repository
-and I’ll do my best to build them!
+so stay tuned! Feel free to check out [the contributing
+guidelines](https://njlyon0.github.io/supportR/CONTRIBUTING.html) if you
+want to know how to contribute directly to `supportR`.
