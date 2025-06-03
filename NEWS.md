@@ -1,6 +1,6 @@
-# supportR Version 1.4.0.900
+# supportR Version 1.5.0
 
-Development version, changes from preceding version are listed below:
+Changes from preceding version are listed below.
 
 - New function: `count_diff`. Similar to `count` except that it accepts two input vectors and counts the difference for each specified element (or all elements) between the two
 - Function fix: Fixed issue with `replace_non_ascii` where if `include_letters` was set to `FALSE` a warning was still generated for non-ASCII letters when they were part of a larger string (e.g., "\<non-ascii\>xyz", etc.)
