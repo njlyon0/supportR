@@ -4,4 +4,4 @@ There were no ERRORs, WARNINGs, or NOTES returned by `devtools::check()`.
 
 ## Downstream dependencies
 
-There are currently no downstream dependencies for this package.
+This update does not affect downstream dependencies. Currently 1 downstream dependency: `ltertools`.
