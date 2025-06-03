@@ -47,5 +47,6 @@ vignettes/*.pdf
 # CRAN Submission
 CRAN-SUBMISSION
 
-# pkgdown website content
+# Folders
 docs
+revdep
