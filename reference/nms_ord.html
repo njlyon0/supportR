@@ -47,7 +47,7 @@ Produces Non-Metric Multi-dimensional Scaling (NMS) ordinations for up to 10 gro
     <div class="ref-description section level2">
     <p><a href="https://lifecycle.r-lib.org/articles/stages.html#superseded" class="external-link"><img src="figures/lifecycle-superseded.svg" alt="[Superseded]"></a></p>
 <p>This function has been superseded by <code>ordination</code> because this is just a special case of that function. Additionally, <code>ordination</code> provides users much more control over the internal <code>graphics</code> functions used to create the fundamental elements of the graph</p>
-<p>Produces Non-Metric Multi-dimensional Scaling (NMS) ordinations for up to 10 groups. Assigns a unique color for each group and draws an ellipse around the standard deviation of the points. Automatically adds stress (see <code><a href="https://rdrr.io/pkg/vegan/man/metaMDS.html" class="external-link">vegan::metaMDS</a></code> for explanation of "stress") as legend title. Because there are only five hollow shapes (see <code>?graphics::pch()</code>) all shapes are re-used a maximum of 2 times when more than 5 groups are supplied.</p>
+<p>Produces Non-Metric Multi-dimensional Scaling (NMS) ordinations for up to 10 groups. Assigns a unique color for each group and draws an ellipse around the standard deviation of the points. Automatically adds stress (see <code><a href="https://vegandevs.github.io/vegan/reference/metaMDS.html" class="external-link">vegan::metaMDS</a></code> for explanation of "stress") as legend title. Because there are only five hollow shapes (see <code>?graphics::pch()</code>) all shapes are re-used a maximum of 2 times when more than 5 groups are supplied.</p>
     </div>
 
     <div class="section level2">
@@ -74,7 +74,7 @@ Produces Non-Metric Multi-dimensional Scaling (NMS) ordinations for up to 10 gro
 
 
 <dl><dt id="arg-mod">mod<a class="anchor" aria-label="anchor" href="#arg-mod"></a></dt>
-<dd><p>(metaMDS/monoMDS) object returned by <code><a href="https://rdrr.io/pkg/vegan/man/metaMDS.html" class="external-link">vegan::metaMDS</a></code></p></dd>
+<dd><p>(metaMDS/monoMDS) object returned by <code><a href="https://vegandevs.github.io/vegan/reference/metaMDS.html" class="external-link">vegan::metaMDS</a></code></p></dd>
 
 
 <dt id="arg-groupcol">groupcol<a class="anchor" aria-label="anchor" href="#arg-groupcol"></a></dt>
@@ -143,7 +143,7 @@ Produces Non-Metric Multi-dimensional Scaling (NMS) ordinations for up to 10 gro
 <span class="r-in"><span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">factor_4lvl</span>, <span class="va">resp</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Actually perform multidimensional scaling</span></span></span>
-<span class="r-in"><span><span class="va">mds</span> <span class="op">&lt;-</span> <span class="fu">vegan</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/vegan/man/metaMDS.html" class="external-link">metaMDS</a></span><span class="op">(</span><span class="va">data</span><span class="op">[</span><span class="op">-</span><span class="fl">1</span><span class="op">]</span>, autotransform <span class="op">=</span> <span class="cn">FALSE</span>, expand <span class="op">=</span> <span class="cn">FALSE</span>, k <span class="op">=</span> <span class="fl">2</span>, try <span class="op">=</span> <span class="fl">50</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">mds</span> <span class="op">&lt;-</span> <span class="fu">vegan</span><span class="fu">::</span><span class="fu"><a href="https://vegandevs.github.io/vegan/reference/metaMDS.html" class="external-link">metaMDS</a></span><span class="op">(</span><span class="va">data</span><span class="op">[</span><span class="op">-</span><span class="fl">1</span><span class="op">]</span>, autotransform <span class="op">=</span> <span class="cn">FALSE</span>, expand <span class="op">=</span> <span class="cn">FALSE</span>, k <span class="op">=</span> <span class="fl">2</span>, try <span class="op">=</span> <span class="fl">50</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Run 0 stress 0.1000211 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Run 1 stress 0.1715395 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Run 2 stress 0.1000211 </span>

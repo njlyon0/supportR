@@ -142,7 +142,7 @@ preferences!</p>
 Multidimensional Scaling (NMS) or Principal Coordinates Analysis (PCoA)
 ordinations. Note that this function requires your multidimensional
 scaling object be created by either <code><a href="https://rdrr.io/pkg/ape/man/pcoa.html" class="external-link">ape::pcoa</a></code> or
-<code><a href="https://rdrr.io/pkg/vegan/man/metaMDS.html" class="external-link">vegan::metaMDS</a></code>.</p>
+<code><a href="https://vegandevs.github.io/vegan/reference/metaMDS.html" class="external-link">vegan::metaMDS</a></code>.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Load data from the `vegan` package</span></span>
 <span><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"varespec"</span>, package <span class="op">=</span> <span class="st">"vegan"</span><span class="op">)</span></span>
@@ -157,7 +157,7 @@ scaling object be created by either <code><a href="https://rdrr.io/pkg/ape/man/p
 <span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">treatment</span>, <span class="va">varespec</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Actually perform multidimensional scaling</span></span>
-<span><span class="va">mds</span> <span class="op">&lt;-</span> <span class="fu">vegan</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/vegan/man/metaMDS.html" class="external-link">metaMDS</a></span><span class="op">(</span><span class="va">data</span><span class="op">[</span><span class="op">-</span><span class="fl">1</span><span class="op">]</span>, autotransform <span class="op">=</span> <span class="cn">FALSE</span>, </span>
+<span><span class="va">mds</span> <span class="op">&lt;-</span> <span class="fu">vegan</span><span class="fu">::</span><span class="fu"><a href="https://vegandevs.github.io/vegan/reference/metaMDS.html" class="external-link">metaMDS</a></span><span class="op">(</span><span class="va">data</span><span class="op">[</span><span class="op">-</span><span class="fl">1</span><span class="op">]</span>, autotransform <span class="op">=</span> <span class="cn">FALSE</span>, </span>
 <span>                      expand <span class="op">=</span> <span class="cn">FALSE</span>, k <span class="op">=</span> <span class="fl">2</span>, try <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># With the scaled object and original dataframe we can use this function</span></span>
