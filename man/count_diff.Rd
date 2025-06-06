@@ -22,7 +22,7 @@ Counts the number of occurrences of each element in both provided vectors and th
 \examples{
 # Define two vectors
 x1 <- c(1, 1, NA, "a", 1, "a", NA, "x")
-x2 <- c(1, "a", "x")
+x2 <- c(1, "a", "x", "b")
 
 # Count difference in number of NAs between the two vectors
 supportR::count_diff(vec1 = x1, vec2 = x2, what = NA)

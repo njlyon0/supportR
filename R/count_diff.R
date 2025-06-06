@@ -14,7 +14,7 @@
 #' @examples
 #' # Define two vectors
 #' x1 <- c(1, 1, NA, "a", 1, "a", NA, "x")
-#' x2 <- c(1, "a", "x")
+#' x2 <- c(1, "a", "x", "b")
 #' 
 #' # Count difference in number of NAs between the two vectors
 #' supportR::count_diff(vec1 = x1, vec2 = x2, what = NA)
@@ -40,6 +40,10 @@ count_diff <- function(vec1, vec2, what = NULL){
   
   # Combine these data objects
   full_n <- dplyr::full_join(x = n1, y = n2, by = "value") %>% 
+    # Fill NA counts with zeros
+    dplyr::mutate(dplyr::across(.cols = dplyr::starts_with("count."),
+                                .fns = ~ ifelse(test = is.na(.),
+                                                yes = 0, no = .))) %>% 
     # Calculate difference
     dplyr::mutate(diff = count.x - count.y) %>% 
     # Rename columns
