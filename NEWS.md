@@ -2,7 +2,7 @@
 
 This is the development version of `supportR`. Changes from preceding version are listed below
 
-- No changes (yet!)
+- Modified function behavior: `count_diff` now correctly handles counting of vector elements found in only one of the input vectors (i.e., should be 0 occurrences not `NA` occurrences). This also repairs the difference calculation for entries that are unique to one input vector.
 
 # supportR Version 1.5.0
 
