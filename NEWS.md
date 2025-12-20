@@ -3,6 +3,7 @@
 This is the development version of `supportR`. Changes from preceding version are listed below
 
 - Modified function behavior: `count_diff` now correctly handles counting of vector elements found in only one of the input vectors (i.e., should be 0 occurrences not `NA` occurrences). This also repairs the difference calculation for entries that are unique to one input vector.
+- Modified function behavior: `num_check` no longer flags a 0-length, 'empty' element as a non-number (`as.numeric(x = "")` does not throw a warning or error so `num_check` shouldn't flag such elements)
 
 # supportR Version 1.5.0
 
