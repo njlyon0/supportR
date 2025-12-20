@@ -10,10 +10,10 @@
 #'
 #' @examples
 #' # Create dataframe with a numeric column where some entries would be coerced into NA
-#' spp <- c("salmon", "bass", "halibut", "eel")
-#' ct <- c(1, "14x", "_23", 12)
-#' ct2 <- c("a", "2", "4", "0")
-#' ct3 <- c(NA, "Y", "typo", "2")
+#' spp <- c("salmon", "bass", "halibut", "eel", "sardine")
+#' ct <- c(1, "14x", "_23", 12, "")
+#' ct2 <- c("a", "2", "4", "0", "0")
+#' ct3 <- c(NA, "Y", "typo", "2", "x")
 #' fish <- data.frame("species" = spp, "count" = ct, "num_col2" = ct2, "third_count" = ct3)
 #'
 #' # Use `num_check()` to return only the entries that would be lost
@@ -48,7 +48,7 @@ num_check <- function(data = NULL, col = NULL) {
     bad_df <- subset(not_na, is.na(supportR::force_num(x = not_na[, col_opt])))
     
     # Get a vector of just the unique 'bad' entries
-    bad_vec <- unique(bad_df[, col_opt])
+    bad_vec <- setdiff(x = unique(bad_df[, col_opt]), y = c(""))
     
     # If that vector is length 0 (i.e., no bad entries)...
     if(length(bad_vec) == 0){
