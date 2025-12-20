@@ -1,9 +1,8 @@
 # Changelog
 
-## supportR Version 1.5.0.900
+## supportR Version 1.6.0
 
-This is the development version of `supportR`. Changes from preceding
-version are listed below
+Changes from preceding version are listed below
 
 - Modified function behavior: `count_diff` now correctly handles
   counting of vector elements found in only one of the input vectors
