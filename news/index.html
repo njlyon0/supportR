@@ -43,6 +43,7 @@
 <h2 class="pkg-version" data-toc-text="1.5.0.900" id="supportr-version-150900">supportR Version 1.5.0.900<a class="anchor" aria-label="anchor" href="#supportr-version-150900"></a></h2>
 <p>This is the development version of <code>supportR</code>. Changes from preceding version are listed below</p>
 <ul><li>Modified function behavior: <code>count_diff</code> now correctly handles counting of vector elements found in only one of the input vectors (i.e., should be 0 occurrences not <code>NA</code> occurrences). This also repairs the difference calculation for entries that are unique to one input vector.</li>
+<li>Modified function behavior: <code>num_check</code> no longer flags a 0-length, ‘empty’ element as a non-number (<code>as.numeric(x = "")</code> does not throw a warning or error so <code>num_check</code> shouldn’t flag such elements)</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.5.0" id="supportr-version-150">supportR Version 1.5.0<a class="anchor" aria-label="anchor" href="#supportr-version-150"></a></h2><p class="text-muted">CRAN release: 2025-06-03</p>
@@ -109,7 +110,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

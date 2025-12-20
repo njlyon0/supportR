@@ -126,14 +126,14 @@ preferences!</p>
 <span><span class="co"># Create a plot and allow default ggplot themeing to be added</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">penguins</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">species</span>, y <span class="op">=</span> <span class="va">body_mass_g</span>, fill <span class="op">=</span> <span class="va">species</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html" class="external-link">geom_boxplot</a></span><span class="op">(</span>outlier.shape <span class="op">=</span> <span class="fl">24</span><span class="op">)</span></span></code></pre></div>
-<p><img src="supportr_03_visualizations_files/figure-html/theme_lyon-1.png" width="480" style="display: block; margin: auto;"></p>
+<p><img src="supportr_03_visualizations_files/figure-html/theme_lyon-1.png" class="r-plt" width="480" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="co"># Compare with the same plot with my theme</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">penguins</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">species</span>, y <span class="op">=</span> <span class="va">body_mass_g</span>, fill <span class="op">=</span> <span class="va">species</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html" class="external-link">geom_boxplot</a></span><span class="op">(</span>outlier.shape <span class="op">=</span> <span class="fl">24</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">supportR</span><span class="fu">::</span><span class="fu"><a href="../reference/theme_lyon.html">theme_lyon</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="supportr_03_visualizations_files/figure-html/theme_lyon-2.png" width="480" style="display: block; margin: auto;"></p>
+<p><img src="supportr_03_visualizations_files/figure-html/theme_lyon-2.png" class="r-plt" width="480" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level3">
 <h3 id="metric-non-metric-multidimensional-ordinations">Metric &amp; Non-Metric Multidimensional Ordinations<a class="anchor" aria-label="anchor" href="#metric-non-metric-multidimensional-ordinations"></a>
@@ -163,7 +163,7 @@ scaling object be created by either <code><a href="https://rdrr.io/pkg/ape/man/p
 <span><span class="co"># With the scaled object and original dataframe we can use this function</span></span>
 <span><span class="fu">supportR</span><span class="fu">::</span><span class="fu"><a href="../reference/ordination.html">ordination</a></span><span class="op">(</span>mod <span class="op">=</span> <span class="va">mds</span>, grps <span class="op">=</span> <span class="va">data</span><span class="op">$</span><span class="va">treatment</span>, x <span class="op">=</span> <span class="st">"bottomright"</span>,</span>
 <span>                     legend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"Treat-"</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="supportr_03_visualizations_files/figure-html/ordination-1.png" width="480" style="display: block; margin: auto;"></p>
+<p><img src="supportr_03_visualizations_files/figure-html/ordination-1.png" class="r-plt" width="480" style="display: block; margin: auto;"></p>
 </div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
@@ -177,7 +177,7 @@ scaling object be created by either <code><a href="https://rdrr.io/pkg/ape/man/p
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer>
