@@ -13,6 +13,10 @@ version are listed below
 - Modified function behavior: `num_check` no longer flags a 0-length,
   ‘empty’ element as a non-number (`as.numeric(x = "")` does not throw a
   warning or error so `num_check` shouldn’t flag such elements)
+- Modified function behavior: `diff_check` now coerces dates (i.e.,
+  `class(vec) == "Date"`) into characters before evaluating vector
+  differences because `is.vector(date_vector)` returns `FALSE` which
+  erroneously threw an error in this function
 
 ## supportR Version 1.5.0
 
