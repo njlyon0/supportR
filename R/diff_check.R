@@ -22,9 +22,13 @@
 #' # Return the difference for later use
 #' diff_out <- supportR::diff_check(old = vec1, new = vec2, return = TRUE)
 #' diff_out
-#'
-diff_check <- function(old = NULL, new = NULL,
-                       sort = TRUE, return = FALSE){
+#' 
+diff_check <- function(old = NULL, new = NULL, sort = TRUE, return = FALSE){
+
+  # Dates are not vectors* so need to coerce those to characters
+  ## * = i.e., `is.vector(as.Date("2025-01-01"))` returns `FALSE`
+  if(class(old) %in% c("Date")){ old <- as.character(old) }
+  if(class(new) %in% c("Date")){ new <- as.character(new) }
 
   # Error check for old vector
   if(is.null(old) || is.vector(old) != TRUE)
@@ -76,5 +80,4 @@ diff_check <- function(old = NULL, new = NULL,
 
     # Return it
     return(diff_list) }
-
 }
