@@ -1,6 +1,15 @@
 # Changelog
 
+## supportR Version 1.6.0.900
+
+This is the development version. Changes from the preceding version are
+listed below
+
+- No changes (yet)
+
 ## supportR Version 1.6.0
+
+CRAN release: 2025-12-21
 
 Changes from preceding version are listed below
 
