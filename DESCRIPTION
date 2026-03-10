@@ -35,6 +35,7 @@ Imports:
     rlang,
     rmarkdown,
     scales,
+    spelling,
     stringi,
     stringr,
     tidyr,
