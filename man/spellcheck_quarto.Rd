@@ -7,7 +7,7 @@
 spellcheck_quarto(path = getwd(), quiet = FALSE)
 }
 \arguments{
-\item{path}{(character) directory in which to identify all Quarto files are to be identified and spell-checked. Recursively identifies Quarto files in folders within the top-level folder. Unrendered folders are ignored. Defaults to current working directory}
+\item{path}{(character) directory in which all Quarto files are to be identified and spell-checked. Recursively identifies Quarto files in folders within the top-level folder. Unrendered folders are ignored. Defaults to current working directory}
 
 \item{quiet}{(logical) whether to message the name of the current file being spell-checked as it is checked. Defaults to \code{FALSE}}
 }
