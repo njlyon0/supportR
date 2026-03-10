@@ -9,6 +9,7 @@ listed below
   [`spelling::spell_check_files`](https://docs.ropensci.org/spelling//reference/spell_check_files.html)
   on all Quarto files (.qmd) that would be rendered (e.g., to make a
   website)
+- Update maintainer email
 
 ## supportR Version 1.6.0
 
