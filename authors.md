@@ -10,14 +10,14 @@
 Source:
 [`DESCRIPTION`](https://github.com/njlyon0/supportR/blob/main/DESCRIPTION)
 
-Lyon N (2025). *supportR: Support Functions for Wrangling and
+Lyon N (2026). *supportR: Support Functions for Wrangling and
 Visualization*. R package version 1.6.0.900,
 <https://github.com/njlyon0/supportR>.
 
     @Manual{,
       title = {supportR: Support Functions for Wrangling and Visualization},
       author = {Nicholas J Lyon},
-      year = {2025},
+      year = {2026},
       note = {R package version 1.6.0.900},
       url = {https://github.com/njlyon0/supportR},
     }

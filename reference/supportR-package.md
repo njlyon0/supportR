@@ -18,5 +18,5 @@ Useful links:
 
 ## Author
 
-**Maintainer**: Nicholas J Lyon <njlyon@alumni.iastate.edu>
+**Maintainer**: Nicholas J Lyon <nickjlyon@gmail.com>
 ([ORCID](https://orcid.org/0000-0003-3905-1078)) \[copyright holder\]

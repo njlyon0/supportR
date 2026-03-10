@@ -61,6 +61,9 @@
 - [`safe_rename()`](https://njlyon0.github.io/supportR/reference/safe_rename.md)
   : Safely Rename Columns in a Dataframe
 
+- [`spellcheck_quarto()`](https://njlyon0.github.io/supportR/reference/spellcheck_quarto.md)
+  : Check the Spelling of All Quarto Files in a Given Directory
+
 - [`summary_table()`](https://njlyon0.github.io/supportR/reference/summary_table.md)
   : Generate Summary Table for Supplied Response and Grouping Variables
 

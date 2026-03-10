@@ -121,52 +121,54 @@ data <- cbind(factor_4lvl, resp)
 # Actually perform multidimensional scaling
 mds <- vegan::metaMDS(data[-1], autotransform = FALSE, expand = FALSE, k = 2, try = 50)
 #> Run 0 stress 0.1000211 
-#> Run 1 stress 0.2180884 
-#> Run 2 stress 0.2155121 
-#> Run 3 stress 0.1000211 
-#> ... Procrustes: rmse 6.851938e-06  max resid 2.606731e-05 
+#> Run 1 stress 0.1715395 
+#> Run 2 stress 0.1000211 
+#> ... Procrustes: rmse 1.068764e-05  max resid 4.170213e-05 
 #> ... Similar to previous best
-#> Run 4 stress 0.1000211 
-#> ... Procrustes: rmse 9.391727e-06  max resid 4.046547e-05 
-#> ... Similar to previous best
+#> Run 3 stress 0.1605747 
+#> Run 4 stress 0.1613668 
 #> Run 5 stress 0.1000211 
-#> ... Procrustes: rmse 1.647936e-05  max resid 7.008866e-05 
-#> ... Similar to previous best
-#> Run 6 stress 0.1000211 
 #> ... New best solution
-#> ... Procrustes: rmse 1.272124e-05  max resid 5.523123e-05 
+#> ... Procrustes: rmse 3.277057e-06  max resid 1.416261e-05 
 #> ... Similar to previous best
+#> Run 6 stress 0.1607499 
 #> Run 7 stress 0.1000211 
 #> ... New best solution
-#> ... Procrustes: rmse 8.107585e-06  max resid 3.504136e-05 
+#> ... Procrustes: rmse 3.547968e-07  max resid 1.025797e-06 
 #> ... Similar to previous best
 #> Run 8 stress 0.1000211 
-#> ... Procrustes: rmse 1.575297e-06  max resid 6.04963e-06 
+#> ... Procrustes: rmse 6.553308e-06  max resid 2.717474e-05 
 #> ... Similar to previous best
-#> Run 9 stress 0.1532704 
+#> Run 9 stress 0.1000211 
+#> ... Procrustes: rmse 1.847283e-05  max resid 5.887532e-05 
+#> ... Similar to previous best
 #> Run 10 stress 0.1000211 
-#> ... Procrustes: rmse 1.364599e-06  max resid 5.158543e-06 
+#> ... Procrustes: rmse 1.638284e-06  max resid 6.797019e-06 
 #> ... Similar to previous best
-#> Run 11 stress 0.1000211 
-#> ... Procrustes: rmse 8.31051e-06  max resid 3.558966e-05 
+#> Run 11 stress 0.1607505 
+#> Run 12 stress 0.2186732 
+#> Run 13 stress 0.1000211 
+#> ... Procrustes: rmse 9.336186e-06  max resid 4.046768e-05 
 #> ... Similar to previous best
-#> Run 12 stress 0.1000211 
-#> ... Procrustes: rmse 8.346248e-06  max resid 3.61699e-05 
-#> ... Similar to previous best
-#> Run 13 stress 0.2148754 
 #> Run 14 stress 0.1000211 
-#> ... Procrustes: rmse 7.371706e-06  max resid 3.185899e-05 
+#> ... Procrustes: rmse 1.860223e-05  max resid 7.962999e-05 
 #> ... Similar to previous best
-#> Run 15 stress 0.1607505 
-#> Run 16 stress 0.1715395 
-#> Run 17 stress 0.1532704 
-#> Run 18 stress 0.1000211 
+#> Run 15 stress 0.1000211 
 #> ... New best solution
-#> ... Procrustes: rmse 2.669231e-06  max resid 1.102027e-05 
+#> ... Procrustes: rmse 3.514954e-06  max resid 1.498052e-05 
 #> ... Similar to previous best
-#> Run 19 stress 0.2106241 
-#> Run 20 stress 0.1613105 
-#> *** Best solution repeated 1 times
+#> Run 16 stress 0.1000211 
+#> ... Procrustes: rmse 1.420825e-05  max resid 6.162886e-05 
+#> ... Similar to previous best
+#> Run 17 stress 0.160494 
+#> Run 18 stress 0.1000211 
+#> ... Procrustes: rmse 6.506975e-06  max resid 2.816072e-05 
+#> ... Similar to previous best
+#> Run 19 stress 0.1733341 
+#> Run 20 stress 0.1000211 
+#> ... Procrustes: rmse 1.532844e-05  max resid 6.633466e-05 
+#> ... Similar to previous best
+#> *** Best solution repeated 4 times
 
 # With the scaled object and original dataframe we can use this function
 nms_ord(mod = mds, groupcol = data$factor_4lvl,
