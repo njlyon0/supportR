@@ -1,43 +1,26 @@
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-
 <img src = "man/figures/supportR_hex.png" align = "right" width = "15%"/>
 
 # `supportR` - Support Functions for Wrangling and Visualization
 
 <!-- badges: start -->
-
 [![R-CMD-check](https://github.com/njlyon0/supportR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/njlyon0/supportR/actions/workflows/R-CMD-check.yaml)
 [![](https://cranlogs.r-pkg.org/badges/supportR)](https://cran.r-project.org/package=supportR)
-![GitHub
-issues](https://img.shields.io/github/issues-raw/njlyon0/supportR)
-![GitHub pull
-requests](https://img.shields.io/github/issues-pr/njlyon0/supportR)
+![GitHub issues](https://img.shields.io/github/issues-raw/njlyon0/supportR)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/njlyon0/supportR)
 <!-- badges: end -->
 
-`supportR` is an R package where the only unifying theme of the
-functions is honestly just that I wrote them. That said, there are some
-useful functions for **data wrangling**, **quality control** checks, and
-**visualization** in particular, though functions for *other purposes*
-are also included. Check out the package website
-([njlyon0.github.io/supportR](https://njlyon0.github.io/supportR/)) for
-documentation of the functions currently included in the package. I’ll
-add functions to this package as I write more orphan scripts that I hope
-others might find useful so stay tuned!
+`supportR` is an R package where the only unifying theme of the functions is honestly just that I wrote them. That said, there are some useful functions for **data wrangling**, **quality control** checks, and **visualization** in particular, though functions for _other purposes_ are also included. Check out the package website ([njlyon0.github.io/supportR](https://njlyon0.github.io/supportR/)) for documentation of the functions currently included in the package. I'll add functions to this package as I write more orphan scripts that I hope others might find useful so stay tuned!
 
 ## Installation
 
-You can install the development version from
-[GitHub](https://github.com/) with:
+You can install the development version from [GitHub](https://github.com/) with:
 
 ``` r
-# install.packages("devtools")
-devtools::install_github("njlyon0/supportR")
+# install.packages("pak")
+pak::pak("njlyon0/supportR")
 ```
 
 ## Looking Ahead
 
-More functions are likely to be developed and housed within this package
-so stay tuned! Feel free to check out [the contributing
-guidelines](https://njlyon0.github.io/supportR/CONTRIBUTING.html) if you
-want to know how to contribute directly to `supportR`.
+More functions are likely to be developed and housed within this package so stay tuned! Feel free to check out [the contributing guidelines](https://njlyon0.github.io/supportR/CONTRIBUTING.html) if you want to know how to contribute directly to `supportR`.
