@@ -15,6 +15,7 @@ This vignette describes the main functions of `supportR` using the
 examples included in each function.
 
 ``` r
+
 #install.packages("supportR")
 library(supportR)
 ```
@@ -34,6 +35,7 @@ pipes (`%>%`).
 vectors and return a two-element if set to `TRUE`.
 
 ``` r
+
 # Make two vectors
 vec1 <- c("x", "a", "b")
 vec2 <- c("y", "z", "a")
@@ -61,6 +63,7 @@ only to flag these for your attention, *not* to attempt a fix using a
 method you may or may not support.
 
 ``` r
+
 # Make a dataframe with non-numbers in a number column
 fish <- data.frame("species" = c("salmon", "bass", "halibut", "eel"),
                    "count" = c(1, "14x", "_23", 12))
@@ -80,6 +83,7 @@ a date is sufficiently badly formatted `as.Date` will throw an error
 instead of coercing to `NA` so `date_check` will do the same thing.
 
 ``` r
+
 # Make a dataframe including malformed dates
 sites <- data.frame("site" = c("LTR", "GIL", "PYN", "RIN"),
                     "visit" = c("2021-01-01", "2021-01-0w", "1990", "2020-10-xx"))
@@ -117,6 +121,7 @@ UNCERTAIN” so that you can handle them using your knowledge of the
 system (or by returning to your raw data if need be).
 
 ``` r
+
 # Make a dataframe with dates in various formats and a grouping column
 my_df <- data.frame("data_enterer" = c("person A", "person B",
                                        "person B", "person B",

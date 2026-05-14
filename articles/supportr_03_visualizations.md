@@ -15,6 +15,7 @@ This vignette describes the main functions of `supportR` using the
 examples included in each function.
 
 ``` r
+
 #install.packages("supportR")
 library(supportR)
 ```
@@ -27,6 +28,7 @@ Horst](https://allisonhorst.com/allison-horst)’s [`palmerpenguins` R
 package](https://github.com/allisonhorst/palmerpenguins).
 
 ``` r
+
 # Check the structure of the penguins dataset
 str(penguins)
 #> 'data.frame':    344 obs. of  8 variables:
@@ -55,6 +57,7 @@ that all of my figures share similar aesthetics. Feel free to use
 - Increases the font size of the axes titles and tick labels
 
 ``` r
+
 # Load ggplot2
 library(ggplot2)
 
@@ -66,6 +69,7 @@ ggplot(penguins, aes(x = species, y = body_mass_g, fill = species)) +
 ![](supportr_03_visualizations_files/figure-html/theme_lyon-1.png)
 
 ``` r
+
 
 # Compare with the same plot with my theme
 ggplot(penguins, aes(x = species, y = body_mass_g, fill = species)) +
@@ -84,6 +88,7 @@ by either [`ape::pcoa`](https://rdrr.io/pkg/ape/man/pcoa.html) or
 [`vegan::metaMDS`](https://vegandevs.github.io/vegan/reference/metaMDS.html).
 
 ``` r
+
 # Load data from the `vegan` package
 utils::data("varespec", package = "vegan")
 

@@ -15,6 +15,7 @@ issue](https://github.com/njlyon0/supportR/issues) so that I can repair
 the issue as soon as possible.
 
 ``` r
+
 # install.packages("supportR")
 library(supportR)
 ```
@@ -27,6 +28,7 @@ Horst](https://allisonhorst.com/allison-horst)’s [`palmerpenguins` R
 package](https://github.com/allisonhorst/palmerpenguins).
 
 ``` r
+
 # Check the structure of the penguins dataset
 str(penguins)
 #> 'data.frame':    344 obs. of  8 variables:
@@ -56,6 +58,7 @@ creation. There is also a `round_digits` argument that lets you specify
 how many digits you’d like to retain for the mean, SD, and SE.
 
 ``` r
+
 # Summarize the data
 supportR::summary_table(data = penguins, groups = c("species", "island"),
                         response = "bill_length_mm", drop_na = TRUE)
@@ -77,6 +80,7 @@ with the first good name), but that order need not match the order in
 which they occur in the data!
 
 ``` r
+
 # Make a dataframe to demonstrate
 df <- data.frame("first" = 1:3, "middle" = 4:6, "second" = 7:9)
 
@@ -111,12 +115,14 @@ to still demonstrate the function without causing errors when I submit
 version updates of `supportR` to CRAN.
 
 ``` r
+
 # Make a vector of non-ASCII characters
 (non_ascii <- c("\u201C", "\u00AC", "\u00D7"))
 #> [1] "“" "¬" "×"
 ```
 
 ``` r
+
 # Replace them with ASCII equivalents
 supportR::replace_non_ascii(x = non_ascii, include_letters = F)
 #> [1] "\"" "-"  "x"
@@ -132,6 +138,7 @@ using the base R notation for removing a triangle of a symmetric data
 object.
 
 ``` r
+
 # Define a simple matrix wtih symmetric dimensions
 mat <- matrix(data = c(1:2, 2:1), nrow = 2, ncol = 2)
 
@@ -155,6 +162,7 @@ into a dataframe containing columns “x”, “y”, “z”, and “value” w
 “value” is whatever was stored at those coordinates in the array.
 
 ``` r
+
 # Make data to fill the array
 vec1 <- c(5, 9, 3)
 vec2 <- c(10:15)

@@ -22,6 +22,7 @@ If the `folder` argument is set to `NULL` (the default) the top level of
 the repository is listed.
 
 ``` r
+
 # List all files in a GitHub repository
 supportR::github_ls(repo = "https://github.com/njlyon0/supportR",
                     recursive = TRUE, quiet = FALSE)
@@ -35,6 +36,7 @@ supportR::github_ls(repo = "https://github.com/njlyon0/supportR",
 ```
 
 ``` r
+
 # Or list files in only a particular folder
 supportR::github_ls(repo = "https://github.com/njlyon0/supportR", folder = "R",
                     recursive = FALSE, quiet = TRUE)
@@ -59,6 +61,7 @@ I think this could be particularly useful to embed in a repository’s
 a guide in navigating the repository’s contents.
 
 ``` r
+
 # Create a file tree diagram of a GitHub repository
 supportR::github_tree(repo = "https://github.com/njlyon0/supportR",
                       exclude = c("docs", "man", ".github"), quiet = FALSE)
@@ -86,6 +89,7 @@ on a local file you need only provide the file name/path as you would to
 any other reading function (e.g., `read.csv`, etc.)
 
 ``` r
+
 # Identify URL to the NEWS.md file in `supportR` GitHub repo
 md_cxn <- url("https://raw.githubusercontent.com/njlyon0/supportR/main/NEWS.md")
 
@@ -116,6 +120,7 @@ and doing the authentication “dance” in a browser before using
 `rmd_export` to reduce the chances of any errors.
 
 ``` r
+
 # Authorize R to interact with GoogleDrive
 googledrive::drive_auth()
 
