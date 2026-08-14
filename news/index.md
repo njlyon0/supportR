@@ -1,9 +1,8 @@
 # Changelog
 
-## supportR Version 1.6.0.900
+## supportR Version 1.6.1
 
-This is the development version. Changes from the preceding version are
-listed below
+Changes from the preceding version are listed below
 
 - New function: `spellcheck_quarto`. Runs
   [`spelling::spell_check_files`](https://docs.ropensci.org/spelling//reference/spell_check_files.html)
