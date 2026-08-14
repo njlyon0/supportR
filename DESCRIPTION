@@ -1,8 +1,8 @@
 Package: supportR
 Type: Package
 Title: Support Functions for Wrangling and Visualization
-Version: 1.6.0.900
-Date: 2026-03-10
+Version: 1.6.1
+Date: 2026-08-14
 Authors@R: c(
     person(given = "Nicholas J",
            family = "Lyon",
