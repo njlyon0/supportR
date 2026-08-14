@@ -25,5 +25,7 @@ export(summary_table)
 export(tabularize_md)
 export(theme_lyon)
 importFrom(lifecycle,deprecated)
-importFrom(magrittr,"%<>%")
-importFrom(magrittr,"%>%")
+importFrom(magrittr,
+  "%<>%",
+  "%>%"
+)
