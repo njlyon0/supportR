@@ -129,7 +129,7 @@ mds <- vegan::metaMDS(data[-1], autotransform = FALSE, expand = FALSE, k = 2, tr
 #> Run 4 stress 0.1613668 
 #> Run 5 stress 0.1000211 
 #> ... New best solution
-#> ... Procrustes: rmse 3.277057e-06  max resid 1.416261e-05 
+#> ... Procrustes: rmse 3.277054e-06  max resid 1.416261e-05 
 #> ... Similar to previous best
 #> Run 6 stress 0.1607499 
 #> Run 7 stress 0.1000211 

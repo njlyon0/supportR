@@ -41,72 +41,111 @@
 
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.6.1" id="supportr-version-161">supportR Version 1.6.1<a class="anchor" aria-label="anchor" href="#supportr-version-161"></a></h2>
-<p>Changes from the preceding version are listed below</p>
-<ul><li>New function: <code>spellcheck_quarto</code>. Runs <code><a href="https://docs.ropensci.org/spelling//reference/spell_check_files.html" class="external-link">spelling::spell_check_files</a></code> on all Quarto files (.qmd) that would be rendered (e.g., to make a website)</li>
-<li>Update maintainer email</li>
+<div class="section level3">
+<h3 id="new-features-1-6-1">New Features<a class="anchor" aria-label="anchor" href="#new-features-1-6-1"></a></h3>
+<ul><li>
+<code><a href="../reference/spellcheck_quarto.html">spellcheck_quarto()</a></code> runs <code><a href="https://docs.ropensci.org/spelling//reference/spell_check_files.html" class="external-link">spelling::spell_check_files()</a></code> on all Quarto files (<code>.qmd</code>) that would be rendered (e.g., to make a website)</li>
 </ul></div>
+<div class="section level3">
+<h3 id="documentation--testing-1-6-1">Documentation / Testing<a class="anchor" aria-label="anchor" href="#documentation--testing-1-6-1"></a></h3>
+<ul><li>Updates maintainer email.</li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.6.0" id="supportr-version-160">supportR Version 1.6.0<a class="anchor" aria-label="anchor" href="#supportr-version-160"></a></h2><p class="text-muted">CRAN release: 2025-12-21</p>
-<p>Changes from preceding version are listed below</p>
-<ul><li>Modified function behavior: <code>count_diff</code> now correctly handles counting of vector elements found in only one of the input vectors (i.e., should be 0 occurrences not <code>NA</code> occurrences). This also repairs the difference calculation for entries that are unique to one input vector.</li>
-<li>Modified function behavior: <code>num_check</code> no longer flags a 0-length, ‘empty’ element as a non-number (<code>as.numeric(x = "")</code> does not throw a warning or error so <code>num_check</code> shouldn’t flag such elements)</li>
-<li>Modified function behavior: <code>diff_check</code> now coerces dates (i.e., <code>class(vec) == "Date"</code>) into characters before evaluating vector differences because <code>is.vector(date_vector)</code> returns <code>FALSE</code> which erroneously threw an error in this function</li>
+<ul><li>
+<code><a href="../reference/count_diff.html">count_diff()</a></code> correctly handles counting of vector elements found in only one of the input vectors (i.e., should be 0 occurrences not <code>NA</code> occurrences).</li>
+<li>
+<code><a href="../reference/num_check.html">num_check()</a></code> no longer flags a 0-length, ‘empty’ element as a non-number.</li>
+<li>
+<code><a href="../reference/diff_check.html">diff_check()</a></code> coerces dates into characters before evaluating vector differences because <code><a href="https://rdrr.io/r/base/vector.html" class="external-link">is.vector()</a></code> returns <code>FALSE</code> for date vectors which erroneously produces an error in this function.</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.5.0" id="supportr-version-150">supportR Version 1.5.0<a class="anchor" aria-label="anchor" href="#supportr-version-150"></a></h2><p class="text-muted">CRAN release: 2025-06-03</p>
-<p>Changes from preceding version are listed below</p>
-<ul><li>New function: <code>count_diff</code>. Similar to <code>count</code> except that it accepts two input vectors and counts the difference for each specified element (or all elements) between the two</li>
-<li>Function fix: Fixed issue with <code>replace_non_ascii</code> where if <code>include_letters</code> was set to <code>FALSE</code> a warning was still generated for non-ASCII letters when they were part of a larger string (e.g., “&lt;non-ascii&gt;xyz”, etc.)</li>
-<li>Vignette update: separated the single package vignette into separate, smaller files that give a tutorial for groups of functions with similar use-cases (e.g., quality control, data visualization, etc.)</li>
-<li>Namespaced all function examples–should allow users to run example code without loading the package explicitly (though they will need to have installed the package at least once before)</li>
+<div class="section level3">
+<h3 id="new-features-1-5-0">New Features<a class="anchor" aria-label="anchor" href="#new-features-1-5-0"></a></h3>
+<ul><li>
+<code><a href="../reference/count_diff.html">count_diff()</a></code> accepts two input vectors and counts the difference for each specified element (or all elements) between the two.</li>
 </ul></div>
+<div class="section level3">
+<h3 id="bug-fixes-1-5-0">Bug Fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-1-5-0"></a></h3>
+<ul><li>
+<code><a href="../reference/replace_non_ascii.html">replace_non_ascii()</a></code> no longer returns inappropriate warning if <code>include_letters = FALSE</code> for non-ASCII letters when they were part of a larger string (e.g., “&lt;non-ascii&gt;xyz”).</li>
+</ul></div>
+<div class="section level3">
+<h3 id="documentation--testing-1-5-0">Documentation / Testing<a class="anchor" aria-label="anchor" href="#documentation--testing-1-5-0"></a></h3>
+<ul><li>Separates vignette into separate, smaller files that tutorialize thematic groups of functions with similar use-cases (e.g., quality control, data visualization).</li>
+<li>Namespaces all function examples.</li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.4.0" id="supportr-version-140">supportR Version 1.4.0<a class="anchor" aria-label="anchor" href="#supportr-version-140"></a></h2><p class="text-muted">CRAN release: 2024-06-13</p>
-<p>Changes from preceding version are listed below</p>
-<ul><li>New function: <code>replace_non_ascii</code>. Replaces non-ASCII characters with ASCII characters that are as visually similar as possible</li>
-<li>New function: <code>count</code>. Counts occurrences of each unique element in the provided vector</li>
-<li>New function: <code>ordination</code>. Generic function that creates either NMS or PCoA ordinations. Makes extensive use of the <code>...</code> argument to greatly increase level of control user can expect over internal base R graphing functions. Supersedes <code>nms_ord</code> and <code>pcoa_ord</code>.</li>
-<li>Superseded functions: <code>nms_ord</code> and <code>pcoa_ord</code> are now superseded because they are special cases of <code>ordination</code>
-</li>
-<li>New function behavior: <code>nms_ord</code> and <code>pcoa_ord</code> now support modifying axis label text size and axis tickmark text size</li>
-<li>Began the process of adding units tests for most functions in the package. Users may notice some small cases where more informative errors/warnings are returned but generally this shouldn’t change function behavior in an appreciable way</li>
+<div class="section level3">
+<h3 id="new-features-1-4-0">New Features<a class="anchor" aria-label="anchor" href="#new-features-1-4-0"></a></h3>
+<ul><li>
+<code><a href="../reference/replace_non_ascii.html">replace_non_ascii()</a></code> replaces non-ASCII characters with ASCII characters that are as visually similar as possible.</li>
+<li>
+<code><a href="../reference/count.html">count()</a></code> counts occurrences of each unique element in the provided vector.</li>
+<li>
+<code><a href="../reference/ordination.html">ordination()</a></code> creates NMS and PCoA ordinations. Supersedes <code><a href="../reference/nms_ord.html">nms_ord()</a></code> and <code><a href="../reference/pcoa_ord.html">pcoa_ord()</a></code>.</li>
+<li>
+<code><a href="../reference/nms_ord.html">nms_ord()</a></code> and <code><a href="../reference/pcoa_ord.html">pcoa_ord()</a></code> support modifying axis label text size and axis tickmark text size.</li>
 </ul></div>
+<div class="section level3">
+<h3 id="documentation--testing-1-4-0">Documentation / Testing<a class="anchor" aria-label="anchor" href="#documentation--testing-1-4-0"></a></h3>
+<ul><li>Begins adding unit tests for most functions in the package.</li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.3.0" id="supportr-version-130">supportR Version 1.3.0<a class="anchor" aria-label="anchor" href="#supportr-version-130"></a></h2><p class="text-muted">CRAN release: 2024-04-12</p>
-<p>Changes from preceding version are listed below</p>
-<ul><li>New function: <code>force_num</code>. Coerces a vector to numeric and automatically silences any warnings due to coercing values to NA</li>
-<li>New function: <code>safe_rename</code>. Renames columns in a given dataframe by matching ‘bad’ names with ‘good’ names</li>
-<li>New function: <code>tabularize_md</code>. Converts a markdown file into a table that retains the nested structure of any headings in the file</li>
+<ul><li>
+<code><a href="../reference/force_num.html">force_num()</a></code> coerces a vector to numeric and automatically silences any warnings (e.g., due to coercing values to <code>NA</code>).</li>
+<li>
+<code><a href="../reference/safe_rename.html">safe_rename()</a></code> renames columns in a given dataframe by matching ‘bad’ names with ‘good’ names.</li>
+<li>
+<code><a href="../reference/tabularize_md.html">tabularize_md()</a></code> converts a markdown file into a table that retains the nested structure of any headings in the file.</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.2.0" id="supportr-version-120">supportR Version 1.2.0<a class="anchor" aria-label="anchor" href="#supportr-version-120"></a></h2><p class="text-muted">CRAN release: 2023-08-22</p>
-<p>Changes from preceding version are listed below</p>
-<ul><li>New function: <code>name_vec</code>. Creates a named vector of specified contents and names</li>
+<div class="section level3">
+<h3 id="new-features-1-2-0">New Features<a class="anchor" aria-label="anchor" href="#new-features-1-2-0"></a></h3>
+<ul><li>
+<code><a href="../reference/name_vec.html">name_vec()</a></code> creates a named vector of specified contents and names.</li>
 <li>
-<code>github_tree</code> now supports excluding no directories from the folder tree (this is the default behavior now)</li>
-<li>New function behavior: <code>num_check</code> now accepts multiple column names/numbers to its <code>col</code> argument</li>
-<li>New function behavior: <code>date_check</code> now accepts multiple column names/numbers to its <code>col</code> argument</li>
-<li>Deprecated function: <code>multi_num_check</code> is now deprecated (with a warning) because it is a special case of <code>num_check</code>
-</li>
-<li>Deprecated function: <code>multi_date_check</code> is now deprecated (with a warning) because it is a special case of <code>date_check</code>
-</li>
+<code><a href="../reference/github_tree.html">github_tree()</a></code> supports excluding no directories from the folder tree (this is the default behavior now).</li>
+<li>
+<code><a href="../reference/num_check.html">num_check()</a></code> and <code><a href="../reference/date_check.html">date_check()</a></code> accept multiple column names/numbers to <code>col</code> parameter.</li>
 </ul></div>
+<div class="section level3">
+<h3 id="breaking-changes-1-2-0">Breaking Changes<a class="anchor" aria-label="anchor" href="#breaking-changes-1-2-0"></a></h3>
+<ul><li>
+<code><a href="../reference/multi_num_check.html">multi_num_check()</a></code> and <code><a href="../reference/multi_date_check.html">multi_date_check()</a></code> are now deprecated because they are special case of <code><a href="../reference/num_check.html">num_check()</a></code> and <code><a href="../reference/date_check.html">date_check()</a></code> respectively.</li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.1.0" id="supportr-version-110">supportR Version 1.1.0<a class="anchor" aria-label="anchor" href="#supportr-version-110"></a></h2><p class="text-muted">CRAN release: 2023-07-08</p>
-<p>Changes from preceding version are listed below</p>
-<ul><li>New function: <code>github_ls</code>. Lists contents of specified GitHub repository either recursively or only top-level/specified folder</li>
-<li>New function: <code>github_tree</code>. Creates a file tree diagram for a specified GitHub repository</li>
-<li>Refined and clarified the package vignette</li>
+<div class="section level3">
+<h3 id="new-features-1-1-0">New Features<a class="anchor" aria-label="anchor" href="#new-features-1-1-0"></a></h3>
+<ul><li>
+<code><a href="../reference/github_ls.html">github_ls()</a></code> lists contents of specified GitHub repository either recursively or only top-level/specified folder.</li>
 <li>
-<code>pcoa_ord</code> and <code>nms_ord</code> now include arguments for changing point size (<code>pt_size</code>) and opacity (<code>pt_alpha</code>; i.e., transparency). Changes to point size are reflected in the legend but changes to opacity are not reflected in the legend points</li>
-<li>Fixed a typo in the message returned by <code>diff_check</code>
-</li>
-<li>Added example in documentation for <code>crop_tri</code>
-</li>
+<code><a href="../reference/github_tree.html">github_tree()</a></code> creates a file tree diagram for a specified GitHub repository.</li>
+<li>
+<code><a href="../reference/pcoa_ord.html">pcoa_ord()</a></code> and <code><a href="../reference/nms_ord.html">nms_ord()</a></code> include new parameters for changing point size (<code>pt_size</code>) and opacity (<code>pt_alpha</code>).</li>
 </ul></div>
+<div class="section level3">
+<h3 id="bug-fixes-1-1-0">Bug Fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-1-1-0"></a></h3>
+<ul><li>Resolves typo in <code><a href="../reference/diff_check.html">diff_check()</a></code> message.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="documentation--testing-1-1-0">Documentation / Testing<a class="anchor" aria-label="anchor" href="#documentation--testing-1-1-0"></a></h3>
+<ul><li>Refines and clarifies the package vignette.</li>
+<li>Adds example for <code><a href="../reference/crop_tri.html">crop_tri()</a></code>.</li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.0.0" id="supportr-version-100">supportR Version 1.0.0<a class="anchor" aria-label="anchor" href="#supportr-version-100"></a></h2><p class="text-muted">CRAN release: 2023-02-09</p>
-<p>This is the first fully-functioning version of the package. It currently has no ERRORs, WARNINGs, or NOTEs from <code><a href="https://devtools.r-lib.org/reference/check.html" class="external-link">devtools::check</a></code></p>
+<p>First fully-functioning version of the package.</p>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
