@@ -1,6 +1,11 @@
+# supportR Version 1.6.1.900
+
+This is the development version. Changes from the preceding version will be identified here as they are made.
+
 # supportR Version 1.6.1
 
 ## New Features
+
 - `spellcheck_quarto()` runs `spelling::spell_check_files()` on all Quarto files (`.qmd`) that would be rendered (e.g., to make a website)
 
 ## Documentation / Testing
