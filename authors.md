@@ -8,16 +8,16 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/njlyon0/supportR/blob/v1.6.1/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/njlyon0/supportR/blob/main/DESCRIPTION)
 
 Lyon N (2026). *supportR: Support Functions for Wrangling and
-Visualization*. R package version 1.6.1,
+Visualization*. R package version 1.6.1.900,
 <https://github.com/njlyon0/supportR>.
 
     @Manual{,
       title = {supportR: Support Functions for Wrangling and Visualization},
       author = {Nicholas J Lyon},
       year = {2026},
-      note = {R package version 1.6.1},
+      note = {R package version 1.6.1.900},
       url = {https://github.com/njlyon0/supportR},
     }
