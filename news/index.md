@@ -2,6 +2,8 @@
 
 ## supportR Version 1.6.1
 
+CRAN release: 2026-09-18
+
 ### New Features
 
 - [`spellcheck_quarto()`](https://njlyon0.github.io/supportR/reference/spellcheck_quarto.md)

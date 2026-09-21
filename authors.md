@@ -8,7 +8,7 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/njlyon0/supportR/blob/main/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/njlyon0/supportR/blob/v1.6.1/DESCRIPTION)
 
 Lyon N (2026). *supportR: Support Functions for Wrangling and
 Visualization*. R package version 1.6.1,
